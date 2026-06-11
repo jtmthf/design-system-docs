@@ -4,11 +4,23 @@
   "type": "module",
   "private": true,
   "imports": {
-    "#components/*": "./src/components/*.tsx",
-    "#lib/*": "./src/lib/*.ts",
-    "#hooks/*": "./src/hooks/*.ts"
+    "#components/*": {
+      "api-extractor": "./dist/components/*.d.ts",
+      "default": "./src/components/*.tsx"
+    },
+    "#lib/*": {
+      "api-extractor": "./dist/lib/*.d.ts",
+      "default": "./src/lib/*.ts"
+    },
+    "#hooks/*": {
+      "api-extractor": "./dist/hooks/*.d.ts",
+      "default": "./src/hooks/*.ts"
+    }
   },
   "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "api-report": "api-extractor run --local --verbose",
+    "api-report:check": "api-extractor run --verbose",
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
@@ -38,6 +50,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@microsoft/api-extractor": "^7.58.8",
     "@chromatic-com/storybook": "^5.2.1",
     "@storybook/addon-a11y": "^10.4.2",
     "@storybook/addon-docs": "^10.4.2",

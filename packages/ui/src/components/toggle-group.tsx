@@ -20,6 +20,26 @@ const ToggleGroupContext = React.createContext<
   orientation: "horizontal",
 })
 
+/**
+ * Container that groups related `ToggleGroupItem` buttons with shared variant and size context.
+ *
+ * @remarks
+ * Wraps the Base UI ToggleGroup primitive and provides `variant`, `size`,
+ * `spacing`, and `orientation` to all child `ToggleGroupItem` elements via
+ * React context. `spacing` (default: `2`) controls the gap between items in
+ * Tailwind spacing units; set to `0` for a fused button-group appearance.
+ * `orientation` defaults to `"horizontal"`.
+ *
+ * @example
+ * ```tsx
+ * <ToggleGroup type="multiple" variant="outline" size="sm">
+ *   <ToggleGroupItem value="bold"><BoldIcon /></ToggleGroupItem>
+ *   <ToggleGroupItem value="italic"><ItalicIcon /></ToggleGroupItem>
+ * </ToggleGroup>
+ * ```
+ *
+ * @public
+ */
 function ToggleGroup({
   className,
   variant,
@@ -56,6 +76,17 @@ function ToggleGroup({
   )
 }
 
+/**
+ * Individual toggle button inside a `ToggleGroup`, inheriting variant and size from group context.
+ *
+ * @remarks
+ * Inherits `variant`, `size`, and `spacing` from the parent `ToggleGroup`
+ * context, falling back to its own props when no context value is set.
+ * When `spacing` is `0` the item joins adjacent items into a seamless fused
+ * group with shared borders and rounded corners only on the outermost edges.
+ *
+ * @public
+ */
 function ToggleGroupItem({
   className,
   children,

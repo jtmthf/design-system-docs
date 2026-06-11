@@ -6,18 +6,70 @@ import { Menu as MenuPrimitive } from "@base-ui/react/menu"
 import { cn } from "#lib/utils"
 import { ChevronRightIcon, CheckIcon } from "lucide-react"
 
+/**
+ * Dropdown menu root that manages open/close state for a floating menu popup.
+ *
+ * @remarks
+ * Compose with `DropdownMenuTrigger`, `DropdownMenuContent`, and any combination of
+ * `DropdownMenuItem`, `DropdownMenuCheckboxItem`, `DropdownMenuRadioGroup`,
+ * `DropdownMenuSub`, `DropdownMenuSeparator`, and `DropdownMenuLabel`. Delegates
+ * state management to the Base UI `Menu.Root` primitive.
+ *
+ * @example
+ * ```tsx
+ * <DropdownMenu>
+ *   <DropdownMenuTrigger>Options</DropdownMenuTrigger>
+ *   <DropdownMenuContent>
+ *     <DropdownMenuItem>Profile</DropdownMenuItem>
+ *     <DropdownMenuSeparator />
+ *     <DropdownMenuItem variant="destructive">Sign out</DropdownMenuItem>
+ *   </DropdownMenuContent>
+ * </DropdownMenu>
+ * ```
+ *
+ * @public
+ */
 function DropdownMenu({ ...props }: MenuPrimitive.Root.Props) {
   return <MenuPrimitive.Root data-slot="dropdown-menu" {...props} />
 }
 
+/**
+ * Portal wrapper that renders the dropdown popup outside the normal DOM hierarchy.
+ *
+ * @remarks
+ * Delegates to `MenuPrimitive.Portal`. Used internally by `DropdownMenuContent`;
+ * you rarely need to use this directly.
+ *
+ * @public
+ */
 function DropdownMenuPortal({ ...props }: MenuPrimitive.Portal.Props) {
   return <MenuPrimitive.Portal data-slot="dropdown-menu-portal" {...props} />
 }
 
+/**
+ * Element that opens the parent `DropdownMenu` when activated.
+ *
+ * @remarks
+ * Delegates to `MenuPrimitive.Trigger`. Any focusable element can serve as the
+ * trigger via the underlying primitive's `render` prop.
+ *
+ * @public
+ */
 function DropdownMenuTrigger({ ...props }: MenuPrimitive.Trigger.Props) {
   return <MenuPrimitive.Trigger data-slot="dropdown-menu-trigger" {...props} />
 }
 
+/**
+ * Floating popup panel containing the dropdown menu items.
+ *
+ * @remarks
+ * Renders via a portal and positions itself via `MenuPrimitive.Positioner`. Accepts
+ * `align`, `alignOffset`, `side`, and `sideOffset` for fine-grained placement
+ * control. Width matches the anchor element (`w-(--anchor-width)`). Applies
+ * entry/exit animations driven by `data-open` and `data-closed` attributes.
+ *
+ * @public
+ */
 function DropdownMenuContent({
   align = "start",
   alignOffset = 0,
@@ -49,10 +101,28 @@ function DropdownMenuContent({
   )
 }
 
+/**
+ * Groups related items inside a `DropdownMenuContent`.
+ *
+ * @remarks
+ * Use alongside `DropdownMenuLabel` to provide an accessible heading. Delegates to
+ * `MenuPrimitive.Group`.
+ *
+ * @public
+ */
 function DropdownMenuGroup({ ...props }: MenuPrimitive.Group.Props) {
   return <MenuPrimitive.Group data-slot="dropdown-menu-group" {...props} />
 }
 
+/**
+ * Non-interactive label rendered above a group of dropdown menu items.
+ *
+ * @remarks
+ * Accepts an `inset` boolean that adds `pl-7` padding to align with inset items.
+ * Renders muted extra-small text via `MenuPrimitive.GroupLabel`.
+ *
+ * @public
+ */
 function DropdownMenuLabel({
   className,
   inset,
@@ -73,6 +143,16 @@ function DropdownMenuLabel({
   )
 }
 
+/**
+ * Clickable action row inside a `DropdownMenuContent`.
+ *
+ * @remarks
+ * Supports `variant` (`"default"` | `"destructive"`) for danger styling, and an
+ * `inset` boolean that adds leading padding to align with items that have icons.
+ * Responds to `data-disabled` and focus states.
+ *
+ * @public
+ */
 function DropdownMenuItem({
   className,
   inset,
@@ -96,10 +176,29 @@ function DropdownMenuItem({
   )
 }
 
+/**
+ * Root of a nested submenu inside a `DropdownMenuContent`.
+ *
+ * @remarks
+ * Must contain a `DropdownMenuSubTrigger` and a `DropdownMenuSubContent`. Delegates
+ * to `MenuPrimitive.SubmenuRoot`.
+ *
+ * @public
+ */
 function DropdownMenuSub({ ...props }: MenuPrimitive.SubmenuRoot.Props) {
   return <MenuPrimitive.SubmenuRoot data-slot="dropdown-menu-sub" {...props} />
 }
 
+/**
+ * Item that opens a nested `DropdownMenuSubContent` when focused or hovered.
+ *
+ * @remarks
+ * Appends a `ChevronRightIcon` as a visual indicator of the nested menu.
+ * Accepts an `inset` boolean for alignment with non-icon sibling items. Applies
+ * accent background when the submenu is open (`data-open`, `data-popup-open`).
+ *
+ * @public
+ */
 function DropdownMenuSubTrigger({
   className,
   inset,
@@ -124,6 +223,15 @@ function DropdownMenuSubTrigger({
   )
 }
 
+/**
+ * Nested popup panel associated with a `DropdownMenuSubTrigger`.
+ *
+ * @remarks
+ * Delegates to `DropdownMenuContent` with `side="right"`, `align="start"`, and
+ * elevated shadow. Must be placed inside a `DropdownMenuSub`.
+ *
+ * @public
+ */
 function DropdownMenuSubContent({
   align = "start",
   alignOffset = -3,
@@ -145,6 +253,16 @@ function DropdownMenuSubContent({
   )
 }
 
+/**
+ * Checkable item that toggles a boolean value within a `DropdownMenuContent`.
+ *
+ * @remarks
+ * Renders a `CheckIcon` indicator when `checked` is `true`. Accepts an `inset`
+ * boolean for leading-padding alignment. Delegates to
+ * `MenuPrimitive.CheckboxItem`.
+ *
+ * @public
+ */
 function DropdownMenuCheckboxItem({
   className,
   children,
@@ -179,6 +297,15 @@ function DropdownMenuCheckboxItem({
   )
 }
 
+/**
+ * Groups `DropdownMenuRadioItem` elements so only one can be selected at a time.
+ *
+ * @remarks
+ * Delegates to `MenuPrimitive.RadioGroup`. Must be placed inside a
+ * `DropdownMenuContent`.
+ *
+ * @public
+ */
 function DropdownMenuRadioGroup({ ...props }: MenuPrimitive.RadioGroup.Props) {
   return (
     <MenuPrimitive.RadioGroup
@@ -188,6 +315,15 @@ function DropdownMenuRadioGroup({ ...props }: MenuPrimitive.RadioGroup.Props) {
   )
 }
 
+/**
+ * Radio-selectable item inside a `DropdownMenuRadioGroup`.
+ *
+ * @remarks
+ * Renders a `CheckIcon` indicator when the item is selected. Accepts an `inset`
+ * boolean for leading-padding alignment. Delegates to `MenuPrimitive.RadioItem`.
+ *
+ * @public
+ */
 function DropdownMenuRadioItem({
   className,
   children,
@@ -220,6 +356,11 @@ function DropdownMenuRadioItem({
   )
 }
 
+/**
+ * Horizontal rule that visually separates sections inside a `DropdownMenuContent`.
+ *
+ * @public
+ */
 function DropdownMenuSeparator({
   className,
   ...props
@@ -233,6 +374,15 @@ function DropdownMenuSeparator({
   )
 }
 
+/**
+ * Keyboard shortcut label rendered at the trailing edge of a `DropdownMenuItem`.
+ *
+ * @remarks
+ * Inherits accent foreground color when the parent item is focused. Place key
+ * names as text children (e.g. `"Ctrl K"`).
+ *
+ * @public
+ */
 function DropdownMenuShortcut({
   className,
   ...props

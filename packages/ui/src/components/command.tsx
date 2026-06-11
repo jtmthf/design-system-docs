@@ -17,6 +17,29 @@ import {
 } from "#components/input-group"
 import { SearchIcon, CheckIcon } from "lucide-react"
 
+/**
+ * Command palette root that provides keyboard-navigable filtering over a list of items.
+ *
+ * @remarks
+ * Built on top of the `cmdk` `Command` primitive. Compose it with `CommandInput`,
+ * `CommandList`, `CommandGroup`, `CommandItem`, and optionally `CommandSeparator` and
+ * `CommandShortcut`. For a modal variant wrap everything in `CommandDialog` instead.
+ *
+ * @example
+ * ```tsx
+ * <Command>
+ *   <CommandInput placeholder="Search..." />
+ *   <CommandList>
+ *     <CommandEmpty>No results found.</CommandEmpty>
+ *     <CommandGroup heading="Actions">
+ *       <CommandItem>New file</CommandItem>
+ *     </CommandGroup>
+ *   </CommandList>
+ * </Command>
+ * ```
+ *
+ * @public
+ */
 function Command({
   className,
   ...props
@@ -33,6 +56,18 @@ function Command({
   )
 }
 
+/**
+ * Modal dialog wrapper that displays a `Command` palette in a centered overlay.
+ *
+ * @remarks
+ * Composes `Dialog`, `DialogContent`, `DialogHeader`, `DialogTitle`, and
+ * `DialogDescription` to produce an accessible modal command palette. The dialog
+ * header is visually hidden (`sr-only`) but remains in the accessibility tree.
+ * Pass `title` and `description` to customize the accessible label and description.
+ * Set `showCloseButton` to `true` to render a visible close button.
+ *
+ * @public
+ */
 function CommandDialog({
   title = "Command Palette",
   description = "Search for a command to run...",
@@ -66,6 +101,15 @@ function CommandDialog({
   )
 }
 
+/**
+ * Search input rendered at the top of a `Command` palette.
+ *
+ * @remarks
+ * Wrapped in an `InputGroup` with a `SearchIcon` addon. Filters the list of
+ * `CommandItem` elements as the user types. Must be placed inside a `Command` root.
+ *
+ * @public
+ */
 function CommandInput({
   className,
   ...props
@@ -89,6 +133,15 @@ function CommandInput({
   )
 }
 
+/**
+ * Scrollable container for `CommandGroup` and `CommandItem` elements.
+ *
+ * @remarks
+ * Limits height to `18rem` and hides the scrollbar. Must be placed inside a
+ * `Command` root; all filtering logic operates on its descendant items.
+ *
+ * @public
+ */
 function CommandList({
   className,
   ...props
@@ -105,6 +158,15 @@ function CommandList({
   )
 }
 
+/**
+ * Message displayed inside `CommandList` when no items match the current query.
+ *
+ * @remarks
+ * Rendered automatically by the `cmdk` primitive when the filtered item count
+ * reaches zero. Must be placed inside a `Command` root.
+ *
+ * @public
+ */
 function CommandEmpty({
   className,
   ...props
@@ -118,6 +180,16 @@ function CommandEmpty({
   )
 }
 
+/**
+ * Named group of related `CommandItem` elements with a muted heading.
+ *
+ * @remarks
+ * The group heading is styled via the `[cmdk-group-heading]` attribute selector.
+ * Automatically hidden when all items inside are filtered out. Must be placed
+ * inside a `CommandList`.
+ *
+ * @public
+ */
 function CommandGroup({
   className,
   ...props
@@ -134,6 +206,11 @@ function CommandGroup({
   )
 }
 
+/**
+ * Horizontal rule that visually separates sections inside a `CommandList`.
+ *
+ * @public
+ */
 function CommandSeparator({
   className,
   ...props
@@ -147,6 +224,16 @@ function CommandSeparator({
   )
 }
 
+/**
+ * Selectable row inside a `CommandGroup` or `CommandList`.
+ *
+ * @remarks
+ * Displays a `CheckIcon` when the item carries `data-checked="true"`. Supports
+ * `data-selected` (keyboard focus) and `data-disabled` states. If a
+ * `CommandShortcut` is present the check icon is hidden to avoid overlap.
+ *
+ * @public
+ */
 function CommandItem({
   className,
   children,
@@ -167,6 +254,15 @@ function CommandItem({
   )
 }
 
+/**
+ * Keyboard shortcut label rendered at the trailing edge of a `CommandItem`.
+ *
+ * @remarks
+ * When present, the `CommandItem` check icon is hidden to avoid visual collision.
+ * Apply key names as children (e.g. `"Ctrl K"`).
+ *
+ * @public
+ */
 function CommandShortcut({
   className,
   ...props

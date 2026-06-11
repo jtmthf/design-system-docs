@@ -22,6 +22,29 @@ import {
 } from "#components/dropdown-menu"
 import { CheckIcon } from "lucide-react"
 
+/**
+ * A horizontal bar containing a set of menus, each opened by a trigger button.
+ *
+ * @remarks
+ * Built on Base UI's Menubar primitive. Wraps one or more `MenubarMenu` components.
+ * Use `MenubarTrigger` to open each menu and `MenubarContent` to contain items.
+ *
+ * @example
+ * ```tsx
+ * <Menubar>
+ *   <MenubarMenu>
+ *     <MenubarTrigger>File</MenubarTrigger>
+ *     <MenubarContent>
+ *       <MenubarItem>New Tab</MenubarItem>
+ *       <MenubarSeparator />
+ *       <MenubarItem>Quit</MenubarItem>
+ *     </MenubarContent>
+ *   </MenubarMenu>
+ * </Menubar>
+ * ```
+ *
+ * @public
+ */
 function Menubar({ className, ...props }: MenubarPrimitive.Props) {
   return (
     <MenubarPrimitive
@@ -35,22 +58,45 @@ function Menubar({ className, ...props }: MenubarPrimitive.Props) {
   )
 }
 
+/**
+ * A single menu entry within a Menubar, delegating to DropdownMenu for open/close state.
+ *
+ * @public
+ */
 function MenubarMenu({ ...props }: React.ComponentProps<typeof DropdownMenu>) {
   return <DropdownMenu data-slot="menubar-menu" {...props} />
 }
 
+/**
+ * A semantic group of related MenubarItem elements within a MenubarContent.
+ *
+ * @public
+ */
 function MenubarGroup({
   ...props
 }: React.ComponentProps<typeof DropdownMenuGroup>) {
   return <DropdownMenuGroup data-slot="menubar-group" {...props} />
 }
 
+/**
+ * Renders menubar content into a portal outside the current DOM hierarchy.
+ *
+ * @public
+ */
 function MenubarPortal({
   ...props
 }: React.ComponentProps<typeof DropdownMenuPortal>) {
   return <DropdownMenuPortal data-slot="menubar-portal" {...props} />
 }
 
+/**
+ * The button that opens a MenubarMenu's content panel.
+ *
+ * @remarks
+ * Styled as a compact pill that highlights on hover and when the menu is expanded (`aria-expanded`).
+ *
+ * @public
+ */
 function MenubarTrigger({
   className,
   ...props
@@ -67,6 +113,15 @@ function MenubarTrigger({
   )
 }
 
+/**
+ * The dropdown panel that appears when a MenubarMenu is opened.
+ *
+ * @remarks
+ * Defaults to `align="start"`, `alignOffset=-4`, and `sideOffset=8`. Includes entrance and exit
+ * animations driven by Base UI data attributes.
+ *
+ * @public
+ */
 function MenubarContent({
   className,
   align = "start",
@@ -86,6 +141,15 @@ function MenubarContent({
   )
 }
 
+/**
+ * A single actionable entry inside a MenubarContent panel.
+ *
+ * @remarks
+ * Supports `inset` for left-padding alignment when mixed with icon items, and `variant`
+ * (`default`, `destructive`) to convey intent via color.
+ *
+ * @public
+ */
 function MenubarItem({
   className,
   inset,
@@ -106,6 +170,15 @@ function MenubarItem({
   )
 }
 
+/**
+ * A menubar item that renders with a checkmark indicator when selected.
+ *
+ * @remarks
+ * Backed by Base UI's `Menu.CheckboxItem`. The `checked` prop controls the indicator visibility.
+ * Supports `inset` for alignment with non-checkbox items.
+ *
+ * @public
+ */
 function MenubarCheckboxItem({
   className,
   children,
@@ -137,12 +210,25 @@ function MenubarCheckboxItem({
   )
 }
 
+/**
+ * A container for a group of mutually exclusive MenubarRadioItem entries.
+ *
+ * @public
+ */
 function MenubarRadioGroup({
   ...props
 }: React.ComponentProps<typeof DropdownMenuRadioGroup>) {
   return <DropdownMenuRadioGroup data-slot="menubar-radio-group" {...props} />
 }
 
+/**
+ * A menubar item that behaves as a radio button within a MenubarRadioGroup.
+ *
+ * @remarks
+ * Shows a checkmark when selected. Supports `inset` for alignment with non-radio items.
+ *
+ * @public
+ */
 function MenubarRadioItem({
   className,
   children,
@@ -172,6 +258,14 @@ function MenubarRadioItem({
   )
 }
 
+/**
+ * A non-interactive label used to annotate a group of items within MenubarContent.
+ *
+ * @remarks
+ * Supports `inset` to add left padding matching inset items.
+ *
+ * @public
+ */
 function MenubarLabel({
   className,
   inset,
@@ -192,6 +286,11 @@ function MenubarLabel({
   )
 }
 
+/**
+ * A thin horizontal rule used to visually separate groups of items in MenubarContent.
+ *
+ * @public
+ */
 function MenubarSeparator({
   className,
   ...props
@@ -205,6 +304,14 @@ function MenubarSeparator({
   )
 }
 
+/**
+ * A trailing label inside a MenubarItem that displays the keyboard shortcut for the action.
+ *
+ * @remarks
+ * Automatically adapts its text color when the parent MenubarItem is focused.
+ *
+ * @public
+ */
 function MenubarShortcut({
   className,
   ...props
@@ -221,12 +328,25 @@ function MenubarShortcut({
   )
 }
 
+/**
+ * A container for a nested submenu within a MenubarMenu.
+ *
+ * @public
+ */
 function MenubarSub({
   ...props
 }: React.ComponentProps<typeof DropdownMenuSub>) {
   return <DropdownMenuSub data-slot="menubar-sub" {...props} />
 }
 
+/**
+ * An item inside a MenubarMenu that opens a nested MenubarSub panel on hover or focus.
+ *
+ * @remarks
+ * Supports `inset` for left-padding alignment. Highlights when the submenu is open.
+ *
+ * @public
+ */
 function MenubarSubTrigger({
   className,
   inset,
@@ -247,6 +367,11 @@ function MenubarSubTrigger({
   )
 }
 
+/**
+ * The panel that appears alongside a MenubarSubTrigger, containing nested menu items.
+ *
+ * @public
+ */
 function MenubarSubContent({
   className,
   ...props

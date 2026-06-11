@@ -4,6 +4,27 @@ import { cn } from "#lib/utils"
 import { Button } from "#components/button"
 import { ChevronLeftIcon, ChevronRightIcon, MoreHorizontalIcon } from "lucide-react"
 
+/**
+ * A navigation landmark for paginated content, rendering page links and previous/next controls.
+ *
+ * @remarks
+ * Renders a `<nav>` with `role="navigation"` and `aria-label="pagination"`. Compose with
+ * `PaginationContent`, `PaginationItem`, `PaginationLink`, `PaginationPrevious`,
+ * `PaginationNext`, and `PaginationEllipsis` for a full pagination UI.
+ *
+ * @example
+ * ```tsx
+ * <Pagination>
+ *   <PaginationContent>
+ *     <PaginationItem><PaginationPrevious href="/page/1" /></PaginationItem>
+ *     <PaginationItem><PaginationLink href="/page/2" isActive>2</PaginationLink></PaginationItem>
+ *     <PaginationItem><PaginationNext href="/page/3" /></PaginationItem>
+ *   </PaginationContent>
+ * </Pagination>
+ * ```
+ *
+ * @public
+ */
 function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
   return (
     <nav
@@ -16,6 +37,11 @@ function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
   )
 }
 
+/**
+ * The `<ul>` container that holds PaginationItem elements in a flex row.
+ *
+ * @public
+ */
 function PaginationContent({
   className,
   ...props
@@ -29,15 +55,38 @@ function PaginationContent({
   )
 }
 
+/**
+ * A list item wrapper for a single pagination control within PaginationContent.
+ *
+ * @public
+ */
 function PaginationItem({ ...props }: React.ComponentProps<"li">) {
   return <li data-slot="pagination-item" {...props} />
 }
 
+/**
+ * Props for PaginationLink, combining anchor attributes with Button size and an active-page flag.
+ *
+ * @remarks
+ * `isActive` sets `aria-current="page"` and switches the button to the `outline` variant.
+ * `size` maps to the underlying Button size, defaulting to `"icon"`.
+ *
+ * @public
+ */
 type PaginationLinkProps = {
   isActive?: boolean
 } & Pick<React.ComponentProps<typeof Button>, "size"> &
   React.ComponentProps<"a">
 
+/**
+ * A page-number anchor rendered as a Button that indicates the current page when active.
+ *
+ * @remarks
+ * Uses Button's `outline` variant when `isActive` is true and `ghost` otherwise. Renders
+ * as an `<a>` tag via Button's `render` prop for correct semantics.
+ *
+ * @public
+ */
 function PaginationLink({
   className,
   isActive,
@@ -62,6 +111,14 @@ function PaginationLink({
   )
 }
 
+/**
+ * A PaginationLink preconfigured as a "Go to previous page" control with a left chevron.
+ *
+ * @remarks
+ * The `text` prop sets the visible label (hidden on small screens); defaults to `"Previous"`.
+ *
+ * @public
+ */
 function PaginationPrevious({
   className,
   text = "Previous",
@@ -80,6 +137,14 @@ function PaginationPrevious({
   )
 }
 
+/**
+ * A PaginationLink preconfigured as a "Go to next page" control with a right chevron.
+ *
+ * @remarks
+ * The `text` prop sets the visible label (hidden on small screens); defaults to `"Next"`.
+ *
+ * @public
+ */
 function PaginationNext({
   className,
   text = "Next",
@@ -98,6 +163,15 @@ function PaginationNext({
   )
 }
 
+/**
+ * A non-interactive indicator representing a gap in the page number sequence.
+ *
+ * @remarks
+ * Renders `aria-hidden` with a screen-reader-only "More pages" label and a horizontal
+ * ellipsis icon.
+ *
+ * @public
+ */
 function PaginationEllipsis({
   className,
   ...props

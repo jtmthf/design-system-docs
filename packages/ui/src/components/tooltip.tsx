@@ -4,6 +4,15 @@ import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip"
 
 import { cn } from "#lib/utils"
 
+/**
+ * Context provider that configures tooltip open delay for all descendant `Tooltip` components.
+ *
+ * @remarks
+ * Defaults `delay` to `0` (immediate open). Wrap sections or the whole app to
+ * apply a consistent hover delay without repeating it on every `Tooltip`.
+ *
+ * @public
+ */
 function TooltipProvider({
   delay = 0,
   ...props
@@ -17,14 +26,50 @@ function TooltipProvider({
   )
 }
 
+/**
+ * Floating label that appears near a trigger element on hover or focus.
+ *
+ * @remarks
+ * Composed of `TooltipTrigger` and `TooltipContent`. Must be used inside a
+ * `TooltipProvider` for delay configuration. Built on the Base UI Tooltip
+ * primitive.
+ *
+ * @example
+ * ```tsx
+ * <TooltipProvider>
+ *   <Tooltip>
+ *     <TooltipTrigger>Hover me</TooltipTrigger>
+ *     <TooltipContent>Helpful hint</TooltipContent>
+ *   </Tooltip>
+ * </TooltipProvider>
+ * ```
+ *
+ * @public
+ */
 function Tooltip({ ...props }: TooltipPrimitive.Root.Props) {
   return <TooltipPrimitive.Root data-slot="tooltip" {...props} />
 }
 
+/**
+ * Element that triggers the parent `Tooltip` to open on hover or focus.
+ *
+ * @public
+ */
 function TooltipTrigger({ ...props }: TooltipPrimitive.Trigger.Props) {
   return <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />
 }
 
+/**
+ * Floating popup panel that contains the tooltip text or content.
+ *
+ * @remarks
+ * Rendered inside a portal and positioned by the Base UI Positioner. Accepts
+ * `side` (`"top"` by default), `sideOffset` (default: `4`), `align`
+ * (`"center"` by default), and `alignOffset` (default: `0`) for fine-grained
+ * placement control. Includes an arrow element that tracks the trigger.
+ *
+ * @public
+ */
 function TooltipContent({
   className,
   side = "top",

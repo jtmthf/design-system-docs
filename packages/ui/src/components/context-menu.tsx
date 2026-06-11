@@ -6,16 +6,58 @@ import { ContextMenu as ContextMenuPrimitive } from "@base-ui/react/context-menu
 import { cn } from "#lib/utils"
 import { ChevronRightIcon, CheckIcon } from "lucide-react"
 
+/**
+ * Context menu root that listens for the right-click (or long-press) gesture and
+ * manages open/close state for its popup.
+ *
+ * @remarks
+ * Compose with `ContextMenuTrigger`, `ContextMenuContent`, and any combination of
+ * `ContextMenuItem`, `ContextMenuCheckboxItem`, `ContextMenuRadioGroup`,
+ * `ContextMenuSub`, `ContextMenuSeparator`, and `ContextMenuLabel`.
+ *
+ * @example
+ * ```tsx
+ * <ContextMenu>
+ *   <ContextMenuTrigger>Right-click me</ContextMenuTrigger>
+ *   <ContextMenuContent>
+ *     <ContextMenuItem>Cut</ContextMenuItem>
+ *     <ContextMenuItem>Copy</ContextMenuItem>
+ *     <ContextMenuSeparator />
+ *     <ContextMenuItem variant="destructive">Delete</ContextMenuItem>
+ *   </ContextMenuContent>
+ * </ContextMenu>
+ * ```
+ *
+ * @public
+ */
 function ContextMenu({ ...props }: ContextMenuPrimitive.Root.Props) {
   return <ContextMenuPrimitive.Root data-slot="context-menu" {...props} />
 }
 
+/**
+ * Portal wrapper that renders the context menu popup outside the normal DOM hierarchy.
+ *
+ * @remarks
+ * Delegates to `ContextMenuPrimitive.Portal`. Required when the menu needs to escape
+ * an ancestor with `overflow: hidden` or a stacking context.
+ *
+ * @public
+ */
 function ContextMenuPortal({ ...props }: ContextMenuPrimitive.Portal.Props) {
   return (
     <ContextMenuPrimitive.Portal data-slot="context-menu-portal" {...props} />
   )
 }
 
+/**
+ * Area that captures the right-click gesture to open the parent `ContextMenu`.
+ *
+ * @remarks
+ * Applies `select-none` to prevent text selection during the gesture. Must be
+ * placed inside a `ContextMenu` root.
+ *
+ * @public
+ */
 function ContextMenuTrigger({
   className,
   ...props
@@ -29,6 +71,17 @@ function ContextMenuTrigger({
   )
 }
 
+/**
+ * Floating popup panel containing the context menu items.
+ *
+ * @remarks
+ * Renders via a portal and positions itself via `ContextMenuPrimitive.Positioner`.
+ * Accepts `align`, `alignOffset`, `side`, and `sideOffset` for fine-grained
+ * placement control. Applies entry/exit animations driven by `data-open` and
+ * `data-closed` attributes.
+ *
+ * @public
+ */
 function ContextMenuContent({
   className,
   align = "start",
@@ -60,12 +113,30 @@ function ContextMenuContent({
   )
 }
 
+/**
+ * Groups related items inside a `ContextMenuContent`.
+ *
+ * @remarks
+ * Use alongside `ContextMenuLabel` to provide an accessible heading. Delegates to
+ * `ContextMenuPrimitive.Group`.
+ *
+ * @public
+ */
 function ContextMenuGroup({ ...props }: ContextMenuPrimitive.Group.Props) {
   return (
     <ContextMenuPrimitive.Group data-slot="context-menu-group" {...props} />
   )
 }
 
+/**
+ * Non-interactive label rendered above a group of context menu items.
+ *
+ * @remarks
+ * Accepts an `inset` boolean that adds `pl-7` padding to align with inset items.
+ * Renders muted extra-small text via `ContextMenuPrimitive.GroupLabel`.
+ *
+ * @public
+ */
 function ContextMenuLabel({
   className,
   inset,
@@ -86,6 +157,16 @@ function ContextMenuLabel({
   )
 }
 
+/**
+ * Clickable action row inside a `ContextMenuContent`.
+ *
+ * @remarks
+ * Supports `variant` (`"default"` | `"destructive"`) for danger styling, and an
+ * `inset` boolean that adds leading padding to align with items that have icons.
+ * Responds to `data-disabled` and `data-highlighted` states.
+ *
+ * @public
+ */
 function ContextMenuItem({
   className,
   inset,
@@ -109,12 +190,30 @@ function ContextMenuItem({
   )
 }
 
+/**
+ * Root of a nested submenu inside a `ContextMenuContent`.
+ *
+ * @remarks
+ * Must contain a `ContextMenuSubTrigger` and a `ContextMenuSubContent`. Delegates
+ * to `ContextMenuPrimitive.SubmenuRoot`.
+ *
+ * @public
+ */
 function ContextMenuSub({ ...props }: ContextMenuPrimitive.SubmenuRoot.Props) {
   return (
     <ContextMenuPrimitive.SubmenuRoot data-slot="context-menu-sub" {...props} />
   )
 }
 
+/**
+ * Item that opens a nested `ContextMenuSubContent` when focused or hovered.
+ *
+ * @remarks
+ * Appends a `ChevronRightIcon` as a visual indicator of the nested menu.
+ * Accepts an `inset` boolean for alignment with non-icon sibling items.
+ *
+ * @public
+ */
 function ContextMenuSubTrigger({
   className,
   inset,
@@ -139,6 +238,15 @@ function ContextMenuSubTrigger({
   )
 }
 
+/**
+ * Nested popup panel associated with a `ContextMenuSubTrigger`.
+ *
+ * @remarks
+ * Delegates to `ContextMenuContent` with `side="right"` and elevated shadow.
+ * Must be placed inside a `ContextMenuSub`.
+ *
+ * @public
+ */
 function ContextMenuSubContent({
   ...props
 }: React.ComponentProps<typeof ContextMenuContent>) {
@@ -152,6 +260,16 @@ function ContextMenuSubContent({
   )
 }
 
+/**
+ * Checkable item that toggles a boolean value within a `ContextMenuContent`.
+ *
+ * @remarks
+ * Renders a `CheckIcon` indicator when `checked` is `true`. Accepts an `inset`
+ * boolean for leading-padding alignment. Delegates to
+ * `ContextMenuPrimitive.CheckboxItem`.
+ *
+ * @public
+ */
 function ContextMenuCheckboxItem({
   className,
   children,
@@ -183,6 +301,15 @@ function ContextMenuCheckboxItem({
   )
 }
 
+/**
+ * Groups `ContextMenuRadioItem` elements so only one can be selected at a time.
+ *
+ * @remarks
+ * Delegates to `ContextMenuPrimitive.RadioGroup`. Must be placed inside a
+ * `ContextMenuContent`.
+ *
+ * @public
+ */
 function ContextMenuRadioGroup({
   ...props
 }: ContextMenuPrimitive.RadioGroup.Props) {
@@ -194,6 +321,16 @@ function ContextMenuRadioGroup({
   )
 }
 
+/**
+ * Radio-selectable item inside a `ContextMenuRadioGroup`.
+ *
+ * @remarks
+ * Renders a `CheckIcon` indicator when the item is selected. Accepts an `inset`
+ * boolean for leading-padding alignment. Delegates to
+ * `ContextMenuPrimitive.RadioItem`.
+ *
+ * @public
+ */
 function ContextMenuRadioItem({
   className,
   children,
@@ -223,6 +360,11 @@ function ContextMenuRadioItem({
   )
 }
 
+/**
+ * Horizontal rule that visually separates sections inside a `ContextMenuContent`.
+ *
+ * @public
+ */
 function ContextMenuSeparator({
   className,
   ...props
@@ -236,6 +378,15 @@ function ContextMenuSeparator({
   )
 }
 
+/**
+ * Keyboard shortcut label rendered at the trailing edge of a `ContextMenuItem`.
+ *
+ * @remarks
+ * Inherits accent foreground color when the parent item is focused. Place key names
+ * as text children (e.g. `"Ctrl D"`).
+ *
+ * @public
+ */
 function ContextMenuShortcut({
   className,
   ...props

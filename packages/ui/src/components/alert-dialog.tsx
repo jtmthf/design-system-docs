@@ -6,22 +6,78 @@ import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog
 import { cn } from "#lib/utils"
 import { Button } from "#components/button"
 
+/**
+ * A modal dialog that interrupts the user and requires an explicit response before continuing.
+ *
+ * @remarks
+ * Composed of `AlertDialogTrigger`, `AlertDialogContent`, `AlertDialogHeader`,
+ * `AlertDialogFooter`, `AlertDialogTitle`, `AlertDialogDescription`,
+ * `AlertDialogAction`, and `AlertDialogCancel`. Delegates focus trapping,
+ * scroll locking, and ARIA semantics to the Base UI primitive.
+ *
+ * @example
+ * ```tsx
+ * <AlertDialog>
+ *   <AlertDialogTrigger asChild>
+ *     <Button variant="destructive">Delete account</Button>
+ *   </AlertDialogTrigger>
+ *   <AlertDialogContent>
+ *     <AlertDialogHeader>
+ *       <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+ *       <AlertDialogDescription>
+ *         This action cannot be undone.
+ *       </AlertDialogDescription>
+ *     </AlertDialogHeader>
+ *     <AlertDialogFooter>
+ *       <AlertDialogCancel>Cancel</AlertDialogCancel>
+ *       <AlertDialogAction>Continue</AlertDialogAction>
+ *     </AlertDialogFooter>
+ *   </AlertDialogContent>
+ * </AlertDialog>
+ * ```
+ *
+ * @public
+ */
 function AlertDialog({ ...props }: AlertDialogPrimitive.Root.Props) {
   return <AlertDialogPrimitive.Root data-slot="alert-dialog" {...props} />
 }
 
+/**
+ * The element that opens the `AlertDialog` when interacted with.
+ *
+ * @remarks
+ * Must be a descendant of `AlertDialog`.
+ *
+ * @public
+ */
 function AlertDialogTrigger({ ...props }: AlertDialogPrimitive.Trigger.Props) {
   return (
     <AlertDialogPrimitive.Trigger data-slot="alert-dialog-trigger" {...props} />
   )
 }
 
+/**
+ * Teleports the dialog markup outside the current DOM subtree.
+ *
+ * @remarks
+ * Wraps Base UI's Portal and is used internally by `AlertDialogContent`.
+ *
+ * @public
+ */
 function AlertDialogPortal({ ...props }: AlertDialogPrimitive.Portal.Props) {
   return (
     <AlertDialogPrimitive.Portal data-slot="alert-dialog-portal" {...props} />
   )
 }
 
+/**
+ * The semi-transparent backdrop rendered behind the dialog panel.
+ *
+ * @remarks
+ * Used internally by `AlertDialogContent`. Applies fade animations on open and close.
+ *
+ * @public
+ */
 function AlertDialogOverlay({
   className,
   ...props
@@ -38,6 +94,15 @@ function AlertDialogOverlay({
   )
 }
 
+/**
+ * The main panel of the `AlertDialog` containing all visible dialog content.
+ *
+ * @remarks
+ * Automatically renders `AlertDialogPortal` and `AlertDialogOverlay`.
+ * Accepts a `size` prop (`"default"` | `"sm"`) that controls maximum width.
+ *
+ * @public
+ */
 function AlertDialogContent({
   className,
   size = "default",
@@ -61,6 +126,14 @@ function AlertDialogContent({
   )
 }
 
+/**
+ * The top section of an `AlertDialogContent` that groups the title and description.
+ *
+ * @remarks
+ * Adjusts its grid layout when an `AlertDialogMedia` element is present.
+ *
+ * @public
+ */
 function AlertDialogHeader({
   className,
   ...props
@@ -77,6 +150,14 @@ function AlertDialogHeader({
   )
 }
 
+/**
+ * The bottom section of an `AlertDialogContent` that contains action buttons.
+ *
+ * @remarks
+ * Displays a muted bordered footer with reversed column order on small viewports.
+ *
+ * @public
+ */
 function AlertDialogFooter({
   className,
   ...props
@@ -93,6 +174,15 @@ function AlertDialogFooter({
   )
 }
 
+/**
+ * An optional icon or image slot displayed alongside the title in the dialog header.
+ *
+ * @remarks
+ * When present, the `AlertDialogHeader` switches to a multi-row grid layout so
+ * the media spans both the title and description rows on larger viewports.
+ *
+ * @public
+ */
 function AlertDialogMedia({
   className,
   ...props
@@ -109,6 +199,15 @@ function AlertDialogMedia({
   )
 }
 
+/**
+ * The accessible title of the `AlertDialog`, announced by screen readers.
+ *
+ * @remarks
+ * Maps to Base UI's `AlertDialogPrimitive.Title`. Must be placed inside
+ * `AlertDialogHeader`.
+ *
+ * @public
+ */
 function AlertDialogTitle({
   className,
   ...props
@@ -125,6 +224,15 @@ function AlertDialogTitle({
   )
 }
 
+/**
+ * Supporting descriptive text rendered below the `AlertDialogTitle`.
+ *
+ * @remarks
+ * Maps to Base UI's `AlertDialogPrimitive.Description`. Must be placed inside
+ * `AlertDialogHeader`.
+ *
+ * @public
+ */
 function AlertDialogDescription({
   className,
   ...props
@@ -141,6 +249,14 @@ function AlertDialogDescription({
   )
 }
 
+/**
+ * A confirm action button that closes the `AlertDialog` when clicked.
+ *
+ * @remarks
+ * Renders as a `Button` with full forwarded props. Place inside `AlertDialogFooter`.
+ *
+ * @public
+ */
 function AlertDialogAction({
   className,
   ...props
@@ -154,6 +270,15 @@ function AlertDialogAction({
   )
 }
 
+/**
+ * A cancel button that dismisses the `AlertDialog` without taking the destructive action.
+ *
+ * @remarks
+ * Wraps Base UI's `AlertDialogPrimitive.Close` and renders using the `Button`
+ * component. Defaults to `variant="outline"` and `size="default"`.
+ *
+ * @public
+ */
 function AlertDialogCancel({
   className,
   variant = "outline",

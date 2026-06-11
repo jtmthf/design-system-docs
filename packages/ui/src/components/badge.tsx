@@ -4,6 +4,17 @@ import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "#lib/utils"
 
+/**
+ * Builds the Tailwind class string for a `Badge` based on its visual variant.
+ *
+ * @remarks
+ * Available variants:
+ * - `variant`: `"default"` | `"secondary"` | `"destructive"` | `"outline"` | `"ghost"` | `"link"`
+ *
+ * Defaults to `variant="default"`.
+ *
+ * @public
+ */
 const badgeVariants = cva(
   "group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-4xl border border-transparent px-2 py-0.5 text-xs font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none [&>svg]:size-3!",
   {
@@ -27,6 +38,21 @@ const badgeVariants = cva(
   }
 )
 
+/**
+ * A compact inline label used to highlight status, categories, or metadata.
+ *
+ * @remarks
+ * Rendered as a `span` by default but accepts a `render` prop to swap the
+ * underlying element (e.g., an anchor or button) via Base UI's `useRender`.
+ * Visual style is controlled by the `variant` prop.
+ *
+ * @example
+ * ```tsx
+ * <Badge variant="secondary">New</Badge>
+ * ```
+ *
+ * @public
+ */
 function Badge({
   className,
   variant = "default",

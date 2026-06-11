@@ -5,6 +5,22 @@ import { ScrollArea as ScrollAreaPrimitive } from "@base-ui/react/scroll-area"
 
 import { cn } from "#lib/utils"
 
+/**
+ * A scrollable container with a custom-styled scrollbar built on Base UI's ScrollArea primitive.
+ *
+ * @remarks
+ * Renders a viewport with overflow clipping and appends a `ScrollBar` and corner element
+ * automatically. The viewport receives focus-visible ring styling for keyboard accessibility.
+ *
+ * @example
+ * ```tsx
+ * <ScrollArea className="h-48">
+ *   <div>Long content...</div>
+ * </ScrollArea>
+ * ```
+ *
+ * @public
+ */
 function ScrollArea({
   className,
   children,
@@ -28,6 +44,16 @@ function ScrollArea({
   )
 }
 
+/**
+ * A custom scrollbar track and thumb rendered inside a ScrollArea.
+ *
+ * @remarks
+ * Supports `orientation` of `"vertical"` (default) or `"horizontal"`. The thumb is rounded and
+ * styled with the border color token. Automatically appended by `ScrollArea`; can also be used
+ * standalone within a `ScrollAreaPrimitive.Root`.
+ *
+ * @public
+ */
 function ScrollBar({
   className,
   orientation = "vertical",

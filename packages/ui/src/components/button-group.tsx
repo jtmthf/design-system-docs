@@ -5,6 +5,17 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "#lib/utils"
 import { Separator } from "#components/separator"
 
+/**
+ * Builds the Tailwind class string for a `ButtonGroup` based on its orientation.
+ *
+ * @remarks
+ * Available variants:
+ * - `orientation`: `"horizontal"` | `"vertical"`
+ *
+ * Defaults to `orientation="horizontal"`.
+ *
+ * @public
+ */
 const buttonGroupVariants = cva(
   "flex w-fit items-stretch *:focus-visible:relative *:focus-visible:z-10 has-[>[data-slot=button-group]]:gap-2 has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-lg [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1",
   {
@@ -22,6 +33,26 @@ const buttonGroupVariants = cva(
   }
 )
 
+/**
+ * A container that visually merges a row or column of related interactive controls into a single unit.
+ *
+ * @remarks
+ * Accepts `Button`, `ButtonGroupText`, `ButtonGroupSeparator`, and compatible
+ * form elements (inputs, selects) as children. Use the `orientation` prop to
+ * switch between `"horizontal"` (default) and `"vertical"` layouts. Child
+ * elements lose their outer border-radius on adjacent edges automatically.
+ *
+ * @example
+ * ```tsx
+ * <ButtonGroup>
+ *   <Button variant="outline">Left</Button>
+ *   <Button variant="outline">Center</Button>
+ *   <Button variant="outline">Right</Button>
+ * </ButtonGroup>
+ * ```
+ *
+ * @public
+ */
 function ButtonGroup({
   className,
   orientation,
@@ -38,6 +69,15 @@ function ButtonGroup({
   )
 }
 
+/**
+ * A non-interactive text or icon label rendered inline within a `ButtonGroup`.
+ *
+ * @remarks
+ * Styled like a bordered muted input segment. Accepts a `render` prop to swap
+ * the underlying element via Base UI's `useRender`.
+ *
+ * @public
+ */
 function ButtonGroupText({
   className,
   render,
@@ -61,6 +101,16 @@ function ButtonGroupText({
   })
 }
 
+/**
+ * A visual divider used to separate items within a `ButtonGroup`.
+ *
+ * @remarks
+ * Wraps the `Separator` component and defaults to `orientation="vertical"`.
+ * In a horizontal group the separator appears as a thin vertical rule;
+ * in a vertical group it appears as a thin horizontal rule.
+ *
+ * @public
+ */
 function ButtonGroupSeparator({
   className,
   orientation = "vertical",

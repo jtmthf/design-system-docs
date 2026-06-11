@@ -4,6 +4,31 @@ import { cva } from "class-variance-authority"
 import { cn } from "#lib/utils"
 import { ChevronDownIcon } from "lucide-react"
 
+/**
+ * A top-level navigation component that renders a horizontal menu with animated flyout panels.
+ *
+ * @remarks
+ * Composes Base UI's NavigationMenu primitives. Automatically appends a `NavigationMenuPositioner`
+ * (viewport + popup) as a sibling to the children. The `align` prop controls the positioner
+ * alignment and defaults to `"start"`. Use `NavigationMenuList`, `NavigationMenuItem`,
+ * `NavigationMenuTrigger`, and `NavigationMenuContent` to build the menu structure.
+ *
+ * @example
+ * ```tsx
+ * <NavigationMenu>
+ *   <NavigationMenuList>
+ *     <NavigationMenuItem>
+ *       <NavigationMenuTrigger>Products</NavigationMenuTrigger>
+ *       <NavigationMenuContent>
+ *         <NavigationMenuLink href="/products">All Products</NavigationMenuLink>
+ *       </NavigationMenuContent>
+ *     </NavigationMenuItem>
+ *   </NavigationMenuList>
+ * </NavigationMenu>
+ * ```
+ *
+ * @public
+ */
 function NavigationMenu({
   align = "start",
   className,
@@ -26,6 +51,11 @@ function NavigationMenu({
   )
 }
 
+/**
+ * A horizontal list that directly contains NavigationMenuItem elements.
+ *
+ * @public
+ */
 function NavigationMenuList({
   className,
   ...props
@@ -42,6 +72,11 @@ function NavigationMenuList({
   )
 }
 
+/**
+ * An individual entry within a NavigationMenuList, containing a trigger and optional content.
+ *
+ * @public
+ */
 function NavigationMenuItem({
   className,
   ...props
@@ -55,10 +90,28 @@ function NavigationMenuItem({
   )
 }
 
+/**
+ * Builds the shared trigger class string used by NavigationMenuTrigger.
+ *
+ * @remarks
+ * Provides hover, focus, focus-visible ring, and popup-open/open state styles. Can be applied
+ * directly to custom trigger elements that need to match the navigation menu trigger appearance.
+ *
+ * @public
+ */
 const navigationMenuTriggerStyle = cva(
   "group/navigation-menu-trigger inline-flex h-9 w-max items-center justify-center rounded-lg px-2.5 py-1.5 text-sm font-medium transition-all outline-none hover:bg-muted focus:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-popup-open:bg-muted/50 data-popup-open:hover:bg-muted data-open:bg-muted/50 data-open:hover:bg-muted data-open:focus:bg-muted"
 )
 
+/**
+ * A button within a NavigationMenuItem that opens the associated NavigationMenuContent.
+ *
+ * @remarks
+ * Includes a rotating chevron icon that animates when the popup opens. Applies
+ * `navigationMenuTriggerStyle` for consistent visual treatment.
+ *
+ * @public
+ */
 function NavigationMenuTrigger({
   className,
   children,
@@ -76,6 +129,16 @@ function NavigationMenuTrigger({
   )
 }
 
+/**
+ * The flyout panel associated with a NavigationMenuTrigger, shown inside the shared viewport.
+ *
+ * @remarks
+ * Animates in/out and transitions between sibling content panels using directional translate
+ * transforms keyed by `data-activation-direction`. When the NavigationMenu has
+ * `data-viewport="false"`, renders as an independent popover instead.
+ *
+ * @public
+ */
 function NavigationMenuContent({
   className,
   ...props
@@ -92,6 +155,16 @@ function NavigationMenuContent({
   )
 }
 
+/**
+ * The portal-rendered positioner that hosts the shared NavigationMenu viewport and popup shell.
+ *
+ * @remarks
+ * Renders via a Base UI Portal and wraps the Positioner, Popup, and Viewport primitives.
+ * Automatically appended by `NavigationMenu`; consumers rarely need to render this directly.
+ * Defaults: `side="bottom"`, `sideOffset=8`, `align="start"`, `alignOffset=0`.
+ *
+ * @public
+ */
 function NavigationMenuPositioner({
   className,
   side = "bottom",
@@ -121,6 +194,15 @@ function NavigationMenuPositioner({
   )
 }
 
+/**
+ * A navigable anchor element styled for use inside NavigationMenuContent or as a standalone trigger.
+ *
+ * @remarks
+ * When nested inside NavigationMenuContent, receives rounded-md treatment and hover/focus
+ * backgrounds. Supports `data-active` for the currently active route.
+ *
+ * @public
+ */
 function NavigationMenuLink({
   className,
   ...props
@@ -137,6 +219,14 @@ function NavigationMenuLink({
   )
 }
 
+/**
+ * A small decorative arrow indicator that points from the active trigger toward the content panel.
+ *
+ * @remarks
+ * Fades in/out as menu items are activated. Rendered via Base UI's NavigationMenu Icon primitive.
+ *
+ * @public
+ */
 function NavigationMenuIndicator({
   className,
   ...props

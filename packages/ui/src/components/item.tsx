@@ -6,6 +6,23 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "#lib/utils"
 import { Separator } from "#components/separator"
 
+/**
+ * A vertical list container that groups multiple Item components with consistent spacing.
+ *
+ * @remarks
+ * Renders a `div` with `role="list"` and adjusts gap based on the `size` data attribute of
+ * descendant items via group-context CSS selectors.
+ *
+ * @example
+ * ```tsx
+ * <ItemGroup>
+ *   <Item>First item</Item>
+ *   <Item>Second item</Item>
+ * </ItemGroup>
+ * ```
+ *
+ * @public
+ */
 function ItemGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -20,6 +37,15 @@ function ItemGroup({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * A horizontal separator rendered between items in an ItemGroup.
+ *
+ * @remarks
+ * Wraps the `Separator` component with `orientation="horizontal"` and adds vertical margin
+ * appropriate for item list layouts.
+ *
+ * @public
+ */
 function ItemSeparator({
   className,
   ...props
@@ -34,6 +60,16 @@ function ItemSeparator({
   )
 }
 
+/**
+ * Builds the class string for an Item based on its variant and size.
+ *
+ * @remarks
+ * Variants: `default` (transparent border), `outline` (border-border), `muted` (muted background).
+ * Sizes: `default`, `sm` (same padding as default), `xs` (compact padding, dropdown-friendly).
+ * Default variant is `default`; default size is `default`.
+ *
+ * @public
+ */
 const itemVariants = cva(
   "group/item flex w-full flex-wrap items-center rounded-lg border text-sm transition-colors duration-100 outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 [a]:transition-colors [a]:hover:bg-muted",
   {
@@ -56,6 +92,29 @@ const itemVariants = cva(
   }
 )
 
+/**
+ * A flexible content row component used to display structured data with optional media, title, description, and actions.
+ *
+ * @remarks
+ * Renders via `useRender` from Base UI so the underlying element is polymorphic via the `render`
+ * prop. Supports `variant` (`default`, `outline`, `muted`) and `size` (`default`, `sm`, `xs`).
+ * Compose with `ItemMedia`, `ItemContent`, `ItemTitle`, `ItemDescription`, `ItemActions`,
+ * `ItemHeader`, and `ItemFooter` for full layouts.
+ *
+ * @example
+ * ```tsx
+ * <Item variant="outline" size="sm">
+ *   <ItemMedia variant="icon"><UserIcon /></ItemMedia>
+ *   <ItemContent>
+ *     <ItemTitle>Jane Doe</ItemTitle>
+ *     <ItemDescription>Product designer</ItemDescription>
+ *   </ItemContent>
+ *   <ItemActions><Button size="sm">Follow</Button></ItemActions>
+ * </Item>
+ * ```
+ *
+ * @public
+ */
 function Item({
   className,
   variant = "default",
@@ -80,6 +139,16 @@ function Item({
   })
 }
 
+/**
+ * Builds the class string for an ItemMedia element based on its variant.
+ *
+ * @remarks
+ * Variants: `default` (transparent background), `icon` (auto-sizes SVGs to 16px),
+ * `image` (fixed square container sized by the parent Item's size data attribute).
+ * Default variant is `default`.
+ *
+ * @public
+ */
 const itemMediaVariants = cva(
   "flex shrink-0 items-center justify-center gap-2 group-has-data-[slot=item-description]/item:translate-y-0.5 group-has-data-[slot=item-description]/item:self-start [&_svg]:pointer-events-none",
   {
@@ -97,6 +166,15 @@ const itemMediaVariants = cva(
   }
 )
 
+/**
+ * A slot for media content (icon or image) placed at the inline-start of an Item.
+ *
+ * @remarks
+ * Accepts `variant` (`default`, `icon`, `image`) to control sizing and overflow behavior.
+ * Automatically aligns with the item description when one is present.
+ *
+ * @public
+ */
 function ItemMedia({
   className,
   variant = "default",
@@ -112,6 +190,14 @@ function ItemMedia({
   )
 }
 
+/**
+ * A flex column container that holds an item's primary textual content such as title and description.
+ *
+ * @remarks
+ * Grows to fill available width. Adjacent ItemContent siblings shrink to fit their natural width.
+ *
+ * @public
+ */
 function ItemContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -125,6 +211,11 @@ function ItemContent({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * The primary label of an Item, rendered as a single clamped line with medium font weight.
+ *
+ * @public
+ */
 function ItemTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -138,6 +229,15 @@ function ItemTitle({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * Secondary descriptive text for an Item, clamped to two lines with muted styling.
+ *
+ * @remarks
+ * Inline anchor tags inside the description receive underline and hover color treatment.
+ * Font size reduces further at `xs` item size.
+ *
+ * @public
+ */
 function ItemDescription({ className, ...props }: React.ComponentProps<"p">) {
   return (
     <p
@@ -151,6 +251,11 @@ function ItemDescription({ className, ...props }: React.ComponentProps<"p">) {
   )
 }
 
+/**
+ * A flex row container for inline action controls placed at the trailing edge of an Item.
+ *
+ * @public
+ */
 function ItemActions({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -161,6 +266,11 @@ function ItemActions({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * A full-width row spanning the top of an Item, used for titles or metadata positioned with space-between alignment.
+ *
+ * @public
+ */
 function ItemHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -174,6 +284,11 @@ function ItemHeader({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * A full-width row spanning the bottom of an Item, used for supplementary controls or metadata.
+ *
+ * @public
+ */
 function ItemFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div

@@ -7,22 +7,66 @@ import { cn } from "#lib/utils"
 import { Button } from "#components/button"
 import { XIcon } from "lucide-react"
 
+/**
+ * Dialog-based sheet component that slides in from a screen edge.
+ *
+ * @remarks
+ * Composed of `SheetTrigger`, `SheetContent`, `SheetHeader`, `SheetFooter`,
+ * `SheetTitle`, and `SheetDescription`. Built on top of the Base UI Dialog
+ * primitive. The `SheetContent` `side` prop controls which edge the panel
+ * slides from (`"right"` by default).
+ *
+ * @example
+ * ```tsx
+ * <Sheet>
+ *   <SheetTrigger>Open</SheetTrigger>
+ *   <SheetContent>
+ *     <SheetHeader>
+ *       <SheetTitle>Edit profile</SheetTitle>
+ *       <SheetDescription>Make changes to your profile.</SheetDescription>
+ *     </SheetHeader>
+ *   </SheetContent>
+ * </Sheet>
+ * ```
+ *
+ * @public
+ */
 function Sheet({ ...props }: SheetPrimitive.Root.Props) {
   return <SheetPrimitive.Root data-slot="sheet" {...props} />
 }
 
+/**
+ * Button or element that opens the parent `Sheet` when activated.
+ *
+ * @public
+ */
 function SheetTrigger({ ...props }: SheetPrimitive.Trigger.Props) {
   return <SheetPrimitive.Trigger data-slot="sheet-trigger" {...props} />
 }
 
+/**
+ * Button that dismisses the parent `Sheet` when activated.
+ *
+ * @public
+ */
 function SheetClose({ ...props }: SheetPrimitive.Close.Props) {
   return <SheetPrimitive.Close data-slot="sheet-close" {...props} />
 }
 
+/**
+ * Portal that renders `Sheet` overlay and content outside the DOM hierarchy.
+ *
+ * @public
+ */
 function SheetPortal({ ...props }: SheetPrimitive.Portal.Props) {
   return <SheetPrimitive.Portal data-slot="sheet-portal" {...props} />
 }
 
+/**
+ * Semi-transparent backdrop rendered behind the `Sheet` panel.
+ *
+ * @public
+ */
 function SheetOverlay({ className, ...props }: SheetPrimitive.Backdrop.Props) {
   return (
     <SheetPrimitive.Backdrop
@@ -36,6 +80,16 @@ function SheetOverlay({ className, ...props }: SheetPrimitive.Backdrop.Props) {
   )
 }
 
+/**
+ * Sliding panel that contains the main body of the `Sheet`.
+ *
+ * @remarks
+ * Renders the overlay and portal automatically. The `side` prop (`"right"` by
+ * default) controls which screen edge the panel slides from. Set
+ * `showCloseButton` to `false` to suppress the built-in close button.
+ *
+ * @public
+ */
 function SheetContent({
   className,
   children,
@@ -80,6 +134,11 @@ function SheetContent({
   )
 }
 
+/**
+ * Top section of a `Sheet` that typically contains the title and description.
+ *
+ * @public
+ */
 function SheetHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -90,6 +149,11 @@ function SheetHeader({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * Bottom section of a `Sheet` that typically contains action buttons.
+ *
+ * @public
+ */
 function SheetFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -100,6 +164,11 @@ function SheetFooter({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * Accessible title element placed inside `SheetHeader`.
+ *
+ * @public
+ */
 function SheetTitle({ className, ...props }: SheetPrimitive.Title.Props) {
   return (
     <SheetPrimitive.Title
@@ -113,6 +182,11 @@ function SheetTitle({ className, ...props }: SheetPrimitive.Title.Props) {
   )
 }
 
+/**
+ * Accessible description element placed inside `SheetHeader`, rendered in muted text.
+ *
+ * @public
+ */
 function SheetDescription({
   className,
   ...props

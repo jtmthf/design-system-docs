@@ -4,6 +4,24 @@ import { Progress as ProgressPrimitive } from "@base-ui/react/progress"
 
 import { cn } from "#lib/utils"
 
+/**
+ * A progress indicator that displays a filled bar representing task completion.
+ *
+ * @remarks
+ * Built on Base UI's Progress primitive. Automatically renders a `ProgressTrack` containing
+ * a `ProgressIndicator` as siblings to any children. Use `ProgressLabel` and `ProgressValue`
+ * alongside for accessible labeling. The `value` prop controls the filled proportion (0-100).
+ *
+ * @example
+ * ```tsx
+ * <Progress value={60}>
+ *   <ProgressLabel>Uploading</ProgressLabel>
+ *   <ProgressValue />
+ * </Progress>
+ * ```
+ *
+ * @public
+ */
 function Progress({
   className,
   children,
@@ -25,6 +43,11 @@ function Progress({
   )
 }
 
+/**
+ * The background track bar of a Progress component that contains the ProgressIndicator.
+ *
+ * @public
+ */
 function ProgressTrack({ className, ...props }: ProgressPrimitive.Track.Props) {
   return (
     <ProgressPrimitive.Track
@@ -38,6 +61,11 @@ function ProgressTrack({ className, ...props }: ProgressPrimitive.Track.Props) {
   )
 }
 
+/**
+ * The filled portion of a ProgressTrack that grows with the progress value.
+ *
+ * @public
+ */
 function ProgressIndicator({
   className,
   ...props
@@ -51,6 +79,11 @@ function ProgressIndicator({
   )
 }
 
+/**
+ * An accessible text label associated with a Progress component via Base UI's Label primitive.
+ *
+ * @public
+ */
 function ProgressLabel({ className, ...props }: ProgressPrimitive.Label.Props) {
   return (
     <ProgressPrimitive.Label
@@ -61,6 +94,11 @@ function ProgressLabel({ className, ...props }: ProgressPrimitive.Label.Props) {
   )
 }
 
+/**
+ * A numeric readout of the current progress value, aligned to the trailing edge of the component.
+ *
+ * @public
+ */
 function ProgressValue({ className, ...props }: ProgressPrimitive.Value.Props) {
   return (
     <ProgressPrimitive.Value

@@ -4,16 +4,59 @@ import { PreviewCard as PreviewCardPrimitive } from "@base-ui/react/preview-card
 
 import { cn } from "#lib/utils"
 
+/**
+ * Hover card root that manages open/close state for a preview popup triggered
+ * on hover or focus of its trigger element.
+ *
+ * @remarks
+ * Built on the Base UI `PreviewCard.Root` primitive. Compose with
+ * `HoverCardTrigger` and `HoverCardContent`. The popup opens after a configurable
+ * delay when the trigger receives pointer or focus events, and closes when the
+ * pointer leaves both the trigger and the content.
+ *
+ * @example
+ * ```tsx
+ * <HoverCard>
+ *   <HoverCardTrigger>@username</HoverCardTrigger>
+ *   <HoverCardContent>
+ *     <p>Joined January 2020</p>
+ *   </HoverCardContent>
+ * </HoverCard>
+ * ```
+ *
+ * @public
+ */
 function HoverCard({ ...props }: PreviewCardPrimitive.Root.Props) {
   return <PreviewCardPrimitive.Root data-slot="hover-card" {...props} />
 }
 
+/**
+ * Element that opens the parent `HoverCard` popup on hover or focus.
+ *
+ * @remarks
+ * Delegates to `PreviewCardPrimitive.Trigger`. Typically rendered as an inline
+ * anchor or button.
+ *
+ * @public
+ */
 function HoverCardTrigger({ ...props }: PreviewCardPrimitive.Trigger.Props) {
   return (
     <PreviewCardPrimitive.Trigger data-slot="hover-card-trigger" {...props} />
   )
 }
 
+/**
+ * Floating popup panel that displays rich preview content for a `HoverCardTrigger`.
+ *
+ * @remarks
+ * Renders via a portal and uses a `Positioner` for anchor-aware placement. Accepts
+ * `side`, `sideOffset`, `align`, and `alignOffset` from
+ * `PreviewCardPrimitive.Positioner` for fine-grained positioning. Width is fixed at
+ * `16rem`. Applies entry/exit animations driven by `data-open` and `data-closed`
+ * attributes.
+ *
+ * @public
+ */
 function HoverCardContent({
   className,
   side = "bottom",

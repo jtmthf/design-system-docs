@@ -4,6 +4,22 @@ import { Switch as SwitchPrimitive } from "@base-ui/react/switch"
 
 import { cn } from "#lib/utils"
 
+/**
+ * Toggle control for boolean on/off states, styled as a pill-shaped switch.
+ *
+ * @remarks
+ * Built on the Base UI Switch primitive. Supports `size` (`"sm"` | `"default"`,
+ * default: `"default"`). Reflects checked/unchecked state via
+ * `data-checked` / `data-unchecked` attributes. Displays focus, disabled, and
+ * invalid (aria-invalid) styling automatically.
+ *
+ * @example
+ * ```tsx
+ * <Switch defaultChecked />
+ * ```
+ *
+ * @public
+ */
 function Switch({
   className,
   size = "default",

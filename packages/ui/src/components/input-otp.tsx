@@ -6,6 +6,35 @@ import { OTPInput, OTPInputContext } from "input-otp"
 import { cn } from "#lib/utils"
 import { MinusIcon } from "lucide-react"
 
+/**
+ * One-time password input that manages focus, caret, and slot state for digit-by-digit
+ * entry.
+ *
+ * @remarks
+ * Wraps the `input-otp` `OTPInput` primitive. Compose with `InputOTPGroup`,
+ * `InputOTPSlot`, and optionally `InputOTPSeparator` to define the visual layout.
+ * Spell-check is disabled by default. The `containerClassName` prop customises the
+ * outer wrapper; the `className` prop targets the hidden native input.
+ *
+ * @example
+ * ```tsx
+ * <InputOTP maxLength={6}>
+ *   <InputOTPGroup>
+ *     <InputOTPSlot index={0} />
+ *     <InputOTPSlot index={1} />
+ *     <InputOTPSlot index={2} />
+ *   </InputOTPGroup>
+ *   <InputOTPSeparator />
+ *   <InputOTPGroup>
+ *     <InputOTPSlot index={3} />
+ *     <InputOTPSlot index={4} />
+ *     <InputOTPSlot index={5} />
+ *   </InputOTPGroup>
+ * </InputOTP>
+ * ```
+ *
+ * @public
+ */
 function InputOTP({
   className,
   containerClassName,
@@ -27,6 +56,16 @@ function InputOTP({
   )
 }
 
+/**
+ * Flex row container that groups a set of `InputOTPSlot` elements.
+ *
+ * @remarks
+ * Applies rounded corners and conditional destructive ring styling when any slot
+ * inside carries `aria-invalid`. Multiple groups separated by `InputOTPSeparator`
+ * are common for six-digit codes rendered as two groups of three.
+ *
+ * @public
+ */
 function InputOTPGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -40,6 +79,17 @@ function InputOTPGroup({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * Individual character slot within an `InputOTPGroup`.
+ *
+ * @remarks
+ * Reads slot state (character, active status, fake-caret flag) from the nearest
+ * `OTPInputContext`. The `index` prop identifies which slot position to render.
+ * A blinking caret is shown when `hasFakeCaret` is `true`. Active slots display a
+ * ring and border in the ring color; invalid slots display destructive styling.
+ *
+ * @public
+ */
 function InputOTPSlot({
   index,
   className,
@@ -70,6 +120,16 @@ function InputOTPSlot({
   )
 }
 
+/**
+ * Visual separator rendered between `InputOTPGroup` elements.
+ *
+ * @remarks
+ * Renders a `MinusIcon` by default and carries `role="separator"` for accessibility.
+ * Place between two `InputOTPGroup` components to indicate a logical break in the
+ * code (e.g. between the first and second half of a six-digit OTP).
+ *
+ * @public
+ */
 function InputOTPSeparator({ ...props }: React.ComponentProps<"div">) {
   return (
     <div

@@ -5,6 +5,26 @@ import { Checkbox as CheckboxPrimitive } from "@base-ui/react/checkbox"
 import { cn } from "#lib/utils"
 import { CheckIcon } from "lucide-react"
 
+/**
+ * A binary toggle input that allows users to select or deselect an option.
+ *
+ * @remarks
+ * Delegates checked state, keyboard handling, and ARIA semantics to Base UI's
+ * `CheckboxPrimitive.Root`. The check icon is rendered via an internal
+ * `CheckboxPrimitive.Indicator` and animates in/out with CSS transitions.
+ * Supports an indeterminate state when configured through the Base UI primitive.
+ * Integrates with form field group context for disabled styling.
+ *
+ * @example
+ * ```tsx
+ * <label className="flex items-center gap-2">
+ *   <Checkbox id="accept" />
+ *   <span>Accept terms and conditions</span>
+ * </label>
+ * ```
+ *
+ * @public
+ */
 function Checkbox({ className, ...props }: CheckboxPrimitive.Root.Props) {
   return (
     <CheckboxPrimitive.Root

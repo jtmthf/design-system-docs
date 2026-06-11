@@ -6,8 +6,36 @@ import { Select as SelectPrimitive } from "@base-ui/react/select"
 import { cn } from "#lib/utils"
 import { ChevronDownIcon, CheckIcon, ChevronUpIcon } from "lucide-react"
 
+/**
+ * The root context provider for a custom select control, managing open state and the selected value.
+ *
+ * @remarks
+ * Direct re-export of `SelectPrimitive.Root` from Base UI. Compose with `SelectTrigger`,
+ * `SelectContent`, `SelectItem`, and related sub-components for a fully functional select.
+ *
+ * @example
+ * ```tsx
+ * <Select>
+ *   <SelectTrigger><SelectValue placeholder="Pick one" /></SelectTrigger>
+ *   <SelectContent>
+ *     <SelectItem value="a">Option A</SelectItem>
+ *     <SelectItem value="b">Option B</SelectItem>
+ *   </SelectContent>
+ * </Select>
+ * ```
+ *
+ * @public
+ */
 const Select = SelectPrimitive.Root
 
+/**
+ * A labeled group of SelectItem elements within SelectContent.
+ *
+ * @remarks
+ * Applies vertical scroll margin and padding. Pair with `SelectLabel` as the first child.
+ *
+ * @public
+ */
 function SelectGroup({ className, ...props }: SelectPrimitive.Group.Props) {
   return (
     <SelectPrimitive.Group
@@ -18,6 +46,14 @@ function SelectGroup({ className, ...props }: SelectPrimitive.Group.Props) {
   )
 }
 
+/**
+ * Displays the currently selected item's text inside the SelectTrigger.
+ *
+ * @remarks
+ * Falls back to the `placeholder` prop when no value is selected.
+ *
+ * @public
+ */
 function SelectValue({ className, ...props }: SelectPrimitive.Value.Props) {
   return (
     <SelectPrimitive.Value
@@ -28,6 +64,15 @@ function SelectValue({ className, ...props }: SelectPrimitive.Value.Props) {
   )
 }
 
+/**
+ * The button that opens the SelectContent dropdown and displays the current SelectValue.
+ *
+ * @remarks
+ * Accepts `size` (`"default"` or `"sm"`) to control height and border radius. Includes a
+ * trailing chevron icon, validation ring styles, and disabled/placeholder states.
+ *
+ * @public
+ */
 function SelectTrigger({
   className,
   size = "default",
@@ -56,6 +101,16 @@ function SelectTrigger({
   )
 }
 
+/**
+ * The portal-rendered dropdown panel containing the list of SelectItem elements.
+ *
+ * @remarks
+ * Accepts positioning props forwarded to the Base UI Positioner. When `alignItemWithTrigger`
+ * is `true` (default), the panel width matches the trigger. Includes scroll up/down arrow
+ * buttons and enter/exit animations.
+ *
+ * @public
+ */
 function SelectContent({
   className,
   children,
@@ -95,6 +150,11 @@ function SelectContent({
   )
 }
 
+/**
+ * A non-interactive label for a SelectGroup within SelectContent.
+ *
+ * @public
+ */
 function SelectLabel({
   className,
   ...props
@@ -108,6 +168,15 @@ function SelectLabel({
   )
 }
 
+/**
+ * A selectable option within SelectContent that shows a checkmark when chosen.
+ *
+ * @remarks
+ * Uses Base UI's `SelectPrimitive.ItemText` and `SelectPrimitive.ItemIndicator` for correct
+ * ARIA value binding and indicator rendering. Supports disabled state and focus highlight.
+ *
+ * @public
+ */
 function SelectItem({
   className,
   children,
@@ -136,6 +205,11 @@ function SelectItem({
   )
 }
 
+/**
+ * A thin horizontal rule used to separate groups of items inside SelectContent.
+ *
+ * @public
+ */
 function SelectSeparator({
   className,
   ...props
@@ -149,6 +223,11 @@ function SelectSeparator({
   )
 }
 
+/**
+ * A sticky button at the top of SelectContent that scrolls the option list upward.
+ *
+ * @public
+ */
 function SelectScrollUpButton({
   className,
   ...props
@@ -168,6 +247,11 @@ function SelectScrollUpButton({
   )
 }
 
+/**
+ * A sticky button at the bottom of SelectContent that scrolls the option list downward.
+ *
+ * @public
+ */
 function SelectScrollDownButton({
   className,
   ...props

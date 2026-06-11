@@ -2,6 +2,23 @@ import { Slider as SliderPrimitive } from "@base-ui/react/slider"
 
 import { cn } from "#lib/utils"
 
+/**
+ * Range input control for selecting a numeric value or range along a track.
+ *
+ * @remarks
+ * Wraps the Base UI Slider primitive. Supports both single-thumb and
+ * multi-thumb (range) modes driven by the shape of `value` or `defaultValue`.
+ * Thumb count is inferred from the array length; falls back to `[min, max]`
+ * when no values are provided. Supports horizontal and vertical orientations
+ * via the `data-horizontal` / `data-vertical` data attributes.
+ *
+ * @example
+ * ```tsx
+ * <Slider defaultValue={[25]} min={0} max={100} />
+ * ```
+ *
+ * @public
+ */
 function Slider({
   className,
   defaultValue,

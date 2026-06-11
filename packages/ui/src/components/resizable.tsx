@@ -4,6 +4,24 @@ import * as ResizablePrimitive from "react-resizable-panels"
 
 import { cn } from "#lib/utils"
 
+/**
+ * A container that arranges ResizablePanel children in a horizontal or vertical layout with drag handles.
+ *
+ * @remarks
+ * Built on `react-resizable-panels`. Set `direction` to `"horizontal"` or `"vertical"` on the
+ * underlying Group. Compose with `ResizablePanel` and `ResizableHandle` for a complete layout.
+ *
+ * @example
+ * ```tsx
+ * <ResizablePanelGroup direction="horizontal">
+ *   <ResizablePanel defaultSize={50}>Left</ResizablePanel>
+ *   <ResizableHandle />
+ *   <ResizablePanel defaultSize={50}>Right</ResizablePanel>
+ * </ResizablePanelGroup>
+ * ```
+ *
+ * @public
+ */
 function ResizablePanelGroup({
   className,
   ...props
@@ -20,10 +38,28 @@ function ResizablePanelGroup({
   )
 }
 
+/**
+ * An individual resizable pane within a ResizablePanelGroup.
+ *
+ * @remarks
+ * Accepts `defaultSize`, `minSize`, `maxSize`, and `onResize` from `react-resizable-panels`.
+ * Place a `ResizableHandle` between sibling panels to enable drag-to-resize.
+ *
+ * @public
+ */
 function ResizablePanel({ ...props }: ResizablePrimitive.PanelProps) {
   return <ResizablePrimitive.Panel data-slot="resizable-panel" {...props} />
 }
 
+/**
+ * A drag handle placed between two ResizablePanel elements to allow resizing.
+ *
+ * @remarks
+ * Set `withHandle` to `true` to render a visible grip bar in the center of the separator.
+ * Adapts between horizontal and vertical orientations via ARIA orientation attributes.
+ *
+ * @public
+ */
 function ResizableHandle({
   withHandle,
   className,

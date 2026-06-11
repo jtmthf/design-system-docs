@@ -1,0 +1,12 @@
+{
+  // Used ONLY by API Extractor. Activates the "api-extractor" export condition
+  // so the package's `#` subpath imports (which default to source .tsx for dev)
+  // resolve to the emitted dist .d.ts instead — API Extractor must analyze
+  // declaration files, not TypeScript source.
+  "extends": "./tsconfig.build.json",
+  "compilerOptions": {
+    "customConditions": ["api-extractor"]
+  },
+  "include": ["dist/**/*.d.ts"],
+  "exclude": ["node_modules"]
+}

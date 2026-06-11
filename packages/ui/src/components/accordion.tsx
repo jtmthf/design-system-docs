@@ -3,6 +3,27 @@ import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion"
 import { cn } from "#lib/utils"
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react"
 
+/**
+ * An accessible, animated accordion that shows and hides stacked panels of content.
+ *
+ * @remarks
+ * Composed of `AccordionItem`, `AccordionTrigger`, and `AccordionContent`.
+ * Delegates all keyboard navigation and ARIA semantics to the Base UI primitive.
+ * Multiple panels may be open simultaneously when the underlying primitive is
+ * configured with `openMultiple`.
+ *
+ * @example
+ * ```tsx
+ * <Accordion>
+ *   <AccordionItem value="item-1">
+ *     <AccordionTrigger>Is it accessible?</AccordionTrigger>
+ *     <AccordionContent>Yes, it follows the WAI-ARIA design pattern.</AccordionContent>
+ *   </AccordionItem>
+ * </Accordion>
+ * ```
+ *
+ * @public
+ */
 function Accordion({ className, ...props }: AccordionPrimitive.Root.Props) {
   return (
     <AccordionPrimitive.Root
@@ -13,6 +34,14 @@ function Accordion({ className, ...props }: AccordionPrimitive.Root.Props) {
   )
 }
 
+/**
+ * A single collapsible section within an `Accordion`.
+ *
+ * @remarks
+ * Must be a direct child of `Accordion`. Wraps a trigger and a content panel.
+ *
+ * @public
+ */
 function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
   return (
     <AccordionPrimitive.Item
@@ -23,6 +52,15 @@ function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
   )
 }
 
+/**
+ * The clickable header button that toggles an `AccordionItem` open or closed.
+ *
+ * @remarks
+ * Renders chevron icons that swap depending on the expanded state.
+ * Must be placed inside an `AccordionItem`.
+ *
+ * @public
+ */
 function AccordionTrigger({
   className,
   children,
@@ -46,6 +84,15 @@ function AccordionTrigger({
   )
 }
 
+/**
+ * The animated panel that reveals the body content of an `AccordionItem`.
+ *
+ * @remarks
+ * Must be placed inside an `AccordionItem`, after the `AccordionTrigger`.
+ * Applies slide-down/slide-up animations driven by CSS custom properties.
+ *
+ * @public
+ */
 function AccordionContent({
   className,
   children,

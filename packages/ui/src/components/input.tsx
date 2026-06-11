@@ -3,6 +3,24 @@ import { Input as InputPrimitive } from "@base-ui/react/input"
 
 import { cn } from "#lib/utils"
 
+/**
+ * Single-line text input with consistent border, focus ring, and validation styling.
+ *
+ * @remarks
+ * Delegates to the Base UI `Input` primitive and forwards all native `<input>`
+ * props. Applies a `2rem` fixed height, full width, rounded corners, and a
+ * `ring-ring/50` focus ring. Disabled state applies muted background and reduced
+ * opacity. When `aria-invalid` is set the border and ring switch to destructive
+ * colors. File inputs receive adjusted internal padding for the file selector
+ * button.
+ *
+ * @example
+ * ```tsx
+ * <Input type="email" placeholder="you@example.com" />
+ * ```
+ *
+ * @public
+ */
 function Input({ className, type, ...props }: React.ComponentProps<"input">) {
   return (
     <InputPrimitive

@@ -12,6 +12,19 @@ const THEMES = { light: "", dark: ".dark" } as const
 const INITIAL_DIMENSION = { width: 320, height: 200 } as const
 type TooltipNameType = number | string
 
+/**
+ * A record that maps data-series keys to their display configuration.
+ *
+ * @remarks
+ * Each key corresponds to a data key used in the Recharts chart (e.g., a field
+ * name from the data array). The value provides an optional human-readable
+ * `label`, an optional custom `icon` component, and either a static `color`
+ * string or a `theme` map that supplies separate color values for the `"light"`
+ * and `"dark"` themes. Passing `theme` instead of `color` generates scoped CSS
+ * custom properties (e.g., `--color-{key}`) under the appropriate theme selector.
+ *
+ * @public
+ */
 export type ChartConfig = Record<
   string,
   {
@@ -29,6 +42,26 @@ type ChartContextProps = {
 
 const ChartContext = React.createContext<ChartContextProps | null>(null)
 
+/**
+ * Returns the `ChartConfig` from the nearest `ChartContainer` ancestor.
+ *
+ * @remarks
+ * Must be called from a component rendered inside a `ChartContainer`. Throws if
+ * used outside of that context.
+ *
+ * @returns An object with a `config` property containing the `ChartConfig`
+ * passed to the parent `ChartContainer`.
+ *
+ * @example
+ * ```tsx
+ * function CustomTooltip() {
+ *   const { config } = useChart();
+ *   return <div>{config.revenue?.label}</div>;
+ * }
+ * ```
+ *
+ * @public
+ */
 function useChart() {
   const context = React.useContext(ChartContext)
 
@@ -39,6 +72,31 @@ function useChart() {
   return context
 }
 
+/**
+ * A responsive wrapper that provides `ChartConfig` context and injects CSS color variables for a Recharts chart.
+ *
+ * @remarks
+ * Renders a `ChartStyle` element that writes `--color-{key}` CSS custom properties
+ * for every entry in `config` that specifies a `color` or `theme`. Children must
+ * be a valid Recharts `ResponsiveContainer` child tree. Use the `initialDimension`
+ * prop to set the starting width/height before the container resizes; defaults
+ * to `{ width: 320, height: 200 }`.
+ *
+ * @example
+ * ```tsx
+ * const config: ChartConfig = {
+ *   revenue: { label: "Revenue", color: "hsl(var(--chart-1))" },
+ * };
+ *
+ * <ChartContainer config={config} className="h-64">
+ *   <BarChart data={data}>
+ *     <Bar dataKey="revenue" fill="var(--color-revenue)" />
+ *   </BarChart>
+ * </ChartContainer>
+ * ```
+ *
+ * @public
+ */
 function ChartContainer({
   id,
   className,
@@ -81,6 +139,16 @@ function ChartContainer({
   )
 }
 
+/**
+ * Injects a `style` block that writes scoped CSS custom properties for chart colors.
+ *
+ * @remarks
+ * Generates `--color-{key}` variables under `[data-chart=id]` for both light and
+ * dark themes. Renders nothing if no entries in `config` define a `color` or `theme`.
+ * Used internally by `ChartContainer`; prefer that component over using this directly.
+ *
+ * @public
+ */
 const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
   const colorConfig = Object.entries(config).filter(
     ([, config]) => config.theme ?? config.color
@@ -114,8 +182,28 @@ ${colorConfig
   )
 }
 
+/**
+ * The Recharts `Tooltip` component re-exported for use inside a `ChartContainer`.
+ *
+ * @remarks
+ * Combine with `ChartTooltipContent` as the `content` prop for a styled tooltip.
+ *
+ * @public
+ */
 const ChartTooltip = RechartsPrimitive.Tooltip
 
+/**
+ * A pre-styled tooltip body that reads series labels and colors from `ChartConfig`.
+ *
+ * @remarks
+ * Must be rendered within a `ChartContainer` (uses `useChart` internally).
+ * Accepts an `indicator` prop (`"dot"` | `"line"` | `"dashed"`) to control the
+ * color swatch shape. Use `hideLabel` to suppress the tooltip header and
+ * `hideIndicator` to suppress the swatch entirely. Custom per-item rendering is
+ * supported via the Recharts `formatter` prop.
+ *
+ * @public
+ */
 function ChartTooltipContent({
   active,
   payload,
@@ -270,8 +358,28 @@ function ChartTooltipContent({
   )
 }
 
+/**
+ * The Recharts `Legend` component re-exported for use inside a `ChartContainer`.
+ *
+ * @remarks
+ * Combine with `ChartLegendContent` as the `content` prop for a styled legend.
+ *
+ * @public
+ */
 const ChartLegend = RechartsPrimitive.Legend
 
+/**
+ * A pre-styled legend body that reads series labels and colors from `ChartConfig`.
+ *
+ * @remarks
+ * Must be rendered within a `ChartContainer` (uses `useChart` internally).
+ * Use `verticalAlign` (`"top"` | `"bottom"`) to adjust padding direction and
+ * `hideIcon` to suppress custom icon components in favor of color swatches.
+ * The `nameKey` prop overrides the default data key used to look up each series
+ * in the config.
+ *
+ * @public
+ */
 function ChartLegendContent({
   className,
   hideIcon = false,

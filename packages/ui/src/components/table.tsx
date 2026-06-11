@@ -4,6 +4,32 @@ import * as React from "react"
 
 import { cn } from "#lib/utils"
 
+/**
+ * Horizontally scrollable data table composed of semantic HTML table elements.
+ *
+ * @remarks
+ * Wraps a native `<table>` in an overflow container. Compose with
+ * `TableHeader`, `TableBody`, `TableFooter`, `TableRow`, `TableHead`,
+ * `TableCell`, and `TableCaption` for a fully accessible table.
+ *
+ * @example
+ * ```tsx
+ * <Table>
+ *   <TableHeader>
+ *     <TableRow>
+ *       <TableHead>Name</TableHead>
+ *     </TableRow>
+ *   </TableHeader>
+ *   <TableBody>
+ *     <TableRow>
+ *       <TableCell>Alice</TableCell>
+ *     </TableRow>
+ *   </TableBody>
+ * </Table>
+ * ```
+ *
+ * @public
+ */
 function Table({ className, ...props }: React.ComponentProps<"table">) {
   return (
     <div
@@ -19,6 +45,11 @@ function Table({ className, ...props }: React.ComponentProps<"table">) {
   )
 }
 
+/**
+ * `<thead>` region of a `Table` containing column header rows.
+ *
+ * @public
+ */
 function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
   return (
     <thead
@@ -29,6 +60,11 @@ function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
   )
 }
 
+/**
+ * `<tbody>` region of a `Table` that holds data rows.
+ *
+ * @public
+ */
 function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
   return (
     <tbody
@@ -39,6 +75,11 @@ function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
   )
 }
 
+/**
+ * `<tfoot>` region of a `Table`, typically used for summary or totals rows.
+ *
+ * @public
+ */
 function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
   return (
     <tfoot
@@ -52,6 +93,11 @@ function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
   )
 }
 
+/**
+ * A `<tr>` table row with hover, selection, and expanded-row styling.
+ *
+ * @public
+ */
 function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
   return (
     <tr
@@ -65,6 +111,11 @@ function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
   )
 }
 
+/**
+ * `<th>` column header cell inside a `TableHeader` row.
+ *
+ * @public
+ */
 function TableHead({ className, ...props }: React.ComponentProps<"th">) {
   return (
     <th
@@ -78,6 +129,11 @@ function TableHead({ className, ...props }: React.ComponentProps<"th">) {
   )
 }
 
+/**
+ * `<td>` data cell inside a `TableBody` or `TableFooter` row.
+ *
+ * @public
+ */
 function TableCell({ className, ...props }: React.ComponentProps<"td">) {
   return (
     <td
@@ -91,6 +147,11 @@ function TableCell({ className, ...props }: React.ComponentProps<"td">) {
   )
 }
 
+/**
+ * `<caption>` element for a `Table`, rendered below the table in muted text.
+ *
+ * @public
+ */
 function TableCaption({
   className,
   ...props

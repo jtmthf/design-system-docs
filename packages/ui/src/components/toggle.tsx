@@ -5,6 +5,17 @@ import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "#lib/utils"
 
+/**
+ * Builds the class string for `Toggle` (and `ToggleGroupItem`) using CVA.
+ *
+ * @remarks
+ * Variants: `variant` (`"default"` | `"outline"`, default: `"default"`);
+ * `size` (`"default"` | `"sm"` | `"lg"`, default: `"default"`). The
+ * `"outline"` variant adds a visible border. The `"sm"` and `"lg"` sizes
+ * adjust height, minimum width, padding, and icon size.
+ *
+ * @public
+ */
 const toggleVariants = cva(
   "group/toggle inline-flex items-center justify-center gap-1 rounded-lg text-sm font-medium whitespace-nowrap transition-all outline-none hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 aria-pressed:bg-muted data-[state=on]:bg-muted dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
@@ -27,6 +38,24 @@ const toggleVariants = cva(
   }
 )
 
+/**
+ * Two-state button that can be pressed (on) or unpressed (off).
+ *
+ * @remarks
+ * Built on the Base UI Toggle primitive. Accepts `variant` (`"default"` |
+ * `"outline"`) and `size` (`"default"` | `"sm"` | `"lg"`) from
+ * `toggleVariants`. Pressed state is reflected via `aria-pressed` and
+ * `data-[state=on]`.
+ *
+ * @example
+ * ```tsx
+ * <Toggle aria-label="Bold">
+ *   <BoldIcon />
+ * </Toggle>
+ * ```
+ *
+ * @public
+ */
 function Toggle({
   className,
   variant = "default",

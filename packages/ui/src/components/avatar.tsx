@@ -5,6 +5,25 @@ import { Avatar as AvatarPrimitive } from "@base-ui/react/avatar"
 
 import { cn } from "#lib/utils"
 
+/**
+ * A circular user avatar that displays a photo, with an automatic text fallback.
+ *
+ * @remarks
+ * Composed of `AvatarImage` and `AvatarFallback`. Accepts a `size` prop
+ * (`"sm"` | `"default"` | `"lg"`) to control diameter. An `AvatarBadge` can be
+ * overlaid for status indicators, and multiple avatars can be stacked inside an
+ * `AvatarGroup`.
+ *
+ * @example
+ * ```tsx
+ * <Avatar size="lg">
+ *   <AvatarImage src="/profile.jpg" alt="Jane Doe" />
+ *   <AvatarFallback>JD</AvatarFallback>
+ * </Avatar>
+ * ```
+ *
+ * @public
+ */
 function Avatar({
   className,
   size = "default",
@@ -25,6 +44,15 @@ function Avatar({
   )
 }
 
+/**
+ * The photo rendered inside an `Avatar`, hidden automatically if it fails to load.
+ *
+ * @remarks
+ * Delegates image load-state detection to Base UI's `AvatarPrimitive.Image`.
+ * When the image is unavailable, `AvatarFallback` is shown instead.
+ *
+ * @public
+ */
 function AvatarImage({ className, ...props }: AvatarPrimitive.Image.Props) {
   return (
     <AvatarPrimitive.Image
@@ -38,6 +66,15 @@ function AvatarImage({ className, ...props }: AvatarPrimitive.Image.Props) {
   )
 }
 
+/**
+ * Text or icon rendered inside an `Avatar` when the image is unavailable.
+ *
+ * @remarks
+ * Typically contains the user's initials. Automatically adjusts font size for
+ * the `"sm"` avatar size via the parent group context.
+ *
+ * @public
+ */
 function AvatarFallback({
   className,
   ...props
@@ -54,6 +91,15 @@ function AvatarFallback({
   )
 }
 
+/**
+ * A small status indicator badge overlaid on the bottom-right corner of an `Avatar`.
+ *
+ * @remarks
+ * Scales with the parent `Avatar` size. Icons inside the badge are hidden at the
+ * `"sm"` size to keep the badge readable.
+ *
+ * @public
+ */
 function AvatarBadge({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
@@ -70,6 +116,15 @@ function AvatarBadge({ className, ...props }: React.ComponentProps<"span">) {
   )
 }
 
+/**
+ * A container that overlaps multiple `Avatar` components into a horizontal stack.
+ *
+ * @remarks
+ * Applies negative spacing and a ring around each child avatar to visually
+ * separate them. Wrap `Avatar` elements directly inside this component.
+ *
+ * @public
+ */
 function AvatarGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -83,6 +138,15 @@ function AvatarGroup({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * A numeric overflow indicator shown at the end of an `AvatarGroup`.
+ *
+ * @remarks
+ * Displays a count of hidden avatars (e.g., "+3") styled consistently with the
+ * sibling `Avatar` elements, scaling to match the group's size.
+ *
+ * @public
+ */
 function AvatarGroupCount({
   className,
   ...props

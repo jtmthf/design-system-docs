@@ -1,0 +1,76 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
+
+  "projectFolder": "..",
+
+  "mainEntryPointFilePath": "<projectFolder>/dist/index.d.ts",
+
+  "bundledPackages": [],
+
+  "compiler": {
+    "tsconfigFilePath": "<projectFolder>/tsconfig.api.json"
+  },
+
+  "apiReport": {
+    "enabled": true,
+    "reportFileName": "ui.api.md",
+    "reportFolder": "<projectFolder>/etc/",
+    "reportTempFolder": "<projectFolder>/temp/",
+    // Capture only the intentional public surface. First-party cross-component
+    // imports (e.g. a component importing a sibling via #components/*) would
+    // otherwise appear as aliased "forgotten exports" (Button_2, Dialog_2, ...).
+    "includeForgottenExports": false
+  },
+
+  "docModel": {
+    "enabled": true,
+    "apiJsonFilePath": "<projectFolder>/temp/<unscopedPackageName>.api.json",
+    "includeForgottenExports": false
+  },
+
+  "dtsRollup": {
+    "enabled": false
+  },
+
+  "tsdocMetadata": {
+    "enabled": false
+  },
+
+  "messages": {
+    "compilerMessageReporting": {
+      "default": {
+        "logLevel": "warning"
+      }
+    },
+
+    "extractorMessageReporting": {
+      "default": {
+        "logLevel": "warning"
+      },
+      "ae-missing-release-tag": {
+        "logLevel": "error",
+        "addToApiReportFile": true
+      },
+      // recharts (chart.tsx) transitively exposes a @reduxjs/toolkit type whose
+      // published declarations point at a .ts source file. We can't fix that
+      // upstream artifact; downgrade so it doesn't fail the report.
+      "ae-wrong-input-file-type": {
+        "logLevel": "warning"
+      },
+      // First-party sibling imports are composition, not accidental exports.
+      // Real accidental exports surface as additions in the committed ui.api.md diff.
+      "ae-forgotten-export": {
+        "logLevel": "none"
+      },
+      "ae-internal-missing-underscore": {
+        "logLevel": "none"
+      }
+    },
+
+    "tsdocMessageReporting": {
+      "default": {
+        "logLevel": "warning"
+      }
+    }
+  }
+}

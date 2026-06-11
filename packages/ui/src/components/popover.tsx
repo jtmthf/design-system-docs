@@ -5,14 +5,52 @@ import { Popover as PopoverPrimitive } from "@base-ui/react/popover"
 
 import { cn } from "#lib/utils"
 
+/**
+ * A floating panel anchored to a trigger element, used to display supplementary content.
+ *
+ * @remarks
+ * Built on Base UI's Popover primitive. Composes `PopoverTrigger` to open the panel and
+ * `PopoverContent` for the panel itself. Optionally includes `PopoverHeader`,
+ * `PopoverTitle`, and `PopoverDescription` for structured content.
+ *
+ * @example
+ * ```tsx
+ * <Popover>
+ *   <PopoverTrigger>Open</PopoverTrigger>
+ *   <PopoverContent>
+ *     <PopoverHeader>
+ *       <PopoverTitle>Settings</PopoverTitle>
+ *       <PopoverDescription>Adjust your preferences.</PopoverDescription>
+ *     </PopoverHeader>
+ *   </PopoverContent>
+ * </Popover>
+ * ```
+ *
+ * @public
+ */
 function Popover({ ...props }: PopoverPrimitive.Root.Props) {
   return <PopoverPrimitive.Root data-slot="popover" {...props} />
 }
 
+/**
+ * The element that toggles the Popover open and closed when clicked.
+ *
+ * @public
+ */
 function PopoverTrigger({ ...props }: PopoverPrimitive.Trigger.Props) {
   return <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />
 }
 
+/**
+ * The floating panel rendered inside a portal, positioned relative to the PopoverTrigger.
+ *
+ * @remarks
+ * Accepts positioning props (`align`, `alignOffset`, `side`, `sideOffset`) that are forwarded
+ * to the Base UI Positioner. Defaults: `align="center"`, `side="bottom"`, `sideOffset=4`.
+ * Includes enter and exit animations.
+ *
+ * @public
+ */
 function PopoverContent({
   className,
   align = "center",
@@ -47,6 +85,11 @@ function PopoverContent({
   )
 }
 
+/**
+ * A flex column header section within PopoverContent, intended to hold title and description.
+ *
+ * @public
+ */
 function PopoverHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -57,6 +100,11 @@ function PopoverHeader({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * The accessible title of a Popover, linked to the popup via ARIA for screen readers.
+ *
+ * @public
+ */
 function PopoverTitle({ className, ...props }: PopoverPrimitive.Title.Props) {
   return (
     <PopoverPrimitive.Title
@@ -67,6 +115,11 @@ function PopoverTitle({ className, ...props }: PopoverPrimitive.Title.Props) {
   )
 }
 
+/**
+ * A muted description paragraph within a Popover, linked to the popup via ARIA.
+ *
+ * @public
+ */
 function PopoverDescription({
   className,
   ...props

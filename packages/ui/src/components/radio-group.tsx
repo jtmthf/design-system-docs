@@ -5,6 +5,23 @@ import { RadioGroup as RadioGroupPrimitive } from "@base-ui/react/radio-group"
 
 import { cn } from "#lib/utils"
 
+/**
+ * A group of mutually exclusive radio button controls built on Base UI's RadioGroup primitive.
+ *
+ * @remarks
+ * Renders a grid container with consistent gap. Each selectable option should be composed
+ * using `RadioGroupItem`. Manages a single active value across all child items.
+ *
+ * @example
+ * ```tsx
+ * <RadioGroup defaultValue="b">
+ *   <label><RadioGroupItem value="a" /> Option A</label>
+ *   <label><RadioGroupItem value="b" /> Option B</label>
+ * </RadioGroup>
+ * ```
+ *
+ * @public
+ */
 function RadioGroup({ className, ...props }: RadioGroupPrimitive.Props) {
   return (
     <RadioGroupPrimitive
@@ -15,6 +32,15 @@ function RadioGroup({ className, ...props }: RadioGroupPrimitive.Props) {
   )
 }
 
+/**
+ * A single radio button within a RadioGroup, displaying a filled circle indicator when selected.
+ *
+ * @remarks
+ * Built on Base UI's Radio primitive. Supports disabled state, validation states via `aria-invalid`,
+ * and focus-visible ring styling. The indicator is shown when `data-checked` is present.
+ *
+ * @public
+ */
 function RadioGroupItem({ className, ...props }: RadioPrimitive.Root.Props) {
   return (
     <RadioPrimitive.Root

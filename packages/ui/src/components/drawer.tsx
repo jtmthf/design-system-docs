@@ -5,30 +5,96 @@ import { Drawer as DrawerPrimitive } from "vaul"
 
 import { cn } from "#lib/utils"
 
+/**
+ * Drawer root that manages open/close state for a slide-in panel anchored to a
+ * viewport edge.
+ *
+ * @remarks
+ * Built on the Vaul `Drawer.Root` primitive. Compose with `DrawerTrigger`,
+ * `DrawerContent`, `DrawerHeader`, `DrawerFooter`, `DrawerTitle`, and
+ * `DrawerDescription`. Direction (bottom, top, left, right) is controlled by
+ * the `direction` prop on the primitive, and the content panel adapts its
+ * styling automatically via `data-[vaul-drawer-direction]` attributes.
+ *
+ * @example
+ * ```tsx
+ * <Drawer>
+ *   <DrawerTrigger>Open drawer</DrawerTrigger>
+ *   <DrawerContent>
+ *     <DrawerHeader>
+ *       <DrawerTitle>Settings</DrawerTitle>
+ *       <DrawerDescription>Manage your preferences.</DrawerDescription>
+ *     </DrawerHeader>
+ *     <DrawerFooter>
+ *       <Button>Save</Button>
+ *     </DrawerFooter>
+ *   </DrawerContent>
+ * </Drawer>
+ * ```
+ *
+ * @public
+ */
 function Drawer({
   ...props
 }: React.ComponentProps<typeof DrawerPrimitive.Root>) {
   return <DrawerPrimitive.Root data-slot="drawer" {...props} />
 }
 
+/**
+ * Element that opens the parent `Drawer` when activated.
+ *
+ * @remarks
+ * Delegates to `DrawerPrimitive.Trigger`. Any focusable element can be used via
+ * the underlying primitive's `render` prop.
+ *
+ * @public
+ */
 function DrawerTrigger({
   ...props
 }: React.ComponentProps<typeof DrawerPrimitive.Trigger>) {
   return <DrawerPrimitive.Trigger data-slot="drawer-trigger" {...props} />
 }
 
+/**
+ * Portal wrapper that renders drawer content outside the normal DOM hierarchy.
+ *
+ * @remarks
+ * Delegates to `DrawerPrimitive.Portal`. Used internally by `DrawerContent`; you
+ * rarely need to use this directly.
+ *
+ * @public
+ */
 function DrawerPortal({
   ...props
 }: React.ComponentProps<typeof DrawerPrimitive.Portal>) {
   return <DrawerPrimitive.Portal data-slot="drawer-portal" {...props} />
 }
 
+/**
+ * Element that closes the parent `Drawer` when activated.
+ *
+ * @remarks
+ * Delegates to `DrawerPrimitive.Close`. Use inside `DrawerContent` or
+ * `DrawerFooter` for an explicit close affordance.
+ *
+ * @public
+ */
 function DrawerClose({
   ...props
 }: React.ComponentProps<typeof DrawerPrimitive.Close>) {
   return <DrawerPrimitive.Close data-slot="drawer-close" {...props} />
 }
 
+/**
+ * Semi-transparent backdrop rendered behind the drawer panel.
+ *
+ * @remarks
+ * Applies a subtle blur when the browser supports `backdrop-filter`. Animates in
+ * and out using `data-open` / `data-closed` attributes. Used internally by
+ * `DrawerContent`.
+ *
+ * @public
+ */
 function DrawerOverlay({
   className,
   ...props
@@ -45,6 +111,18 @@ function DrawerOverlay({
   )
 }
 
+/**
+ * Slide-in panel that renders via a portal with a backdrop overlay.
+ *
+ * @remarks
+ * Composes `DrawerPortal` and `DrawerOverlay`. Layout adapts to the drawer
+ * `direction` prop: bottom and top variants are full-width with a max height of
+ * `80vh`; left and right variants are full-height with a max width of `75%` on
+ * mobile and `sm:max-w-sm` on wider screens. A drag handle is rendered
+ * automatically for bottom-direction drawers.
+ *
+ * @public
+ */
 function DrawerContent({
   className,
   children,
@@ -68,6 +146,16 @@ function DrawerContent({
   )
 }
 
+/**
+ * Top section of a `DrawerContent` for title and description.
+ *
+ * @remarks
+ * Centers text for bottom and top direction drawers; left-aligns on `md` screens
+ * and for side drawers. Renders a `data-slot="drawer-header"` attribute for CSS
+ * targeting.
+ *
+ * @public
+ */
 function DrawerHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -81,6 +169,15 @@ function DrawerHeader({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * Bottom action area of a `DrawerContent` that pushes to the end of the panel.
+ *
+ * @remarks
+ * Uses `mt-auto` to remain pinned at the bottom of the drawer's flex column.
+ * Renders a `data-slot="drawer-footer"` attribute for CSS targeting.
+ *
+ * @public
+ */
 function DrawerFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -91,6 +188,14 @@ function DrawerFooter({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * Accessible title for the drawer, announced by screen readers on open.
+ *
+ * @remarks
+ * Delegates to `DrawerPrimitive.Title` and applies heading font styles.
+ *
+ * @public
+ */
 function DrawerTitle({
   className,
   ...props
@@ -107,6 +212,14 @@ function DrawerTitle({
   )
 }
 
+/**
+ * Supplementary description for the drawer, linked to the panel for screen readers.
+ *
+ * @remarks
+ * Delegates to `DrawerPrimitive.Description` and renders muted small text.
+ *
+ * @public
+ */
 function DrawerDescription({
   className,
   ...props

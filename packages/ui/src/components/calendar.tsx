@@ -12,6 +12,32 @@ import { cn } from "#lib/utils"
 import { Button, buttonVariants } from "#components/button"
 import { ChevronLeftIcon, ChevronRightIcon, ChevronDownIcon } from "lucide-react"
 
+/**
+ * A fully-styled date picker calendar built on top of `react-day-picker`.
+ *
+ * @remarks
+ * Supports single-date selection, date ranges, and multiple months. The
+ * `captionLayout` prop switches between a plain label and dropdown navigation
+ * for month and year. The `buttonVariant` prop controls the style of the
+ * previous/next navigation buttons. All `DayPicker` props are forwarded,
+ * making features such as `showWeekNumber`, `mode`, `disabled`, and `selected`
+ * fully available. Day buttons are rendered via `CalendarDayButton` which
+ * handles focus management for keyboard navigation.
+ *
+ * @example
+ * ```tsx
+ * const [date, setDate] = React.useState<Date | undefined>();
+ *
+ * <Calendar
+ *   mode="single"
+ *   selected={date}
+ *   onSelect={setDate}
+ *   captionLayout="dropdown"
+ * />
+ * ```
+ *
+ * @public
+ */
 function Calendar({
   className,
   classNames,
@@ -180,6 +206,17 @@ function Calendar({
   )
 }
 
+/**
+ * The individual day button rendered inside each calendar cell.
+ *
+ * @remarks
+ * Handles focus management imperatively via a ref so that keyboard navigation
+ * within `react-day-picker` focuses the correct day button. Applies range-start,
+ * range-end, range-middle, and selected-single data attributes for styling.
+ * Accepts an optional `locale` to format the `data-day` attribute.
+ *
+ * @public
+ */
 function CalendarDayButton({
   className,
   day,

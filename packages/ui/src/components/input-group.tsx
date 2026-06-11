@@ -8,6 +8,29 @@ import { Button } from "#components/button"
 import { Input } from "#components/input"
 import { Textarea } from "#components/textarea"
 
+/**
+ * Composite input container that combines a text control with addons and buttons
+ * in a single bordered group.
+ *
+ * @remarks
+ * Renders a `div[role="group"]` with a shared border and focus ring that activates
+ * when the inner `[data-slot=input-group-control]` element is focused. Compose with
+ * `InputGroupAddon`, `InputGroupButton`, `InputGroupText`, `InputGroupInput`, and
+ * `InputGroupTextarea`. When the group contains a block-aligned addon the height
+ * becomes `auto` and the layout switches to `flex-col`.
+ *
+ * @example
+ * ```tsx
+ * <InputGroup>
+ *   <InputGroupAddon>
+ *     <SearchIcon />
+ *   </InputGroupAddon>
+ *   <InputGroupInput placeholder="Search..." />
+ * </InputGroup>
+ * ```
+ *
+ * @public
+ */
 function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -22,6 +45,18 @@ function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * Builds the Tailwind class string for `InputGroupAddon` alignment variants.
+ *
+ * @remarks
+ * Available variants:
+ * - `align`: `"inline-start"` (leading, default) | `"inline-end"` (trailing) |
+ *   `"block-start"` (top, full-width) | `"block-end"` (bottom, full-width).
+ *
+ * Default variant: `align: "inline-start"`.
+ *
+ * @public
+ */
 const inputGroupAddonVariants = cva(
   "flex h-auto cursor-text items-center justify-center gap-2 py-1.5 text-sm font-medium text-muted-foreground select-none group-data-[disabled=true]/input-group:opacity-50 [&>kbd]:rounded-[calc(var(--radius)-5px)] [&>svg:not([class*='size-'])]:size-4",
   {
@@ -43,6 +78,17 @@ const inputGroupAddonVariants = cva(
   }
 )
 
+/**
+ * Addon container placed inside an `InputGroup` to hold icons, text, or buttons.
+ *
+ * @remarks
+ * Clicking the addon (outside any child button) forwards focus to the first `input`
+ * in the parent `InputGroup`. Use the `align` prop to control position:
+ * `"inline-start"` (default, leading), `"inline-end"` (trailing),
+ * `"block-start"` (top row), or `"block-end"` (bottom row).
+ *
+ * @public
+ */
 function InputGroupAddon({
   className,
   align = "inline-start",
@@ -65,6 +111,19 @@ function InputGroupAddon({
   )
 }
 
+/**
+ * Builds the Tailwind class string for `InputGroupButton` size variants.
+ *
+ * @remarks
+ * Available variants:
+ * - `size`: `"xs"` (default, small text button with `1.5rem` height) |
+ *   `"sm"` (standard small button) | `"icon-xs"` (square `1.5rem` icon button) |
+ *   `"icon-sm"` (square `2rem` icon button).
+ *
+ * Default variant: `size: "xs"`.
+ *
+ * @public
+ */
 const inputGroupButtonVariants = cva(
   "flex items-center gap-2 text-sm shadow-none",
   {
@@ -83,6 +142,16 @@ const inputGroupButtonVariants = cva(
   }
 )
 
+/**
+ * Compact button rendered inside an `InputGroupAddon`.
+ *
+ * @remarks
+ * Wraps `Button` and applies `inputGroupButtonVariants` sizing. Defaults to
+ * `variant="ghost"`, `size="xs"`, and `type="button"` to avoid accidental form
+ * submission. Pass `size="icon-xs"` or `size="icon-sm"` for square icon buttons.
+ *
+ * @public
+ */
 function InputGroupButton({
   className,
   type = "button",
@@ -104,6 +173,15 @@ function InputGroupButton({
   )
 }
 
+/**
+ * Non-interactive text or icon label rendered inside an `InputGroupAddon`.
+ *
+ * @remarks
+ * Renders muted small text. Icons are sized to `1rem` by default. Use for static
+ * prefix/suffix labels such as currency symbols or unit strings.
+ *
+ * @public
+ */
 function InputGroupText({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
@@ -116,6 +194,17 @@ function InputGroupText({ className, ...props }: React.ComponentProps<"span">) {
   )
 }
 
+/**
+ * Unstyled text input rendered inside an `InputGroup`, sharing the group border
+ * and focus ring.
+ *
+ * @remarks
+ * Delegates to `Input` and applies `data-slot="input-group-control"` so the parent
+ * `InputGroup` can detect focus. Border, background, and ring styles are removed
+ * so they do not double-render with the group container.
+ *
+ * @public
+ */
 function InputGroupInput({
   className,
   ...props
@@ -132,6 +221,18 @@ function InputGroupInput({
   )
 }
 
+/**
+ * Unstyled textarea rendered inside an `InputGroup`, sharing the group border
+ * and focus ring.
+ *
+ * @remarks
+ * Delegates to `Textarea` and applies `data-slot="input-group-control"`. Resize is
+ * disabled (`resize-none`) and padding is adjusted to sit flush within the group
+ * container. Border, background, and ring styles are removed to avoid double
+ * rendering.
+ *
+ * @public
+ */
 function InputGroupTextarea({
   className,
   ...props

@@ -13,12 +13,53 @@ import {
 } from "#components/input-group"
 import { ChevronDownIcon, XIcon, CheckIcon } from "lucide-react"
 
+/**
+ * Combobox root component providing selection state and filtering context for its children.
+ *
+ * @remarks
+ * This is a direct alias for the Base UI `Combobox.Root` primitive. Compose it with
+ * `ComboboxInput` (or `ComboboxChips`), `ComboboxContent`, `ComboboxList`, and
+ * `ComboboxItem` to build a full combobox widget. Use `useComboboxAnchor` when you
+ * need an explicit positioning anchor (e.g. for chip-based multi-select).
+ *
+ * @example
+ * ```tsx
+ * <Combobox>
+ *   <ComboboxInput />
+ *   <ComboboxContent>
+ *     <ComboboxList>
+ *       <ComboboxItem value="apple">Apple</ComboboxItem>
+ *       <ComboboxItem value="banana">Banana</ComboboxItem>
+ *     </ComboboxList>
+ *   </ComboboxContent>
+ * </Combobox>
+ * ```
+ *
+ * @public
+ */
 const Combobox = ComboboxPrimitive.Root
 
+/**
+ * Renders the current value of the combobox as text inside the trigger area.
+ *
+ * @remarks
+ * Must be used inside a `Combobox` root. Delegates to `ComboboxPrimitive.Value`.
+ *
+ * @public
+ */
 function ComboboxValue({ ...props }: ComboboxPrimitive.Value.Props) {
   return <ComboboxPrimitive.Value data-slot="combobox-value" {...props} />
 }
 
+/**
+ * Clickable trigger that opens or closes the combobox popup.
+ *
+ * @remarks
+ * Appends a `ChevronDownIcon` as a visual indicator and constrains icon sizes to
+ * `1rem`. Must be used inside a `Combobox` root.
+ *
+ * @public
+ */
 function ComboboxTrigger({
   className,
   children,
@@ -36,6 +77,15 @@ function ComboboxTrigger({
   )
 }
 
+/**
+ * Ghost icon-button that clears the current combobox selection.
+ *
+ * @remarks
+ * Renders via `InputGroupButton` with ghost and icon-xs styles. Must be used inside
+ * a `Combobox` root, typically inside `ComboboxInput`.
+ *
+ * @public
+ */
 function ComboboxClear({ className, ...props }: ComboboxPrimitive.Clear.Props) {
   return (
     <ComboboxPrimitive.Clear
@@ -49,6 +99,18 @@ function ComboboxClear({ className, ...props }: ComboboxPrimitive.Clear.Props) {
   )
 }
 
+/**
+ * Composite input field for the combobox, combining a text input with optional
+ * trigger and clear buttons inside an `InputGroup`.
+ *
+ * @remarks
+ * Accepts `showTrigger` (default `true`) to display the `ComboboxTrigger` chevron
+ * button, and `showClear` (default `false`) to display the `ComboboxClear` button.
+ * The trigger button is automatically hidden when a clear button is rendered via
+ * CSS grouping. The `disabled` prop disables both the input and the inline buttons.
+ *
+ * @public
+ */
 function ComboboxInput({
   className,
   children,
@@ -84,6 +146,17 @@ function ComboboxInput({
   )
 }
 
+/**
+ * Floating popup panel that contains the combobox list and optional search input.
+ *
+ * @remarks
+ * Renders inside a portal and uses a `Positioner` for anchor-aware placement.
+ * Accepts `side`, `sideOffset`, `align`, `alignOffset`, and `anchor` props from
+ * `ComboboxPrimitive.Positioner` for fine-grained positioning control. Applies
+ * entry/exit animations driven by `data-open` and `data-closed` attributes.
+ *
+ * @public
+ */
 function ComboboxContent({
   className,
   side = "bottom",
@@ -118,6 +191,15 @@ function ComboboxContent({
   )
 }
 
+/**
+ * Scrollable list container that holds `ComboboxItem` elements inside a `ComboboxContent`.
+ *
+ * @remarks
+ * Limits height to `18rem` (or available viewport height minus spacing) and hides
+ * the scrollbar. Adds `p-0` padding automatically when the list is empty.
+ *
+ * @public
+ */
 function ComboboxList({ className, ...props }: ComboboxPrimitive.List.Props) {
   return (
     <ComboboxPrimitive.List
@@ -131,6 +213,15 @@ function ComboboxList({ className, ...props }: ComboboxPrimitive.List.Props) {
   )
 }
 
+/**
+ * Selectable option row rendered inside a `ComboboxList`.
+ *
+ * @remarks
+ * Displays a `CheckIcon` indicator on the right when the item is selected.
+ * Supports `data-highlighted` and `data-disabled` states via CSS.
+ *
+ * @public
+ */
 function ComboboxItem({
   className,
   children,
@@ -157,6 +248,15 @@ function ComboboxItem({
   )
 }
 
+/**
+ * Groups related `ComboboxItem` elements under an optional `ComboboxLabel`.
+ *
+ * @remarks
+ * Delegates to `ComboboxPrimitive.Group`. Use alongside `ComboboxLabel` to provide
+ * an accessible heading for the group.
+ *
+ * @public
+ */
 function ComboboxGroup({ className, ...props }: ComboboxPrimitive.Group.Props) {
   return (
     <ComboboxPrimitive.Group
@@ -167,6 +267,15 @@ function ComboboxGroup({ className, ...props }: ComboboxPrimitive.Group.Props) {
   )
 }
 
+/**
+ * Accessible label for a `ComboboxGroup`.
+ *
+ * @remarks
+ * Renders muted extra-small text above the group items. Must be placed as the first
+ * child of a `ComboboxGroup`.
+ *
+ * @public
+ */
 function ComboboxLabel({
   className,
   ...props
@@ -180,12 +289,30 @@ function ComboboxLabel({
   )
 }
 
+/**
+ * Wraps a virtualized or static collection of combobox options.
+ *
+ * @remarks
+ * Delegates to `ComboboxPrimitive.Collection`. Useful when rendering large option
+ * sets via a virtual list.
+ *
+ * @public
+ */
 function ComboboxCollection({ ...props }: ComboboxPrimitive.Collection.Props) {
   return (
     <ComboboxPrimitive.Collection data-slot="combobox-collection" {...props} />
   )
 }
 
+/**
+ * Placeholder shown inside `ComboboxContent` when no items match the current query.
+ *
+ * @remarks
+ * Hidden by default; becomes visible (flex) when the parent popup carries the
+ * `data-empty` attribute set by `group/combobox-content`.
+ *
+ * @public
+ */
 function ComboboxEmpty({ className, ...props }: ComboboxPrimitive.Empty.Props) {
   return (
     <ComboboxPrimitive.Empty
@@ -199,6 +326,15 @@ function ComboboxEmpty({ className, ...props }: ComboboxPrimitive.Empty.Props) {
   )
 }
 
+/**
+ * Visual divider between groups of items inside a `ComboboxContent`.
+ *
+ * @remarks
+ * Renders a 1 px horizontal rule with standard margin. Delegates to
+ * `ComboboxPrimitive.Separator`.
+ *
+ * @public
+ */
 function ComboboxSeparator({
   className,
   ...props
@@ -212,6 +348,17 @@ function ComboboxSeparator({
   )
 }
 
+/**
+ * Multi-select chip container that acts as the input trigger for a chip-based combobox.
+ *
+ * @remarks
+ * Renders selected values as removable `ComboboxChip` elements alongside a
+ * `ComboboxChipsInput` text field. Pair with `useComboboxAnchor` and pass the
+ * resulting ref as the `anchor` prop of `ComboboxContent` so the popup aligns to
+ * this container rather than the hidden input.
+ *
+ * @public
+ */
 function ComboboxChips({
   className,
   ...props
@@ -229,6 +376,15 @@ function ComboboxChips({
   )
 }
 
+/**
+ * Individual chip badge representing a selected value in a multi-select combobox.
+ *
+ * @remarks
+ * Optionally renders a remove button (controlled via `showRemove`, default `true`)
+ * that deselects the item when clicked. Must be used inside `ComboboxChips`.
+ *
+ * @public
+ */
 function ComboboxChip({
   className,
   children,
@@ -260,6 +416,15 @@ function ComboboxChip({
   )
 }
 
+/**
+ * Inline text input rendered inside `ComboboxChips` for filtering options.
+ *
+ * @remarks
+ * Occupies remaining flex space (`flex-1`, `min-w-16`) and has no visible border,
+ * blending into the chip container. Delegates to `ComboboxPrimitive.Input`.
+ *
+ * @public
+ */
 function ComboboxChipsInput({
   className,
   ...props
@@ -273,6 +438,41 @@ function ComboboxChipsInput({
   )
 }
 
+/**
+ * Returns a stable ref to use as the positioning anchor for `ComboboxContent`
+ * in chip-based multi-select layouts.
+ *
+ * @remarks
+ * Pass the returned ref to the wrapping `div` around `ComboboxChips`, then supply
+ * the same ref as the `anchor` prop of `ComboboxContent`. This ensures the popup
+ * aligns to the chips container rather than the hidden underlying input element.
+ *
+ * @returns A `React.RefObject<HTMLDivElement | null>` suitable for use as a
+ * Base UI positioner anchor.
+ *
+ * @example
+ * ```tsx
+ * function MyMultiCombobox() {
+ *   const anchor = useComboboxAnchor()
+ *   return (
+ *     <Combobox>
+ *       <div ref={anchor}>
+ *         <ComboboxChips>
+ *           <ComboboxChipsInput />
+ *         </ComboboxChips>
+ *       </div>
+ *       <ComboboxContent anchor={anchor}>
+ *         <ComboboxList>
+ *           <ComboboxItem value="a">Option A</ComboboxItem>
+ *         </ComboboxList>
+ *       </ComboboxContent>
+ *     </Combobox>
+ *   )
+ * }
+ * ```
+ *
+ * @public
+ */
 function useComboboxAnchor() {
   return React.useRef<HTMLDivElement | null>(null)
 }

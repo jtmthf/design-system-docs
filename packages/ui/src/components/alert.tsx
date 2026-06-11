@@ -3,6 +3,17 @@ import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "#lib/utils"
 
+/**
+ * Builds the Tailwind class string for an `Alert` based on its visual variant.
+ *
+ * @remarks
+ * Available variants:
+ * - `variant`: `"default"` | `"destructive"`
+ *
+ * Defaults to `variant="default"`.
+ *
+ * @public
+ */
 const alertVariants = cva(
   "group/alert relative grid w-full gap-0.5 rounded-lg border px-2.5 py-2 text-left text-sm has-data-[slot=alert-action]:relative has-data-[slot=alert-action]:pr-18 has-[>svg]:grid-cols-[auto_1fr] has-[>svg]:gap-x-2 *:[svg]:row-span-2 *:[svg]:translate-y-0.5 *:[svg]:text-current *:[svg:not([class*='size-'])]:size-4",
   {
@@ -19,6 +30,25 @@ const alertVariants = cva(
   }
 )
 
+/**
+ * A non-modal callout that communicates a status message or feedback to the user.
+ *
+ * @remarks
+ * Composed with `AlertTitle`, `AlertDescription`, and optionally `AlertAction`.
+ * Place an SVG icon as a direct child to activate the two-column icon layout.
+ * Use the `variant` prop to switch between `"default"` and `"destructive"` styles.
+ *
+ * @example
+ * ```tsx
+ * <Alert variant="destructive">
+ *   <AlertCircleIcon />
+ *   <AlertTitle>Error</AlertTitle>
+ *   <AlertDescription>Your session has expired. Please log in again.</AlertDescription>
+ * </Alert>
+ * ```
+ *
+ * @public
+ */
 function Alert({
   className,
   variant,
@@ -34,6 +64,14 @@ function Alert({
   )
 }
 
+/**
+ * The heading line of an `Alert`, rendered in medium weight.
+ *
+ * @remarks
+ * Automatically shifts to the second column when an icon is present in the `Alert`.
+ *
+ * @public
+ */
 function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -47,6 +85,14 @@ function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * The body text of an `Alert` providing additional context below the title.
+ *
+ * @remarks
+ * Rendered in muted foreground color and supports balanced/pretty text wrapping.
+ *
+ * @public
+ */
 function AlertDescription({
   className,
   ...props
@@ -63,6 +109,15 @@ function AlertDescription({
   )
 }
 
+/**
+ * An optional slot for placing a call-to-action button inside an `Alert`.
+ *
+ * @remarks
+ * Rendered absolutely positioned in the top-right corner of the `Alert`.
+ * The parent `Alert` reserves right padding for this element automatically.
+ *
+ * @public
+ */
 function AlertAction({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div

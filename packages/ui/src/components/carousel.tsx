@@ -9,6 +9,15 @@ import { cn } from "#lib/utils"
 import { Button } from "#components/button"
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react"
 
+/**
+ * The Embla carousel API instance, exposed via the `setApi` prop and the
+ * {@link useCarousel} hook for imperative control (scrolling, selection state).
+ *
+ * @remarks
+ * Aliases the instance type returned by `embla-carousel-react`.
+ *
+ * @public
+ */
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
 type CarouselOptions = UseCarouselParameters[0]
@@ -32,6 +41,32 @@ type CarouselContextProps = {
 
 const CarouselContext = React.createContext<CarouselContextProps | null>(null)
 
+/**
+ * Returns the Embla carousel context for use inside a `Carousel` subtree.
+ *
+ * @remarks
+ * Must be called from a component rendered within a `Carousel`. Throws if used
+ * outside of that context.
+ *
+ * @returns The carousel context object containing the Embla API instance,
+ * scroll helpers (`scrollPrev`, `scrollNext`), scroll-ability flags
+ * (`canScrollPrev`, `canScrollNext`), orientation, options, and plugins.
+ *
+ * @example
+ * ```tsx
+ * function MyControls() {
+ *   const { scrollPrev, scrollNext } = useCarousel();
+ *   return (
+ *     <>
+ *       <button onClick={scrollPrev}>Prev</button>
+ *       <button onClick={scrollNext}>Next</button>
+ *     </>
+ *   );
+ * }
+ * ```
+ *
+ * @public
+ */
 function useCarousel() {
   const context = React.useContext(CarouselContext)
 
@@ -42,6 +77,31 @@ function useCarousel() {
   return context
 }
 
+/**
+ * A touch- and keyboard-accessible slideshow container powered by Embla Carousel.
+ *
+ * @remarks
+ * Composed of `CarouselContent`, `CarouselItem`, `CarouselPrevious`, and
+ * `CarouselNext`. Manages Embla's scroll state and exposes it via
+ * `CarouselContext`. Use the `orientation` prop to switch between
+ * `"horizontal"` (default) and `"vertical"` scroll axes. Pass Embla options via
+ * `opts` and plugins via `plugins`. Use `setApi` to receive the Embla API
+ * instance for programmatic control.
+ *
+ * @example
+ * ```tsx
+ * <Carousel opts={{ loop: true }}>
+ *   <CarouselContent>
+ *     <CarouselItem>Slide 1</CarouselItem>
+ *     <CarouselItem>Slide 2</CarouselItem>
+ *   </CarouselContent>
+ *   <CarouselPrevious />
+ *   <CarouselNext />
+ * </Carousel>
+ * ```
+ *
+ * @public
+ */
 function Carousel({
   orientation = "horizontal",
   opts,
@@ -132,6 +192,15 @@ function Carousel({
   )
 }
 
+/**
+ * The scrollable track that wraps all `CarouselItem` elements inside a `Carousel`.
+ *
+ * @remarks
+ * Attaches the Embla carousel ref and lays out children in a flex row or column
+ * depending on the parent `Carousel` orientation.
+ *
+ * @public
+ */
 function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
   const { carouselRef, orientation } = useCarousel()
 
@@ -153,6 +222,15 @@ function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * A single slide within a `CarouselContent`, occupying the full viewport of the carousel.
+ *
+ * @remarks
+ * Applies `role="group"` and `aria-roledescription="slide"`. Padding direction
+ * adapts to the parent `Carousel` orientation.
+ *
+ * @public
+ */
 function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
   const { orientation } = useCarousel()
 
@@ -171,6 +249,15 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * A button that scrolls the `Carousel` to the previous slide.
+ *
+ * @remarks
+ * Positioned absolutely relative to the `Carousel`. Disabled automatically when
+ * there is no previous slide to scroll to. Rotates 90 degrees in vertical carousels.
+ *
+ * @public
+ */
 function CarouselPrevious({
   className,
   variant = "outline",
@@ -201,6 +288,15 @@ function CarouselPrevious({
   )
 }
 
+/**
+ * A button that scrolls the `Carousel` to the next slide.
+ *
+ * @remarks
+ * Positioned absolutely relative to the `Carousel`. Disabled automatically when
+ * there is no next slide to scroll to. Rotates 90 degrees in vertical carousels.
+ *
+ * @public
+ */
 function CarouselNext({
   className,
   variant = "outline",

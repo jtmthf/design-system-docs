@@ -1,5 +1,21 @@
 import { cn } from "#lib/utils"
 
+/**
+ * Renders a keyboard key label with consistent monospace styling.
+ *
+ * @remarks
+ * Renders a `<kbd>` element sized to at least 20px square. Adapts its background when placed
+ * inside a tooltip via `in-data-[slot=tooltip-content]` selectors. SVG children are resized
+ * to 12px automatically.
+ *
+ * @example
+ * ```tsx
+ * <Kbd>Ctrl</Kbd>
+ * <Kbd><CommandIcon /></Kbd>
+ * ```
+ *
+ * @public
+ */
 function Kbd({ className, ...props }: React.ComponentProps<"kbd">) {
   return (
     <kbd
@@ -13,6 +29,14 @@ function Kbd({ className, ...props }: React.ComponentProps<"kbd">) {
   )
 }
 
+/**
+ * An inline flex container that renders a sequence of Kbd keys with consistent spacing.
+ *
+ * @remarks
+ * Renders as a `<kbd>` element wrapping multiple `Kbd` children, representing a key combination.
+ *
+ * @public
+ */
 function KbdGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <kbd

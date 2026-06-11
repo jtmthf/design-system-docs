@@ -2,6 +2,21 @@ import * as React from "react"
 
 import { cn } from "#lib/utils"
 
+/**
+ * Multi-line text input with auto-sizing and design-system styling.
+ *
+ * @remarks
+ * Renders a native `<textarea>` with `field-sizing-content` so the element
+ * grows to fit its content automatically. Minimum height is `min-h-16`.
+ * Displays focus-ring, disabled, and invalid (`aria-invalid`) states.
+ *
+ * @example
+ * ```tsx
+ * <Textarea placeholder="Write your message..." />
+ * ```
+ *
+ * @public
+ */
 function Textarea({ className, ...props }: React.ComponentProps<"textarea">) {
   return (
     <textarea

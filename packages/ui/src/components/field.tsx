@@ -7,6 +7,16 @@ import { cn } from "#lib/utils"
 import { Label } from "#components/label"
 import { Separator } from "#components/separator"
 
+/**
+ * Semantic `<fieldset>` wrapper that groups multiple `Field` elements.
+ *
+ * @remarks
+ * Adjusts vertical gap automatically when the fieldset contains a
+ * `checkbox-group` or `radio-group` slot. Use `FieldLegend` as its first child
+ * to provide an accessible caption.
+ *
+ * @public
+ */
 function FieldSet({ className, ...props }: React.ComponentProps<"fieldset">) {
   return (
     <fieldset
@@ -20,6 +30,15 @@ function FieldSet({ className, ...props }: React.ComponentProps<"fieldset">) {
   )
 }
 
+/**
+ * Accessible caption for a `FieldSet`.
+ *
+ * @remarks
+ * Accepts a `variant` of `"legend"` (base text size, default) or `"label"`
+ * (small text size) to match the visual weight of surrounding labels.
+ *
+ * @public
+ */
 function FieldLegend({
   className,
   variant = "legend",
@@ -38,6 +57,17 @@ function FieldLegend({
   )
 }
 
+/**
+ * Container that arranges a group of `Field` rows with consistent spacing and
+ * responsive layout via container queries.
+ *
+ * @remarks
+ * Establishes a `@container/field-group` query context so that child `Field`
+ * components can switch between vertical and horizontal orientations at the
+ * `@md` breakpoint when `orientation="responsive"`.
+ *
+ * @public
+ */
 function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -51,6 +81,19 @@ function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * Builds the Tailwind class string for `Field` orientation variants.
+ *
+ * @remarks
+ * Available variants:
+ * - `orientation`: `"vertical"` (stacked, default) | `"horizontal"` (label and
+ *   control side-by-side) | `"responsive"` (vertical below `@md/field-group`,
+ *   horizontal at or above it).
+ *
+ * Default variant: `orientation: "vertical"`.
+ *
+ * @public
+ */
 const fieldVariants = cva(
   "group/field flex w-full gap-2 data-[invalid=true]:text-destructive",
   {
@@ -69,6 +112,28 @@ const fieldVariants = cva(
   }
 )
 
+/**
+ * Individual form field that pairs a label with its control and optional
+ * description or error message.
+ *
+ * @remarks
+ * Renders a `div[role="group"]` and applies `fieldVariants` classes based on the
+ * `orientation` prop (`"vertical"` | `"horizontal"` | `"responsive"`). The
+ * `data-invalid` attribute is set externally by form libraries to trigger
+ * destructive color theming. Compose with `FieldLabel`, `FieldDescription`,
+ * `FieldError`, and `FieldContent`.
+ *
+ * @example
+ * ```tsx
+ * <Field orientation="horizontal">
+ *   <FieldLabel htmlFor="email">Email</FieldLabel>
+ *   <Input id="email" type="email" />
+ *   <FieldDescription>We will never share your email.</FieldDescription>
+ * </Field>
+ * ```
+ *
+ * @public
+ */
 function Field({
   className,
   orientation = "vertical",
@@ -85,6 +150,17 @@ function Field({
   )
 }
 
+/**
+ * Secondary content area used to align multi-line descriptions or nested fields
+ * relative to a `FieldLabel` in horizontal layouts.
+ *
+ * @remarks
+ * Renders a flex column with `flex-1` so it fills available width next to the
+ * label. Place `FieldDescription` and `FieldError` inside this when using
+ * `orientation="horizontal"` or `"responsive"`.
+ *
+ * @public
+ */
 function FieldContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -98,6 +174,16 @@ function FieldContent({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * Styled `Label` linked to the control inside a `Field`.
+ *
+ * @remarks
+ * Applies muted opacity when the parent `Field` carries `data-disabled="true"`.
+ * When the label contains a nested `Field` slot, it renders as a card-style
+ * bordered container (used for checkbox and radio card variants).
+ *
+ * @public
+ */
 function FieldLabel({
   className,
   ...props
@@ -115,6 +201,16 @@ function FieldLabel({
   )
 }
 
+/**
+ * Plain-div title element for use when a `Label` element is not appropriate.
+ *
+ * @remarks
+ * Functionally similar to `FieldLabel` but renders a non-interactive `div` with
+ * matching typography. Useful when the label text sits beside a control that
+ * already has an accessible label via `aria-labelledby`.
+ *
+ * @public
+ */
 function FieldTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -128,6 +224,17 @@ function FieldTitle({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * Descriptive hint text rendered below a form control inside a `Field`.
+ *
+ * @remarks
+ * Adjusts alignment based on the field orientation: left-aligned by default and
+ * balanced when inside a horizontal field. Inline anchor links are underlined and
+ * adopt primary color on hover. Slightly reduced top margin when rendered last or
+ * second-to-last inside a field.
+ *
+ * @public
+ */
 function FieldDescription({ className, ...props }: React.ComponentProps<"p">) {
   return (
     <p
@@ -143,6 +250,16 @@ function FieldDescription({ className, ...props }: React.ComponentProps<"p">) {
   )
 }
 
+/**
+ * Visual separator rendered between `Field` rows inside a `FieldGroup`.
+ *
+ * @remarks
+ * When `children` are provided they are centered over the rule with a background
+ * cutout, producing an "or" style divider. The separator height is fixed at
+ * `1.25rem` and uses negative vertical margin to tighten spacing.
+ *
+ * @public
+ */
 function FieldSeparator({
   children,
   className,
@@ -173,6 +290,17 @@ function FieldSeparator({
   )
 }
 
+/**
+ * Validation error message area rendered below a form control inside a `Field`.
+ *
+ * @remarks
+ * When `children` are provided they are rendered as-is. Otherwise the component
+ * derives messages from the `errors` prop (an array of objects with an optional
+ * `message` string), deduplicates them, and renders a single string or a bulleted
+ * list. Returns `null` when there is nothing to display.
+ *
+ * @public
+ */
 function FieldError({
   className,
   children,

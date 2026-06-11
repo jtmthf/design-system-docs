@@ -3,10 +3,37 @@ import * as React from "react"
 import { cn } from "#lib/utils"
 import { ChevronDownIcon } from "lucide-react"
 
+/**
+ * Props for the NativeSelect component, extending the native `<select>` element.
+ *
+ * @remarks
+ * The native `size` attribute is omitted and replaced with `"sm" | "default"` to control
+ * visual height and border-radius without conflicting with HTML's multi-row size attribute.
+ *
+ * @public
+ */
 type NativeSelectProps = Omit<React.ComponentProps<"select">, "size"> & {
   size?: "sm" | "default"
 }
 
+/**
+ * A styled wrapper around the browser-native `<select>` element with a custom chevron icon.
+ *
+ * @remarks
+ * Accepts `size` (`"default"` or `"sm"`) to adjust height and border radius. The native
+ * `size` attribute is excluded to prevent multi-row rendering. Compose with
+ * `NativeSelectOption` and `NativeSelectOptGroup` for options and groups.
+ *
+ * @example
+ * ```tsx
+ * <NativeSelect size="sm">
+ *   <NativeSelectOption value="a">Option A</NativeSelectOption>
+ *   <NativeSelectOption value="b">Option B</NativeSelectOption>
+ * </NativeSelect>
+ * ```
+ *
+ * @public
+ */
 function NativeSelect({
   className,
   size = "default",
@@ -32,6 +59,15 @@ function NativeSelect({
   )
 }
 
+/**
+ * A styled `<option>` element intended for use inside a NativeSelect.
+ *
+ * @remarks
+ * Applies system canvas colors (`bg-[Canvas]`, `text-[CanvasText]`) for cross-browser
+ * consistency in dark and light themes.
+ *
+ * @public
+ */
 function NativeSelectOption({
   className,
   ...props
@@ -45,6 +81,14 @@ function NativeSelectOption({
   )
 }
 
+/**
+ * A styled `<optgroup>` element for grouping related options inside a NativeSelect.
+ *
+ * @remarks
+ * Applies system canvas colors for cross-browser dark/light mode consistency.
+ *
+ * @public
+ */
 function NativeSelectOptGroup({
   className,
   ...props

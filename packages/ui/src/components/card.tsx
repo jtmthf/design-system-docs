@@ -2,6 +2,34 @@ import * as React from "react"
 
 import { cn } from "#lib/utils"
 
+/**
+ * A surface container used to group related content and actions in a distinct visual panel.
+ *
+ * @remarks
+ * Composed of `CardHeader`, `CardTitle`, `CardDescription`, `CardAction`,
+ * `CardContent`, and `CardFooter`. Accepts a `size` prop (`"default"` | `"sm"`)
+ * that adjusts internal spacing via the `--card-spacing` CSS custom property.
+ * Images placed as the first or last direct child are automatically given
+ * matching top or bottom border radii.
+ *
+ * @example
+ * ```tsx
+ * <Card>
+ *   <CardHeader>
+ *     <CardTitle>Project Status</CardTitle>
+ *     <CardDescription>Overview of current sprint</CardDescription>
+ *   </CardHeader>
+ *   <CardContent>
+ *     <p>Everything is on track.</p>
+ *   </CardContent>
+ *   <CardFooter>
+ *     <Button size="sm">View details</Button>
+ *   </CardFooter>
+ * </Card>
+ * ```
+ *
+ * @public
+ */
 function Card({
   className,
   size = "default",
@@ -20,6 +48,15 @@ function Card({
   )
 }
 
+/**
+ * The top section of a `Card` that contains the title, description, and optional action.
+ *
+ * @remarks
+ * Uses a container query context (`@container/card-header`) and adjusts its grid
+ * layout when a `CardAction` is present.
+ *
+ * @public
+ */
 function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -33,6 +70,15 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * The primary heading of a `Card`, rendered in medium font weight.
+ *
+ * @remarks
+ * Uses the heading font family. Reduces to `text-sm` when the parent `Card` has
+ * `size="sm"`.
+ *
+ * @public
+ */
 function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -46,6 +92,11 @@ function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * Supporting subtitle text displayed below the `CardTitle` in muted foreground color.
+ *
+ * @public
+ */
 function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -56,6 +107,15 @@ function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * An optional slot in the `CardHeader` for a contextual action such as a menu or button.
+ *
+ * @remarks
+ * Spans two rows and aligns to the end of the header grid, keeping the action
+ * flush with the top-right of the header regardless of whether a description is present.
+ *
+ * @public
+ */
 function CardAction({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -69,6 +129,11 @@ function CardAction({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * The body area of a `Card` with horizontal padding matching the card spacing token.
+ *
+ * @public
+ */
 function CardContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -79,6 +144,15 @@ function CardContent({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * The bottom section of a `Card` rendered with a muted background and top border.
+ *
+ * @remarks
+ * When present, the parent `Card` removes its own bottom padding so the footer
+ * flush-fits the card's rounded bottom corners.
+ *
+ * @public
+ */
 function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div

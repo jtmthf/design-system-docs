@@ -5,6 +5,29 @@ import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "#lib/utils"
 
+/**
+ * Tabbed navigation component that controls which panel is visible.
+ *
+ * @remarks
+ * Composed of `TabsList`, `TabsTrigger`, and `TabsContent`. Built on the Base
+ * UI Tabs primitive. Supports `orientation` (`"horizontal"` | `"vertical"`,
+ * default: `"horizontal"`). Pass `value` and `onValueChange` for controlled
+ * usage or `defaultValue` for uncontrolled.
+ *
+ * @example
+ * ```tsx
+ * <Tabs defaultValue="account">
+ *   <TabsList>
+ *     <TabsTrigger value="account">Account</TabsTrigger>
+ *     <TabsTrigger value="password">Password</TabsTrigger>
+ *   </TabsList>
+ *   <TabsContent value="account">Account settings</TabsContent>
+ *   <TabsContent value="password">Password settings</TabsContent>
+ * </Tabs>
+ * ```
+ *
+ * @public
+ */
 function Tabs({
   className,
   orientation = "horizontal",
@@ -23,6 +46,16 @@ function Tabs({
   )
 }
 
+/**
+ * Builds the class string for `TabsList` using CVA.
+ *
+ * @remarks
+ * Variants: `variant` (`"default"` | `"line"`, default: `"default"`).
+ * The `"default"` variant renders a filled pill-style container; `"line"`
+ * renders a transparent strip with an underline indicator on the active tab.
+ *
+ * @public
+ */
 const tabsListVariants = cva(
   "group/tabs-list inline-flex w-fit items-center justify-center rounded-lg p-[3px] text-muted-foreground group-data-horizontal/tabs:h-8 group-data-vertical/tabs:h-fit group-data-vertical/tabs:flex-col data-[variant=line]:rounded-none",
   {
@@ -38,6 +71,14 @@ const tabsListVariants = cva(
   }
 )
 
+/**
+ * Container for `TabsTrigger` elements that selects which tab is active.
+ *
+ * @remarks
+ * Accepts `variant` (`"default"` | `"line"`) matching `tabsListVariants`.
+ *
+ * @public
+ */
 function TabsList({
   className,
   variant = "default",
@@ -53,6 +94,11 @@ function TabsList({
   )
 }
 
+/**
+ * Clickable button inside `TabsList` that activates its associated `TabsContent` panel.
+ *
+ * @public
+ */
 function TabsTrigger({ className, ...props }: TabsPrimitive.Tab.Props) {
   return (
     <TabsPrimitive.Tab
@@ -69,6 +115,11 @@ function TabsTrigger({ className, ...props }: TabsPrimitive.Tab.Props) {
   )
 }
 
+/**
+ * Panel that is shown when its associated `TabsTrigger` is active.
+ *
+ * @public
+ */
 function TabsContent({ className, ...props }: TabsPrimitive.Panel.Props) {
   return (
     <TabsPrimitive.Panel

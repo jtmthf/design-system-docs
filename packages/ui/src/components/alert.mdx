@@ -1,0 +1,53 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as AlertStories from "./alert.stories"
+
+<Meta of={AlertStories} />
+
+# Alert
+
+A callout that attracts attention without interrupting the user flow.
+Compose with `AlertTitle`, `AlertDescription`, and optionally an icon.
+
+## Usage
+
+- **Default** — general notices, tips, or non-urgent information.
+- **Destructive** — errors that require immediate user correction.
+
+## Do
+
+- Keep alerts brief; move detailed guidance to a linked doc.
+- Include an icon to reinforce the tone for colour-blind users.
+- Use `role="alert"` (applied automatically) so screen readers announce
+  the content immediately.
+
+## Don't
+
+- Stack multiple alerts on top of each other — consolidate or use a toast
+  for transient messages.
+- Use alerts for success messages that dismiss automatically.
+- Replace form validation errors with an alert alone — annotate the
+  individual fields as well.
+
+## Examples
+
+### Default
+
+Standard notice with an icon, title, and description.
+
+<Canvas of={AlertStories.Default} />
+
+### Destructive
+
+Use the destructive variant for errors that require user correction.
+
+<Canvas of={AlertStories.Destructive} />
+
+### Title Only
+
+A minimal alert containing only a title, for short standalone notices.
+
+<Canvas of={AlertStories.TitleOnly} />
+
+## Props
+
+<ArgTypes of={AlertStories} />

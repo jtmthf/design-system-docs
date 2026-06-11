@@ -1,0 +1,67 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as ToggleGroupStories from "./toggle-group.stories"
+
+<Meta of={ToggleGroupStories} />
+
+# Toggle Group
+
+A container that groups related toggle items and manages their shared variant
+and size. Supports single-select and multi-select modes via `toggleMultiple`.
+
+## Usage
+
+- **Default** — single-select; only one item can be pressed at a time; use for
+  mutually exclusive choices like text alignment.
+- **Multi Select** — multiple items can be active simultaneously; use for
+  independent formatting options like bold, italic, and underline.
+- **Joined** — `spacing={0}` collapses gaps and merges borders for a pill
+  toolbar appearance.
+- **Vertical** — stacks items for sidebar panels or compact option menus.
+
+## Do
+
+- Always provide `aria-label` on icon-only items so screen readers can announce
+  each option.
+- Use `defaultValue` for uncontrolled usage and `value` + `onValueChange` for
+  controlled usage.
+- Propagate `variant` and `size` at the group level rather than on individual
+  items to ensure visual consistency.
+
+## Don't
+
+- Mix `spacing={0}` with the default (non-outline) variant — the merged border
+  styling only works correctly with `variant="outline"`.
+- Use a single-item toggle group — use a standalone `Toggle` instead.
+- Place more than 5–6 items in one group; split into multiple groups or use a
+  different control.
+
+## Examples
+
+### Default
+
+Single-select group for mutually exclusive alignment choices. Clicking center
+deselects left and verifies mutual exclusivity.
+
+<Canvas of={ToggleGroupStories.Default} />
+
+### Multi Select
+
+Multiple formatting options can be active simultaneously.
+
+<Canvas of={ToggleGroupStories.MultiSelect} />
+
+### Joined
+
+Pill appearance with `spacing={0}` and the outline variant.
+
+<Canvas of={ToggleGroupStories.Joined} />
+
+### Vertical
+
+Stacked layout for sidebar toolbars or compact option panels.
+
+<Canvas of={ToggleGroupStories.Vertical} />
+
+## Props
+
+<ArgTypes of={ToggleGroupStories} />

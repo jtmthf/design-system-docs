@@ -1,0 +1,59 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as ProgressStories from "./progress.stories"
+
+<Meta of={ProgressStories} />
+
+# Progress
+
+Shows the completion status of a task or operation as a horizontal bar.
+Compose `Progress` with `ProgressTrack`, `ProgressIndicator`, and
+optionally `ProgressLabel` and `ProgressValue` for a fully accessible
+progress bar.
+
+## Usage
+
+- **Default** — unlabelled bar; always supply `aria-label` for screen readers.
+- **With Label** — use `ProgressLabel` to provide a visible label; this also
+  serves as the accessible name so `aria-label` is not required.
+- **Complete** — `value={100}` fills the indicator to 100%, signalling
+  task completion.
+
+## Do
+
+- Provide an accessible name: either `aria-label` on `<Progress>` or a
+  visible `<ProgressLabel>`.
+- Use `max` when your total is not 100 (e.g. steps completed out of 7).
+- Pair with a `ProgressValue` to show the numeric percentage for dense UIs.
+
+## Don't
+
+- Leave `aria-label` empty on an unlabelled bar — screen readers will not
+  announce meaningful context.
+- Use a progress bar for indeterminate operations; use `Spinner` instead.
+- Animate `value` too aggressively — rapid jumps can be disorienting.
+
+## Examples
+
+### Default
+
+Standard progress bar with no visible label. `aria-label` provides the
+accessible name for screen readers.
+
+<Canvas of={ProgressStories.Default} />
+
+### With Label
+
+Progress bar with a visible label and numeric value. `ProgressLabel`
+supplies the accessible name automatically.
+
+<Canvas of={ProgressStories.WithLabel} />
+
+### Complete
+
+Progress bar at 100% — the indicator fills the track completely.
+
+<Canvas of={ProgressStories.Complete} />
+
+## Props
+
+<ArgTypes of={ProgressStories} />

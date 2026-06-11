@@ -1,0 +1,56 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as EmptyStories from "./empty.stories"
+
+<Meta of={EmptyStories} />
+
+# Empty
+
+A full-bleed placeholder component shown when a list or content area has no
+data to display. Combine `Empty`, `EmptyHeader`, `EmptyMedia`, `EmptyTitle`,
+`EmptyDescription`, and `EmptyContent` to create a helpful empty state that
+guides users toward a resolution.
+
+## Usage
+
+- **Default** — icon, title, description, and a primary call-to-action button.
+- **No Results** — tailored messaging for searches or filtered views that return
+  no matches, with a secondary action to clear filters.
+- **Minimal** — icon and copy only, with no action button; use for inline
+  placeholders where an action is not meaningful.
+
+## Do
+
+- Always include a title and at least one sentence of explanatory description.
+- Provide a clear call to action whenever a user can resolve the empty state.
+- Use the `icon` variant of `EmptyMedia` for small decorative icons; use the
+  `default` variant to render a larger illustration or custom image.
+
+## Don't
+
+- Show an empty state while data is still loading — use a skeleton instead.
+- Leave the empty state without any guidance on how to add content.
+- Use generic messages like "Nothing here" without context.
+
+## Examples
+
+### Default
+
+Full empty state composition with an icon, title, description, and primary action.
+
+<Canvas of={EmptyStories.Default} />
+
+### No Results
+
+Empty state for search or filter views with a secondary clear-filters action.
+
+<Canvas of={EmptyStories.NoResults} />
+
+### Minimal
+
+Icon and copy only — suitable for inline placeholders where no action is available.
+
+<Canvas of={EmptyStories.Minimal} />
+
+## Props
+
+<ArgTypes of={EmptyStories} />

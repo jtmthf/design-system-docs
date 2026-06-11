@@ -1,0 +1,58 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as ScrollAreaStories from "./scroll-area.stories"
+
+<Meta of={ScrollAreaStories} />
+
+# Scroll Area
+
+A custom-scrollbar container that clips overflow content and renders a
+consistently styled scrollbar across browsers and operating systems.
+
+## Usage
+
+- **Vertical** — a fixed-height box scrolling over a long list of tagged items.
+- **Horizontal** — a row of cards wider than the viewport, scrolled
+  horizontally.
+- **Both Axes** — a content area that overflows in both directions.
+
+## Do
+
+- Always give the `ScrollArea` a fixed `h-*` (or `max-h-*`) so the scrollable
+  region has a boundary.
+- Add `<ScrollBar orientation="horizontal" />` explicitly when you need
+  horizontal scrolling — the vertical bar is rendered automatically.
+- Use `whitespace-nowrap` on the inner container to prevent a horizontal
+  scroll area from wrapping its children prematurely.
+
+## Don't
+
+- Let `ScrollArea` grow to `height: auto` — without a constrained height there
+  is nothing to scroll.
+- Replace native `<textarea>` scroll with `ScrollArea`; the textarea's built-in
+  resize handle will conflict.
+- Use `overflow: hidden` on the inner content — it will prevent scrolling.
+
+## Examples
+
+### Vertical
+
+A fixed-height area scrolling vertically over a long list of technology tags.
+
+<Canvas of={ScrollAreaStories.Vertical} />
+
+### Horizontal
+
+A row of wide cards that overflows horizontally, with an explicit horizontal
+scrollbar.
+
+<Canvas of={ScrollAreaStories.Horizontal} />
+
+### Both Axes
+
+Content wider and taller than the viewport, scrollable in both directions.
+
+<Canvas of={ScrollAreaStories.BothAxes} />
+
+## Props
+
+<ArgTypes of={ScrollAreaStories} />

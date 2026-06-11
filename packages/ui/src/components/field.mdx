@@ -1,0 +1,65 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as FieldStories from "./field.stories"
+
+<Meta of={FieldStories} />
+
+# Field
+
+A composable form-field wrapper that pairs a label, control, optional
+description, and error message with consistent layout and accessibility
+semantics. The primary building blocks are `Field`, `FieldLabel`,
+`FieldDescription`, and `FieldError`. Group multiple fields with `FieldSet`,
+`FieldLegend`, and `FieldGroup`.
+
+## Usage
+
+- **Default** — vertical layout with a label, input, and helper description.
+- **With Error** — adds a `FieldError` below the control; set `data-invalid="true"`
+  on the `Field` to apply destructive colour to the label and error.
+- **Horizontal** — label and control sit side by side; ideal for settings panels.
+- **With FieldSet** — groups related fields under a `FieldLegend` heading using
+  native fieldset semantics.
+
+## Do
+
+- Always provide a `FieldLabel` linked to the control via `htmlFor`.
+- Set `data-invalid="true"` on `Field` when the field has a validation error.
+- Use `FieldDescription` for permanent hints and `FieldError` for transient
+  validation messages.
+- Wrap logically related fields in a `FieldSet` with a `FieldLegend`.
+
+## Don't
+
+- Omit `FieldError` when the field is invalid — users need a visible error message.
+- Nest a `FieldSet` inside another `FieldSet` without a clear visual boundary.
+- Use `FieldTitle` and `FieldLabel` simultaneously on the same field.
+
+## Examples
+
+### Default
+
+Standard vertical field with a label, input, and supporting description.
+
+<Canvas of={FieldStories.Default} />
+
+### With Error
+
+Field in an error state showing a destructive error message below the control.
+
+<Canvas of={FieldStories.WithError} />
+
+### Horizontal
+
+Label and control arranged side by side using the `horizontal` orientation.
+
+<Canvas of={FieldStories.Horizontal} />
+
+### With FieldSet
+
+A group of related fields wrapped in a `FieldSet` with a `FieldLegend` heading.
+
+<Canvas of={FieldStories.WithFieldSet} />
+
+## Props
+
+<ArgTypes of={FieldStories} />

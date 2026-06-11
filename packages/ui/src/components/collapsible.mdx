@@ -1,0 +1,58 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as CollapsibleStories from "./collapsible.stories"
+
+<Meta of={CollapsibleStories} />
+
+# Collapsible
+
+A vertically collapsible section that toggles between hidden and visible states.
+Use it to progressively disclose secondary information without navigating away
+from the current context.
+
+## Usage
+
+- **Default** — a closed FAQ entry that expands when the trigger is clicked.
+- **Default Open** — starts expanded; useful when the content is critical on
+  first render.
+- **Disabled** — the trigger is inert and the panel cannot be toggled.
+
+## Do
+
+- Pair `CollapsibleTrigger` with an accessible label (`aria-label` or visible
+  text) so screen-reader users understand what will be revealed.
+- Keep the trigger and header visually connected to the content panel so the
+  relationship is obvious.
+- Use `defaultOpen` for the most relevant item in a list of collapsibles.
+
+## Don't
+
+- Nest collapsibles more than one level deep — prefer an accordion or a separate
+  page for deeply nested content.
+- Use a collapsible for primary navigation or actions that users need constant
+  access to.
+- Hide required form fields inside a closed collapsible.
+
+## Examples
+
+### Default
+
+A closed collapsible FAQ entry — click the chevron button to reveal the answer.
+
+<Canvas of={CollapsibleStories.Default} />
+
+### Default Open
+
+The collapsible starts in the open state via `defaultOpen`, showing the team
+member list immediately.
+
+<Canvas of={CollapsibleStories.DefaultOpen} />
+
+### Disabled
+
+The trigger is disabled, preventing the user from toggling the panel.
+
+<Canvas of={CollapsibleStories.Disabled} />
+
+## Props
+
+<ArgTypes of={CollapsibleStories} />

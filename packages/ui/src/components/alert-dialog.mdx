@@ -1,0 +1,51 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as AlertDialogStories from "./alert-dialog.stories"
+
+<Meta of={AlertDialogStories} />
+
+# Alert Dialog
+
+A modal dialog that interrupts the user to confirm or cancel a critical,
+destructive, or irreversible action. Unlike a regular dialog, an alert dialog
+cannot be dismissed by clicking the backdrop.
+
+## Usage
+
+- **Default** — a trigger button opens a confirmation dialog with cancel and destructive action buttons.
+- **Open By Default** — the dialog starts open, useful for session expiry or mandatory acknowledgements.
+- **With Media** — a compact dialog with an icon in the header to reinforce the action's severity.
+
+## Do
+
+- Use an alert dialog only for actions that are destructive or cannot be undone.
+- Label the confirm button with the specific action (e.g. "Delete account") rather than a generic "OK".
+- Always provide a cancel path so the user can back out safely.
+
+## Don't
+
+- Don't use an alert dialog for informational messages — use a Toast or Banner instead.
+- Don't stack multiple alert dialogs on top of each other.
+
+## Examples
+
+### Default
+
+A trigger button opens a confirmation dialog requiring the user to confirm or cancel a destructive action.
+
+<Canvas of={AlertDialogStories.Default} />
+
+### Open By Default
+
+The dialog is already open on mount — useful for expired sessions or mandatory acknowledgements.
+
+<Canvas of={AlertDialogStories.OpenByDefault} />
+
+### With Media
+
+A compact `size="sm"` dialog with an icon in the header for added visual emphasis.
+
+<Canvas of={AlertDialogStories.WithMedia} />
+
+## Props
+
+<ArgTypes of={AlertDialogStories} />

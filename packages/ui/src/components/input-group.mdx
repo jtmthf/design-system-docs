@@ -1,0 +1,67 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as InputGroupStories from "./input-group.stories"
+
+<Meta of={InputGroupStories} />
+
+# InputGroup
+
+A decorated input container that attaches icons, text labels, or action buttons
+to the leading or trailing end of an input field. The outer `InputGroup` wrapper
+coordinates focus rings, invalid states, and disabled styling across all child
+slots.
+
+## Usage
+
+- **With Icons** — a search field with a leading icon to communicate purpose at
+  a glance.
+- **With Text Addon** — an at-sign prefix decorates an email or username field.
+- **With Button** — a trailing `InputGroupButton` adds an inline action such as
+  revealing a password or triggering a search.
+- **Invalid** — the group applies a destructive ring when any inner control has
+  `aria-invalid`.
+
+## Do
+
+- Use `InputGroupInput` instead of a bare `Input` so focus and border styling is
+  handled by the group.
+- Set `align` on `InputGroupAddon` to position decorations (`inline-start`,
+  `inline-end`, `block-start`, `block-end`).
+- Wrap icon or text decoration in `InputGroupText` for consistent sizing.
+
+## Don't
+
+- Nest a focusable `InputGroupButton` inside an `InputGroupAddon` on both ends
+  without sufficient width — the input area will be too narrow.
+- Use `InputGroupTextarea` inside a fixed-height group without accounting for the
+  group's `h-auto` expansion.
+- Apply validation states directly to `InputGroupInput` without using `aria-invalid`.
+
+## Examples
+
+### With Icons
+
+Search field with a leading icon communicating the field's purpose.
+
+<Canvas of={InputGroupStories.WithIcons} />
+
+### With Text Addon
+
+Email username field with a leading at-sign text decoration.
+
+<Canvas of={InputGroupStories.WithTextAddon} />
+
+### With Button
+
+Currency input with a leading symbol and a trailing inline action button.
+
+<Canvas of={InputGroupStories.WithButton} />
+
+### Invalid
+
+The destructive ring is applied across the whole group when the inner control is invalid.
+
+<Canvas of={InputGroupStories.Invalid} />
+
+## Props
+
+<ArgTypes of={InputGroupStories} />

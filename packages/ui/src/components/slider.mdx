@@ -1,0 +1,65 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as SliderStories from "./slider.stories"
+
+<Meta of={SliderStories} />
+
+# Slider
+
+A draggable thumb on a track for selecting a numeric value or range within a
+bounded interval. Supports single and dual-thumb (range) modes.
+
+## Usage
+
+- **Default** — single thumb for selecting one value; use for volume, zoom, or
+  opacity controls.
+- **Range** — two thumbs defining a lower and upper bound; use for filters such
+  as price ranges or date windows.
+- **Stepped** — snaps the thumb to discrete increments; use when only certain
+  values are meaningful.
+- **Disabled** — non-interactive; use when the control is not available in the
+  current context.
+
+## Do
+
+- Always label the slider with a visible `Label` or `aria-label` describing what
+  is being controlled.
+- Show the current value numerically alongside the slider when precision matters.
+- Use `step` to limit choices to valid values when the domain is discrete.
+
+## Don't
+
+- Use a slider when the user needs to type an exact value — prefer a number
+  `Input` instead.
+- Omit the min/max boundary indicators for range sliders; users need to
+  understand the scale.
+- Use a vertical slider in a horizontally scrolling container.
+
+## Examples
+
+### Default
+
+Single thumb starting at 40% of the range.
+
+<Canvas of={SliderStories.Default} />
+
+### Range
+
+Two thumbs defining a selected range; useful for price or date filters.
+
+<Canvas of={SliderStories.Range} />
+
+### Stepped
+
+Snaps to increments of 10 for coarser, discrete control.
+
+<Canvas of={SliderStories.Stepped} />
+
+### Disabled
+
+Non-interactive state for read-only contexts.
+
+<Canvas of={SliderStories.Disabled} />
+
+## Props
+
+<ArgTypes of={SliderStories} />

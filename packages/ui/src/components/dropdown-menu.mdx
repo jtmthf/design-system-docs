@@ -1,0 +1,67 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as DropdownMenuStories from "./dropdown-menu.stories"
+
+<Meta of={DropdownMenuStories} />
+
+# Dropdown Menu
+
+A floating menu anchored to a trigger button. Use it for secondary actions,
+navigation, or contextual commands. Wrap a label and its items in a
+`DropdownMenuGroup` so grouped sections are announced correctly.
+
+## Usage
+
+- **Default** — a grouped menu with a label and a destructive action.
+- **With Icons And Shortcuts** — a full account menu with icons, keyboard
+  shortcuts, nested submenus, and multiple groups.
+- **With Checkbox Items** — toggle independent options with `DropdownMenuCheckboxItem`.
+- **With Radio Items** — enforce a single selection with `DropdownMenuRadioGroup`.
+- **With Destructive Item** — style irreversible actions with `variant="destructive"`.
+
+## Do
+
+- Wrap a `DropdownMenuLabel` together with its items inside a `DropdownMenuGroup`.
+- Use `DropdownMenuSeparator` to divide unrelated groups of actions.
+- Reserve the `destructive` item variant for irreversible actions.
+
+## Don't
+
+- Use a dropdown menu for primary page actions — use buttons.
+- Place a `DropdownMenuLabel` outside of a group (Base UI requires a group context).
+- Nest more than one level of submenu where a dedicated page would be clearer.
+
+## Examples
+
+### Default
+
+A grouped menu opened from a trigger, with a destructive action at the bottom.
+
+<Canvas of={DropdownMenuStories.Default} />
+
+### With Icons And Shortcuts
+
+A full account menu with icons, shortcuts, grouped sections, and a submenu.
+
+<Canvas of={DropdownMenuStories.WithIconsAndShortcuts} />
+
+### With Checkbox Items
+
+Checkbox items let users toggle options independently.
+
+<Canvas of={DropdownMenuStories.WithCheckboxItems} />
+
+### With Radio Items
+
+Radio items enforce a single selection within a group.
+
+<Canvas of={DropdownMenuStories.WithRadioItems} />
+
+### With Destructive Item
+
+A destructive item style for irreversible actions such as deletion.
+
+<Canvas of={DropdownMenuStories.WithDestructiveItem} />
+
+## Props
+
+<ArgTypes of={DropdownMenuStories} />

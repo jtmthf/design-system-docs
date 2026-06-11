@@ -1,0 +1,51 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as CarouselStories from "./carousel.stories"
+
+<Meta of={CarouselStories} />
+
+# Carousel
+
+A touch-friendly, keyboard-accessible slide carousel built on
+[Embla Carousel](https://www.embla-carousel.com/). Supports horizontal and
+vertical orientations and exposes the full Embla API via `opts` and `plugins`.
+
+## Usage
+
+- **Default** — horizontal carousel with prev/next buttons.
+- **Multiple Slides** — show several slides at once using `basis` and `slidesToScroll`.
+- **Loop** — wrap from the last slide back to the first seamlessly.
+
+## Do
+
+- Wrap the carousel in a container with a defined width so Embla can calculate slide dimensions.
+- Always provide `CarouselPrevious` and `CarouselNext` for keyboard users.
+- Use `aria-label` on the `Carousel` root when multiple carousels appear on one page.
+
+## Don't
+
+- Nest interactive elements (links, buttons) inside `CarouselItem` without careful focus management.
+- Auto-play without also providing pause controls — this fails WCAG 2.1 SC 2.2.2.
+
+## Examples
+
+### Default
+
+Standard horizontal carousel with numbered cards and navigation buttons.
+
+<Canvas of={CarouselStories.Default} />
+
+### Multiple Slides
+
+Show two slides at a time, scrolling two at a time via `slidesToScroll`.
+
+<Canvas of={CarouselStories.MultipleSlides} />
+
+### Loop
+
+Wraps from the last slide back to the first; both buttons are always enabled.
+
+<Canvas of={CarouselStories.Loop} />
+
+## Props
+
+<ArgTypes of={CarouselStories} />

@@ -1,0 +1,70 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as CheckboxStories from "./checkbox.stories"
+
+<Meta of={CheckboxStories} />
+
+# Checkbox
+
+A binary control that lets users toggle a single option on or off. Always pair
+with a `Label` so the choice is announced by screen readers.
+
+## Usage
+
+- **Default** — unselected state; use for opt-in choices that default to off.
+- **Checked** — pre-selected for forms where a default value makes sense.
+- **Disabled** — non-interactive state; use when the option is not available in
+  the current context.
+- **Invalid** — signals a required field that was left unchecked; pair with a
+  visible error message.
+- **With Label** — the recommended composition: wrap checkbox and text inside a
+  `Label` so clicking either element toggles the control.
+
+## Do
+
+- Always pair with a visible label that describes what the checkbox controls.
+- Use `defaultChecked` for uncontrolled usage and `checked` + `onCheckedChange`
+  for controlled usage.
+- Group related checkboxes under a `fieldset` with a `legend`.
+
+## Don't
+
+- Use a checkbox for a mutually exclusive choice — use a radio group instead.
+- Rely on colour alone to indicate errors — pair `aria-invalid` with text.
+- Nest interactive elements inside the label.
+
+## Examples
+
+### Default
+
+Unchecked checkbox ready for user input.
+
+<Canvas of={CheckboxStories.Default} />
+
+### Checked
+
+Pre-selected option for forms with a sensible default.
+
+<Canvas of={CheckboxStories.Checked} />
+
+### Disabled
+
+Non-interactive state for options unavailable in the current context.
+
+<Canvas of={CheckboxStories.Disabled} />
+
+### Invalid
+
+Visual and ARIA treatment for a required field left unchecked. Always pair with
+an error message.
+
+<Canvas of={CheckboxStories.Invalid} />
+
+### With Label
+
+Recommended composition: label and checkbox share a click target.
+
+<Canvas of={CheckboxStories.WithLabel} />
+
+## Props
+
+<ArgTypes of={CheckboxStories} />

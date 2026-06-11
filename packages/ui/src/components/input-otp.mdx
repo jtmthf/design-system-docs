@@ -1,0 +1,66 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as InputOTPStories from "./input-otp.stories"
+
+<Meta of={InputOTPStories} />
+
+# Input OTP
+
+A segmented one-time password field where each slot accepts a single character
+and focus advances automatically. Use for verification codes, PINs, and 2FA
+flows.
+
+## Usage
+
+- **Default** — six contiguous slots; the most common layout for email or app
+  verification codes.
+- **With Separator** — two groups of three separated by a dash; matches the
+  visual format of many SMS codes.
+- **Four Digit** — shorter PIN layout for numeric codes with fewer characters.
+- **Disabled** — non-interactive state for confirmation or review screens.
+
+## Do
+
+- Always render the same number of `InputOTPSlot` components as the `maxLength`
+  prop.
+- Use `pattern` to restrict input to digits only when the code is numeric (e.g.
+  `pattern={REGEXP_ONLY_DIGITS}`).
+- Handle `onComplete` to trigger verification automatically once all slots are
+  filled.
+
+## Don't
+
+- Use `InputOTP` for free-form text entry — use a regular `Input` instead.
+- Skip the separator for codes that are conventionally displayed with one (e.g.
+  `XXX-XXX`).
+- Disable paste — the browser's autofill and clipboard APIs improve UX
+  significantly for OTP flows.
+
+## Examples
+
+### Default
+
+Six contiguous slots. Type digits to fill each slot and verify controlled input.
+
+<Canvas of={InputOTPStories.Default} />
+
+### With Separator
+
+Two groups of three slots separated by a dash — a common SMS code layout.
+
+<Canvas of={InputOTPStories.WithSeparator} />
+
+### Four Digit
+
+Shorter PIN layout for numeric codes with fewer characters.
+
+<Canvas of={InputOTPStories.FourDigit} />
+
+### Disabled
+
+Non-interactive state for confirmation or review screens.
+
+<Canvas of={InputOTPStories.Disabled} />
+
+## Props
+
+<ArgTypes of={InputOTPStories} />

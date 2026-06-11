@@ -1,0 +1,45 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as SelectStories from "./select.stories"
+
+<Meta of={SelectStories} />
+
+# Select
+
+A control for choosing one option from a list. The trigger displays the current
+value; the popup presents scrollable, keyboard-navigable items.
+
+## Usage
+
+- **Default** — a standard trigger with grouped, labelled items.
+- **Small Trigger** — a denser trigger via `<SelectTrigger size="sm">` for
+  compact toolbars and table rows.
+- Compose with `SelectGroup` and `SelectLabel` to organise long option lists.
+
+## Do
+
+- Provide a `SelectValue` `placeholder` to describe the choice before selection.
+- Use `SelectGroup` + `SelectLabel` to categorise long lists of items.
+- Prefer a select over a long radio group when vertical space is limited.
+
+## Don't
+
+- Use a select for fewer than three options — radios or a switch read better.
+- Hide critical actions behind a select; use buttons for primary actions.
+
+## Examples
+
+### Default
+
+A trigger with a grouped, labelled list of items.
+
+<Canvas of={SelectStories.Default} />
+
+### Small Trigger
+
+A denser trigger using `size="sm"`, suited to compact layouts.
+
+<Canvas of={SelectStories.SmallTrigger} />
+
+## Props
+
+<ArgTypes of={SelectStories} />

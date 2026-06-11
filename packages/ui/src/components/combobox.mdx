@@ -1,0 +1,60 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as ComboboxStories from "./combobox.stories"
+
+<Meta of={ComboboxStories} />
+
+# Combobox
+
+An accessible autocomplete combobox built on Base UI. Combines a text input
+with a filterable dropdown list. Supports single selection, multi-select chips,
+and grouped options with keyboard navigation throughout.
+
+## Usage
+
+- **Default** — single-select with a chevron trigger; type to filter.
+- **With Clear** — adds a clear (×) button to reset the value without reopening the list.
+- **Grouped** — options organised into labelled sections with visual separators.
+- **Multi Select** — renders selected values as removable chips inline with the input.
+
+## Do
+
+- Always provide a `placeholder` on `ComboboxInput` so users know what to type.
+- Include `ComboboxEmpty` so the list communicates when no results match.
+- Use `ComboboxGroup` and `ComboboxLabel` to organise long option lists.
+- For multi-select, use `useComboboxAnchor` and pass `anchor` to `ComboboxContent`
+  so the popup aligns with the chips container rather than the hidden input.
+
+## Don't
+
+- Mix `multiple` and a single `ComboboxInput` — use `ComboboxChips` for multi-select.
+- Use a combobox when the list has only 2–4 fixed options — a `Select` is simpler.
+
+## Examples
+
+### Default
+
+Type to filter; click or press Enter to select a framework.
+
+<Canvas of={ComboboxStories.Default} />
+
+### With Clear
+
+A pre-selected value with a clear button for resetting without reopening.
+
+<Canvas of={ComboboxStories.WithClear} />
+
+### Grouped
+
+Options divided into labelled groups with a visual separator.
+
+<Canvas of={ComboboxStories.Grouped} />
+
+### Multi Select
+
+Select multiple values as removable chip tags inside the input area.
+
+<Canvas of={ComboboxStories.MultiSelect} />
+
+## Props
+
+<ArgTypes of={ComboboxStories} />

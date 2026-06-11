@@ -1,0 +1,60 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as TooltipStories from "./tooltip.stories"
+
+<Meta of={TooltipStories} />
+
+# Tooltip
+
+A floating label that explains an interface element on hover or focus. Wrap the
+app (or page) in a `TooltipProvider` so open delays and timeouts are shared.
+
+## Usage
+
+- **Default** — a short hint revealed when the trigger is hovered or focused.
+- **Open By Default** — initially visible; pair `defaultOpen` with
+  `defaultTriggerId` so Base UI can anchor the tooltip to its trigger.
+- **Icon Button** — the most common case: clarify an icon-only control. Always
+  give the trigger an `aria-label`.
+- **Disabled** — suppress the tooltip with the `disabled` prop.
+
+## Do
+
+- Keep tooltip text to a few words; it is a hint, not documentation.
+- Use tooltips to label icon-only buttons, in addition to an `aria-label`.
+- Wrap the tree in a single `TooltipProvider` so timings stay consistent.
+
+## Don't
+
+- Put essential information or interactive content inside a tooltip — it is not
+  reliably reachable on touch devices.
+- Rely on a tooltip as the only label for a control.
+
+## Examples
+
+### Default
+
+Hover or focus the trigger to reveal the tooltip.
+
+<Canvas of={TooltipStories.Default} />
+
+### Open By Default
+
+Visible on mount; `defaultTriggerId` ties it to the trigger for positioning.
+
+<Canvas of={TooltipStories.OpenByDefault} />
+
+### Icon Button
+
+A tooltip clarifying an icon-only button that also carries an `aria-label`.
+
+<Canvas of={TooltipStories.IconButton} />
+
+### Disabled
+
+With `disabled`, the tooltip never appears, even on hover or focus.
+
+<Canvas of={TooltipStories.Disabled} />
+
+## Props
+
+<ArgTypes of={TooltipStories} />

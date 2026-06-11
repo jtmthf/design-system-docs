@@ -1,0 +1,52 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as AccordionStories from "./accordion.stories"
+
+<Meta of={AccordionStories} />
+
+# Accordion
+
+A vertically stacked set of headings that reveal or hide associated panels.
+Use accordions to reduce cognitive load on pages with long or sectioned content,
+letting users focus on what they need without scrolling past everything else.
+
+## Usage
+
+- **Single open (default)** — only one panel can be expanded at a time, keeping
+  the interface compact.
+- **Multiple open** — set `multiple` to allow several panels open simultaneously
+  when users need to compare sections side-by-side.
+- **Pre-opened** — pass `defaultValue` to open specific items on load, useful
+  when the most relevant section is known in advance.
+
+## Do
+
+- Write trigger labels that clearly describe the panel content.
+- Use `hiddenUntilFound` when the collapsed content should be reachable via
+  browser find-in-page (`Ctrl+F` / `Cmd+F`).
+- Keep `loopFocus` enabled (the default) for a consistent keyboard experience.
+
+## Don't
+
+- Hide critical information inside an accordion that users must act on
+  immediately — surface it inline instead.
+- Use accordions for fewer than two items; a plain section or disclosure is
+  simpler.
+- Nest accordions inside other accordions.
+
+## Examples
+
+### Default
+
+All panels closed initially. Clicking a trigger expands its panel.
+
+<Canvas of={AccordionStories.Default} />
+
+### First Item Open
+
+The first panel is pre-opened via `defaultValue` so users see content on load.
+
+<Canvas of={AccordionStories.FirstItemOpen} />
+
+## Props
+
+<ArgTypes of={AccordionStories} />

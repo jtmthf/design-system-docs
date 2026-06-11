@@ -1,0 +1,65 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as RadioGroupStories from "./radio-group.stories"
+
+<Meta of={RadioGroupStories} />
+
+# Radio Group
+
+A set of mutually exclusive options where only one can be selected at a time.
+Always pair each item with a `Label` so screen readers can announce the choice.
+
+## Usage
+
+- **Default** — no initial selection; use for choices with no obvious default.
+- **With Default** — pre-selects a value; use when a sensible default improves
+  the user experience.
+- **Disabled** — non-interactive; use when the options are unavailable in the
+  current context.
+- **Invalid** — signals a required group that was not answered; pair with a
+  visible error message.
+
+## Do
+
+- Always wrap each `RadioGroupItem` with a `Label` for a full-row click target.
+- Group a set of radio items under a `fieldset` with a `legend` that describes
+  the choice.
+- Use `defaultValue` for uncontrolled usage and `value` + `onValueChange` for
+  controlled usage.
+
+## Don't
+
+- Use a radio group for independent on/off choices — use checkboxes instead.
+- Provide only one option in a group — a single choice is better expressed as a
+  checkbox.
+- Rely on colour alone to indicate errors — pair `aria-invalid` with text.
+
+## Examples
+
+### Default
+
+No initial selection. Click an item to select it and verify mutual exclusivity.
+
+<Canvas of={RadioGroupStories.Default} />
+
+### With Default
+
+Pre-selected option for forms with a sensible starting value.
+
+<Canvas of={RadioGroupStories.WithDefault} />
+
+### Disabled
+
+Non-interactive state for options unavailable in the current context.
+
+<Canvas of={RadioGroupStories.Disabled} />
+
+### Invalid
+
+Visual and ARIA treatment for a required group left unanswered. Always pair with
+an error message.
+
+<Canvas of={RadioGroupStories.Invalid} />
+
+## Props
+
+<ArgTypes of={RadioGroupStories} />

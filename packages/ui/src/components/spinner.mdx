@@ -1,0 +1,57 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as SpinnerStories from "./spinner.stories"
+
+<Meta of={SpinnerStories} />
+
+# Spinner
+
+Communicates that an operation is in progress. The spinner renders a
+`Loader2` icon with `role="status"` and `aria-label="Loading"`, so screen
+readers announce the loading state automatically. Use `className` to
+control size and colour.
+
+## Usage
+
+- **Default** — inline or icon-sized loading indicator (16 px).
+- **Large** — section- or page-level loading states (32 px or larger).
+- **Inside Button** — paired with a button label to signal an in-progress
+  action without disabling the button.
+
+## Do
+
+- Size the spinner to match its context (icon size for inline use, larger
+  for full-section loaders).
+- Keep the spinner visible for the full duration of the async operation.
+- Use `text-{color}` classes to match the surrounding text colour when
+  embedding inside buttons or on coloured surfaces.
+
+## Don't
+
+- Use a spinner for operations that finish in under 300 ms — a brief flash
+  of the spinner is more jarring than nothing.
+- Use a spinner when progress can be measured — reach for `Progress` instead.
+- Show multiple spinners simultaneously on the same view.
+
+## Examples
+
+### Default
+
+Default 16 px spinner. Suitable for inline or icon-sized contexts.
+
+<Canvas of={SpinnerStories.Default} />
+
+### Large
+
+Larger 32 px spinner for full-page or section-level loading states.
+
+<Canvas of={SpinnerStories.Large} />
+
+### Inside Button
+
+Spinner embedded inside a button to indicate an in-progress action.
+
+<Canvas of={SpinnerStories.InsideButton} />
+
+## Props
+
+<ArgTypes of={SpinnerStories} />

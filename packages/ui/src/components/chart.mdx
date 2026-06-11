@@ -1,0 +1,56 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as ChartStories from "./chart.stories"
+
+<Meta of={ChartStories} />
+
+# Chart
+
+A recharts wrapper that injects design-system tokens — colors, grid styles,
+and tooltip formatting — via `ChartContainer` and `ChartConfig`. Pair any
+recharts chart type with `ChartTooltip`, `ChartLegendContent`, and CSS custom
+properties for a consistent look.
+
+## Usage
+
+- **Bar Chart** — grouped bars comparing two series; includes tooltip and legend.
+- **Line Chart** — single metric tracked over time with a dot-style tooltip.
+- **Area Chart** — filled areas for comparing volume across two series.
+
+## Do
+
+- Define `ChartConfig` with stable keys that match the `dataKey` values used in
+  your recharts primitives.
+- Use `var(--color-<key>)` for `stroke`/`fill` so colors follow the config and
+  respond to the design-system theme.
+- Give the `ChartContainer` a concrete width class (e.g. `w-[480px]`) or let
+  the parent control width — `ResponsiveContainer` needs a sized parent.
+
+## Don't
+
+- Hard-code hex colors in `stroke`/`fill` — use the CSS variables emitted by
+  `ChartContainer` so theming and dark mode work automatically.
+- Nest a `ChartContainer` inside another `ChartContainer`.
+
+## Examples
+
+### Bar Chart
+
+Grouped bar chart comparing desktop and mobile visitors month-by-month.
+
+<Canvas of={ChartStories.BarChartStory} />
+
+### Line Chart
+
+Single-series line chart tracking visitor counts over six months.
+
+<Canvas of={ChartStories.LineChartStory} />
+
+### Area Chart
+
+Stacked area chart comparing revenue against expenses with semi-transparent fills.
+
+<Canvas of={ChartStories.AreaChartStory} />
+
+## Props
+
+<ArgTypes of={ChartStories} />

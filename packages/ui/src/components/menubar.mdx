@@ -1,0 +1,51 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as MenubarStories from "./menubar.stories"
+
+<Meta of={MenubarStories} />
+
+# Menubar
+
+A horizontal bar of dropdown menus for application-level commands.
+Use it as a persistent top-of-page navigation control analogous to a native desktop application menu bar.
+
+## Usage
+
+- **Default** — File, Edit, and View menus with grouped items and keyboard shortcuts.
+- **With Checkbox And Radio** — View menu with panel toggles and a single-selection theme picker.
+- **With Sub Menu** — Format menu with a nested text-style submenu via `MenubarSub`.
+
+## Do
+
+- Keep each `MenubarMenu` scoped to a single area of concern (File, Edit, View, etc.).
+- Use `MenubarGroup` and `MenubarLabel` to group related items within a menu.
+- Place keyboard shortcuts in `MenubarShortcut` so they are visually consistent.
+
+## Don't
+
+- Use a menubar for actions that belong in a toolbar or button group.
+- Mix unrelated commands in the same menu without a `MenubarSeparator`.
+- Nest more than one level of submenus — the pattern becomes hard to navigate.
+
+## Examples
+
+### Default
+
+A typical application menubar with File, Edit, and View menus.
+
+<Canvas of={MenubarStories.Default} />
+
+### With Checkbox And Radio
+
+A View menu with checkbox panel toggles and a radio-based theme selector.
+
+<Canvas of={MenubarStories.WithCheckboxAndRadio} />
+
+### With Sub Menu
+
+A Format menu containing a nested submenu for text style options.
+
+<Canvas of={MenubarStories.WithSubMenu} />
+
+## Props
+
+<ArgTypes of={MenubarStories} />

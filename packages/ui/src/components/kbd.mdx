@@ -1,0 +1,61 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as KbdStories from "./kbd.stories"
+
+<Meta of={KbdStories} />
+
+# Kbd
+
+A presentational keyboard-key element that renders a single key or a shortcut
+chord styled to resemble physical keyboard caps. Use `Kbd` for a single key and
+`KbdGroup` to group multiple keys into a chord.
+
+## Usage
+
+- **Single Key** — a single alphanumeric or symbol key.
+- **With Icon** — a modifier key rendered with a Lucide icon inside the cap.
+- **Chord** — two or more keys wrapped in `KbdGroup` to represent a shortcut.
+- **Combos** — a reference table of common keyboard shortcuts showing labels
+  alongside their `KbdGroup` combos.
+
+## Do
+
+- Use `KbdGroup` whenever two or more keys must be pressed simultaneously.
+- Provide a text alternative (tooltip or adjacent label) when a shortcut is the
+  only affordance visible on screen.
+- Use Lucide icons inside `Kbd` for standard modifier keys (Command, Option, Ctrl).
+
+## Don't
+
+- Use `Kbd` for interactive elements — it is a presentational element only.
+- Mix `Kbd` and plain text to represent a shortcut; always use `KbdGroup`.
+- Render a long string inside a single `Kbd` — keep labels to one or two characters.
+
+## Examples
+
+### Single Key
+
+A single alphanumeric key cap.
+
+<Canvas of={KbdStories.SingleKey} />
+
+### With Icon
+
+A modifier key using a Lucide icon inside the cap.
+
+<Canvas of={KbdStories.WithIcon} />
+
+### Chord
+
+Two keys combined into a shortcut chord using `KbdGroup`.
+
+<Canvas of={KbdStories.Chord} />
+
+### Combos
+
+A reference list of common keyboard shortcuts.
+
+<Canvas of={KbdStories.Combos} />
+
+## Props
+
+<ArgTypes of={KbdStories} />

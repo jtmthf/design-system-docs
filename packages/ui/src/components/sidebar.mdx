@@ -1,0 +1,74 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as SidebarStories from "./sidebar.stories"
+
+<Meta of={SidebarStories} />
+
+# Sidebar
+
+A full-featured application sidebar with collapse support, a keyboard shortcut
+(⌘B / Ctrl+B), and automatic mobile-sheet behaviour. Compose
+`SidebarProvider`, `Sidebar`, and `SidebarInset` to build an app shell, then
+fill the sidebar with `SidebarHeader`, `SidebarContent`, `SidebarGroup`, and
+`SidebarMenu` primitives.
+
+## Usage
+
+- **Default** — a standard left sidebar with offcanvas collapse.
+- **Icon Collapsible** — collapses to a narrow icon rail rather than sliding
+  off-screen.
+- **Floating** — the sidebar renders as a card slightly inset from the viewport
+  edge.
+- **Right Side** — sidebar anchored to the right edge of the viewport.
+
+## Do
+
+- Always wrap your layout with `SidebarProvider` — it owns the open/closed
+  state and wires up the keyboard shortcut.
+- Pair `Sidebar` with `SidebarInset` so the main content area shifts correctly
+  when the sidebar collapses.
+- Use `SidebarTrigger` inside the main content header so users can toggle the
+  sidebar without reaching into the panel.
+- Set `isActive` on the `SidebarMenuButton` that corresponds to the current
+  route.
+
+## Don't
+
+- Render `Sidebar` outside a `SidebarProvider` — `useSidebar` will throw.
+- Mix `variant="inset"` with `collapsible="icon"` — the icon rail width
+  calculation doesn't account for the inset padding.
+- Place primary page actions inside the sidebar — they become invisible when
+  the sidebar is collapsed.
+
+## Examples
+
+### Default
+
+Standard offcanvas sidebar with a header, navigation group, separator, and
+footer settings item. Toggle with the button in the top bar or press ⌘B.
+
+<Canvas of={SidebarStories.Default} />
+
+### Icon Collapsible
+
+The sidebar collapses to a 3 rem icon rail (`collapsible="icon"`), keeping
+navigation icons visible even when collapsed.
+
+<Canvas of={SidebarStories.IconCollapsible} />
+
+### Floating
+
+`variant="floating"` renders the sidebar as a rounded card inset from the
+viewport edge.
+
+<Canvas of={SidebarStories.Floating} />
+
+### Right Side
+
+`side="right"` anchors the sidebar to the right edge — useful for inspector
+or properties panels.
+
+<Canvas of={SidebarStories.RightSide} />
+
+## Props
+
+<ArgTypes of={SidebarStories} />

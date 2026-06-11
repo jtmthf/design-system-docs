@@ -1,0 +1,57 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as AspectRatioStories from "./aspect-ratio.stories"
+
+<Meta of={AspectRatioStories} />
+
+# Aspect Ratio
+
+Constrains a child element to a fixed width-to-height ratio using a single CSS
+custom property. Use it to prevent layout shift when loading images, videos,
+maps, or iframes.
+
+## Usage
+
+- **Widescreen (16 ∶ 9)** — the default; suits hero images and video embeds.
+- **Square (1 ∶ 1)** — profile pictures, thumbnails, and avatar crops.
+- **Classic (4 ∶ 3)** — legacy video, photograph crops, and map embeds.
+
+## Do
+
+- Wrap the child in `AspectRatio` and apply `object-cover` / `object-contain`
+  to images so they fill the box without distorting.
+- Give the outer container a width (`w-full`, `w-64`, etc.) — `AspectRatio`
+  derives its height from the width and the ratio.
+- Use the `ratio` prop with a plain arithmetic expression (`16 / 9`) rather than
+  a pre-calculated decimal for readability.
+
+## Don't
+
+- Nest `AspectRatio` inside a flex or grid item that has a fixed height — the
+  ratio will fight the parent's height constraint.
+- Apply a height class directly on `AspectRatio` — the component sets height
+  via the ratio.
+- Use `AspectRatio` for text content where natural document flow is preferable.
+
+## Examples
+
+### Widescreen
+
+A 16 : 9 image that scales with the container while keeping its proportions.
+
+<Canvas of={AspectRatioStories.Widescreen} />
+
+### Square
+
+A 1 : 1 circle-cropped avatar image.
+
+<Canvas of={AspectRatioStories.Square} />
+
+### Classic
+
+A 4 : 3 placeholder demonstrating the classic television ratio.
+
+<Canvas of={AspectRatioStories.Classic} />
+
+## Props
+
+<ArgTypes of={AspectRatioStories} />

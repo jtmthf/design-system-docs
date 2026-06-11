@@ -1,0 +1,64 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as DirectionStories from "./direction.stories"
+
+<Meta of={DirectionStories} />
+
+# DirectionProvider
+
+A context provider from [Base UI](https://base-ui.com) that sets the text
+direction (`ltr` or `rtl`) for all Base UI components in its subtree. It allows
+RTL layout support without mutating the HTML `dir` attribute on the root element,
+making it suitable for multilingual apps where direction can change at any
+nesting level.
+
+`useDirection` is also exported and can be called inside any descendant component
+to read the current direction from context.
+
+## Usage
+
+- **Left to Right** — the default Western reading direction (`direction="ltr"`).
+- **Right to Left** — used for Arabic, Hebrew, Persian, and other RTL scripts.
+- **Comparison** — side-by-side `ltr` and `rtl` panels illustrating how layout
+  flips automatically for descendant Base UI components.
+
+## Do
+
+- Set the `dir` attribute on a wrapping HTML element in addition to
+  `DirectionProvider` so that the browser's bidirectional text algorithm is
+  also informed.
+- Place `DirectionProvider` as high in the tree as needed — wrap the entire
+  page for a fully RTL locale, or just a single section for a mixed-direction UI.
+- Read the current direction in components via `useDirection` rather than
+  hard-coding `"rtl"` checks.
+
+## Don't
+
+- Rely on `DirectionProvider` alone to flip layout — also set `dir` on the
+  surrounding HTML element so native browser behaviour (text alignment,
+  punctuation mirroring) is correct.
+- Nest contradictory providers without clearly scoping which components they
+  govern.
+
+## Examples
+
+### Left to Right
+
+Standard LTR layout — the default for most Western locales.
+
+<Canvas of={DirectionStories.LeftToRight} />
+
+### Right to Left
+
+RTL layout for Arabic, Hebrew, and other right-to-left scripts.
+
+<Canvas of={DirectionStories.RightToLeft} />
+
+### Comparison
+
+Side-by-side panels showing LTR and RTL layouts simultaneously.
+
+<Canvas of={DirectionStories.Comparison} />
+
+## Props
+
+<ArgTypes of={DirectionStories} />

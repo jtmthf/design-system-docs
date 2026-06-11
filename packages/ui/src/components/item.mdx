@@ -1,0 +1,68 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as ItemStories from "./item.stories"
+
+<Meta of={ItemStories} />
+
+# Item
+
+A flexible list-item primitive for menus, contact lists, file browsers, and
+similar collections. Compose `Item` with `ItemMedia`, `ItemContent`,
+`ItemTitle`, `ItemDescription`, and `ItemActions` to create richly structured
+rows. Group multiple items with `ItemGroup` and separate sections using
+`ItemSeparator`.
+
+## Usage
+
+- **Default** — icon, title, description, and a trailing action button.
+- **Group** — two outlined items separated by `ItemSeparator` inside an
+  `ItemGroup` container, with a badge in the actions slot.
+- **Small** — compact `sm` size with the `muted` variant for dense lists such
+  as sidebars or command menus.
+- **With Header/Footer** — full-width `ItemHeader` and `ItemFooter` rows add
+  metadata lines that span above and below the main content.
+
+## Do
+
+- Wrap related items in an `ItemGroup` for correct list semantics (`role="list"`).
+- Use `ItemMedia variant="icon"` for small monochrome icons and `variant="image"`
+  for thumbnails.
+- Keep `ItemTitle` to a single line — it already applies `line-clamp-1`.
+
+## Don't
+
+- Place interactive controls (buttons, links) inside `ItemTitle` or
+  `ItemDescription` — use `ItemActions` instead.
+- Mix `size` values inside the same `ItemGroup`; spacing is derived from the
+  group's data-size detection.
+- Use `Item` as a button by adding an `onClick` without also providing an
+  accessible role or using the `render` prop to emit a proper `<button>`.
+
+## Examples
+
+### Default
+
+A file item with an icon, title, description, and a trailing action button.
+
+<Canvas of={ItemStories.Default} />
+
+### Group
+
+Two items inside an `ItemGroup` separated by an `ItemSeparator`.
+
+<Canvas of={ItemStories.Group} />
+
+### Small
+
+Compact `sm` size with the `muted` variant for dense list contexts.
+
+<Canvas of={ItemStories.Small} />
+
+### With Header/Footer
+
+Header and footer rows spanning the full item width for additional metadata.
+
+<Canvas of={ItemStories.WithHeaderFooter} />
+
+## Props
+
+<ArgTypes of={ItemStories} />

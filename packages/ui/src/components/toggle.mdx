@@ -1,0 +1,65 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as ToggleStories from "./toggle.stories"
+
+<Meta of={ToggleStories} />
+
+# Toggle
+
+A two-state button that lets users activate or deactivate a feature. Common uses
+include text formatting, view modes, and toolbar actions.
+
+## Usage
+
+- **Default** — unpressed state using the transparent default variant.
+- **Outline** — same behaviour with a visible border; use on filled backgrounds
+  where the default variant blends in.
+- **Pressed** — pre-activated state for features that are on by default.
+- **Disabled** — non-interactive; use when the action is unavailable in the
+  current context.
+
+## Do
+
+- Always provide an `aria-label` when the toggle contains only an icon so screen
+  readers can announce its purpose.
+- Use a toggle for immediate, reversible actions that do not require a submit
+  step.
+- Group related toggles inside a `ToggleGroup` to communicate mutual exclusivity
+  or multi-select intent.
+
+## Don't
+
+- Use a toggle as a navigation element — use a `Tab` or link instead.
+- Rely on the pressed background alone to signal state — pair with an icon or
+  label change when possible.
+- Use the `lg` size in dense toolbars; prefer `sm` or `default`.
+
+## Examples
+
+### Default
+
+Unpressed toggle containing a bold icon. Click to activate and verify the
+`aria-pressed` attribute flips.
+
+<Canvas of={ToggleStories.Default} />
+
+### Outline
+
+Outline variant with a visible border for use on filled backgrounds.
+
+<Canvas of={ToggleStories.Outline} />
+
+### Pressed
+
+Pre-activated state for a feature that is on by default.
+
+<Canvas of={ToggleStories.Pressed} />
+
+### Disabled
+
+Non-interactive state for formatting actions that are unavailable.
+
+<Canvas of={ToggleStories.Disabled} />
+
+## Props
+
+<ArgTypes of={ToggleStories} />

@@ -1,0 +1,44 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as LabelStories from "./label.stories"
+
+<Meta of={LabelStories} />
+
+# Label
+
+Associates a caption with a form control. Clicking the label moves focus to its
+control, improving accessibility and increasing the clickable target size.
+
+## Usage
+
+- **Default** — link a label to a single input via `htmlFor` matching the input's `id`.
+- **With Checkbox** — wrap the control and text inside the label so clicking
+  either toggles the control, no `htmlFor` needed.
+
+## Do
+
+- Provide a label for every form control, even when a placeholder is present.
+- Use `htmlFor` to point at the control's `id`, or nest the control inside the label.
+- Keep label text short and descriptive.
+
+## Don't
+
+- Use placeholder text as a replacement for a visible label.
+- Nest multiple interactive controls inside a single label.
+
+## Examples
+
+### Default
+
+A label linked to an input through `htmlFor`.
+
+<Canvas of={LabelStories.Default} />
+
+### With Checkbox
+
+The label wraps a checkbox and its caption so the whole row is a single target.
+
+<Canvas of={LabelStories.WithCheckbox} />
+
+## Props
+
+<ArgTypes of={LabelStories} />

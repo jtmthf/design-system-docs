@@ -1,0 +1,53 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as CardStories from "./card.stories"
+
+<Meta of={CardStories} />
+
+# Card
+
+A container for related content and actions. Cards group information into a
+distinct visual boundary with optional header, content, and footer sections.
+
+## Usage
+
+- **Default** — standard spacing for primary content cards.
+- **Small** — tighter spacing for dense dashboards or sidebar widgets.
+- **Content Only** — a bare card when no header or footer is needed.
+
+## Do
+
+- Keep card content scannable with clear headings and short descriptions.
+- Use `CardAction` for contextual actions that don't belong in the footer.
+- Nest interactive elements (buttons, links) inside the card, not on the card
+  itself, so screen readers can access them individually.
+
+## Don't
+
+- Nest cards inside cards — it creates visual noise and accessibility issues.
+- Use cards for single lines of text where a list item is more appropriate.
+- Place the card's primary action only in the header action slot; reserve that
+  for secondary controls.
+
+## Examples
+
+### Default
+
+A full card with header, body copy, a contextual action, and a footer button.
+
+<Canvas of={CardStories.Default} />
+
+### Small
+
+Reduced spacing via `size="sm"` for dense dashboards or sidebar widgets.
+
+<Canvas of={CardStories.Small} />
+
+### Content Only
+
+A minimal card containing only content, with no header or footer.
+
+<Canvas of={CardStories.ContentOnly} />
+
+## Props
+
+<ArgTypes of={CardStories} />

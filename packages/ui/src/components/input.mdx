@@ -1,0 +1,65 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as InputStories from "./input.stories"
+
+<Meta of={InputStories} />
+
+# Input
+
+A single-line text field. Use inside a `Label` wrapper for accessible form
+composition. Supports all standard HTML `<input>` attributes.
+
+## Usage
+
+- **Default** — standard text entry; compose with a `Label` for accessibility.
+- **Password** — use `type="password"` for sensitive data such as credentials.
+- **Disabled** — prevents interaction; prefer `readOnly` when the value still
+  needs to be selectable.
+- **Invalid** — apply `aria-invalid` alongside a visible error message to
+  communicate validation failure to all users.
+
+## Do
+
+- Always provide a visible `Label` linked via `htmlFor`.
+- Use `placeholder` as a secondary hint, not as a replacement for a label.
+- Match `type` to the expected data (`email`, `tel`, `url`) for better mobile
+  keyboards and built-in browser validation.
+- Pair `aria-invalid` with a descriptive error message below the field.
+
+## Don't
+
+- Rely on colour alone to indicate errors — `aria-invalid` styling must be
+  accompanied by text.
+- Use excessively long placeholders that overflow on small screens.
+- Use `disabled` when `readOnly` better conveys the intent.
+
+## Examples
+
+### Default
+
+Standard empty text field with a placeholder. Types a value to verify
+controlled behaviour.
+
+<Canvas of={InputStories.Default} />
+
+### Disabled
+
+Non-editable state for pre-populated read-only values in a form.
+
+<Canvas of={InputStories.Disabled} />
+
+### Invalid
+
+Visual and ARIA treatment for validation errors. Always pair with an error
+message.
+
+<Canvas of={InputStories.Invalid} />
+
+### Password
+
+Masked entry for sensitive data such as passwords or PINs.
+
+<Canvas of={InputStories.Password} />
+
+## Props
+
+<ArgTypes of={InputStories} />

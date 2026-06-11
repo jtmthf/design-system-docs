@@ -1,0 +1,58 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as ContextMenuStories from "./context-menu.stories"
+
+<Meta of={ContextMenuStories} />
+
+# Context Menu
+
+A floating menu that appears on right-click (or long-press) over a trigger area.
+Use it to surface contextual actions tied directly to the element the user interacted with.
+
+## Usage
+
+- **Default** — a grouped menu with keyboard shortcuts and a destructive action.
+- **With Sub Menu** — nested submenu for sharing options via `ContextMenuSub`.
+- **With Checkbox Items** — toggleable view options using `ContextMenuCheckboxItem`.
+- **With Radio Items** — single-selection sort control using `ContextMenuRadioGroup`.
+
+## Do
+
+- Wrap a `ContextMenuLabel` with its related items inside a `ContextMenuGroup`.
+- Use `ContextMenuSeparator` to separate unrelated groups of actions.
+- Reserve `variant="destructive"` for irreversible actions such as deletion.
+
+## Don't
+
+- Use a context menu for primary actions that should always be discoverable.
+- Nest more than one level of submenu — prefer a dedicated page for complex flows.
+- Trigger the menu programmatically in ways that break the right-click convention.
+
+## Examples
+
+### Default
+
+A grouped context menu with icons, keyboard shortcuts, and a destructive action.
+
+<Canvas of={ContextMenuStories.Default} />
+
+### With Sub Menu
+
+A context menu with a nested submenu for sharing options.
+
+<Canvas of={ContextMenuStories.WithSubMenu} />
+
+### With Checkbox Items
+
+Checkbox items allow users to toggle view settings without closing the menu.
+
+<Canvas of={ContextMenuStories.WithCheckboxItems} />
+
+### With Radio Items
+
+Radio items enforce a single selection, suitable for sort or display-mode choices.
+
+<Canvas of={ContextMenuStories.WithRadioItems} />
+
+## Props
+
+<ArgTypes of={ContextMenuStories} />

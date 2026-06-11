@@ -1,0 +1,59 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as BreadcrumbStories from "./breadcrumb.stories"
+
+<Meta of={BreadcrumbStories} />
+
+# Breadcrumb
+
+A navigational aid that shows the current page's location within the site hierarchy.
+Renders a semantic `<nav aria-label="breadcrumb">` with an ordered list of links and a
+non-interactive current-page indicator.
+
+## Usage
+
+- **Default** — a simple three-level trail ending with the current page.
+- **With Ellipsis** — deep hierarchy collapsed with `BreadcrumbEllipsis`.
+- **With Icon Home** — icon-only home link with an accessible label.
+- **With Custom Separator** — slash separator instead of the default chevron.
+
+## Do
+
+- Always end the trail with a `BreadcrumbPage` (non-link) for the current page.
+- Use `BreadcrumbEllipsis` to truncate long paths — expose all levels to assistive technology via a disclosure if needed.
+- Provide an `aria-label` on icon-only `BreadcrumbLink` elements.
+
+## Don't
+
+- Link the current page — it is presented as `aria-current="page"` and `aria-disabled`.
+- Use a breadcrumb as primary site navigation; it supplements, not replaces, the main nav.
+- Omit separators — they are structural and announced as presentation by screen readers.
+
+## Examples
+
+### Default
+
+A simple three-level breadcrumb trail with the current page at the end.
+
+<Canvas of={BreadcrumbStories.Default} />
+
+### With Ellipsis
+
+A deep hierarchy collapsed to keep the visible trail scannable.
+
+<Canvas of={BreadcrumbStories.WithEllipsis} />
+
+### With Icon Home
+
+An icon used as the home link with a visually hidden accessible label.
+
+<Canvas of={BreadcrumbStories.WithIconHome} />
+
+### With Custom Separator
+
+A slash separator in place of the default chevron icon.
+
+<Canvas of={BreadcrumbStories.WithCustomSeparator} />
+
+## Props
+
+<ArgTypes of={BreadcrumbStories} />

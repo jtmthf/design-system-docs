@@ -1,0 +1,81 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as SwitchStories from "./switch.stories"
+
+<Meta of={SwitchStories} />
+
+# Switch
+
+A toggle that immediately applies a state change. Use for settings or
+preferences where the effect is instant and does not require a submit button.
+
+## Usage
+
+- **Default** — off state; the track is grey and the thumb is left-aligned.
+- **Checked** — on state; the track fills with the primary colour and the thumb
+  moves right.
+- **Small** — compact `sm` size for dense settings panels.
+- **Disabled** — non-interactive; use when the setting cannot be changed in the
+  current context.
+- **Invalid** — signals a required toggle that was not set; pair with an error
+  message.
+- **With Label** — the recommended composition: label and switch share a click
+  target so the full row is interactive.
+
+## Do
+
+- Always pair with a visible label that describes what the switch controls.
+- Use switches only for instant actions — if the change requires a save or
+  submit, use a checkbox instead.
+- Use `defaultChecked` for uncontrolled usage and `checked` + `onCheckedChange`
+  for controlled usage.
+
+## Don't
+
+- Use a switch for a destructive or irreversible action without a confirmation
+  step.
+- Use a switch in place of a checkbox inside a multi-step form that is
+  submitted as a whole.
+- Rely on colour alone to indicate errors — pair `aria-invalid` with text.
+
+## Examples
+
+### Default
+
+Off state with a grey track and left-aligned thumb.
+
+<Canvas of={SwitchStories.Default} />
+
+### Checked
+
+On state with a filled track and right-aligned thumb.
+
+<Canvas of={SwitchStories.Checked} />
+
+### Small
+
+Compact variant for dense settings panels.
+
+<Canvas of={SwitchStories.Small} />
+
+### Disabled
+
+Non-interactive state for settings unavailable in the current context.
+
+<Canvas of={SwitchStories.Disabled} />
+
+### Invalid
+
+Visual and ARIA treatment for a required toggle that was not set. Always pair
+with an error message.
+
+<Canvas of={SwitchStories.Invalid} />
+
+### With Label
+
+Recommended composition: label and switch share a click target.
+
+<Canvas of={SwitchStories.WithLabel} />
+
+## Props
+
+<ArgTypes of={SwitchStories} />

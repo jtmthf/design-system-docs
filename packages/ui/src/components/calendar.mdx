@@ -1,0 +1,57 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as CalendarStories from "./calendar.stories"
+
+<Meta of={CalendarStories} />
+
+# Calendar
+
+An accessible date-picker calendar built on react-day-picker. Supports single
+dates, date ranges, and multi-select with keyboard navigation.
+
+## Usage
+
+- **Default** — single-date picker, today highlighted.
+- **Range** — select a start and end date to highlight a span.
+- **Dropdown Navigation** — month/year dropdowns for faster navigation across large date spans.
+- **With Disabled Dates** — exclude specific dates or patterns (e.g. weekends) from selection.
+
+## Do
+
+- Pair the calendar with a text input or popover trigger so users can type dates directly.
+- Provide `fromYear`/`toYear` when using `captionLayout="dropdown"`.
+- Use `mode="range"` when the user needs to define a start and end date.
+
+## Don't
+
+- Embed an unbounded calendar inline in a form without constraining its height.
+- Disable the calendar as the sole error-prevention mechanism — validate on submit too.
+
+## Examples
+
+### Default
+
+Single-date selection with today highlighted.
+
+<Canvas of={CalendarStories.Default} />
+
+### Range
+
+Highlight a date span by clicking a start and end date.
+
+<Canvas of={CalendarStories.Range} />
+
+### Dropdown Navigation
+
+Month and year dropdowns for navigating large date ranges quickly.
+
+<Canvas of={CalendarStories.DropdownNavigation} />
+
+### With Disabled Dates
+
+Weekend days are disabled and cannot be selected.
+
+<Canvas of={CalendarStories.WithDisabledDates} />
+
+## Props
+
+<ArgTypes of={CalendarStories} />

@@ -1,0 +1,43 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as SeparatorStories from "./separator.stories"
+
+<Meta of={SeparatorStories} />
+
+# Separator
+
+A thin line that visually divides content. Set `orientation` to render a
+horizontal or vertical divider.
+
+## Usage
+
+- **Default** — a horizontal rule separating stacked content blocks.
+- **Vertical** — an inline divider for toolbars, breadcrumbs, or button groups.
+
+## Do
+
+- Use a separator to group related content and create visual rhythm.
+- Give a vertical separator an explicit height (e.g. `h-4`) so it is visible.
+- Rely on the implicit `role="separator"` so assistive tech announces the divide.
+
+## Don't
+
+- Overuse separators where whitespace alone would communicate grouping.
+- Use a separator as a decorative element unrelated to content structure.
+
+## Examples
+
+### Default
+
+A horizontal separator dividing stacked content blocks.
+
+<Canvas of={SeparatorStories.Default} />
+
+### Vertical
+
+A vertical separator for inline content such as toolbars or breadcrumbs.
+
+<Canvas of={SeparatorStories.Vertical} />
+
+## Props
+
+<ArgTypes of={SeparatorStories} />

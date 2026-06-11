@@ -1,0 +1,99 @@
+import { Meta, Story, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as ButtonStories from "./button.stories"
+
+<Meta of={ButtonStories} />
+
+# Button
+
+The primary interactive element. Use buttons for actions that affect the
+application state or trigger events.
+
+## Usage
+
+- **Default** — primary action on a page or inside a modal.
+- **Secondary** — less prominent action that sits alongside the primary button.
+- **Outline** — tertiary actions or toolbars.
+- **Destructive** — reserved for irreversible actions such as deletion.
+- **Ghost / Link** — subtle or hyperlink-like treatments; use sparingly to
+  avoid confusion with navigation.
+
+## Do
+
+- Use a single primary button per section or modal.
+- Pair destructive buttons with a confirmation dialog.
+- Keep labels concise (one to three words).
+
+## Don't
+
+- Use disabled buttons as the only way to prevent submission — validate on
+  submit and show errors instead.
+- Nest buttons inside other interactive elements.
+
+## Examples
+
+### Default
+
+The standard button. Use for the primary action on a page or inside a modal.
+
+<Canvas of={ButtonStories.Default} />
+
+### Secondary
+
+A less prominent action that sits alongside the primary button.
+
+<Canvas of={ButtonStories.Secondary} />
+
+### Outline
+
+An outlined button for tertiary actions or toolbars.
+
+<Canvas of={ButtonStories.Outline} />
+
+### Ghost
+
+A subtle treatment for icon-only toolbars or list rows.
+
+<Canvas of={ButtonStories.Ghost} />
+
+### Destructive
+
+Reserved for destructive or irreversible actions such as deletion.
+
+<Canvas of={ButtonStories.Destructive} />
+
+### Link
+
+Styled as a hyperlink. Use sparingly to avoid confusion with navigation.
+
+<Canvas of={ButtonStories.Link} />
+
+### Sizes
+
+Use `size` to control density. `sm` suits dense UIs such as data tables;
+`lg` suits hero sections and empty states.
+
+<Canvas of={ButtonStories.Small} />
+<Canvas of={ButtonStories.Large} />
+
+### Icon
+
+Icon-only button. Provide an accessible name with `aria-label`.
+
+<Canvas of={ButtonStories.Icon} />
+
+### With Icon
+
+Pair a label with a decorative icon using the `data-icon` attribute for
+correct spacing.
+
+<Canvas of={ButtonStories.WithIcon} />
+
+### Disabled
+
+Non-interactive state. Screen readers announce the button as disabled.
+
+<Canvas of={ButtonStories.Disabled} />
+
+## Props
+
+<ArgTypes of={ButtonStories} />

@@ -1,0 +1,59 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as TabsStories from "./tabs.stories"
+
+<Meta of={TabsStories} />
+
+# Tabs
+
+Organises content into mutually exclusive panels. Use tabs to reduce clutter
+while keeping related sections within easy reach — only one panel is visible at
+a time, selected via a trigger in the tab list.
+
+## Usage
+
+- **Default (horizontal)** — tab list sits above the content area; the most
+  common layout.
+- **Vertical** — tab list sits to the left of the content area; suits settings
+  pages or navigation-heavy layouts.
+- **Line** — a minimal underline treatment via `variant="line"` on `TabsList`;
+  suits clean interfaces where the pill background would feel too heavy.
+
+## Do
+
+- Match the tab labels to the content panel headings so users are not surprised
+  when they switch.
+- Use `defaultValue` to pre-select the most relevant tab.
+- Provide a visible focus ring — the component includes one by default; do not
+  remove it with `outline-none` overrides.
+
+## Don't
+
+- Use tabs for sequential steps where order matters — use a stepper instead.
+- Exceed five or six tabs in a single list; prefer a sidebar or dropdown for
+  longer navigation sets.
+- Mix `variant="line"` and `variant="default"` tab lists on the same page.
+
+## Examples
+
+### Default
+
+Horizontal tabs with a pill-style list and content rendered below.
+
+<Canvas of={TabsStories.Default} />
+
+### Vertical
+
+The tab list stacks on the left and panels appear to the right, controlled by
+`orientation="vertical"` on `Tabs`.
+
+<Canvas of={TabsStories.Vertical} />
+
+### Line
+
+A minimal underline variant using `variant="line"` on `TabsList`.
+
+<Canvas of={TabsStories.Line} />
+
+## Props
+
+<ArgTypes of={TabsStories} />

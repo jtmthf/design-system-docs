@@ -1,0 +1,58 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as TextareaStories from "./textarea.stories"
+
+<Meta of={TextareaStories} />
+
+# Textarea
+
+A multi-line text field for longer free-form input such as messages,
+descriptions, or notes. Auto-grows with content via `field-sizing-content`.
+
+## Usage
+
+- **Default** — open-ended text entry; always pair with a visible `Label`.
+- **Disabled** — prevents interaction; prefer `readOnly` when the value still
+  needs to be selectable.
+- **Invalid** — apply `aria-invalid` alongside a visible error message to
+  communicate validation failure to all users.
+
+## Do
+
+- Always provide a visible `Label` linked via `htmlFor`.
+- Use `placeholder` as a secondary hint, not as a replacement for a label.
+- Pair `aria-invalid` with a descriptive error message below the field.
+- Let the textarea grow naturally; avoid setting a fixed height unless the
+  design requires it.
+
+## Don't
+
+- Rely on colour alone to indicate errors — `aria-invalid` styling must be
+  accompanied by text.
+- Use excessively long placeholders that overflow on small screens.
+- Set `rows` so small the user cannot read their own content.
+
+## Examples
+
+### Default
+
+Standard empty textarea with a placeholder. Grows automatically as the user
+types.
+
+<Canvas of={TextareaStories.Default} />
+
+### Disabled
+
+Non-editable state for pre-populated read-only values in a form.
+
+<Canvas of={TextareaStories.Disabled} />
+
+### Invalid
+
+Visual and ARIA treatment for validation errors. Always pair with an error
+message below the field.
+
+<Canvas of={TextareaStories.Invalid} />
+
+## Props
+
+<ArgTypes of={TextareaStories} />

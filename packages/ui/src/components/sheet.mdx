@@ -1,0 +1,58 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as SheetStories from "./sheet.stories"
+
+<Meta of={SheetStories} />
+
+# Sheet
+
+A sliding panel anchored to the edge of the viewport. Use Sheets for navigation
+menus, settings panels, and supplemental content that should stay in context
+alongside the main page.
+
+## Usage
+
+- **Default** — slides in from the right with a header, body content, and footer actions.
+- **Left Side** — anchored to the left edge for primary navigation menus.
+- **Bottom Sheet** — anchored to the bottom, common on mobile for action menus.
+- **Without Close Button** — hides the built-in X button when custom dismiss controls are preferred.
+
+## Do
+
+- Use a sheet when the user needs to reference or interact with the main content while the panel is open.
+- Provide a clear dismiss mechanism — either the built-in close button or a footer action.
+- Match the `side` to the directionality of the content (navigation on the left, details on the right).
+
+## Don't
+
+- Don't use a sheet for destructive confirmations — use an AlertDialog instead.
+- Don't remove `showCloseButton` without adding another dismiss affordance.
+
+## Examples
+
+### Default
+
+A right-side sheet with a title, description, and save / cancel footer actions.
+
+<Canvas of={SheetStories.Default} />
+
+### Left Side
+
+The panel enters from the left, making it suitable for primary navigation menus.
+
+<Canvas of={SheetStories.LeftSide} />
+
+### Bottom Sheet
+
+The sheet anchors to the bottom of the screen — a common mobile pattern for sharing actions.
+
+<Canvas of={SheetStories.BottomSheet} />
+
+### Without Close Button
+
+The built-in close button is hidden; a custom footer button handles dismissal instead.
+
+<Canvas of={SheetStories.WithoutCloseButton} />
+
+## Props
+
+<ArgTypes of={SheetStories} />

@@ -1,0 +1,69 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as ButtonGroupStories from "./button-group.stories"
+
+<Meta of={ButtonGroupStories} />
+
+# Button Group
+
+A layout container that merges adjacent buttons and form controls into a single
+visual unit. Composes with `ButtonGroupText` for static labels and
+`ButtonGroupSeparator` for visual dividers.
+
+## Usage
+
+- **Default** — two or more buttons fused edge-to-edge; use for split-button
+  patterns where a primary action has a secondary trigger.
+- **With Input** — combines a label prefix, a text input, and a trigger button
+  into a search or filter bar.
+- **With Separator** — a thin line inside the group visually divides related but
+  distinct actions.
+- **Vertical** — stacked layout for toolbars and sidebars where horizontal space
+  is limited.
+
+## Do
+
+- Keep buttons in a group visually consistent — use the same `variant` and
+  `size` across all children.
+- Use `ButtonGroupText` only for decorative, non-interactive labels (icons or
+  short strings).
+- Apply `role="group"` (provided automatically by `ButtonGroup`) and add an
+  `aria-label` when the group's purpose is not clear from surrounding context.
+
+## Don't
+
+- Mix primary and outline variants inside the same group without a clear
+  hierarchy reason.
+- Nest `ButtonGroup` inside another `ButtonGroup` unless using the explicit
+  `has-[>[data-slot=button-group]]:gap-2` spacing that the component already
+  handles.
+- Use the vertical orientation inside a horizontal scrolling container.
+
+## Examples
+
+### Default
+
+Two outline buttons fused into a split-button unit.
+
+<Canvas of={ButtonGroupStories.Default} />
+
+### With Input
+
+Icon prefix, text input, and action button composed into a search bar.
+
+<Canvas of={ButtonGroupStories.WithInput} />
+
+### With Separator
+
+A `ButtonGroupSeparator` visually divides related actions within the group.
+
+<Canvas of={ButtonGroupStories.WithSeparator} />
+
+### Vertical
+
+Stacked orientation for sidebar or toolbar layouts.
+
+<Canvas of={ButtonGroupStories.Vertical} />
+
+## Props
+
+<ArgTypes of={ButtonGroupStories} />

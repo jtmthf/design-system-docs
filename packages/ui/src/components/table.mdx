@@ -1,0 +1,43 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as TableStories from "./table.stories"
+
+<Meta of={TableStories} />
+
+# Table
+
+Displays tabular data with a consistent layout. Built from composable parts —
+`TableHeader`, `TableBody`, `TableRow`, `TableHead`, `TableCell`, and
+`TableCaption` — so you can add footers, captions, and interactive rows without
+reaching for a data-grid library.
+
+## Usage
+
+- Use tables for data that has a clear column-and-row structure.
+- Add a `TableCaption` to describe the table for screen readers.
+- Right-align numeric columns with `className="text-right"` on `TableHead` and
+  `TableCell`.
+
+## Do
+
+- Give every table a visible caption or an `aria-label` on the wrapping element.
+- Keep column headers short and descriptive.
+- Right-align monetary and numeric columns so digits line up visually.
+
+## Don't
+
+- Use a table for layout or for content that has no meaningful column structure.
+- Omit `TableHeader` — without it, screen readers cannot announce column context.
+- Put interactive controls (buttons, inputs) inside cells without ensuring each
+  control has its own accessible label.
+
+## Examples
+
+### Default
+
+A standard invoice table with a caption, header row, and three data rows.
+
+<Canvas of={TableStories.Default} />
+
+## Props
+
+<ArgTypes of={TableStories} />

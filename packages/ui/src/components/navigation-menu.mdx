@@ -1,0 +1,51 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as NavigationMenuStories from "./navigation-menu.stories"
+
+<Meta of={NavigationMenuStories} />
+
+# Navigation Menu
+
+A horizontal navigation bar with animated dropdown panels. Use it for top-level
+site navigation where items may reveal rich descriptive content on hover or focus.
+
+## Usage
+
+- **Default** — a single trigger revealing a panel of getting-started links.
+- **With Multiple Menus** — several top-level menus with rich grid content, mixed with a direct link item.
+- **Links Only** — plain link items with no dropdown panels using `navigationMenuTriggerStyle`.
+
+## Do
+
+- Use `NavigationMenuContent` to surface descriptive links, not raw form controls.
+- Mix trigger items and plain `NavigationMenuLink` items in the same list freely.
+- Apply `navigationMenuTriggerStyle()` to standalone links for visual consistency.
+
+## Don't
+
+- Use a navigation menu for in-page secondary actions — use a dropdown menu instead.
+- Place deeply nested content inside a panel; link out to a dedicated page instead.
+- Rely on hover alone to reveal critical content — the menu is also keyboard accessible.
+
+## Examples
+
+### Default
+
+A single trigger that opens a panel of getting-started links.
+
+<Canvas of={NavigationMenuStories.Default} />
+
+### With Multiple Menus
+
+Multiple menus with rich grid panels mixed with a plain link item.
+
+<Canvas of={NavigationMenuStories.WithMultipleMenus} />
+
+### Links Only
+
+A minimal navigation bar composed entirely of direct link items.
+
+<Canvas of={NavigationMenuStories.LinksOnly} />
+
+## Props
+
+<ArgTypes of={NavigationMenuStories} />

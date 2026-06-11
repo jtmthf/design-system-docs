@@ -1,0 +1,51 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as DrawerStories from "./drawer.stories"
+
+<Meta of={DrawerStories} />
+
+# Drawer
+
+A panel that slides in from the edge of the screen. Drawers are commonly used
+on mobile for navigation, filters, or secondary actions that don't require a
+full context switch.
+
+## Usage
+
+- **Default** — a bottom sheet that slides up from the bottom of the screen with a header and footer.
+- **Right Side** — the panel enters from the right edge, ideal for settings or detail views.
+- **Open By Default** — the drawer is open on mount without requiring a trigger click.
+
+## Do
+
+- Use a bottom drawer on mobile screens where touch swipe-to-dismiss feels natural.
+- Use a right-side drawer for persistent secondary panels like settings or filters.
+- Always provide a clear close affordance (button or swipe handle).
+
+## Don't
+
+- Don't use a drawer for critical confirmations — use an AlertDialog instead.
+- Don't nest drawers inside other overlays.
+
+## Examples
+
+### Default
+
+A bottom sheet triggered by a button, with a title, description, and footer actions.
+
+<Canvas of={DrawerStories.Default} />
+
+### Right Side
+
+The drawer slides in from the right — suitable for settings panels and detail sidebars.
+
+<Canvas of={DrawerStories.RightSide} />
+
+### Open By Default
+
+The drawer renders open on mount, useful for demos or when state drives initial visibility.
+
+<Canvas of={DrawerStories.OpenByDefault} />
+
+## Props
+
+<ArgTypes of={DrawerStories} />

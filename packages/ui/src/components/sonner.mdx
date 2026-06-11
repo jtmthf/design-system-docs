@@ -1,0 +1,62 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as SonnerStories from "./sonner.stories"
+
+<Meta of={SonnerStories} />
+
+# Sonner (Toaster)
+
+A themed toast notification layer backed by [Sonner](https://sonner.emilkowal.ski/).
+Render `<Toaster />` once at the root of your application and call `toast()` from
+anywhere in your component tree to fire a notification. The component reads the
+active `next-themes` colour scheme automatically.
+
+## Usage
+
+- **Default** — a plain informational message triggered by a button click.
+- **Success** — `toast.success()` with `richColors` enabled for a green semantic icon.
+- **Error** — `toast.error()` with `richColors` for a red semantic icon.
+- **With Action** — a toast with a description and an inline undo action button.
+
+## Do
+
+- Render `<Toaster />` once, at the top of your component tree (e.g. in the root
+  layout), not inside individual components.
+- Enable `richColors` when semantic colour helps distinguish message severity.
+- Keep toast messages short — one sentence maximum.
+- Provide an action only when a genuinely reversible operation just occurred.
+
+## Don't
+
+- Use toasts for critical errors that require user attention — use a dialog instead.
+- Stack multiple `<Toaster />` instances; Sonner manages its own portal.
+- Rely on toasts for form validation feedback — place errors inline with the field.
+
+## Examples
+
+### Default
+
+Plain informational toast fired on button click.
+
+<Canvas of={SonnerStories.Default} />
+
+### Success
+
+Success toast with rich semantic colours.
+
+<Canvas of={SonnerStories.Success} />
+
+### Error
+
+Error toast with rich semantic colours.
+
+<Canvas of={SonnerStories.Error} />
+
+### With Action
+
+Toast with a description and an inline undo action.
+
+<Canvas of={SonnerStories.WithAction} />
+
+## Props
+
+<ArgTypes of={SonnerStories} />

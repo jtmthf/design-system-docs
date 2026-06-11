@@ -1,0 +1,57 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as ResizableStories from "./resizable.stories"
+
+<Meta of={ResizableStories} />
+
+# Resizable
+
+Drag-to-resize panel layouts built on `react-resizable-panels`. Compose
+`ResizablePanelGroup`, `ResizablePanel`, and `ResizableHandle` to create
+split-pane UIs that remember their proportions.
+
+## Usage
+
+- **Horizontal** — two side-by-side panels with a vertical drag handle.
+- **Vertical** — two stacked panels with a horizontal drag handle.
+- **Three Columns** — a file-tree, editor, and terminal column configuration.
+
+## Do
+
+- Set `minSize` on panels that must stay readable (e.g. a sidebar should never
+  collapse to zero width).
+- Add `withHandle` to `ResizableHandle` to render a visible grip affordance.
+- Use `defaultSize` to set sensible initial proportions.
+
+## Don't
+
+- Omit `minSize` on narrow panels — users can accidentally collapse them to
+  nothing.
+- Place a `ResizablePanelGroup` without an explicit height or it will collapse
+  to zero.
+- Use resizable panels for content where a fixed layout is fine — the added
+  complexity is only worthwhile for power-user UIs.
+
+## Examples
+
+### Horizontal
+
+Two panels sharing equal width, separated by a draggable handle.
+
+<Canvas of={ResizableStories.Horizontal} />
+
+### Vertical
+
+Two panels stacked top-to-bottom with a horizontal drag handle.
+
+<Canvas of={ResizableStories.Vertical} />
+
+### Three Columns
+
+A three-column split mimicking a code editor with a file tree, editor, and
+terminal.
+
+<Canvas of={ResizableStories.ThreeColumns} />
+
+## Props
+
+<ArgTypes of={ResizableStories} />

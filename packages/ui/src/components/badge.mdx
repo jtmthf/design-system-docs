@@ -1,0 +1,74 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as BadgeStories from "./badge.stories"
+
+<Meta of={BadgeStories} />
+
+# Badge
+
+A small, non-interactive label for status, categories, or counts. Badges
+convey read-only metadata at a glance — they are not buttons and should
+not trigger actions.
+
+## Usage
+
+- **Default** — primary emphasis; use for the most prominent status.
+- **Secondary** — muted categorisation that sits alongside primary content.
+- **Destructive** — errors, warnings, or critical status indicators.
+- **Outline** — subtle, bordered style that works on any background.
+- **Ghost** — minimal treatment for low-priority or decorative tags.
+- **Link** — hyperlink-style badge for use inside rich text or metadata lines.
+
+## Do
+
+- Keep badge labels to one or two words.
+- Use the `render` prop to render a badge as an `<a>` tag when the badge
+  is genuinely navigable.
+- Pair destructive badges with a tooltip or adjacent text for context.
+
+## Don't
+
+- Use a badge as a button — reach for `Button` or a clickable item instead.
+- Use more than two or three badge variants on a single surface.
+- Rely on colour alone to convey meaning; pair with a text label.
+
+## Examples
+
+### Default
+
+The default filled style for primary emphasis.
+
+<Canvas of={BadgeStories.Default} />
+
+### Secondary
+
+A muted badge for secondary categorisation.
+
+<Canvas of={BadgeStories.Secondary} />
+
+### Destructive
+
+High-visibility style for errors, warnings, or critical status.
+
+<Canvas of={BadgeStories.Destructive} />
+
+### Outline
+
+Subtle bordered style that works on any background.
+
+<Canvas of={BadgeStories.Outline} />
+
+### Ghost
+
+Minimal style for low-priority or decorative tags.
+
+<Canvas of={BadgeStories.Ghost} />
+
+### Link
+
+Hyperlink-style badge for use inside rich text or metadata lines.
+
+<Canvas of={BadgeStories.Link} />
+
+## Props
+
+<ArgTypes of={BadgeStories} />

@@ -1,0 +1,66 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as NativeSelectStories from "./native-select.stories"
+
+<Meta of={NativeSelectStories} />
+
+# Native Select
+
+A styled wrapper around the native `<select>` element. Use when a custom
+dropdown is unnecessary and you want full platform-native behaviour — especially
+on mobile devices.
+
+## Usage
+
+- **Default** — flat list of options with a placeholder; use for simple single
+  choices.
+- **Small** — compact `sm` height for dense form layouts or sidebars.
+- **With Opt Groups** — options organised into logical categories using
+  `NativeSelectOptGroup`; use when the option list is long or heterogeneous.
+- **Disabled / Invalid** — non-interactive and validation-error states shown
+  together.
+
+## Do
+
+- Always pair with a visible `Label` linked via `htmlFor` or wrapping the
+  select.
+- Include a blank placeholder option so the user knows no selection has been
+  made yet.
+- Use `NativeSelectOptGroup` to structure lists longer than ~8 options.
+
+## Don't
+
+- Use a native select when you need custom option rendering (icons, subtitles) —
+  use the `Select` component instead.
+- Rely on the chevron icon alone to indicate the element is interactive — the
+  label and context must be clear.
+- Omit `aria-invalid` for validation errors; rely on colour alone.
+
+## Examples
+
+### Default
+
+Flat list of options with a placeholder prompt.
+
+<Canvas of={NativeSelectStories.Default} />
+
+### Small
+
+Compact variant for dense form layouts.
+
+<Canvas of={NativeSelectStories.Small} />
+
+### With Opt Groups
+
+Options grouped into logical categories for longer lists.
+
+<Canvas of={NativeSelectStories.WithOptGroups} />
+
+### Disabled / Invalid
+
+Non-interactive and validation-error states side by side.
+
+<Canvas of={NativeSelectStories.Disabled} />
+
+## Props
+
+<ArgTypes of={NativeSelectStories} />

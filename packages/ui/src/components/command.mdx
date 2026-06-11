@@ -1,0 +1,51 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as CommandStories from "./command.stories"
+
+<Meta of={CommandStories} />
+
+# Command
+
+A keyboard-first command palette for searching and executing actions. Embed it
+inline in a panel or wrap it in `CommandDialog` for a full spotlight-style
+experience triggered by a keyboard shortcut.
+
+## Usage
+
+- **Default** — an inline palette with a search input, grouped items, and keyboard shortcuts displayed inline.
+- **Dialog** — the palette mounted inside a `CommandDialog` modal, opening over the page.
+- **With Trigger** — a trigger button opens the dialog; keyboard shortcut hint is shown on the button.
+
+## Do
+
+- Group related commands with `CommandGroup` and descriptive headings.
+- Use `CommandShortcut` to display keyboard shortcuts alongside items.
+- Bind a global keyboard shortcut (e.g. ⌘K) to open the dialog for power users.
+
+## Don't
+
+- Don't omit `CommandEmpty` — always handle the no-results case gracefully.
+- Don't use the command palette for multi-step flows; keep each item as a single, direct action.
+
+## Examples
+
+### Default
+
+An inline command palette with grouped items, a search input, and shortcut hints.
+
+<Canvas of={CommandStories.Default} />
+
+### Dialog
+
+The command palette rendered inside a `CommandDialog` modal overlay.
+
+<Canvas of={CommandStories.Dialog} />
+
+### With Trigger
+
+A button that opens the dialog on click, with a keyboard shortcut hint displayed on the trigger.
+
+<Canvas of={CommandStories.WithTrigger} />
+
+## Props
+
+<ArgTypes of={CommandStories} />

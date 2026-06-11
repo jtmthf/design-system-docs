@@ -1,0 +1,50 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as SkeletonStories from "./skeleton.stories"
+
+<Meta of={SkeletonStories} />
+
+# Skeleton
+
+A placeholder animation shown while content loads. Size each skeleton with
+`className` to match the dimensions of the content it stands in for.
+
+## Usage
+
+- **Default** — a single line matching a row of body text.
+- **Circle** — a round placeholder for an avatar or icon.
+- **Card Skeleton** — compose multiple skeletons to mirror a real layout.
+
+## Do
+
+- Match the skeleton's size and shape to the content it replaces to avoid layout shift.
+- Group skeletons to reflect the structure of the loading content.
+- Keep skeletons on screen only while data is genuinely loading.
+
+## Don't
+
+- Use a skeleton for content that loads instantly — it adds perceived latency.
+- Animate so aggressively that it distracts from the rest of the page.
+
+## Examples
+
+### Default
+
+A single line skeleton matching a body-text row.
+
+<Canvas of={SkeletonStories.Default} />
+
+### Circle
+
+A circular skeleton for an avatar or icon placeholder.
+
+<Canvas of={SkeletonStories.Circle} />
+
+### Card Skeleton
+
+Several skeletons composed to mirror a typical card layout.
+
+<Canvas of={SkeletonStories.CardSkeleton} />
+
+## Props
+
+<ArgTypes of={SkeletonStories} />

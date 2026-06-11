@@ -1,0 +1,51 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as HoverCardStories from "./hover-card.stories"
+
+<Meta of={HoverCardStories} />
+
+# Hover Card
+
+A preview card that appears when the user hovers over a trigger element. Use
+HoverCards to surface supplemental information — such as user profiles or link
+previews — without requiring a click.
+
+## Usage
+
+- **Default** — hovering a username link reveals a user profile card below the trigger.
+- **Open By Default** — the card is visible on mount for layout previewing.
+- **Top Placement** — the card opens above the trigger to avoid bottom-of-viewport clipping.
+
+## Do
+
+- Use hover cards for read-only supplemental information that enriches context.
+- Adjust `openDelay` and `closeDelay` to balance responsiveness and accidental hover noise.
+- Choose `side` based on available viewport space.
+
+## Don't
+
+- Don't put interactive controls inside a hover card — use a Popover instead.
+- Don't rely solely on hover for mobile users; hover is not available on touch devices.
+
+## Examples
+
+### Default
+
+Hovering a username link shows a profile preview card beneath the trigger.
+
+<Canvas of={HoverCardStories.Default} />
+
+### Open By Default
+
+The hover card is open on mount — useful for previewing the card's appearance without hovering.
+
+<Canvas of={HoverCardStories.OpenByDefault} />
+
+### Top Placement
+
+The card opens above the trigger, suitable for triggers near the bottom of the viewport.
+
+<Canvas of={HoverCardStories.TopPlacement} />
+
+## Props
+
+<ArgTypes of={HoverCardStories} />

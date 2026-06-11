@@ -1,0 +1,51 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as PopoverStories from "./popover.stories"
+
+<Meta of={PopoverStories} />
+
+# Popover
+
+A floating card anchored to a trigger element. Popovers are lighter than dialogs
+and do not disable the rest of the page.
+
+## Usage
+
+- **Default** — a trigger that opens a floating card with rich content.
+- **Open By Default** — initially open; pair `defaultOpen` with `defaultTriggerId`
+  so Base UI anchors the popup to its trigger.
+- **With Form** — embed a small form for inline editing without navigating away.
+
+## Do
+
+- Use a popover for secondary, non-blocking content tied to a trigger.
+- Give a title and description so the popup is self-explanatory.
+- Reserve `modal` for cases that genuinely require trapping focus.
+
+## Don't
+
+- Use a popover for critical, must-acknowledge decisions — use a `Dialog`.
+- Pack long-form or scrolling content into a popover.
+
+## Examples
+
+### Default
+
+Click the trigger to open a floating card with dimension controls.
+
+<Canvas of={PopoverStories.Default} />
+
+### Open By Default
+
+Opens on mount; `defaultTriggerId` ties the popover to its trigger.
+
+<Canvas of={PopoverStories.OpenByDefault} />
+
+### With Form
+
+A popover containing a small form for inline editing.
+
+<Canvas of={PopoverStories.WithForm} />
+
+## Props
+
+<ArgTypes of={PopoverStories} />

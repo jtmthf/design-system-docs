@@ -1,0 +1,51 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks"
+import * as PaginationStories from "./pagination.stories"
+
+<Meta of={PaginationStories} />
+
+# Pagination
+
+A set of page navigation controls rendered as a semantic `<nav>` element.
+Place it below lists, tables, or search results to let users move between pages of content.
+
+## Usage
+
+- **Default** — Previous/Next buttons and a short numbered page strip with one active page.
+- **With Ellipsis** — a large page range compressed with `PaginationEllipsis` for compact display.
+- **Controlled** — interactive state managed in React; clicking pages and Previous/Next updates the active page.
+
+## Do
+
+- Mark the active page with `isActive` on `PaginationLink` so it receives `aria-current="page"`.
+- Disable Previous on page 1 and Next on the last page with `aria-disabled` and pointer-event classes.
+- Use `PaginationEllipsis` to collapse long page ranges rather than rendering every page number.
+
+## Don't
+
+- Use real `href` values in production so users can link directly to a specific page.
+- Omit Previous/Next controls — they are important for keyboard and assistive-technology users.
+- Show pagination for fewer than two pages of content.
+
+## Examples
+
+### Default
+
+A standard pagination strip with Previous, numbered pages, and Next controls.
+
+<Canvas of={PaginationStories.Default} />
+
+### With Ellipsis
+
+A large page range compressed with ellipsis items at both ends.
+
+<Canvas of={PaginationStories.WithEllipsis} />
+
+### Controlled
+
+A fully interactive pagination component managing active-page state in React.
+
+<Canvas of={PaginationStories.Controlled} />
+
+## Props
+
+<ArgTypes of={PaginationStories} />

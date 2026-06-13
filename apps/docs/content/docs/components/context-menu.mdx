@@ -1,0 +1,145 @@
+---
+title: Context Menu
+description: A menu that appears on right-click or long-press over a trigger area.
+---
+
+<ComponentPreview name="context-menu-demo" />
+
+Use a context menu for actions that are tied directly to a specific target
+element — file operations, row actions in a table, canvas interactions. The
+menu appears at the pointer position when the user right-clicks (or long-presses
+on touch devices).
+
+Built on Base UI's `ContextMenu.Root` primitive. Compose it with
+`ContextMenuTrigger`, `ContextMenuContent`, and any combination of
+`ContextMenuItem`, `ContextMenuCheckboxItem`, `ContextMenuRadioGroup`,
+`ContextMenuSub`, `ContextMenuSeparator`, and `ContextMenuLabel`.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuSeparator,
+} from "@workspace/ui/components/context-menu";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/context-menu
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger,
+} from "@workspace/ui/components/context-menu";
+
+export function Example() {
+  return (
+    <ContextMenu>
+      <ContextMenuTrigger>Right-click me</ContextMenuTrigger>
+      <ContextMenuContent>
+        <ContextMenuItem>Cut</ContextMenuItem>
+        <ContextMenuItem>Copy</ContextMenuItem>
+        <ContextMenuItem variant="destructive">Delete</ContextMenuItem>
+      </ContextMenuContent>
+    </ContextMenu>
+  );
+}
+```
+
+## Examples
+
+### With submenu
+
+Use `ContextMenuSub`, `ContextMenuSubTrigger`, and `ContextMenuSubContent` to
+nest a secondary menu for grouped or hierarchical actions.
+
+<ComponentPreview name="context-menu-submenu" />
+
+### Checkbox items
+
+`ContextMenuCheckboxItem` lets users toggle view options without closing the
+menu.
+
+<ComponentPreview name="context-menu-checkbox" />
+
+## API reference
+
+### ContextMenu
+
+<PropsTable component="ContextMenu" source="context-menu" element={null} />
+
+### ContextMenuTrigger
+
+<PropsTable component="ContextMenuTrigger" source="context-menu" element="div" />
+
+### ContextMenuContent
+
+<PropsTable component="ContextMenuContent" source="context-menu" element="div" />
+
+### ContextMenuItem
+
+<PropsTable component="ContextMenuItem" source="context-menu" element="div" />
+
+### ContextMenuCheckboxItem
+
+<PropsTable component="ContextMenuCheckboxItem" source="context-menu" element="div" />
+
+### ContextMenuRadioGroup
+
+<PropsTable component="ContextMenuRadioGroup" source="context-menu" element={null} />
+
+### ContextMenuRadioItem
+
+<PropsTable component="ContextMenuRadioItem" source="context-menu" element="div" />
+
+### ContextMenuLabel
+
+<PropsTable component="ContextMenuLabel" source="context-menu" element="div" />
+
+### ContextMenuSeparator
+
+<PropsTable component="ContextMenuSeparator" source="context-menu" element="div" />
+
+### ContextMenuSub
+
+<PropsTable component="ContextMenuSub" source="context-menu" element={null} />
+
+### ContextMenuSubTrigger
+
+<PropsTable component="ContextMenuSubTrigger" source="context-menu" element="div" />
+
+### ContextMenuSubContent
+
+<PropsTable component="ContextMenuSubContent" source="context-menu" element="div" />
+
+## Accessibility
+
+- The popup has `role="menu"` and items have `role="menuitem"` (or
+  `menuitemcheckbox` / `menuitemradio`).
+- <kbd>ArrowUp</kbd> / <kbd>ArrowDown</kbd> navigate items; <kbd>Enter</kbd>
+  or <kbd>Space</kbd> activates the focused item; <kbd>Escape</kbd> closes the menu.
+- <kbd>ArrowRight</kbd> opens a submenu trigger; <kbd>ArrowLeft</kbd> returns
+  to the parent menu.
+- The `ContextMenuTrigger` area applies `select-none` to prevent text selection
+  during the right-click gesture.

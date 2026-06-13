@@ -1,0 +1,118 @@
+---
+title: Tooltip
+description: A floating label that appears near a trigger element on hover or focus.
+---
+
+<ComponentPreview name="tooltip-demo" />
+
+Composed of `TooltipTrigger` and `TooltipContent`. Must be used inside a
+`TooltipProvider` for shared delay configuration. Built on Base UI's Tooltip
+primitive. `TooltipContent` accepts `side`, `sideOffset`, `align`, and
+`alignOffset` for fine-grained placement. The default delay is `0` (immediate).
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@workspace/ui/components/tooltip";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/tooltip
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@workspace/ui/components/tooltip";
+
+export function Example() {
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>Hover me</TooltipTrigger>
+        <TooltipContent>Helpful hint</TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  );
+}
+```
+
+## Examples
+
+### Icon button
+
+The most common case: clarify an icon-only button. Always provide an
+`aria-label` on the trigger as well.
+
+<ComponentPreview name="tooltip-icon-button" />
+
+### Placement
+
+`side` controls which side of the trigger the tooltip appears on — `"top"`,
+`"right"`, `"bottom"`, or `"left"`.
+
+<ComponentPreview name="tooltip-placement" />
+
+## Guidelines
+
+**Do**
+
+- Keep tooltip text to a few words; it is a hint, not documentation.
+- Use tooltips to label icon-only buttons, in addition to an `aria-label`.
+- Wrap the tree in a single `TooltipProvider` so timings stay consistent.
+
+**Don't**
+
+- Put essential information or interactive content inside a tooltip — it is not
+  reliably reachable on touch devices.
+- Rely on a tooltip as the only label for a control.
+
+## API reference
+
+### TooltipProvider
+
+<PropsTable component="TooltipProvider" source="tooltip" element={null} />
+
+### Tooltip
+
+<PropsTable component="Tooltip" source="tooltip" element={null} />
+
+### TooltipTrigger
+
+<PropsTable component="TooltipTrigger" source="tooltip" element="button" />
+
+### TooltipContent
+
+<PropsTable component="TooltipContent" source="tooltip" element="div" />
+
+## Accessibility
+
+- The tooltip is linked to its trigger via `aria-describedby` so screen readers
+  announce the tooltip text when the trigger is focused.
+- Appears on both hover and keyboard focus, so it is reachable without a
+  pointer device.
+- Always provide an `aria-label` on icon-only triggers; the tooltip text alone
+  is not a substitute for an accessible name.
+- Use `disabled` on `Tooltip` to suppress the tooltip when it is not relevant.

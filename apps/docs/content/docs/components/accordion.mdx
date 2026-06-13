@@ -1,0 +1,119 @@
+---
+title: Accordion
+description: A stacked set of headings that expand to reveal panels of content.
+---
+
+<ComponentPreview name="accordion-demo" />
+
+Use an accordion to reduce cognitive load on pages with long, sectioned content,
+letting people focus on one section at a time. It is composed of
+`AccordionItem`, `AccordionTrigger`, and `AccordionContent`; all keyboard
+navigation and ARIA wiring is handled by the Base UI primitive.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@workspace/ui/components/accordion";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/accordion
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@workspace/ui/components/accordion";
+
+export function Example() {
+  return (
+    <Accordion>
+      <AccordionItem value="item-1">
+        <AccordionTrigger>Is it accessible?</AccordionTrigger>
+        <AccordionContent>
+          Yes. It follows the WAI-ARIA accordion pattern.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  );
+}
+```
+
+## Examples
+
+### Allow multiple open
+
+By default a single panel is open at a time. Set `multiple` to let several
+panels stay open — useful for FAQs where answers are compared side by side.
+
+<ComponentPreview name="accordion-multiple" />
+
+### Open by default
+
+Pass the value of one or more items to `defaultValue` to expand them on load.
+
+<ComponentPreview name="accordion-default-open" />
+
+## Guidelines
+
+**Do**
+
+- Write trigger labels that clearly describe the panel content.
+- Use `hiddenUntilFound` when collapsed content should remain reachable via
+  browser find-in-page (<kbd>Ctrl</kbd>/<kbd>Cmd</kbd> + <kbd>F</kbd>).
+- Keep `loopFocus` enabled (the default) so keyboard focus wraps consistently.
+
+**Don't**
+
+- Hide information users must act on immediately — surface it inline instead.
+- Use an accordion for fewer than two items; a plain disclosure is simpler.
+- Nest accordions inside other accordions.
+
+## API reference
+
+### Accordion
+
+<PropsTable component="Accordion" source="accordion" element="div" />
+
+### AccordionItem
+
+<PropsTable component="AccordionItem" source="accordion" element="div" />
+
+### AccordionTrigger
+
+<PropsTable component="AccordionTrigger" source="accordion" element="button" />
+
+### AccordionContent
+
+<PropsTable component="AccordionContent" source="accordion" element="div" />
+
+## Accessibility
+
+- Each trigger is a real `<button>` inside a heading, following the
+  [WAI-ARIA accordion pattern](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/).
+- <kbd>Tab</kbd> moves between triggers; <kbd>Enter</kbd> or <kbd>Space</kbd>
+  toggles a panel. With `loopFocus`, arrow keys move between triggers and wrap.
+- Triggers expose `aria-expanded` and are linked to their panels via
+  `aria-controls`.

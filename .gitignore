@@ -15,7 +15,11 @@ coverage
 
 # next.js
 .next/
+.next/types/
 out/
+
+# fumadocs
+.source
 
 # production
 build

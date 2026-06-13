@@ -1,0 +1,82 @@
+---
+title: Input
+description: A single-line text field with consistent border, focus ring, and validation styling.
+---
+
+<ComponentPreview name="input-demo" />
+
+Use `Input` for any single-line text entry — email addresses, passwords, search
+terms, or numeric values. All standard HTML `<input>` types are supported.
+
+Delegates to the Base UI `Input` primitive, which forwards all native `<input>`
+props. Set `aria-invalid` to switch the border and ring to destructive colors and
+signal validation failure to assistive technology.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import { Input } from "@workspace/ui/components/input";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/input
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import { Input } from "@workspace/ui/components/input";
+
+export function Example() {
+  return <Input type="email" placeholder="you@example.com" />;
+}
+```
+
+## Examples
+
+### Types
+
+`Input` accepts all standard HTML input types including `text`, `email`,
+`password`, `number`, and `search`.
+
+<ComponentPreview name="input-types" />
+
+### Disabled
+
+A disabled input is non-interactive and visually muted.
+
+<ComponentPreview name="input-disabled" />
+
+### Invalid
+
+Set `aria-invalid` to apply destructive border and ring styling. Always pair
+with a visible error message.
+
+<ComponentPreview name="input-invalid" />
+
+## API reference
+
+<PropsTable component="Input" source="input" element="input" />
+
+## Accessibility
+
+- Renders via the Base UI `Input` primitive, which forwards all native `<input>`
+  attributes including `aria-*` props.
+- Always associate an `Input` with a visible `<label>` using `htmlFor`/`id` or
+  by wrapping both in a `Label` component.
+- Use `aria-invalid` together with an error message linked via `aria-describedby`
+  so screen readers announce the failure reason.
+- `disabled` prevents interaction and sets `pointer-events-none`; prefer keeping
+  fields enabled and surfacing errors on submit so they remain keyboard-reachable.

@@ -1,0 +1,144 @@
+---
+title: Item
+description: A flexible content row for building menus, file lists, contact lists, and similar collections.
+---
+
+<ComponentPreview name="item-demo" />
+
+Use `Item` as the row primitive for structured list content. Compose it with
+`ItemMedia`, `ItemContent`, `ItemTitle`, `ItemDescription`, and `ItemActions` to
+build richly structured rows with icons, text, and trailing controls.
+
+`Item` renders via Base UI's `useRender`, making the underlying element
+polymorphic through the `render` prop. `ItemGroup` wraps multiple items in a
+`role="list"` container with consistent gap. `ItemSeparator` inserts a horizontal
+rule between items.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  Item,
+  ItemMedia,
+  ItemContent,
+  ItemTitle,
+  ItemDescription,
+  ItemActions,
+  ItemGroup,
+  ItemSeparator,
+  ItemHeader,
+  ItemFooter,
+} from "@workspace/ui/components/item";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/item
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  Item,
+  ItemContent,
+  ItemDescription,
+  ItemMedia,
+  ItemTitle,
+} from "@workspace/ui/components/item";
+
+export function Example() {
+  return (
+    <Item variant="outline">
+      <ItemMedia variant="icon" />
+      <ItemContent>
+        <ItemTitle>Report.pdf</ItemTitle>
+        <ItemDescription>Last modified 2 days ago</ItemDescription>
+      </ItemContent>
+    </Item>
+  );
+}
+```
+
+## Examples
+
+### Variants
+
+Three visual treatments: `default` (transparent), `outline` (visible border),
+and `muted` (filled background).
+
+<ComponentPreview name="item-variants" />
+
+### Group with separator
+
+`ItemGroup` applies a `role="list"` container and consistent gap. `ItemSeparator`
+renders a horizontal rule between items.
+
+<ComponentPreview name="item-group" />
+
+### Header and footer
+
+`ItemHeader` and `ItemFooter` span the full item width for metadata rows above
+and below the main content.
+
+<ComponentPreview name="item-with-header-footer" />
+
+## API reference
+
+### Item
+
+<PropsTable component="Item" source="item" element="div" />
+
+### ItemMedia
+
+<PropsTable component="ItemMedia" source="item" element="div" />
+
+### ItemContent
+
+<PropsTable component="ItemContent" source="item" element="div" />
+
+### ItemTitle
+
+<PropsTable component="ItemTitle" source="item" element="div" />
+
+### ItemDescription
+
+<PropsTable component="ItemDescription" source="item" element="p" />
+
+### ItemActions
+
+<PropsTable component="ItemActions" source="item" element="div" />
+
+### ItemGroup
+
+<PropsTable component="ItemGroup" source="item" element="div" />
+
+### ItemHeader
+
+<PropsTable component="ItemHeader" source="item" element="div" />
+
+### ItemFooter
+
+<PropsTable component="ItemFooter" source="item" element="div" />
+
+## Accessibility
+
+- `ItemGroup` renders `role="list"`, which announces the count of items to screen
+  readers that suppress list semantics on unstyled lists.
+- `ItemSeparator` is a visual separator only; it carries no ARIA role.
+- Interactive `Item` elements (rendered as `<a>` or `<button>` via the `render`
+  prop) inherit standard keyboard navigation; ensure they have a visible focus
+  ring.
+- `ItemActions` buttons should carry `aria-label` when the icon alone is not
+  descriptive.

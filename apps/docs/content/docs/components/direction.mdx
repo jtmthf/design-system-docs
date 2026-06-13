@@ -1,0 +1,76 @@
+---
+title: Direction
+description: A context provider that signals reading direction to all Base UI components in a subtree.
+---
+
+<ComponentPreview name="direction-demo" />
+
+Wrap a subtree in `DirectionProvider` to apply `"ltr"` or `"rtl"` reading
+direction to all Base UI primitives inside it without modifying the HTML `dir`
+attribute directly. Use `useDirection` in child components when you need to
+read the current direction value.
+
+Re-exported from `@base-ui/react/direction-provider`. Useful for applications
+supporting Arabic, Hebrew, or other right-to-left languages.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  DirectionProvider,
+  useDirection,
+} from "@workspace/ui/components/direction";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/direction
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import { DirectionProvider } from "@workspace/ui/components/direction";
+
+export function App() {
+  return (
+    <DirectionProvider direction="rtl">
+      <div dir="rtl">Right-to-left content goes here.</div>
+    </DirectionProvider>
+  );
+}
+```
+
+## Examples
+
+### RTL layout
+
+Wrap a form or component tree with `direction="rtl"` to mirror Base UI
+component internals (dropdowns, menus, popovers) for right-to-left scripts.
+
+<ComponentPreview name="direction-rtl" />
+
+## API reference
+
+### DirectionProvider
+
+<PropsTable component="DirectionProvider" source="direction" element={null} />
+
+## Accessibility
+
+- Set the HTML `dir` attribute on the wrapping element alongside
+  `DirectionProvider` so the browser also mirrors text rendering and
+  bidirectional algorithm (e.g. `<div dir="rtl">`).
+- Base UI components automatically invert logical properties (start/end, left/right)
+  when the direction is `"rtl"`.

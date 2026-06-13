@@ -1,0 +1,113 @@
+---
+title: Theming
+description: How design tokens, color, radius, and dark mode are wired with Tailwind v4.
+---
+
+The design system ships a single stylesheet, `@workspace/ui/globals.css`, that
+defines every design token. Import it once and your app inherits the full theme —
+this documentation site does exactly that, which is why it matches the components.
+
+```css
+@import "@workspace/ui/globals.css";
+```
+
+## How tokens are wired
+
+Tokens live in two layers. Raw values are CSS custom properties on `:root` (and
+`.dark`); Tailwind utilities are mapped to those variables through `@theme inline`:
+
+```css
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  /* ...one mapping per token */
+}
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+}
+```
+
+Because the mapping is indirect, utilities like `bg-background`, `text-foreground`,
+and `bg-primary` always resolve to the current raw value — so overriding a single
+`--*` variable retheme everything that uses it, in both light and dark mode.
+
+## Color
+
+The default palette is intentionally **neutral**: every color is `oklch` with zero
+chroma (pure grayscale), so the system reads as monochrome and stays legible on any
+brand background. The only chromatic token is `--destructive` (a red), reserved for
+irreversible actions.
+
+The core color tokens, each paired with a `*-foreground` for content placed on top:
+
+`background`, `foreground`, `card`, `popover`, `primary`, `secondary`, `muted`,
+`accent`, `destructive`, plus `border`, `input`, and `ring`. The `sidebar-*` group
+mirrors these for the [Sidebar](/docs/components/sidebar), and `chart-1` through
+`chart-5` provide a grayscale ramp for [Chart](/docs/components/chart).
+
+### Adding a brand color
+
+Override the raw variables after importing the stylesheet. Define both light and
+dark values so the token works in either mode:
+
+```css
+@import "@workspace/ui/globals.css";
+
+:root {
+  --primary: oklch(0.55 0.2 264); /* brand blue */
+  --primary-foreground: oklch(0.985 0 0);
+}
+
+.dark {
+  --primary: oklch(0.62 0.19 264);
+  --primary-foreground: oklch(0.205 0 0);
+}
+```
+
+Every `bg-primary`, `text-primary`, and `ring-primary` — and the default
+[Button](/docs/components/button) — now uses your color, with no component changes.
+
+## Radius
+
+A single `--radius` drives a derived scale, so changing one value rescales the
+roundness of every component proportionally:
+
+```css
+:root {
+  --radius: 0.625rem; /* default */
+}
+```
+
+`--radius-sm`, `--radius-md`, and `--radius-lg` are computed from it (`0.6×`, `0.8×`,
+`1×`), with `--radius-xl` through `--radius-4xl` scaling further up. Set `--radius`
+to `0` for square corners or `1rem` for a softer look.
+
+## Dark mode
+
+Dark mode is class-based. The `.dark` variant is registered in the stylesheet:
+
+```css
+@custom-variant dark (&:is(.dark *));
+```
+
+Toggle it by putting the `dark` class on `<html>` (or any ancestor). With Next.js,
+`next-themes` manages this for you:
+
+```tsx
+import { ThemeProvider } from "next-themes";
+
+export function Providers({ children }: { children: React.ReactNode }) {
+  return (
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      {children}
+    </ThemeProvider>
+  );
+}
+```
+
+The `.dark` block in `globals.css` redefines the same raw tokens with dark values,
+so components need no dark-specific markup — they read the active token either way.

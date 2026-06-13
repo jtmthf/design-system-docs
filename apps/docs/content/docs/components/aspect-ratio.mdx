@@ -1,0 +1,73 @@
+---
+title: Aspect Ratio
+description: A container that constrains its content to a specific width-to-height ratio.
+---
+
+<ComponentPreview name="aspect-ratio-demo" />
+
+Use `AspectRatio` to keep images, videos, maps, or any embed proportional regardless of the available width. The `ratio` prop is required and accepts any positive number such as `16 / 9`, `4 / 3`, or `1`. Internally, the ratio is applied via a CSS custom property `--ratio` and `aspect-(--ratio)`.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import { AspectRatio } from "@workspace/ui/components/aspect-ratio";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/aspect-ratio
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import { AspectRatio } from "@workspace/ui/components/aspect-ratio";
+
+export function Example() {
+  return (
+    <AspectRatio ratio={16 / 9}>
+      <img
+        src="/hero.jpg"
+        alt="Hero"
+        className="h-full w-full rounded-md object-cover"
+      />
+    </AspectRatio>
+  );
+}
+```
+
+## Examples
+
+### Square
+
+A 1:1 ratio is ideal for profile pictures, thumbnails, and avatar frames.
+
+<ComponentPreview name="aspect-ratio-square" />
+
+### Classic 4:3
+
+The classic 4:3 ratio suits maps, legacy video, or photograph crops.
+
+<ComponentPreview name="aspect-ratio-classic" />
+
+## API reference
+
+### AspectRatio
+
+<PropsTable component="AspectRatio" source="aspect-ratio" element="div" />
+
+## Accessibility
+
+- `AspectRatio` is a purely visual container — it adds no ARIA semantics.
+- Always provide descriptive `alt` text on any `<img>` placed inside the container.

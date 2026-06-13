@@ -1,0 +1,120 @@
+---
+title: Toggle Group
+description: A container that groups related toggle items and manages their shared variant and size.
+---
+
+<ComponentPreview name="toggle-group-demo" />
+
+Groups related `ToggleGroupItem` buttons and manages shared `variant`, `size`,
+`spacing`, and `orientation`. Single-select is the default; pass `multiple` to
+allow multiple items to be pressed simultaneously. Built on Base UI's
+ToggleGroup primitive. Use `spacing={0}` with `variant="outline"` for a fused
+pill toolbar.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  ToggleGroup,
+  ToggleGroupItem,
+} from "@workspace/ui/components/toggle-group";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/toggle-group
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import { AlignLeftIcon, AlignCenterIcon, AlignRightIcon } from "lucide-react";
+import {
+  ToggleGroup,
+  ToggleGroupItem,
+} from "@workspace/ui/components/toggle-group";
+
+export function Example() {
+  return (
+    <ToggleGroup defaultValue={["left"]}>
+      <ToggleGroupItem value="left" aria-label="Align left">
+        <AlignLeftIcon />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="center" aria-label="Align center">
+        <AlignCenterIcon />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="right" aria-label="Align right">
+        <AlignRightIcon />
+      </ToggleGroupItem>
+    </ToggleGroup>
+  );
+}
+```
+
+## Examples
+
+### Multi-select
+
+Pass `multiple` to allow several items to be active at once — useful for
+independent formatting options like bold, italic, and underline.
+
+<ComponentPreview name="toggle-group-multi-select" />
+
+### Joined
+
+`spacing={0}` with `variant="outline"` collapses gaps and merges borders into
+a seamless pill toolbar.
+
+<ComponentPreview name="toggle-group-joined" />
+
+### Vertical
+
+`orientation="vertical"` stacks items for sidebar toolbars or compact option
+panels.
+
+<ComponentPreview name="toggle-group-vertical" />
+
+## Guidelines
+
+**Do**
+
+- Always provide `aria-label` on icon-only items.
+- Use `defaultValue` for uncontrolled usage and `value` + `onValueChange` for
+  controlled usage.
+- Propagate `variant` and `size` at the group level for visual consistency.
+
+**Don't**
+
+- Mix `spacing={0}` with the default (non-outline) variant — merged border
+  styling only works correctly with `variant="outline"`.
+- Use a single-item toggle group — use a standalone `Toggle` instead.
+- Place more than five or six items in one group.
+
+## API reference
+
+### ToggleGroup
+
+<PropsTable component="ToggleGroup" source="toggle-group" element="div" />
+
+### ToggleGroupItem
+
+<PropsTable component="ToggleGroupItem" source="toggle-group" element="button" />
+
+## Accessibility
+
+- Each `ToggleGroupItem` exposes `aria-pressed` to announce its state to screen
+  readers.
+- Provide an `aria-label` on every icon-only item; the icon alone is not an
+  accessible name.
+- Arrow keys move focus between items within the group.

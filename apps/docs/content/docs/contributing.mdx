@@ -1,0 +1,65 @@
+---
+title: Contributing
+description: How to develop, test, and document components in this monorepo.
+---
+
+The design system lives in a Turborepo + pnpm workspace. Components are authored
+in `packages/ui`; this documentation site is `apps/docs`.
+
+## Setup
+
+```bash
+pnpm install
+pnpm dev
+```
+
+`pnpm dev` runs every workspace's dev task through Turbo. The docs site serves on
+[localhost:3001](http://localhost:3001).
+
+## Component conventions
+
+- Each component lives in `packages/ui/src/components/<name>.tsx` and is exported
+  as a named export.
+- Compose Base UI primitives; keep the wrapper focused on styling and sensible
+  defaults.
+- Use `cva` for variants and `cn()` (from `#lib/utils`) for class merging.
+- Document the public surface with TSDoc and mark exported symbols `@public` so
+  they appear in the API report.
+- Add a `<name>.stories.tsx` covering the meaningful states — the stories are the
+  source of truth for the docs examples.
+
+## Storybook
+
+```bash
+pnpm --filter @workspace/ui storybook
+```
+
+## Checks
+
+Run these from the repo root; Turbo fans them out across the workspace:
+
+```bash
+pnpm typecheck
+pnpm lint
+pnpm format
+```
+
+## API report
+
+The public API is tracked with API Extractor. Regenerate the report after
+changing a component's exported types:
+
+```bash
+pnpm api-report
+```
+
+This builds `packages/ui` and updates `packages/ui/etc/ui.api.md`. Commit the
+updated report alongside your change.
+
+## Documenting a component
+
+See [`apps/docs/DOCS_AUTHORING.md`](https://github.com/) for the page template.
+In short: add example files under `apps/docs/components/examples/`, then write
+`apps/docs/content/docs/components/<name>.mdx` with a hero `<ComponentPreview>`,
+an Installation block, a Twoslash `Usage` example, more `<ComponentPreview>`
+examples, a `<PropsTable>` per exported part, and accessibility notes.

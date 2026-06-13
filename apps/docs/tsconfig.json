@@ -1,0 +1,39 @@
+{
+  "extends": "@workspace/typescript-config/nextjs.json",
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/.source": ["./.source/server.ts"],
+      "@/.source/*": ["./.source/*"],
+      "@/*": [
+        "./*",
+        "./.source/*",
+        "./app/*",
+        "./lib/*",
+        "./components/*"
+      ],
+      "collections/*": [
+        "./.source/*"
+      ]
+    }
+  },
+  "include": [
+    "next.config.ts",
+    "source.config.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.mts",
+    "content/**/*.mdx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
+    ".source/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

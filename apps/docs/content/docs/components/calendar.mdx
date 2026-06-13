@@ -1,0 +1,76 @@
+---
+title: Calendar
+description: A fully-styled date picker calendar built on react-day-picker.
+---
+
+<ComponentPreview name="calendar-demo" />
+
+Use a calendar for selecting single dates, date ranges, or multiple dates. The `mode` prop switches between `"single"`, `"range"`, and `"multiple"` selection. The `captionLayout` prop switches between a plain label and dropdown navigation for month and year. All `DayPicker` props are forwarded, enabling features like `showWeekNumber`, `disabled`, and `selected`. Built on top of `react-day-picker`.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import { Calendar } from "@workspace/ui/components/calendar";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/calendar
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import * as React from "react";
+import { Calendar } from "@workspace/ui/components/calendar";
+
+export function Example() {
+  const [date, setDate] = React.useState<Date | undefined>();
+
+  return (
+    <Calendar
+      mode="single"
+      selected={date}
+      onSelect={setDate}
+    />
+  );
+}
+```
+
+## Examples
+
+### Range selection
+
+Click a start date then an end date to highlight a span of days.
+
+<ComponentPreview name="calendar-range" />
+
+### Dropdown navigation
+
+`captionLayout="dropdown"` gives users quick access to any month and year. Bound the selectable range with `startMonth` and `endMonth`.
+
+<ComponentPreview name="calendar-dropdown" />
+
+## API reference
+
+### Calendar
+
+<PropsTable component="Calendar" source="calendar" element="div" />
+
+## Accessibility
+
+- Day buttons are real `<button>` elements, so they are focusable and operable with <kbd>Enter</kbd> or <kbd>Space</kbd>.
+- Arrow keys move focus between days; <kbd>Page Up</kbd> / <kbd>Page Down</kbd> move by month; <kbd>Home</kbd> / <kbd>End</kbd> move to the first or last day of the week.
+- The selected date and today's date are visually distinguished and also communicated via `aria-selected` and `aria-current="date"` respectively.
+- When using dropdown navigation, each `<select>` element receives a visible label from `react-day-picker`.

@@ -1,0 +1,86 @@
+---
+title: Spinner
+description: An animated loading indicator that communicates an operation is in progress.
+---
+
+<ComponentPreview name="spinner-demo" />
+
+Renders a `Loader2` icon with `role="status"` and `aria-label="Loading"` so
+screen readers announce the loading state automatically. Use `className` to
+control size and color. For measurable progress, use `Progress` instead.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import { Spinner } from "@workspace/ui/components/spinner";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/spinner
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import { Spinner } from "@workspace/ui/components/spinner";
+
+export function Example() {
+  return <Spinner className="size-6 text-primary" />;
+}
+```
+
+## Examples
+
+### Large
+
+A 32 px spinner for full-page or section-level loading states.
+
+<ComponentPreview name="spinner-large" />
+
+### Inside button
+
+Paired with a button label to signal an in-progress action.
+
+<ComponentPreview name="spinner-inside-button" />
+
+## Guidelines
+
+**Do**
+
+- Size the spinner to match its context — icon size for inline use, larger for
+  full-section loaders.
+- Keep the spinner visible for the full duration of the async operation.
+- Use `text-{color}` classes to match the surrounding text color when embedding
+  inside buttons or on colored surfaces.
+
+**Don't**
+
+- Use a spinner for operations that finish in under 300 ms — a brief flash is
+  more jarring than nothing.
+- Use a spinner when progress can be measured — reach for `Progress` instead.
+- Show multiple spinners simultaneously on the same view.
+
+## API reference
+
+### Spinner
+
+<PropsTable component="Spinner" source="spinner" element="svg" />
+
+## Accessibility
+
+- Renders with `role="status"` so assistive technology announces the loading
+  state without requiring focus.
+- The default `aria-label="Loading"` provides an accessible name; override it
+  via `aria-label` when a more specific description is available.

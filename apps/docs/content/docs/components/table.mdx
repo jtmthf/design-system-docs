@@ -1,0 +1,141 @@
+---
+title: Table
+description: A horizontally scrollable data table composed of semantic HTML elements.
+---
+
+<ComponentPreview name="table-demo" />
+
+Wraps a native `<table>` in an overflow container and composes it from
+`TableHeader`, `TableBody`, `TableFooter`, `TableRow`, `TableHead`,
+`TableCell`, and `TableCaption`. Use this for data with a clear column-and-row
+structure. For interactive sorting or pagination, add your own logic on top.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@workspace/ui/components/table";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/table
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@workspace/ui/components/table";
+
+export function Example() {
+  return (
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Name</TableHead>
+          <TableHead>Amount</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>Alice</TableCell>
+          <TableCell>$50.00</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  );
+}
+```
+
+## Examples
+
+### With footer
+
+`TableFooter` holds summary or totals rows and gets a muted background.
+
+<ComponentPreview name="table-with-footer" />
+
+## Guidelines
+
+**Do**
+
+- Give every table a visible caption or an `aria-label` on the wrapping element.
+- Keep column headers short and descriptive.
+- Right-align monetary and numeric columns so digits line up visually.
+
+**Don't**
+
+- Use a table for layout or for content that has no meaningful column structure.
+- Omit `TableHeader` — without it, screen readers cannot announce column
+  context.
+- Put interactive controls inside cells without ensuring each has its own
+  accessible label.
+
+## API reference
+
+### Table
+
+<PropsTable component="Table" source="table" element="table" />
+
+### TableHeader
+
+<PropsTable component="TableHeader" source="table" element="thead" />
+
+### TableBody
+
+<PropsTable component="TableBody" source="table" element="tbody" />
+
+### TableFooter
+
+<PropsTable component="TableFooter" source="table" element="tfoot" />
+
+### TableRow
+
+<PropsTable component="TableRow" source="table" element="tr" />
+
+### TableHead
+
+<PropsTable component="TableHead" source="table" element="th" />
+
+### TableCell
+
+<PropsTable component="TableCell" source="table" element="td" />
+
+### TableCaption
+
+<PropsTable component="TableCaption" source="table" element="caption" />
+
+## Accessibility
+
+- Uses semantic HTML elements (`<table>`, `<thead>`, `<tbody>`, `<th>`, `<td>`)
+  so assistive technology can interpret the column-and-row structure.
+- Always include a `<TableCaption>` or `aria-label` to give the table an
+  accessible name.
+- Column headers rendered via `<TableHead>` (`<th>`) are automatically
+  associated with their data cells.

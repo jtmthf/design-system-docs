@@ -1,0 +1,131 @@
+---
+title: Command
+description: A keyboard-first command palette for searching and launching actions.
+---
+
+<ComponentPreview name="command-demo" />
+
+Use a command palette to give users a single, discoverable entry point to
+navigate or trigger actions without leaving the keyboard. Embed it inline or
+wrap it in `CommandDialog` for a spotlight-style modal experience.
+
+Built on the `cmdk` primitive. Compose `Command` with `CommandInput`,
+`CommandList`, `CommandGroup`, `CommandItem`, and optionally `CommandSeparator`
+and `CommandShortcut`. For a modal variant, use `CommandDialog` which composes
+the `Dialog` component internally.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  Command,
+  CommandDialog,
+  CommandInput,
+  CommandList,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+  CommandShortcut,
+  CommandSeparator,
+} from "@workspace/ui/components/command";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/command
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@workspace/ui/components/command";
+
+export function Example() {
+  return (
+    <Command>
+      <CommandInput placeholder="Search commands..." />
+      <CommandList>
+        <CommandEmpty>No results found.</CommandEmpty>
+        <CommandGroup heading="Actions">
+          <CommandItem>Open file</CommandItem>
+          <CommandItem>New project</CommandItem>
+        </CommandGroup>
+      </CommandList>
+    </Command>
+  );
+}
+```
+
+## Examples
+
+### Dialog
+
+Wrap the palette in `CommandDialog` to display it as a centered modal. Use a
+trigger button with a keyboard shortcut hint to open it.
+
+<ComponentPreview name="command-dialog" />
+
+## API reference
+
+### Command
+
+<PropsTable component="Command" source="command" element="div" />
+
+### CommandDialog
+
+<PropsTable component="CommandDialog" source="command" element="div" />
+
+### CommandInput
+
+<PropsTable component="CommandInput" source="command" element="input" />
+
+### CommandList
+
+<PropsTable component="CommandList" source="command" element="div" />
+
+### CommandEmpty
+
+<PropsTable component="CommandEmpty" source="command" element="div" />
+
+### CommandGroup
+
+<PropsTable component="CommandGroup" source="command" element="div" />
+
+### CommandItem
+
+<PropsTable component="CommandItem" source="command" element="div" />
+
+### CommandShortcut
+
+<PropsTable component="CommandShortcut" source="command" element="span" />
+
+### CommandSeparator
+
+<PropsTable component="CommandSeparator" source="command" element="div" />
+
+## Accessibility
+
+- <kbd>ArrowDown</kbd> / <kbd>ArrowUp</kbd> move between items; <kbd>Enter</kbd>
+  activates the focused item; <kbd>Escape</kbd> closes a `CommandDialog`.
+- Built-in filtering scores items against the search query; pass a custom
+  `filter` function or `shouldFilter={false}` for pre-filtered data.
+- `CommandDialog` composes an accessible modal with a visually-hidden title and
+  description that screen readers announce on open.

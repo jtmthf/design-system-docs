@@ -1,0 +1,135 @@
+---
+title: Popover
+description: A floating card anchored to a trigger element for non-blocking supplementary content.
+---
+
+<ComponentPreview name="popover-demo" />
+
+Use a popover for secondary content tied to a specific trigger — settings panels,
+dimension controls, or quick previews — when a full dialog would be too disruptive.
+It does not disable the rest of the page.
+
+Built on Base UI's `Popover` primitive. Compose `PopoverTrigger` with `PopoverContent`,
+and optionally include `PopoverHeader`, `PopoverTitle`, and `PopoverDescription` for
+structured, accessible content.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  Popover,
+  PopoverContent,
+  PopoverDescription,
+  PopoverHeader,
+  PopoverTitle,
+  PopoverTrigger,
+} from "@workspace/ui/components/popover";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/popover
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import { Button } from "@workspace/ui/components/button";
+import {
+  Popover,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTitle,
+  PopoverDescription,
+  PopoverTrigger,
+} from "@workspace/ui/components/popover";
+
+export function Example() {
+  return (
+    <Popover>
+      <PopoverTrigger render={<Button variant="outline" />}>Open</PopoverTrigger>
+      <PopoverContent>
+        <PopoverHeader>
+          <PopoverTitle>Settings</PopoverTitle>
+          <PopoverDescription>Adjust your preferences.</PopoverDescription>
+        </PopoverHeader>
+      </PopoverContent>
+    </Popover>
+  );
+}
+```
+
+## Examples
+
+### With form
+
+Embed a small form inside the popover for inline editing without navigating away.
+
+<ComponentPreview name="popover-with-form" />
+
+### Open by default
+
+Pass `defaultOpen` with `defaultTriggerId` to open on mount; Base UI uses the ID to
+position the popup correctly when no click event is available.
+
+<ComponentPreview name="popover-open-default" />
+
+## Guidelines
+
+**Do**
+
+- Use a popover for secondary, non-blocking content tied to a trigger.
+- Give it a title and description so the popup is self-explanatory.
+- Reserve `modal` for cases that genuinely require focus trapping.
+
+**Don't**
+
+- Use a popover for critical, must-acknowledge decisions — use a `Dialog` instead.
+- Pack long-form or scrolling content into a popover.
+
+## API reference
+
+### Popover
+
+<PropsTable component="Popover" source="popover" element={null} />
+
+### PopoverTrigger
+
+<PropsTable component="PopoverTrigger" source="popover" element="button" />
+
+### PopoverContent
+
+<PropsTable component="PopoverContent" source="popover" element="div" />
+
+### PopoverHeader
+
+<PropsTable component="PopoverHeader" source="popover" element="div" />
+
+### PopoverTitle
+
+<PropsTable component="PopoverTitle" source="popover" element="h2" />
+
+### PopoverDescription
+
+<PropsTable component="PopoverDescription" source="popover" element="p" />
+
+## Accessibility
+
+- The floating panel receives `role="dialog"` and is linked to the trigger via
+  `aria-controls`.
+- `PopoverTitle` and `PopoverDescription` are wired to the popup via ARIA for screen
+  readers automatically.
+- <kbd>Escape</kbd> closes the popover and returns focus to the trigger.
+- Focus is managed by Base UI; the trigger keeps `aria-expanded` in sync with the
+  open state.

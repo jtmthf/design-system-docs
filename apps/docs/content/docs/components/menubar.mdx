@@ -1,0 +1,165 @@
+---
+title: Menubar
+description: A horizontal bar of menus for application-level commands, analogous to a native app menu bar.
+---
+
+<ComponentPreview name="menubar-demo" />
+
+Use `Menubar` as a persistent top-level navigation control for editor-style
+applications where commands are grouped into named menus (File, Edit, View, etc.).
+Each menu opens on click and supports keyboard navigation between menus.
+
+Built on Base UI's `Menubar` primitive. Wraps one or more `MenubarMenu` components,
+each composed of a `MenubarTrigger` and `MenubarContent`. `MenubarMenu` delegates
+to `DropdownMenu` internally.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  Menubar,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarContent,
+  MenubarGroup,
+  MenubarItem,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarLabel,
+  MenubarCheckboxItem,
+  MenubarRadioGroup,
+  MenubarRadioItem,
+  MenubarSub,
+  MenubarSubTrigger,
+  MenubarSubContent,
+} from "@workspace/ui/components/menubar";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/menubar
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarTrigger,
+} from "@workspace/ui/components/menubar";
+
+export function Example() {
+  return (
+    <Menubar>
+      <MenubarMenu>
+        <MenubarTrigger>File</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem>New File</MenubarItem>
+          <MenubarSeparator />
+          <MenubarItem>Exit</MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+    </Menubar>
+  );
+}
+```
+
+## Examples
+
+### Checkbox and radio items
+
+`MenubarCheckboxItem` toggles a boolean value. `MenubarRadioGroup` with
+`MenubarRadioItem` implements mutually exclusive selection.
+
+<ComponentPreview name="menubar-checkbox-radio" />
+
+### Submenu
+
+`MenubarSub` with `MenubarSubTrigger` and `MenubarSubContent` nests a panel
+inside a menu entry.
+
+<ComponentPreview name="menubar-submenu" />
+
+## API reference
+
+### Menubar
+
+<PropsTable component="Menubar" source="menubar" element="div" />
+
+### MenubarMenu
+
+<PropsTable component="MenubarMenu" source="menubar" element={null} />
+
+### MenubarTrigger
+
+<PropsTable component="MenubarTrigger" source="menubar" element="button" />
+
+### MenubarContent
+
+<PropsTable component="MenubarContent" source="menubar" element="div" />
+
+### MenubarItem
+
+<PropsTable component="MenubarItem" source="menubar" element="div" />
+
+### MenubarCheckboxItem
+
+<PropsTable component="MenubarCheckboxItem" source="menubar" element="div" />
+
+### MenubarRadioGroup
+
+<PropsTable component="MenubarRadioGroup" source="menubar" element="div" />
+
+### MenubarRadioItem
+
+<PropsTable component="MenubarRadioItem" source="menubar" element="div" />
+
+### MenubarLabel
+
+<PropsTable component="MenubarLabel" source="menubar" element="div" />
+
+### MenubarSeparator
+
+<PropsTable component="MenubarSeparator" source="menubar" element="div" />
+
+### MenubarShortcut
+
+<PropsTable component="MenubarShortcut" source="menubar" element="span" />
+
+### MenubarSub
+
+<PropsTable component="MenubarSub" source="menubar" element={null} />
+
+### MenubarSubTrigger
+
+<PropsTable component="MenubarSubTrigger" source="menubar" element="div" />
+
+### MenubarSubContent
+
+<PropsTable component="MenubarSubContent" source="menubar" element="div" />
+
+## Accessibility
+
+- Follows the [ARIA menubar pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/).
+- <kbd>←</kbd> / <kbd>→</kbd> move focus between top-level triggers;
+  <kbd>↑</kbd> / <kbd>↓</kbd> move within an open menu.
+- <kbd>Enter</kbd> or <kbd>Space</kbd> opens the focused trigger's menu and
+  activates a focused item.
+- <kbd>Esc</kbd> closes the open menu and returns focus to the trigger.
+- `MenubarCheckboxItem` exposes `aria-checked`; `MenubarRadioItem` exposes
+  `role="menuitemradio"` and `aria-checked`.

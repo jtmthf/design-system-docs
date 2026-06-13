@@ -1,0 +1,101 @@
+---
+title: Slider
+description: A draggable thumb on a track for selecting a numeric value or range within a bounded interval.
+---
+
+<ComponentPreview name="slider-demo" />
+
+Use a slider for continuous values where approximate selection is acceptable —
+volume, zoom level, opacity, or price range filters. For discrete values or when
+the user needs exact input, prefer a number `Input` instead.
+
+Built on Base UI's `Slider` primitive. Pass a single-element array to
+`defaultValue` for one thumb, or two elements for a range. Thumb count is inferred
+from the array length automatically.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import { Slider } from "@workspace/ui/components/slider";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/slider
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import { Slider } from "@workspace/ui/components/slider";
+
+export function Example() {
+  return <Slider defaultValue={[25]} min={0} max={100} className="w-64" />;
+}
+```
+
+## Examples
+
+### Range
+
+Pass two values in the array to render two thumbs defining a lower and upper
+bound — useful for price or date range filters.
+
+<ComponentPreview name="slider-range" />
+
+### Stepped
+
+Set `step` to snap the thumb to discrete increments — useful when only certain
+values are meaningful, such as percentages in multiples of 10.
+
+<ComponentPreview name="slider-stepped" />
+
+### Disabled
+
+Non-interactive state for read-only contexts where the value is displayed but
+cannot be changed.
+
+<ComponentPreview name="slider-disabled" />
+
+## Guidelines
+
+**Do**
+
+- Always label the slider with a visible label or `aria-label` describing what is
+  being controlled.
+- Show the current value numerically when precision matters.
+- Use `step` to limit choices to valid values when the domain is discrete.
+
+**Don't**
+
+- Use a slider when the user needs to type an exact value — prefer a number input.
+- Omit min/max labels for range sliders; users need to understand the scale.
+- Place a vertical slider inside a horizontally scrolling container.
+
+## API reference
+
+### Slider
+
+<PropsTable component="Slider" source="slider" element="div" />
+
+## Accessibility
+
+- Each thumb renders with `role="slider"` and exposes `aria-valuenow`,
+  `aria-valuemin`, `aria-valuemax`, and `aria-orientation`.
+- <kbd>ArrowLeft</kbd> / <kbd>ArrowRight</kbd> (horizontal) or <kbd>ArrowUp</kbd>
+  / <kbd>ArrowDown</kbd> (vertical) move the focused thumb by one step.
+- <kbd>Home</kbd> and <kbd>End</kbd> jump the focused thumb to the minimum and
+  maximum values.
+- Provide an `aria-label` or a visible label associated via `aria-labelledby` so
+  screen readers can announce what the slider controls.

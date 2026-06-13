@@ -1,0 +1,39 @@
+---
+title: API Reference
+description: How the design system's public API is documented and tracked.
+---
+
+Every component page carries its own API reference, generated from the real
+component source — so the documented types never drift from the implementation.
+
+## Per-component props
+
+Each component page has an **API reference** section with a `PropsTable` for every
+exported part. The tables are produced from the TypeScript types in
+`packages/ui/src/components`, with the underlying HTML element's attributes
+stripped out so only the props this design system adds are shown.
+
+## API report
+
+The complete public surface — every exported component, hook, and type marked
+`@public` — is tracked with [API Extractor](https://api-extractor.com) in
+`packages/ui/etc/ui.api.md`. Regenerate it with:
+
+```bash
+pnpm api-report
+```
+
+The report is committed, so any change to the public API shows up as a reviewable
+diff.
+
+## Utilities
+
+- `cn(...inputs)` — merges class names with `clsx` + `tailwind-merge`. Imported
+  in components as `#lib/utils`.
+- `buttonVariants` — the `cva` config behind [Button](/docs/components/button);
+  reuse it to style a link or anchor as a button.
+
+## Hooks
+
+- `useIsMobile()` — returns whether the viewport is below the mobile breakpoint;
+  backs the responsive behavior of [Sidebar](/docs/components/sidebar).

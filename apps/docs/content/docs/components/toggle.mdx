@@ -1,0 +1,101 @@
+---
+title: Toggle
+description: A two-state button that can be pressed (on) or unpressed (off).
+---
+
+<ComponentPreview name="toggle-demo" />
+
+A two-state button for activating or deactivating a feature. Common uses
+include text formatting, view modes, and toolbar actions. Built on Base UI's
+Toggle primitive. Pressed state is reflected via `aria-pressed` and
+`data-[state=on]`. Accepts `variant` (`"default"` | `"outline"`) and `size`
+(`"default"` | `"sm"` | `"lg"`).
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import { Toggle } from "@workspace/ui/components/toggle";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/toggle
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import { BoldIcon } from "lucide-react";
+import { Toggle } from "@workspace/ui/components/toggle";
+
+export function Example() {
+  return (
+    <Toggle aria-label="Bold">
+      <BoldIcon />
+    </Toggle>
+  );
+}
+```
+
+## Examples
+
+### Variants
+
+`"default"` uses a transparent background; `"outline"` adds a visible border
+for use on filled backgrounds.
+
+<ComponentPreview name="toggle-variants" />
+
+### Sizes
+
+Three sizes — `"sm"`, `"default"`, and `"lg"` — match different layout
+densities.
+
+<ComponentPreview name="toggle-sizes" />
+
+### Disabled
+
+Non-interactive state for formatting actions unavailable in the current context.
+
+<ComponentPreview name="toggle-disabled" />
+
+## Guidelines
+
+**Do**
+
+- Always provide an `aria-label` when the toggle contains only an icon.
+- Use a toggle for immediate, reversible actions that do not require a submit
+  step.
+- Group related toggles inside a `ToggleGroup` to communicate mutual
+  exclusivity or multi-select intent.
+
+**Don't**
+
+- Use a toggle as a navigation element — use a `Tab` or link instead.
+- Rely on the pressed background alone to signal state — pair with an icon or
+  label change when possible.
+- Use the `lg` size in dense toolbars; prefer `sm` or `default`.
+
+## API reference
+
+### Toggle
+
+<PropsTable component="Toggle" source="toggle" element="button" />
+
+## Accessibility
+
+- Renders with `role="button"` and `aria-pressed` to convey pressed/unpressed
+  state to screen readers.
+- Operable with <kbd>Enter</kbd> and <kbd>Space</kbd>.
+- Always provide an `aria-label` for icon-only toggles.

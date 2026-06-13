@@ -1,0 +1,78 @@
+---
+title: Scroll Area
+description: A scrollable container with a custom-styled scrollbar that is consistent across browsers.
+---
+
+<ComponentPreview name="scroll-area-demo" />
+
+Use a scroll area any time you need to constrain overflowing content inside a
+fixed-size viewport while keeping the scrollbar styled and cross-browser
+consistent. A custom `ScrollBar` is appended automatically; add a second one
+with `orientation="horizontal"` when both axes scroll.
+
+Built on Base UI's `ScrollArea` primitive. The viewport receives focus-visible
+ring styling so keyboard users can scroll without a pointer device.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import { ScrollArea, ScrollBar } from "@workspace/ui/components/scroll-area";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/scroll-area
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import { ScrollArea } from "@workspace/ui/components/scroll-area";
+
+export function Example() {
+  return (
+    <ScrollArea className="h-48 w-64 rounded-md border">
+      <div className="p-4">
+        <p>Scrollable content here.</p>
+      </div>
+    </ScrollArea>
+  );
+}
+```
+
+## Examples
+
+### Horizontal scrolling
+
+Add a `ScrollBar` with `orientation="horizontal"` to enable horizontal overflow.
+
+<ComponentPreview name="scroll-area-horizontal" />
+
+## API reference
+
+### ScrollArea
+
+<PropsTable component="ScrollArea" source="scroll-area" element="div" />
+
+### ScrollBar
+
+<PropsTable component="ScrollBar" source="scroll-area" element="div" />
+
+## Accessibility
+
+- The viewport is focusable and can be scrolled with arrow keys after receiving
+  focus via <kbd>Tab</kbd>.
+- A focus-visible ring appears on the viewport when navigating by keyboard.
+- The scroll area is purely presentational for screen readers; ensure the
+  scrollable content itself is semantically correct.

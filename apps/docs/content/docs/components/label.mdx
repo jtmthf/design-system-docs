@@ -1,0 +1,80 @@
+---
+title: Label
+description: A styled form label that associates caption text with a form control.
+---
+
+<ComponentPreview name="label-demo" />
+
+Use `Label` to associate visible text with an input, select, checkbox, or other
+form control. Clicking the label moves focus to the control and increases the
+interactive target area.
+
+Renders a `<label>` element. Automatically dims and disables pointer events when
+its peer input is disabled or when a parent group sets `data-disabled="true"`.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import { Label } from "@workspace/ui/components/label";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/label
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import { Label } from "@workspace/ui/components/label";
+
+export function Example() {
+  return (
+    <div className="grid gap-2">
+      <Label htmlFor="email">Email address</Label>
+      <input id="email" type="email" placeholder="ada@example.com" />
+    </div>
+  );
+}
+```
+
+## Examples
+
+### With checkbox
+
+Wrap a checkbox and its label text together so clicking the text toggles the
+checkbox.
+
+<ComponentPreview name="label-with-checkbox" />
+
+### Disabled peer
+
+When the associated input is disabled, the label automatically reduces opacity
+and disables pointer events via the `peer-disabled` Tailwind variant.
+
+<ComponentPreview name="label-disabled" />
+
+## API reference
+
+<PropsTable component="Label" source="label" element="label" />
+
+## Accessibility
+
+- Use `htmlFor` pointing to the control's `id`, or wrap the control as a child,
+  to create a programmatic association that assistive technology can follow.
+- The label is announced as part of the control's accessible name; keep label
+  text short and descriptive.
+- For required fields, add a visible indicator inside the label (e.g., an
+  asterisk) and explain the convention once on the page rather than relying on
+  `aria-required` alone.

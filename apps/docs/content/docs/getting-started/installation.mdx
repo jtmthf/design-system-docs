@@ -1,0 +1,61 @@
+---
+title: Installation
+description: Add the design system to a workspace app or an external project.
+---
+
+There are two ways to consume the design system, depending on where your app
+lives.
+
+## Inside this monorepo
+
+Apps in the workspace depend on the package directly — no publishing or install
+step. Add it to your app's `package.json`:
+
+```json
+{
+  "dependencies": {
+    "@workspace/ui": "workspace:*"
+  }
+}
+```
+
+Import the shared styles once in your root CSS, then import components by subpath:
+
+```css
+@import "@workspace/ui/globals.css";
+```
+
+```tsx
+import { Button } from "@workspace/ui/components/button";
+```
+
+If your app is built with Next.js, transpile the package:
+
+```ts
+// next.config.ts
+const nextConfig = {
+  transpilePackages: ["@workspace/ui"],
+};
+```
+
+## In an external project
+
+Outside the monorepo, pull individual components into your codebase from the
+registry with the shadcn CLI. This copies the source into your project so you
+own and can edit it:
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/button
+```
+
+Requirements for either path:
+
+- Node.js 20 or newer
+- Tailwind CSS v4
+- React 19
+
+Make sure Tailwind scans the component sources so their classes are generated:
+
+```css
+@source "../../node_modules/@workspace/ui/src/**/*.tsx";
+```

@@ -1,0 +1,143 @@
+---
+title: Dialog
+description: A modal window that interrupts the user for critical decisions or focused forms.
+---
+
+<ComponentPreview name="dialog-demo" />
+
+Use a dialog for actions that require the user's full attention before
+proceeding — confirmations, destructive operations, or forms that cannot be
+completed inline.
+
+Built on Base UI's `Dialog.Root` primitive. Compose it with `DialogTrigger`,
+`DialogContent`, `DialogHeader`, `DialogFooter`, `DialogTitle`, and
+`DialogDescription`. State can be uncontrolled (`defaultOpen`) or controlled
+(`open` + `onOpenChange`).
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+  DialogDescription,
+} from "@workspace/ui/components/dialog";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/dialog
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@workspace/ui/components/dialog";
+import { Button } from "@workspace/ui/components/button";
+
+export function Example() {
+  return (
+    <Dialog>
+      <DialogTrigger render={<Button />}>Open</DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Confirm action</DialogTitle>
+          <DialogDescription>This cannot be undone.</DialogDescription>
+        </DialogHeader>
+        <DialogFooter showCloseButton>
+          <Button>Confirm</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
+```
+
+## Examples
+
+### With footer close button
+
+Pass `showCloseButton` to `DialogFooter` to render an outline "Close" button at
+the end of the footer row alongside other actions.
+
+<ComponentPreview name="dialog-with-close-button" />
+
+## Guidelines
+
+**Do**
+
+- Always include a `DialogTitle` — it is announced as the dialog's accessible
+  name when the dialog opens.
+- Keep dialogs focused on a single task. Multi-step flows should prefer a
+  full page or a wizard pattern.
+
+**Don't**
+
+- Nest dialogs inside other dialogs.
+- Use a dialog for non-blocking notifications; prefer a toast or inline message.
+
+## API reference
+
+### Dialog
+
+<PropsTable component="Dialog" source="dialog" element={null} />
+
+### DialogTrigger
+
+<PropsTable component="DialogTrigger" source="dialog" element="button" />
+
+### DialogContent
+
+<PropsTable component="DialogContent" source="dialog" element="div" />
+
+### DialogHeader
+
+<PropsTable component="DialogHeader" source="dialog" element="div" />
+
+### DialogFooter
+
+<PropsTable component="DialogFooter" source="dialog" element="div" />
+
+### DialogTitle
+
+<PropsTable component="DialogTitle" source="dialog" element="h2" />
+
+### DialogDescription
+
+<PropsTable component="DialogDescription" source="dialog" element="p" />
+
+### DialogClose
+
+<PropsTable component="DialogClose" source="dialog" element="button" />
+
+## Accessibility
+
+- The popup has `role="dialog"` and `aria-modal="true"`, trapping focus while open.
+- `DialogTitle` provides the accessible name; `DialogDescription` provides an
+  optional description — both are wired to the popup via `aria-labelledby` and
+  `aria-describedby`.
+- <kbd>Escape</kbd> closes the dialog and returns focus to the trigger.
+- Focus is moved into the dialog on open and restored to the trigger on close.

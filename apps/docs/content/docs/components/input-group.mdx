@@ -1,0 +1,127 @@
+---
+title: Input Group
+description: A composite input container that combines a text field with addons and buttons in a single bordered group.
+---
+
+<ComponentPreview name="input-group-demo" />
+
+Use `InputGroup` when a text field needs leading or trailing context — a search
+icon, a currency symbol, or an action button. The group renders a shared border
+and focus ring coordinated across all children.
+
+Compose `InputGroup` with `InputGroupAddon`, `InputGroupInput`, `InputGroupText`,
+`InputGroupButton`, and `InputGroupTextarea`. The `align` prop on `InputGroupAddon`
+controls where the addon sits: `"inline-start"` (default), `"inline-end"`,
+`"block-start"`, or `"block-end"`.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+  InputGroupText,
+  InputGroupTextarea,
+} from "@workspace/ui/components/input-group";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/input-group
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import { SearchIcon } from "lucide-react";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+  InputGroupText,
+} from "@workspace/ui/components/input-group";
+
+export function Example() {
+  return (
+    <InputGroup>
+      <InputGroupAddon>
+        <InputGroupText>
+          <SearchIcon />
+        </InputGroupText>
+      </InputGroupAddon>
+      <InputGroupInput placeholder="Search…" />
+    </InputGroup>
+  );
+}
+```
+
+## Examples
+
+### Text addon
+
+A leading at-sign decoration for a username field.
+
+<ComponentPreview name="input-group-text-addon" />
+
+### With action button
+
+A currency input with a trailing icon button. `InputGroupButton` defaults to
+`variant="ghost"` and `size="xs"` to fit within the group height.
+
+<ComponentPreview name="input-group-with-button" />
+
+### Invalid state
+
+When the inner `InputGroupInput` carries `aria-invalid`, the outer group applies
+a destructive ring to the entire control.
+
+<ComponentPreview name="input-group-invalid" />
+
+## API reference
+
+### InputGroup
+
+<PropsTable component="InputGroup" source="input-group" element="div" />
+
+### InputGroupAddon
+
+<PropsTable component="InputGroupAddon" source="input-group" element="div" />
+
+### InputGroupInput
+
+<PropsTable component="InputGroupInput" source="input-group" element="input" />
+
+### InputGroupTextarea
+
+<PropsTable component="InputGroupTextarea" source="input-group" element="textarea" />
+
+### InputGroupText
+
+<PropsTable component="InputGroupText" source="input-group" element="span" />
+
+### InputGroupButton
+
+<PropsTable component="InputGroupButton" source="input-group" element="button" />
+
+## Accessibility
+
+- The outer `InputGroup` renders `role="group"`, which tells assistive technology
+  that the contained controls are related.
+- The focus ring is lifted to the group level so only one ring is visible at a
+  time, matching native browser grouped-input behaviour.
+- Clicking an `InputGroupAddon` (outside any child button) programmatically
+  focuses the first `input` in the group to increase the target size.
+- Mark icon-only `InputGroupButton` instances with an `aria-label`.

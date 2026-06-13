@@ -1,0 +1,105 @@
+---
+title: Native Select
+description: A styled wrapper around the browser-native select element with a custom chevron icon.
+---
+
+<ComponentPreview name="native-select-demo" />
+
+Use `NativeSelect` when you want full platform-native behaviour on mobile and
+don't need the customisation a headless select provides. It renders the browser's
+own dropdown, so mobile devices present their native picker.
+
+Accepts `size` (`"default"` or `"sm"`) to adjust height and border radius. The
+native `size` attribute is excluded to prevent multi-row rendering. Compose with
+`NativeSelectOption` and `NativeSelectOptGroup` for options and groups.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  NativeSelect,
+  NativeSelectOption,
+  NativeSelectOptGroup,
+} from "@workspace/ui/components/native-select";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/native-select
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  NativeSelect,
+  NativeSelectOption,
+} from "@workspace/ui/components/native-select";
+
+export function Example() {
+  return (
+    <NativeSelect>
+      <NativeSelectOption value="apple">Apple</NativeSelectOption>
+      <NativeSelectOption value="banana">Banana</NativeSelectOption>
+    </NativeSelect>
+  );
+}
+```
+
+## Examples
+
+### Sizes
+
+Two sizes: `default` (2rem height) and `sm` (1.75rem, tighter radius) for dense
+form layouts.
+
+<ComponentPreview name="native-select-sizes" />
+
+### Option groups
+
+Use `NativeSelectOptGroup` to organise options into labelled categories.
+
+<ComponentPreview name="native-select-opt-groups" />
+
+### Disabled and invalid states
+
+`disabled` prevents interaction; `aria-invalid` switches the border and ring to
+destructive colors.
+
+<ComponentPreview name="native-select-states" />
+
+## API reference
+
+### NativeSelect
+
+<PropsTable component="NativeSelect" source="native-select" element="select" />
+
+### NativeSelectOption
+
+<PropsTable component="NativeSelectOption" source="native-select" element="option" />
+
+### NativeSelectOptGroup
+
+<PropsTable component="NativeSelectOptGroup" source="native-select" element="optgroup" />
+
+## Accessibility
+
+- Renders a native `<select>`, which receives full keyboard, form association,
+  and assistive technology support from the browser.
+- Always associate a `Label` via `htmlFor`/`id` so screen readers announce the
+  field name.
+- `aria-invalid` signals validation failure; pair it with a visible error message
+  linked via `aria-describedby`.
+- `NativeSelectOptGroup`'s `label` attribute is announced by screen readers as a
+  group header within the picker.

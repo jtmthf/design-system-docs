@@ -1,0 +1,74 @@
+---
+title: Skeleton
+description: An animated placeholder block used while content is loading.
+---
+
+<ComponentPreview name="skeleton-demo" />
+
+Drop a `Skeleton` in place of text, images, or any block element during
+data-fetching states. Use `className` to match the exact dimensions and border
+radius of the content being replaced so the layout shift on load is minimal.
+
+Renders a `div` with a pulse animation and the `muted` background token — no
+additional configuration required.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import { Skeleton } from "@workspace/ui/components/skeleton";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/skeleton
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import { Skeleton } from "@workspace/ui/components/skeleton";
+
+export function Example() {
+  return (
+    <div className="flex flex-col gap-2">
+      <Skeleton className="h-4 w-48" />
+      <Skeleton className="h-4 w-64" />
+    </div>
+  );
+}
+```
+
+## Examples
+
+### Card skeleton
+
+Compose multiple skeletons to mirror a realistic card layout — avatar, heading,
+and body lines — so the loading state feels intentional.
+
+<ComponentPreview name="skeleton-card" />
+
+## API reference
+
+### Skeleton
+
+<PropsTable component="Skeleton" source="skeleton" element="div" />
+
+## Accessibility
+
+- Skeleton elements are purely visual; they carry no semantic meaning for screen
+  readers.
+- Use `aria-busy="true"` on the containing region while content is loading and
+  remove it once the real content has replaced the skeletons.
+- Avoid replacing content that is already rendered with skeletons — only use them
+  for genuinely pending data.

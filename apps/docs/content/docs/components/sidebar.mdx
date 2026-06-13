@@ -1,0 +1,187 @@
+---
+title: Sidebar
+description: A full-featured application sidebar with collapse, keyboard shortcut, and mobile sheet support.
+---
+
+<ComponentPreview name="sidebar-demo" />
+
+Use the sidebar as the primary navigation shell in application layouts. Wrap the
+entire layout in `SidebarProvider`, place `Sidebar` and `SidebarInset` as direct
+children, then compose menu items inside with `SidebarMenu` and `SidebarMenuButton`.
+
+`SidebarProvider` manages open/close state, persists it in a cookie, and registers
+<kbd>Cmd</kbd>+<kbd>B</kbd> / <kbd>Ctrl</kbd>+<kbd>B</kbd> as a toggle shortcut.
+On mobile the sidebar renders as a `Sheet` overlay automatically.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarInset,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarProvider,
+  SidebarSeparator,
+  SidebarTrigger,
+  useSidebar,
+} from "@workspace/ui/components/sidebar";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/sidebar
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarInset,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarProvider,
+} from "@workspace/ui/components/sidebar";
+
+export function Example() {
+  return (
+    <SidebarProvider>
+      <Sidebar>
+        <SidebarContent>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton isActive>Dashboard</SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarContent>
+      </Sidebar>
+      <SidebarInset>
+        <main className="p-4">Page content</main>
+      </SidebarInset>
+    </SidebarProvider>
+  );
+}
+```
+
+## Examples
+
+### Icon collapsible
+
+`collapsible="icon"` shrinks the sidebar to an icon rail when collapsed. Add a
+`tooltip` prop to `SidebarMenuButton` to show labels in a tooltip while in rail
+mode.
+
+<ComponentPreview name="sidebar-icon-collapsible" />
+
+## Guidelines
+
+**Do**
+
+- Always wrap the layout in `SidebarProvider`.
+- Include a `SidebarTrigger` in the main area header so the toggle is always
+  reachable.
+- Use `isActive` on `SidebarMenuButton` to highlight the current page.
+
+**Don't**
+
+- Nest `SidebarProvider` inside another `SidebarProvider`.
+- Use the sidebar for page-level dialogs or modals — keep those in `SidebarInset`.
+
+## API reference
+
+### SidebarProvider
+
+<PropsTable component="SidebarProvider" source="sidebar" element="div" />
+
+### Sidebar
+
+<PropsTable component="Sidebar" source="sidebar" element="div" />
+
+### SidebarTrigger
+
+<PropsTable component="SidebarTrigger" source="sidebar" element="button" />
+
+### SidebarInset
+
+<PropsTable component="SidebarInset" source="sidebar" element="main" />
+
+### SidebarHeader
+
+<PropsTable component="SidebarHeader" source="sidebar" element="div" />
+
+### SidebarFooter
+
+<PropsTable component="SidebarFooter" source="sidebar" element="div" />
+
+### SidebarContent
+
+<PropsTable component="SidebarContent" source="sidebar" element="div" />
+
+### SidebarGroup
+
+<PropsTable component="SidebarGroup" source="sidebar" element="div" />
+
+### SidebarGroupLabel
+
+<PropsTable component="SidebarGroupLabel" source="sidebar" element="div" />
+
+### SidebarGroupContent
+
+<PropsTable component="SidebarGroupContent" source="sidebar" element="div" />
+
+### SidebarMenu
+
+<PropsTable component="SidebarMenu" source="sidebar" element="ul" />
+
+### SidebarMenuItem
+
+<PropsTable component="SidebarMenuItem" source="sidebar" element="li" />
+
+### SidebarMenuButton
+
+<PropsTable component="SidebarMenuButton" source="sidebar" element="button" />
+
+### SidebarMenuAction
+
+<PropsTable component="SidebarMenuAction" source="sidebar" element="button" />
+
+### SidebarMenuBadge
+
+<PropsTable component="SidebarMenuBadge" source="sidebar" element="div" />
+
+### SidebarSeparator
+
+<PropsTable component="SidebarSeparator" source="sidebar" element="div" />
+
+## Accessibility
+
+- <kbd>Cmd</kbd>+<kbd>B</kbd> / <kbd>Ctrl</kbd>+<kbd>B</kbd> toggles the sidebar
+  from anywhere on the page.
+- On mobile the sidebar renders inside a `Sheet` with `role="dialog"` and proper
+  focus management.
+- `SidebarMenuButton` supports `tooltip` to surface labels in a `Tooltip` while in
+  icon-collapsed mode so screen readers and keyboard users still have access to item
+  names.
+- `SidebarRail` has `tabIndex={-1}` and `aria-label="Toggle Sidebar"` — it is a
+  pointer-only affordance and should not appear in the tab order.

@@ -1,0 +1,97 @@
+---
+title: Button
+description: A versatile action trigger with semantic variants and density sizes.
+---
+
+<ComponentPreview name="button-demo" />
+
+Use a button for actions that change application state or trigger an event —
+submitting a form, opening a dialog, confirming a choice. Reach for the `link`
+variant only when the action navigates.
+
+Built on Base UI's `Button` primitive, so native button semantics, the disabled
+state, and keyboard handling come from the platform. Visual appearance is driven
+by the `variant` and `size` props.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+Inside the monorepo, import directly from the workspace package — no install step:
+
+```tsx
+import { Button } from "@workspace/ui/components/button";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+To copy the component into an external project, add it from the registry:
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/button
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+Hover any identifier below — examples are type-checked against the real
+component source via Twoslash.
+
+```tsx twoslash
+import { Button } from "@workspace/ui/components/button";
+
+export function Example() {
+  return <Button onClick={() => console.log("clicked")}>Get started</Button>;
+}
+```
+
+## Examples
+
+### Variants
+
+Six variants express intent. Use `default` for the primary action, `destructive`
+for irreversible actions, and `link` only for navigation.
+
+<ComponentPreview name="button-variants" />
+
+### Sizes
+
+Four text sizes plus four matching icon sizes (`icon`, `icon-xs`, `icon-sm`,
+`icon-lg`) let buttons match the density of their surroundings.
+
+<ComponentPreview name="button-sizes" />
+
+### With icon
+
+Icons placed as children scale automatically. Mark a leading or trailing icon
+with `data-icon="inline-start"` / `data-icon="inline-end"` to tighten the
+adjacent padding. Icon-only buttons need an `aria-label`.
+
+<ComponentPreview name="button-with-icon" />
+
+### Disabled
+
+A disabled button is non-interactive and announced as disabled to screen readers.
+
+<ComponentPreview name="button-disabled" />
+
+## API reference
+
+<PropsTable component="Button" source="button" element="button" />
+
+## Accessibility
+
+- Renders a native `<button>`, so it is focusable and operable with both
+  <kbd>Enter</kbd> and <kbd>Space</kbd>.
+- Provide an `aria-label` for icon-only buttons; the icon alone is not an
+  accessible name.
+- Prefer `disabled` only when an action is genuinely unavailable. For actions
+  pending validation, keep the button enabled and surface the error on submit so
+  the control stays reachable by keyboard.

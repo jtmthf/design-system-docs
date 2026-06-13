@@ -1,0 +1,102 @@
+---
+title: Avatar
+description: A circular user avatar that displays a photo, with an automatic text fallback.
+---
+
+<ComponentPreview name="avatar-demo" />
+
+Use an avatar to represent a user or entity visually. It is composed of `AvatarImage` and `AvatarFallback` — when the image fails to load, the fallback is shown automatically. The `size` prop (`"sm"` | `"default"` | `"lg"`) controls the diameter. An `AvatarBadge` can be overlaid for status indicators, and multiple avatars can be stacked inside an `AvatarGroup`. Built on Base UI's `Avatar` primitive.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+  AvatarBadge,
+  AvatarGroup,
+  AvatarGroupCount,
+} from "@workspace/ui/components/avatar";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/avatar
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+} from "@workspace/ui/components/avatar";
+
+export function Example() {
+  return (
+    <Avatar size="lg">
+      <AvatarImage src="/profile.jpg" alt="Jane Doe" />
+      <AvatarFallback>JD</AvatarFallback>
+    </Avatar>
+  );
+}
+```
+
+## Examples
+
+### Sizes
+
+Three sizes control the diameter: `sm` (24 px), `default` (32 px), and `lg` (40 px).
+
+<ComponentPreview name="avatar-sizes" />
+
+### Group
+
+Stack multiple avatars with `AvatarGroup`. Use `AvatarGroupCount` to display the count of hidden members.
+
+<ComponentPreview name="avatar-group" />
+
+## API reference
+
+### Avatar
+
+<PropsTable component="Avatar" source="avatar" element="span" />
+
+### AvatarImage
+
+<PropsTable component="AvatarImage" source="avatar" element="img" />
+
+### AvatarFallback
+
+<PropsTable component="AvatarFallback" source="avatar" element="span" />
+
+### AvatarBadge
+
+<PropsTable component="AvatarBadge" source="avatar" element="span" />
+
+### AvatarGroup
+
+<PropsTable component="AvatarGroup" source="avatar" element="div" />
+
+### AvatarGroupCount
+
+<PropsTable component="AvatarGroupCount" source="avatar" element="div" />
+
+## Accessibility
+
+- Always supply `alt` text on `AvatarImage` so screen readers can announce the user's name.
+- When using `AvatarBadge` for status, pair it with a visually hidden label or `aria-label` on the parent to communicate the status to assistive technology.
+- `AvatarGroupCount` is a visual-only overflow indicator; provide a full list elsewhere in the interface if the hidden members are actionable.

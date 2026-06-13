@@ -1,0 +1,102 @@
+---
+title: Hover Card
+description: A floating preview popup that appears when a trigger element is hovered or focused.
+---
+
+<ComponentPreview name="hover-card-demo" />
+
+Use a hover card to surface supplemental information about a linked entity — a
+user profile, a file, or a document — without requiring a click. It opens after
+the pointer enters the trigger and closes when both the trigger and the popup
+lose focus or pointer contact.
+
+Built on Base UI's `PreviewCard` primitive. Compose `HoverCard`, `HoverCardTrigger`,
+and `HoverCardContent`; all positioning and open/close timing is handled by the
+primitive.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  HoverCard,
+  HoverCardTrigger,
+  HoverCardContent,
+} from "@workspace/ui/components/hover-card";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/hover-card
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  HoverCard,
+  HoverCardTrigger,
+  HoverCardContent,
+} from "@workspace/ui/components/hover-card";
+
+export function Example() {
+  return (
+    <HoverCard>
+      <HoverCardTrigger>@username</HoverCardTrigger>
+      <HoverCardContent>
+        <p>Joined January 2020</p>
+      </HoverCardContent>
+    </HoverCard>
+  );
+}
+```
+
+## Examples
+
+### Top placement
+
+Position the card above the trigger when the trigger is near the bottom of the
+viewport.
+
+<ComponentPreview name="hover-card-top-placement" />
+
+### Open by default
+
+Pass `defaultOpen` to expand the card immediately on mount, useful during
+development or testing.
+
+<ComponentPreview name="hover-card-open-by-default" />
+
+## API reference
+
+### HoverCard
+
+<PropsTable component="HoverCard" source="hover-card" element={null} />
+
+### HoverCardTrigger
+
+<PropsTable component="HoverCardTrigger" source="hover-card" element="button" />
+
+### HoverCardContent
+
+<PropsTable component="HoverCardContent" source="hover-card" element="div" />
+
+## Accessibility
+
+- The popup is not a dialog and does not trap focus — it is purely informational.
+- `HoverCardTrigger` should wrap a focusable element so keyboard users can
+  activate the card with <kbd>Tab</kbd>.
+- The card opens on both pointer hover and keyboard focus, then closes when
+  either loses its respective attention.
+- Avoid placing interactive controls inside the card; users who trigger it via
+  keyboard cannot move focus into it.

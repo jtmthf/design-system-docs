@@ -1,0 +1,123 @@
+---
+title: Tabs
+description: Tabbed navigation that organises content into mutually exclusive panels.
+---
+
+<ComponentPreview name="tabs-demo" />
+
+Organises content into panels where only one panel is visible at a time,
+selected via a trigger in the tab list. Composed of `TabsList`, `TabsTrigger`,
+and `TabsContent`. Built on Base UI's Tabs primitive. Supports
+`orientation` (`"horizontal"` | `"vertical"`) and two `TabsList` variants
+(`"default"` | `"line"`).
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@workspace/ui/components/tabs";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/tabs
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@workspace/ui/components/tabs";
+
+export function Example() {
+  return (
+    <Tabs defaultValue="account">
+      <TabsList>
+        <TabsTrigger value="account">Account</TabsTrigger>
+        <TabsTrigger value="password">Password</TabsTrigger>
+      </TabsList>
+      <TabsContent value="account">Account settings</TabsContent>
+      <TabsContent value="password">Password settings</TabsContent>
+    </Tabs>
+  );
+}
+```
+
+## Examples
+
+### Vertical
+
+`orientation="vertical"` places the tab list on the left and panels to the
+right — suited for settings pages or navigation-heavy layouts.
+
+<ComponentPreview name="tabs-vertical" />
+
+### Line variant
+
+`variant="line"` on `TabsList` renders a minimal underline indicator instead
+of the filled pill background.
+
+<ComponentPreview name="tabs-line" />
+
+## Guidelines
+
+**Do**
+
+- Match tab labels to the content panel headings so users are not surprised
+  when they switch.
+- Use `defaultValue` to pre-select the most relevant tab.
+- Provide a visible focus ring — the component includes one by default.
+
+**Don't**
+
+- Use tabs for sequential steps where order matters — use a stepper instead.
+- Exceed five or six tabs in a single list; prefer a sidebar or dropdown for
+  longer navigation sets.
+- Mix `variant="line"` and `variant="default"` tab lists on the same page.
+
+## API reference
+
+### Tabs
+
+<PropsTable component="Tabs" source="tabs" element="div" />
+
+### TabsList
+
+<PropsTable component="TabsList" source="tabs" element="div" />
+
+### TabsTrigger
+
+<PropsTable component="TabsTrigger" source="tabs" element="button" />
+
+### TabsContent
+
+<PropsTable component="TabsContent" source="tabs" element="div" />
+
+## Accessibility
+
+- Implements the [WAI-ARIA tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/).
+- <kbd>Tab</kbd> moves focus to the active trigger; <kbd>Arrow</kbd> keys move
+  between triggers; <kbd>Enter</kbd> or <kbd>Space</kbd> activates the focused
+  tab.
+- Each trigger has `role="tab"` and is linked to its panel via `aria-controls`.
+- The active trigger carries `aria-selected="true"`; inactive triggers carry
+  `aria-selected="false"`.

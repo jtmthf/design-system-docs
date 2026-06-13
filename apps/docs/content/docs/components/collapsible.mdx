@@ -1,0 +1,96 @@
+---
+title: Collapsible
+description: A vertically collapsible section that hides and reveals content on demand.
+---
+
+<ComponentPreview name="collapsible-demo" />
+
+Use a collapsible to progressively disclose information — FAQ answers, settings
+panels, or any content the user may not need at first glance. It pairs a trigger
+element with a panel that animates open and closed.
+
+Built on Base UI's `Collapsible.Root` primitive. Compose it with
+`CollapsibleTrigger` (any focusable element) and `CollapsibleContent` (the
+animated panel). State can be uncontrolled (`defaultOpen`) or controlled (`open`
++ `onOpenChange`).
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "@workspace/ui/components/collapsible";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/collapsible
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "@workspace/ui/components/collapsible";
+
+export function Example() {
+  return (
+    <Collapsible>
+      <CollapsibleTrigger>Toggle</CollapsibleTrigger>
+      <CollapsibleContent>Hidden content revealed on open.</CollapsibleContent>
+    </Collapsible>
+  );
+}
+```
+
+## Examples
+
+### Open by default
+
+Pass `defaultOpen` to expand the panel on first render — useful when the
+content is important and should be immediately visible.
+
+<ComponentPreview name="collapsible-default-open" />
+
+### Disabled
+
+A disabled collapsible prevents the user from toggling the panel.
+
+<ComponentPreview name="collapsible-disabled" />
+
+## API reference
+
+### Collapsible
+
+<PropsTable component="Collapsible" source="collapsible" element="div" />
+
+### CollapsibleTrigger
+
+<PropsTable component="CollapsibleTrigger" source="collapsible" element="button" />
+
+### CollapsibleContent
+
+<PropsTable component="CollapsibleContent" source="collapsible" element="div" />
+
+## Accessibility
+
+- The trigger exposes `aria-expanded` that reflects the current open state.
+- <kbd>Enter</kbd> or <kbd>Space</kbd> on a focused trigger toggles the panel.
+- Wrap the trigger in a heading element when the collapsible forms a
+  disclosure pattern similar to an accordion.

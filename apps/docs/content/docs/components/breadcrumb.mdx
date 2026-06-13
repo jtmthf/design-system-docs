@@ -1,0 +1,118 @@
+---
+title: Breadcrumb
+description: A navigational landmark that shows the user's current location within a hierarchy.
+---
+
+<ComponentPreview name="breadcrumb-demo" />
+
+Use a breadcrumb to help users understand and navigate the page hierarchy. It renders a `nav` element with `aria-label="breadcrumb"` and is composed of `BreadcrumbList`, `BreadcrumbItem`, `BreadcrumbLink`, `BreadcrumbPage`, `BreadcrumbSeparator`, and `BreadcrumbEllipsis`. `BreadcrumbLink` accepts a `render` prop for use with client-side router `Link` components.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  BreadcrumbEllipsis,
+} from "@workspace/ui/components/breadcrumb";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/breadcrumb
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@workspace/ui/components/breadcrumb";
+
+export function Example() {
+  return (
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>Settings</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+  );
+}
+```
+
+## Examples
+
+### With ellipsis
+
+Collapse intermediate levels with `BreadcrumbEllipsis` when the hierarchy is too deep to display in full.
+
+<ComponentPreview name="breadcrumb-with-ellipsis" />
+
+### Custom separator
+
+Pass custom children to `BreadcrumbSeparator` to replace the default chevron — for example a slash character to match URL-style conventions.
+
+<ComponentPreview name="breadcrumb-custom-separator" />
+
+## API reference
+
+### Breadcrumb
+
+<PropsTable component="Breadcrumb" source="breadcrumb" element="nav" />
+
+### BreadcrumbList
+
+<PropsTable component="BreadcrumbList" source="breadcrumb" element="ol" />
+
+### BreadcrumbItem
+
+<PropsTable component="BreadcrumbItem" source="breadcrumb" element="li" />
+
+### BreadcrumbLink
+
+<PropsTable component="BreadcrumbLink" source="breadcrumb" element="a" />
+
+### BreadcrumbPage
+
+<PropsTable component="BreadcrumbPage" source="breadcrumb" element="span" />
+
+### BreadcrumbSeparator
+
+<PropsTable component="BreadcrumbSeparator" source="breadcrumb" element="li" />
+
+### BreadcrumbEllipsis
+
+<PropsTable component="BreadcrumbEllipsis" source="breadcrumb" element="span" />
+
+## Accessibility
+
+- The `Breadcrumb` renders a `<nav aria-label="breadcrumb">` landmark that screen readers can navigate to directly.
+- `BreadcrumbPage` carries `aria-current="page"` and `aria-disabled="true"` to communicate the current location.
+- `BreadcrumbSeparator` and `BreadcrumbEllipsis` are hidden from assistive technology via `aria-hidden="true"`.
+- When using an icon-only home link, provide an `aria-label` on the `BreadcrumbLink` so the destination is announced.

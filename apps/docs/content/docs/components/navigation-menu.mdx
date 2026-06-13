@@ -1,0 +1,129 @@
+---
+title: Navigation Menu
+description: A horizontal navigation bar with animated flyout panels for top-level site navigation.
+---
+
+<ComponentPreview name="navigation-menu-demo" />
+
+Use `NavigationMenu` for top-level site navigation where items may reveal rich
+content on hover or focus. Items without a trigger can be plain
+`NavigationMenuLink` elements styled with `navigationMenuTriggerStyle`.
+
+Built on Base UI's `NavigationMenu` primitive. The `align` prop controls how the
+shared viewport panel aligns relative to the active trigger. The positioner is
+appended automatically as a sibling to the children.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuLink,
+  navigationMenuTriggerStyle,
+} from "@workspace/ui/components/navigation-menu";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/navigation-menu
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@workspace/ui/components/navigation-menu";
+
+export function Example() {
+  return (
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Products</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <NavigationMenuLink href="/products">All Products</NavigationMenuLink>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  );
+}
+```
+
+## Examples
+
+### Multiple menus with links
+
+Multiple top-level menus with rich panel content, mixed with a plain link item
+that navigates directly using `navigationMenuTriggerStyle`.
+
+<ComponentPreview name="navigation-menu-multiple" />
+
+### Links only
+
+Plain navigation links with no dropdown panels, all sized consistently with
+`navigationMenuTriggerStyle`.
+
+<ComponentPreview name="navigation-menu-links-only" />
+
+## API reference
+
+### NavigationMenu
+
+<PropsTable component="NavigationMenu" source="navigation-menu" element="div" />
+
+### NavigationMenuList
+
+<PropsTable component="NavigationMenuList" source="navigation-menu" element="ul" />
+
+### NavigationMenuItem
+
+<PropsTable component="NavigationMenuItem" source="navigation-menu" element="li" />
+
+### NavigationMenuTrigger
+
+<PropsTable component="NavigationMenuTrigger" source="navigation-menu" element="button" />
+
+### NavigationMenuContent
+
+<PropsTable component="NavigationMenuContent" source="navigation-menu" element="div" />
+
+### NavigationMenuLink
+
+<PropsTable component="NavigationMenuLink" source="navigation-menu" element="a" />
+
+### NavigationMenuPositioner
+
+<PropsTable component="NavigationMenuPositioner" source="navigation-menu" element="div" />
+
+## Accessibility
+
+- Follows the [ARIA navigation pattern](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/examples/disclosure-navigation/).
+- <kbd>Tab</kbd> moves between top-level triggers and links; <kbd>Enter</kbd> or
+  <kbd>Space</kbd> opens the focused trigger's panel.
+- <kbd>Esc</kbd> closes the open panel and returns focus to the trigger.
+- `NavigationMenuLink` supports `data-active` for the currently active route,
+  which applies a muted background to indicate the current page.
+- Set `aria-label` on `NavigationMenu` to distinguish it from other navigation
+  landmarks when multiple are present.

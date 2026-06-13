@@ -1,0 +1,132 @@
+---
+title: Drawer
+description: A slide-in panel anchored to a viewport edge, suitable for mobile-friendly secondary content.
+---
+
+<ComponentPreview name="drawer-demo" />
+
+Use a drawer for secondary panels — navigation menus, filter sidebars, detail
+views — that slide in from a viewport edge without requiring a full page
+navigation. Drawers work especially well on mobile because they support
+drag-to-dismiss.
+
+Built on the Vaul `Drawer.Root` primitive. The `direction` prop controls which
+edge the panel enters from (`"bottom"` by default, also `"top"`, `"left"`,
+`"right"`). Compose with `DrawerTrigger`, `DrawerContent`, `DrawerHeader`,
+`DrawerFooter`, `DrawerTitle`, and `DrawerDescription`.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  Drawer,
+  DrawerTrigger,
+  DrawerContent,
+  DrawerHeader,
+  DrawerFooter,
+  DrawerTitle,
+  DrawerDescription,
+  DrawerClose,
+} from "@workspace/ui/components/drawer";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/drawer
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  Drawer,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@workspace/ui/components/drawer";
+import { Button } from "@workspace/ui/components/button";
+
+export function Example() {
+  return (
+    <Drawer>
+      <DrawerTrigger asChild>
+        <Button variant="outline">Open drawer</Button>
+      </DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>Settings</DrawerTitle>
+          <DrawerDescription>Manage your preferences.</DrawerDescription>
+        </DrawerHeader>
+        <DrawerFooter>
+          <Button>Save</Button>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  );
+}
+```
+
+## Examples
+
+### Right side
+
+Pass `direction="right"` to slide the panel in from the right edge — useful
+for settings panels and detail views on desktop.
+
+<ComponentPreview name="drawer-right" />
+
+## API reference
+
+### Drawer
+
+<PropsTable component="Drawer" source="drawer" element={null} />
+
+### DrawerTrigger
+
+<PropsTable component="DrawerTrigger" source="drawer" element="button" />
+
+### DrawerContent
+
+<PropsTable component="DrawerContent" source="drawer" element="div" />
+
+### DrawerHeader
+
+<PropsTable component="DrawerHeader" source="drawer" element="div" />
+
+### DrawerFooter
+
+<PropsTable component="DrawerFooter" source="drawer" element="div" />
+
+### DrawerTitle
+
+<PropsTable component="DrawerTitle" source="drawer" element="h2" />
+
+### DrawerDescription
+
+<PropsTable component="DrawerDescription" source="drawer" element="p" />
+
+### DrawerClose
+
+<PropsTable component="DrawerClose" source="drawer" element="button" />
+
+## Accessibility
+
+- `DrawerTitle` provides the accessible name; `DrawerDescription` provides an
+  optional description for screen readers.
+- On touch devices, users can drag the panel toward the anchor edge to dismiss it.
+- Always provide a `DrawerClose` button so keyboard users have an explicit way
+  to close the drawer without relying on the <kbd>Escape</kbd> key.

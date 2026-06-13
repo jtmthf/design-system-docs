@@ -1,0 +1,115 @@
+---
+title: Card
+description: A surface container used to group related content and actions in a distinct visual panel.
+---
+
+<ComponentPreview name="card-demo" />
+
+Use a card to group related content into a visually distinct panel. It is composed of `CardHeader`, `CardTitle`, `CardDescription`, `CardAction`, `CardContent`, and `CardFooter`. The `size` prop (`"default"` | `"sm"`) adjusts internal spacing via the `--card-spacing` CSS custom property. Images placed as the first or last direct child are automatically given matching border radii.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardAction,
+  CardContent,
+  CardFooter,
+} from "@workspace/ui/components/card";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/card
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "@workspace/ui/components/card";
+
+export function Example() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Project Status</CardTitle>
+        <CardDescription>Overview of current sprint</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>Everything is on track.</p>
+      </CardContent>
+    </Card>
+  );
+}
+```
+
+## Examples
+
+### Small size
+
+`size="sm"` reduces internal spacing, suitable for dense dashboards or sidebar widgets.
+
+<ComponentPreview name="card-small" />
+
+### Content only
+
+A bare card with no header or footer works for simple informational blocks.
+
+<ComponentPreview name="card-content-only" />
+
+## API reference
+
+### Card
+
+<PropsTable component="Card" source="card" element="div" />
+
+### CardHeader
+
+<PropsTable component="CardHeader" source="card" element="div" />
+
+### CardTitle
+
+<PropsTable component="CardTitle" source="card" element="div" />
+
+### CardDescription
+
+<PropsTable component="CardDescription" source="card" element="div" />
+
+### CardAction
+
+<PropsTable component="CardAction" source="card" element="div" />
+
+### CardContent
+
+<PropsTable component="CardContent" source="card" element="div" />
+
+### CardFooter
+
+<PropsTable component="CardFooter" source="card" element="div" />
+
+## Accessibility
+
+- A `Card` is a visual grouping container with no implicit ARIA role. When a card represents a discrete item in a list (e.g., a product tile), wrap the list in `role="list"` and apply `role="listitem"` to each card.
+- `CardTitle` is a styled `div`, not a heading element. If the card title should be in the document outline, render the title text inside an `<h2>` or appropriate heading level as a child.
+- Interactive elements inside the card (buttons, links) retain their native roles and keyboard behavior.

@@ -1,0 +1,155 @@
+---
+title: Alert Dialog
+description: A modal dialog that interrupts the user and requires an explicit response before continuing.
+---
+
+<ComponentPreview name="alert-dialog-demo" />
+
+Use an alert dialog when the user is about to take a critical, destructive, or irreversible action and must explicitly confirm or cancel before the app proceeds. It is composed of `AlertDialogTrigger`, `AlertDialogContent`, `AlertDialogHeader`, `AlertDialogFooter`, `AlertDialogTitle`, `AlertDialogDescription`, `AlertDialogAction`, and `AlertDialogCancel`. Focus trapping, scroll locking, and ARIA semantics are delegated to the Base UI `AlertDialog` primitive.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogFooter,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogAction,
+  AlertDialogCancel,
+} from "@workspace/ui/components/alert-dialog";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/alert-dialog
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogFooter,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogAction,
+  AlertDialogCancel,
+} from "@workspace/ui/components/alert-dialog";
+import { Button } from "@workspace/ui/components/button";
+
+export function Example() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger render={<Button variant="destructive" />}>
+        Delete account
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This action cannot be undone.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction variant="destructive">Delete account</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}
+```
+
+## Examples
+
+### With media icon
+
+The `AlertDialogMedia` slot places an icon alongside the title and description for a more expressive confirmation prompt. Use `size="sm"` on `AlertDialogContent` for this compact layout.
+
+<ComponentPreview name="alert-dialog-with-media" />
+
+### Open by default
+
+Pass `defaultOpen` to open the dialog immediately on mount without requiring a trigger click.
+
+<ComponentPreview name="alert-dialog-default-open" />
+
+## Guidelines
+
+**Do**
+
+- Use an alert dialog for irreversible or high-stakes actions such as deleting data or revoking access.
+- Write the title as a direct question ("Delete file?") and the description as a plain consequence statement.
+- Label the confirm action with the verb it performs ("Delete", "Remove") rather than a generic "OK".
+
+**Don't**
+
+- Use an alert dialog for informational messages that do not require a decision — reach for `Alert` instead.
+- Show an alert dialog for actions that are easily undone.
+
+## API reference
+
+### AlertDialog
+
+<PropsTable component="AlertDialog" source="alert-dialog" element={null} />
+
+### AlertDialogTrigger
+
+<PropsTable component="AlertDialogTrigger" source="alert-dialog" element="button" />
+
+### AlertDialogContent
+
+<PropsTable component="AlertDialogContent" source="alert-dialog" element="div" />
+
+### AlertDialogHeader
+
+<PropsTable component="AlertDialogHeader" source="alert-dialog" element="div" />
+
+### AlertDialogFooter
+
+<PropsTable component="AlertDialogFooter" source="alert-dialog" element="div" />
+
+### AlertDialogTitle
+
+<PropsTable component="AlertDialogTitle" source="alert-dialog" element="div" />
+
+### AlertDialogDescription
+
+<PropsTable component="AlertDialogDescription" source="alert-dialog" element="p" />
+
+### AlertDialogAction
+
+<PropsTable component="AlertDialogAction" source="alert-dialog" element="button" />
+
+### AlertDialogCancel
+
+<PropsTable component="AlertDialogCancel" source="alert-dialog" element="button" />
+
+### AlertDialogMedia
+
+<PropsTable component="AlertDialogMedia" source="alert-dialog" element="div" />
+
+## Accessibility
+
+- The dialog panel carries `role="alertdialog"` and is announced immediately by screen readers on open.
+- `AlertDialogTitle` and `AlertDialogDescription` are automatically linked to the dialog via `aria-labelledby` and `aria-describedby`.
+- Focus is trapped inside the dialog while it is open and restored to the trigger on close.
+- <kbd>Escape</kbd> dismisses the dialog without taking the destructive action.

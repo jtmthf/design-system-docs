@@ -1,0 +1,72 @@
+---
+title: Separator
+description: A thin visual divider that separates content sections horizontally or vertically.
+---
+
+<ComponentPreview name="separator-demo" />
+
+Use a separator to create visual breathing room between groups of related content
+— between list items, toolbar actions, or menu sections. Set
+`orientation="vertical"` for inline use in toolbars and breadcrumbs.
+
+Built on Base UI's `Separator` primitive. Horizontal (default) renders a full-width
+1 px bar; vertical renders a 1 px self-stretching column.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import { Separator } from "@workspace/ui/components/separator";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/separator
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import { Separator } from "@workspace/ui/components/separator";
+
+export function Example() {
+  return (
+    <div className="space-y-2 text-sm">
+      <p>Above</p>
+      <Separator />
+      <p>Below</p>
+    </div>
+  );
+}
+```
+
+## Examples
+
+### Vertical
+
+A vertical separator for inline contexts such as toolbars or breadcrumb trails.
+Constrain the height with a utility class to match the surrounding text size.
+
+<ComponentPreview name="separator-vertical" />
+
+## API reference
+
+### Separator
+
+<PropsTable component="Separator" source="separator" element="div" />
+
+## Accessibility
+
+- Renders `role="separator"` by default so screen readers announce it as a
+  thematic break between sections.
+- The separator is presentational — do not place interactive content inside it.

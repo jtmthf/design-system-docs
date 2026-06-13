@@ -1,0 +1,82 @@
+---
+title: Kbd
+description: Renders a keyboard key label with consistent monospace styling for shortcuts and hotkeys.
+---
+
+<ComponentPreview name="kbd-demo" />
+
+Use `Kbd` to render a single keyboard key and `KbdGroup` to display a multi-key
+chord. Both components adapt their background when placed inside a tooltip.
+
+Renders native `<kbd>` elements with rounded, monospace styling. SVG icon
+children are automatically sized to `12px`.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import { Kbd, KbdGroup } from "@workspace/ui/components/kbd";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/kbd
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import { Kbd, KbdGroup } from "@workspace/ui/components/kbd";
+
+export function Example() {
+  return (
+    <KbdGroup>
+      <Kbd>Ctrl</Kbd>
+      <Kbd>K</Kbd>
+    </KbdGroup>
+  );
+}
+```
+
+## Examples
+
+### Single keys
+
+Individual key caps for modifier keys, navigation keys, and symbols.
+
+<ComponentPreview name="kbd-single-key" />
+
+### Common shortcut combos
+
+A reference table of common shortcuts rendered with `KbdGroup`.
+
+<ComponentPreview name="kbd-combos" />
+
+## API reference
+
+### Kbd
+
+<PropsTable component="Kbd" source="kbd" element="kbd" />
+
+### KbdGroup
+
+<PropsTable component="KbdGroup" source="kbd" element="kbd" />
+
+## Accessibility
+
+- Both `Kbd` and `KbdGroup` render semantic `<kbd>` elements, which screen
+  readers announce as keyboard input.
+- When used as a shortcut hint inside a menu item or tooltip, the parent element
+  already provides the action label — `Kbd` supplements it visually.
+- `pointer-events-none` and `select-none` are applied so keys cannot be
+  accidentally clicked or selected during copy.

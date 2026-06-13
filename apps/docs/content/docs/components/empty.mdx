@@ -1,0 +1,136 @@
+---
+title: Empty
+description: A full-bleed placeholder shown when a list, search, or view has no content to display.
+---
+
+<ComponentPreview name="empty-demo" />
+
+Use an empty state to orient users when a view has no data — empty inboxes,
+zero search results, or unpopulated lists. A good empty state explains what
+is missing and provides a clear action to fix it.
+
+Compose `Empty`, `EmptyHeader`, `EmptyMedia`, `EmptyTitle`,
+`EmptyDescription`, and `EmptyContent` to build the layout. `EmptyMedia`
+accepts `variant="icon"` for a fixed-size muted badge or `variant="default"`
+for illustrations.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  Empty,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+  EmptyDescription,
+  EmptyContent,
+} from "@workspace/ui/components/empty";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/empty
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@workspace/ui/components/empty";
+import { Button } from "@workspace/ui/components/button";
+
+export function Example() {
+  return (
+    <Empty>
+      <EmptyHeader>
+        <EmptyMedia variant="icon">{/* icon */}</EmptyMedia>
+        <EmptyTitle>Nothing here yet</EmptyTitle>
+        <EmptyDescription>Create something to get started.</EmptyDescription>
+      </EmptyHeader>
+      <EmptyContent>
+        <Button size="sm">Create</Button>
+      </EmptyContent>
+    </Empty>
+  );
+}
+```
+
+## Examples
+
+### No results
+
+Shown after a search or filter operation that returns no matches. Pair with a
+"Clear filters" action.
+
+<ComponentPreview name="empty-no-results" />
+
+### Minimal
+
+Without a CTA, use `EmptyMedia variant="default"` to display a larger
+illustration or icon.
+
+<ComponentPreview name="empty-minimal" />
+
+## Guidelines
+
+**Do**
+
+- Write a title and description that explain exactly why the view is empty.
+- Provide an actionable CTA in `EmptyContent` that helps the user populate it.
+
+**Don't**
+
+- Use empty states for error conditions — use an error boundary or inline error
+  message instead.
+- Show an empty state before an async request has resolved; show a loading
+  skeleton instead.
+
+## API reference
+
+### Empty
+
+<PropsTable component="Empty" source="empty" element="div" />
+
+### EmptyHeader
+
+<PropsTable component="EmptyHeader" source="empty" element="div" />
+
+### EmptyMedia
+
+<PropsTable component="EmptyMedia" source="empty" element="div" />
+
+### EmptyTitle
+
+<PropsTable component="EmptyTitle" source="empty" element="div" />
+
+### EmptyDescription
+
+<PropsTable component="EmptyDescription" source="empty" element="div" />
+
+### EmptyContent
+
+<PropsTable component="EmptyContent" source="empty" element="div" />
+
+## Accessibility
+
+- Empty states are decorative — they do not receive focus or require ARIA roles
+  beyond the semantic HTML they render.
+- Ensure the CTA inside `EmptyContent` has a descriptive label so screen reader
+  users understand what action they are taking.

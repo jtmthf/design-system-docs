@@ -1,0 +1,72 @@
+---
+title: Badge
+description: A compact inline label used to highlight status, categories, or metadata.
+---
+
+<ComponentPreview name="badge-demo" />
+
+Use a badge to annotate content with a short, read-only label — statuses, categories, counts, or tags. Badges are not buttons; for interactive labels render a `Badge` with a `render` prop pointing to an anchor or button. Visual style is controlled by the `variant` prop.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import { Badge } from "@workspace/ui/components/badge";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/badge
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import { Badge } from "@workspace/ui/components/badge";
+
+export function Example() {
+  return <Badge variant="secondary">New</Badge>;
+}
+```
+
+## Examples
+
+### Variants
+
+Six variants express different semantic meanings. Use `default` for primary emphasis, `destructive` for errors or warnings, and `outline` when the badge must work on any background.
+
+<ComponentPreview name="badge-variants" />
+
+## Guidelines
+
+**Do**
+
+- Use badges for read-only metadata such as status, version, or category.
+- Keep badge text short — one or two words at most.
+
+**Don't**
+
+- Use a badge as a clickable control without providing a `render` prop that sets the correct element (anchor or button).
+- Stack badges inside table cells where space is constrained; truncate or limit counts instead.
+
+## API reference
+
+### Badge
+
+<PropsTable component="Badge" source="badge" element="span" />
+
+## Accessibility
+
+- By default, `Badge` renders a `<span>`, which carries no implicit role. Surround it with enough context so the label is understood without color alone.
+- When using `variant="destructive"` to communicate an error state, supplement the color with an icon or text that conveys the meaning.
+- If a badge must be interactive (e.g., a removable tag), use the `render` prop to swap in a `<button>` and add an accessible label.

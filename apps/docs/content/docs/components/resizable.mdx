@@ -1,0 +1,98 @@
+---
+title: Resizable
+description: Drag-to-resize panel layouts built on react-resizable-panels.
+---
+
+<ComponentPreview name="resizable-demo" />
+
+Use resizable panels for editor-style layouts — file trees next to code panes,
+split-view comparisons, or resizable sidebars — where users benefit from
+controlling the space allocated to each region.
+
+Built on `react-resizable-panels`. Compose `ResizablePanelGroup` (the orientation
+container), `ResizablePanel` (each pane), and `ResizableHandle` (the drag
+separator) to create flexible split layouts.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@workspace/ui/components/resizable";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/resizable
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@workspace/ui/components/resizable";
+
+export function Example() {
+  return (
+    <ResizablePanelGroup orientation="horizontal" className="h-64 rounded-lg border">
+      <ResizablePanel defaultSize={50}>Left</ResizablePanel>
+      <ResizableHandle withHandle />
+      <ResizablePanel defaultSize={50}>Right</ResizablePanel>
+    </ResizablePanelGroup>
+  );
+}
+```
+
+## Examples
+
+### Vertical split
+
+Two panels stacked with a horizontal drag handle between them.
+
+<ComponentPreview name="resizable-vertical" />
+
+### Three columns
+
+A narrow file tree, wide editor, and right gutter — a common IDE-style layout.
+
+<ComponentPreview name="resizable-three-columns" />
+
+## API reference
+
+### ResizablePanelGroup
+
+<PropsTable component="ResizablePanelGroup" source="resizable" element="div" />
+
+### ResizablePanel
+
+<PropsTable component="ResizablePanel" source="resizable" element="div" />
+
+### ResizableHandle
+
+<PropsTable component="ResizableHandle" source="resizable" element="div" />
+
+## Accessibility
+
+- `ResizableHandle` renders a `separator` role element and supports keyboard
+  resizing via <kbd>ArrowLeft</kbd> / <kbd>ArrowRight</kbd> (horizontal) or
+  <kbd>ArrowUp</kbd> / <kbd>ArrowDown</kbd> (vertical).
+- Focus the handle with <kbd>Tab</kbd> and use arrow keys to resize without a
+  pointer device.
+- Set `withHandle` to render a visible grip bar so the drag affordance is
+  discoverable by sighted users.

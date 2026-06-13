@@ -1,0 +1,103 @@
+---
+title: Progress
+description: A filled bar that communicates the completion status of a task or operation.
+---
+
+<ComponentPreview name="progress-demo" />
+
+Use a progress bar to show task completion — file uploads, multi-step forms, or
+background processing. Compose `ProgressLabel` for a visible accessible name and
+`ProgressValue` for a numeric readout alongside the track.
+
+Built on Base UI's `Progress` primitive. The `value` prop (0–100) controls how
+much of the track is filled. `ProgressTrack` and `ProgressIndicator` are rendered
+automatically inside `Progress`.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  Progress,
+  ProgressIndicator,
+  ProgressLabel,
+  ProgressTrack,
+  ProgressValue,
+} from "@workspace/ui/components/progress";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/progress
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import { Progress, ProgressLabel, ProgressValue } from "@workspace/ui/components/progress";
+
+export function Example() {
+  return (
+    <Progress value={60} className="w-80">
+      <ProgressLabel>Uploading</ProgressLabel>
+      <ProgressValue />
+    </Progress>
+  );
+}
+```
+
+## Examples
+
+### With label and value
+
+`ProgressLabel` supplies the accessible name so `aria-label` is not required.
+`ProgressValue` renders the numeric percentage aligned to the trailing edge.
+
+<ComponentPreview name="progress-with-label" />
+
+### Complete
+
+When `value` reaches `100` the indicator fills the track entirely.
+
+<ComponentPreview name="progress-complete" />
+
+## API reference
+
+### Progress
+
+<PropsTable component="Progress" source="progress" element="div" />
+
+### ProgressTrack
+
+<PropsTable component="ProgressTrack" source="progress" element="div" />
+
+### ProgressIndicator
+
+<PropsTable component="ProgressIndicator" source="progress" element="span" />
+
+### ProgressLabel
+
+<PropsTable component="ProgressLabel" source="progress" element="label" />
+
+### ProgressValue
+
+<PropsTable component="ProgressValue" source="progress" element="span" />
+
+## Accessibility
+
+- Renders `role="progressbar"` with `aria-valuenow`, `aria-valuemin`, and
+  `aria-valuemax` managed by Base UI.
+- Provide either a visible `ProgressLabel` or an `aria-label` prop so screen
+  readers can announce what is progressing.
+- When no `value` is set the bar enters indeterminate mode; Base UI omits
+  `aria-valuenow` in that state.

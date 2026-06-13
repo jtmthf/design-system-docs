@@ -1,0 +1,133 @@
+---
+title: Select
+description: A custom dropdown control for choosing one option from a list with keyboard support.
+---
+
+<ComponentPreview name="select-demo" />
+
+Use a select when the list of options is too long for radio buttons but short
+enough to scan visually. The trigger displays the current value; the popup
+presents scrollable items with type-to-select and full keyboard navigation.
+
+Built on Base UI's `Select` primitive. Compose `SelectTrigger` and `SelectContent`
+around `SelectItem` elements. Use `SelectGroup` with `SelectLabel` to organize
+items into labeled sections, and `SelectSeparator` between groups.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectScrollDownButton,
+  SelectScrollUpButton,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue,
+} from "@workspace/ui/components/select";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/select
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@workspace/ui/components/select";
+
+export function Example() {
+  return (
+    <Select>
+      <SelectTrigger className="w-48">
+        <SelectValue placeholder="Pick a fruit" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="apple">Apple</SelectItem>
+        <SelectItem value="banana">Banana</SelectItem>
+        <SelectItem value="blueberry">Blueberry</SelectItem>
+      </SelectContent>
+    </Select>
+  );
+}
+```
+
+## Examples
+
+### Grouped with separator
+
+Use `SelectGroup`, `SelectLabel`, and `SelectSeparator` to organize a longer
+list into labeled sections.
+
+<ComponentPreview name="select-grouped" />
+
+### Small trigger
+
+The `size="sm"` prop on `SelectTrigger` reduces the height to 28 px — useful
+in dense toolbars or forms.
+
+<ComponentPreview name="select-small" />
+
+## API reference
+
+### Select
+
+<PropsTable component="Select" source="select" element={null} />
+
+### SelectTrigger
+
+<PropsTable component="SelectTrigger" source="select" element="button" />
+
+### SelectValue
+
+<PropsTable component="SelectValue" source="select" element="span" />
+
+### SelectContent
+
+<PropsTable component="SelectContent" source="select" element="div" />
+
+### SelectGroup
+
+<PropsTable component="SelectGroup" source="select" element="div" />
+
+### SelectLabel
+
+<PropsTable component="SelectLabel" source="select" element="div" />
+
+### SelectItem
+
+<PropsTable component="SelectItem" source="select" element="div" />
+
+### SelectSeparator
+
+<PropsTable component="SelectSeparator" source="select" element="div" />
+
+## Accessibility
+
+- The trigger renders with `role="combobox"` and the listbox with `role="listbox"`,
+  following the WAI-ARIA combobox pattern.
+- <kbd>Enter</kbd> or <kbd>Space</kbd> opens the dropdown; arrow keys navigate
+  items; <kbd>Escape</kbd> closes without selecting.
+- Type any character to jump to the first matching item (type-to-select).
+- Disabled items are announced as unavailable and are skipped by keyboard navigation.

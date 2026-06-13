@@ -1,0 +1,96 @@
+---
+title: Alert
+description: A non-modal callout that communicates a status message or feedback to the user.
+---
+
+<ComponentPreview name="alert-demo" />
+
+Use an alert to surface important, time-relevant information without interrupting the user's flow. It is composed of `AlertTitle`, `AlertDescription`, and the optional `AlertAction` slot. Place an SVG icon as a direct child to activate the two-column icon layout. The `variant` prop switches between `"default"` and `"destructive"` styles.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  Alert,
+  AlertTitle,
+  AlertDescription,
+  AlertAction,
+} from "@workspace/ui/components/alert";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/alert
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  Alert,
+  AlertTitle,
+  AlertDescription,
+} from "@workspace/ui/components/alert";
+import { TerminalIcon } from "lucide-react";
+
+export function Example() {
+  return (
+    <Alert>
+      <TerminalIcon />
+      <AlertTitle>Heads up!</AlertTitle>
+      <AlertDescription>
+        You can add components to your app using the CLI.
+      </AlertDescription>
+    </Alert>
+  );
+}
+```
+
+## Examples
+
+### Destructive
+
+Use the `destructive` variant for errors that require the user to take corrective action.
+
+<ComponentPreview name="alert-destructive" />
+
+### Title only
+
+A minimal alert containing only a title works for short, standalone notices.
+
+<ComponentPreview name="alert-title-only" />
+
+## API reference
+
+### Alert
+
+<PropsTable component="Alert" source="alert" element="div" />
+
+### AlertTitle
+
+<PropsTable component="AlertTitle" source="alert" element="div" />
+
+### AlertDescription
+
+<PropsTable component="AlertDescription" source="alert" element="div" />
+
+### AlertAction
+
+<PropsTable component="AlertAction" source="alert" element="div" />
+
+## Accessibility
+
+- The root element carries `role="alert"`, so screen readers announce the content immediately when it appears in the DOM.
+- Alerts should describe the status and, when relevant, the corrective action the user can take.
+- Avoid using `role="alert"` for content that is present on page load — reserve it for dynamically injected feedback.

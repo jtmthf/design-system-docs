@@ -1,0 +1,89 @@
+---
+title: Radio Group
+description: A set of mutually exclusive options where only one can be selected at a time.
+---
+
+<ComponentPreview name="radio-group-demo" />
+
+Use a radio group when the user must pick exactly one option from a small, visible
+list. Always pair each `RadioGroupItem` with a `Label` — the label provides the
+accessible name and enlarges the hit target.
+
+Built on Base UI's `RadioGroup` and `Radio` primitives. Manages a single active
+value across all child items, supports controlled (`value` + `onValueChange`) and
+uncontrolled (`defaultValue`) modes, and exposes a `disabled` prop for the entire
+group.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import { RadioGroup, RadioGroupItem } from "@workspace/ui/components/radio-group";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/radio-group
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import { Label } from "@workspace/ui/components/label";
+import { RadioGroup, RadioGroupItem } from "@workspace/ui/components/radio-group";
+
+export function Example() {
+  return (
+    <RadioGroup defaultValue="compact">
+      <Label className="flex items-center gap-2">
+        <RadioGroupItem value="comfortable" />
+        Comfortable
+      </Label>
+      <Label className="flex items-center gap-2">
+        <RadioGroupItem value="compact" />
+        Compact
+      </Label>
+    </RadioGroup>
+  );
+}
+```
+
+## Examples
+
+### Disabled
+
+The `disabled` prop on `RadioGroup` prevents interaction with all items in the
+group.
+
+<ComponentPreview name="radio-group-disabled" />
+
+## API reference
+
+### RadioGroup
+
+<PropsTable component="RadioGroup" source="radio-group" element="div" />
+
+### RadioGroupItem
+
+<PropsTable component="RadioGroupItem" source="radio-group" element="button" />
+
+## Accessibility
+
+- Each item renders a native radio-like button; the group follows the
+  [WAI-ARIA radio group pattern](https://www.w3.org/WAI/ARIA/apg/patterns/radio/).
+- <kbd>Tab</kbd> moves focus into the group; arrow keys move between items within
+  the group.
+- Always wrap each item in a `Label` — the accessible name comes from the label
+  text.
+- Use `aria-invalid` on individual items to surface validation errors; pair with a
+  visible error message.

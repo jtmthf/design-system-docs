@@ -1,0 +1,115 @@
+---
+title: Input OTP
+description: A segmented one-time password field that manages focus and caret state for digit-by-digit entry.
+---
+
+<ComponentPreview name="input-otp-demo" />
+
+Use `InputOTP` for verification codes, PINs, and 2FA flows. Each slot accepts a
+single character and automatically advances focus to the next slot. Paste a full
+code to fill all slots at once.
+
+Built on the `input-otp` library. Compose `InputOTP`, `InputOTPGroup`,
+`InputOTPSlot`, and optionally `InputOTPSeparator` to define the visual layout.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+  InputOTPSeparator,
+} from "@workspace/ui/components/input-otp";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/input-otp
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+} from "@workspace/ui/components/input-otp";
+
+export function Example() {
+  return (
+    <InputOTP maxLength={6}>
+      <InputOTPGroup>
+        <InputOTPSlot index={0} />
+        <InputOTPSlot index={1} />
+        <InputOTPSlot index={2} />
+        <InputOTPSlot index={3} />
+        <InputOTPSlot index={4} />
+        <InputOTPSlot index={5} />
+      </InputOTPGroup>
+    </InputOTP>
+  );
+}
+```
+
+## Examples
+
+### With separator
+
+Two groups of three slots separated by a dash — the standard SMS verification
+code layout.
+
+<ComponentPreview name="input-otp-with-separator" />
+
+### Four-digit PIN
+
+A shorter four-slot field for PIN entry.
+
+<ComponentPreview name="input-otp-four-digit" />
+
+### Disabled
+
+Non-interactive state for read-only confirmation screens.
+
+<ComponentPreview name="input-otp-disabled" />
+
+## API reference
+
+### InputOTP
+
+<PropsTable component="InputOTP" source="input-otp" element={null} />
+
+### InputOTPGroup
+
+<PropsTable component="InputOTPGroup" source="input-otp" element="div" />
+
+### InputOTPSlot
+
+<PropsTable component="InputOTPSlot" source="input-otp" element="div" />
+
+### InputOTPSeparator
+
+<PropsTable component="InputOTPSeparator" source="input-otp" element="div" />
+
+## Accessibility
+
+- The underlying input is a single native `<input>` element; slot rendering is
+  purely visual. Screen readers interact with the real input, not the slots.
+- Spell-check is disabled by default so autocorrect does not interfere with code
+  entry.
+- `disabled` prevents all interaction and applies reduced opacity across every
+  slot.
+- `onComplete` fires when all slots are filled, enabling immediate submission
+  without requiring the user to press <kbd>Enter</kbd>.

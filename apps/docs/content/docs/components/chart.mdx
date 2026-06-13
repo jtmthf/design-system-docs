@@ -1,0 +1,118 @@
+---
+title: Chart
+description: A composable Recharts wrapper that injects design-system color tokens via ChartConfig.
+---
+
+<ComponentPreview name="chart-demo" />
+
+Use `ChartContainer` to wrap any Recharts chart and automatically inject CSS color variables from a `ChartConfig` map. The config maps data-series keys to a human-readable `label`, an optional `icon`, and either a static `color` or a `theme` map for separate light/dark values. `ChartTooltipContent` and `ChartLegendContent` read from the same config to produce consistently styled tooltips and legends.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+  ChartLegend,
+  ChartLegendContent,
+  type ChartConfig,
+} from "@workspace/ui/components/chart";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/chart
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+  type ChartConfig,
+} from "@workspace/ui/components/chart";
+
+const config = {
+  desktop: { label: "Desktop", color: "var(--color-chart-1)" },
+} satisfies ChartConfig;
+
+const data = [
+  { month: "Jan", desktop: 186 },
+  { month: "Feb", desktop: 305 },
+  { month: "Mar", desktop: 237 },
+];
+
+export function Example() {
+  return (
+    <ChartContainer config={config} className="h-48 w-full">
+      <BarChart data={data}>
+        <CartesianGrid vertical={false} />
+        <XAxis dataKey="month" tickLine={false} axisLine={false} />
+        <ChartTooltip content={<ChartTooltipContent />} />
+        <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
+      </BarChart>
+    </ChartContainer>
+  );
+}
+```
+
+## Examples
+
+### Line chart
+
+A single-series line chart with a dot-style tooltip for tracking a metric over time.
+
+<ComponentPreview name="chart-line" />
+
+### Area chart
+
+A stacked area chart for comparing two series — revenue and expenses — with a legend below.
+
+<ComponentPreview name="chart-area" />
+
+## Guidelines
+
+**Do**
+
+- Define one `ChartConfig` entry per data key and reference the generated CSS variable (`var(--color-<key>)`) in your chart's `fill` or `stroke` props.
+- Use `theme` instead of `color` when a series needs different hues in light and dark mode.
+
+**Don't**
+
+- Hard-code color strings inside Recharts props — always go through the CSS variable so theming works automatically.
+- Use `ChartTooltipContent` or `ChartLegendContent` outside a `ChartContainer`; they rely on the chart context.
+
+## API reference
+
+### ChartContainer
+
+<PropsTable component="ChartContainer" source="chart" element="div" />
+
+### ChartTooltipContent
+
+<PropsTable component="ChartTooltipContent" source="chart" element="div" />
+
+### ChartLegendContent
+
+<PropsTable component="ChartLegendContent" source="chart" element="div" />
+
+## Accessibility
+
+- Recharts charts are SVG-based; they are not natively accessible to screen readers without additional markup.
+- Provide a text-based summary or data table alongside any chart used to communicate critical information.
+- Ensure color is not the sole means of distinguishing series — use `indicator="dashed"` or custom icons in `ChartConfig` to add a secondary visual cue.

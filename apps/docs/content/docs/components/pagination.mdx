@@ -1,0 +1,132 @@
+---
+title: Pagination
+description: A set of page navigation controls rendered as a semantic nav element for paginated content.
+---
+
+<ComponentPreview name="pagination-demo" />
+
+Use `Pagination` below lists, tables, or search results to let users move
+between pages. `PaginationLink` renders as an `<a>` tag styled as a `Button`.
+Set `isActive` on the current page link to apply the `outline` variant and
+`aria-current="page"`.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationPrevious,
+  PaginationNext,
+  PaginationEllipsis,
+} from "@workspace/ui/components/pagination";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/pagination
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@workspace/ui/components/pagination";
+
+export function Example() {
+  return (
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious href="/page/1" />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="/page/2" isActive>
+            2
+          </PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext href="/page/3" />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  );
+}
+```
+
+## Examples
+
+### With ellipsis
+
+`PaginationEllipsis` represents a gap in the page number sequence when the total
+count is large.
+
+<ComponentPreview name="pagination-with-ellipsis" />
+
+### Controlled
+
+Use `onClick` with local state to update the active page without full navigation.
+
+<ComponentPreview name="pagination-controlled" />
+
+## API reference
+
+### Pagination
+
+<PropsTable component="Pagination" source="pagination" element="nav" />
+
+### PaginationContent
+
+<PropsTable component="PaginationContent" source="pagination" element="ul" />
+
+### PaginationItem
+
+<PropsTable component="PaginationItem" source="pagination" element="li" />
+
+### PaginationLink
+
+<PropsTable component="PaginationLink" source="pagination" element="a" />
+
+### PaginationPrevious
+
+<PropsTable component="PaginationPrevious" source="pagination" element="a" />
+
+### PaginationNext
+
+<PropsTable component="PaginationNext" source="pagination" element="a" />
+
+### PaginationEllipsis
+
+<PropsTable component="PaginationEllipsis" source="pagination" element="span" />
+
+## Accessibility
+
+- `Pagination` renders `<nav role="navigation" aria-label="pagination">` — a
+  landmark that screen readers can jump to directly.
+- The active page link carries `aria-current="page"` so screen readers
+  announce it as the current page.
+- `PaginationPrevious` and `PaginationNext` carry `aria-label` describing their
+  direction.
+- `PaginationEllipsis` is `aria-hidden`; its screen-reader-only sibling announces
+  "More pages".
+- When disabling Previous/Next at the boundaries, add `aria-disabled` together
+  with `pointer-events-none` so both mouse and keyboard users cannot activate them.

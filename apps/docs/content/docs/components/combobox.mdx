@@ -1,0 +1,150 @@
+---
+title: Combobox
+description: An accessible autocomplete input that filters a dropdown list as the user types.
+---
+
+<ComponentPreview name="combobox-demo" />
+
+Use a combobox when users need to select from a large or dynamic option set
+that benefits from type-to-filter. It combines a text input with a filterable
+popup list.
+
+Built on Base UI's `Combobox` primitive. Compose `Combobox` with
+`ComboboxInput`, `ComboboxContent`, `ComboboxList`, and `ComboboxItem` for a
+standard single-select. For multi-select with chip tags, use `ComboboxChips`,
+`ComboboxChipsInput`, and `useComboboxAnchor`.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  Combobox,
+  ComboboxInput,
+  ComboboxContent,
+  ComboboxList,
+  ComboboxItem,
+  ComboboxEmpty,
+} from "@workspace/ui/components/combobox";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/combobox
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  Combobox,
+  ComboboxInput,
+  ComboboxContent,
+  ComboboxList,
+  ComboboxItem,
+  ComboboxEmpty,
+} from "@workspace/ui/components/combobox";
+
+export function Example() {
+  return (
+    <Combobox>
+      <ComboboxInput placeholder="Select framework..." showTrigger />
+      <ComboboxContent>
+        <ComboboxList>
+          <ComboboxEmpty>No framework found.</ComboboxEmpty>
+          <ComboboxItem value="next">Next.js</ComboboxItem>
+          <ComboboxItem value="remix">Remix</ComboboxItem>
+        </ComboboxList>
+      </ComboboxContent>
+    </Combobox>
+  );
+}
+```
+
+## Examples
+
+### With clear button
+
+Add `showClear` to `ComboboxInput` to render an × button that resets the
+selection without reopening the dropdown.
+
+<ComponentPreview name="combobox-with-clear" />
+
+### Grouped options
+
+Use `ComboboxGroup` and `ComboboxLabel` to organize options into labeled
+sections separated by `ComboboxSeparator`.
+
+<ComponentPreview name="combobox-grouped" />
+
+### Multi-select with chips
+
+Set `multiple` on `Combobox` and use `ComboboxChips`, `ComboboxChipsInput`,
+and `useComboboxAnchor` to render selected values as removable chip tags.
+
+<ComponentPreview name="combobox-multiselect" />
+
+## API reference
+
+### Combobox
+
+<PropsTable component="Combobox" source="combobox" element={null} />
+
+### ComboboxInput
+
+<PropsTable component="ComboboxInput" source="combobox" element="input" />
+
+### ComboboxContent
+
+<PropsTable component="ComboboxContent" source="combobox" element="div" />
+
+### ComboboxList
+
+<PropsTable component="ComboboxList" source="combobox" element="div" />
+
+### ComboboxItem
+
+<PropsTable component="ComboboxItem" source="combobox" element="div" />
+
+### ComboboxGroup
+
+<PropsTable component="ComboboxGroup" source="combobox" element="div" />
+
+### ComboboxLabel
+
+<PropsTable component="ComboboxLabel" source="combobox" element="div" />
+
+### ComboboxEmpty
+
+<PropsTable component="ComboboxEmpty" source="combobox" element="div" />
+
+### ComboboxChips
+
+<PropsTable component="ComboboxChips" source="combobox" element="div" />
+
+### ComboboxChip
+
+<PropsTable component="ComboboxChip" source="combobox" element="div" />
+
+### ComboboxChipsInput
+
+<PropsTable component="ComboboxChipsInput" source="combobox" element="input" />
+
+## Accessibility
+
+- The input has `role="combobox"` and the popup list has `role="listbox"`.
+- <kbd>ArrowDown</kbd> / <kbd>ArrowUp</kbd> navigate items; <kbd>Enter</kbd>
+  confirms a selection; <kbd>Escape</kbd> closes the popup.
+- Options expose `aria-selected` to reflect the current selection.
+- Always provide a visible or screen-reader label for the input via
+  `aria-label` or an associated `<label>` element.

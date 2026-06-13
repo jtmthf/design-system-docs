@@ -1,0 +1,105 @@
+---
+title: Sonner
+description: A themed toast notification container powered by the Sonner library.
+---
+
+<ComponentPreview name="sonner-demo" />
+
+Mount `<Toaster />` once at the root of your application (e.g. the root layout)
+and call `toast()` from anywhere in the component tree to fire a notification.
+The component reads the active `next-themes` color scheme automatically and
+applies design-system CSS custom properties for colors, border-radius, and icons.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import { Toaster } from "@workspace/ui/components/sonner";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/sonner
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import { toast } from "sonner";
+import { Toaster } from "@workspace/ui/components/sonner";
+
+export function App() {
+  return (
+    <>
+      <Toaster />
+      <button onClick={() => toast("File saved successfully.")}>
+        Show toast
+      </button>
+    </>
+  );
+}
+```
+
+## Examples
+
+### Success
+
+`toast.success()` renders a green semantic icon when `richColors` is enabled.
+
+<ComponentPreview name="sonner-success" />
+
+### Error
+
+`toast.error()` renders a red semantic icon when `richColors` is enabled.
+
+<ComponentPreview name="sonner-error" />
+
+### With action
+
+A toast can carry a description and an inline action button for reversible
+operations such as undo.
+
+<ComponentPreview name="sonner-with-action" />
+
+## Guidelines
+
+**Do**
+
+- Render `<Toaster />` once at the top of the component tree — not inside
+  individual components.
+- Enable `richColors` when semantic color helps distinguish message severity.
+- Keep toast messages to one sentence maximum.
+- Provide an action only when a genuinely reversible operation just occurred.
+
+**Don't**
+
+- Use toasts for critical errors that require user attention — use a dialog
+  instead.
+- Stack multiple `<Toaster />` instances; Sonner manages its own portal.
+- Rely on toasts for form validation feedback — place errors inline with the
+  field.
+
+## API reference
+
+### Toaster
+
+<PropsTable component="Toaster" source="sonner" element="div" />
+
+## Accessibility
+
+- Toasts are rendered in a live region and announced to screen readers
+  automatically by Sonner.
+- Ensure toast messages are meaningful without relying on color alone — use
+  descriptive text alongside semantic variants.
+- Avoid setting `duration` so short that users cannot read the message; the
+  default of 4 000 ms is a safe minimum.

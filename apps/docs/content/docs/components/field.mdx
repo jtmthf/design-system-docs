@@ -1,0 +1,140 @@
+---
+title: Field
+description: A composable form-field wrapper that pairs a label, control, description, and error message.
+---
+
+<ComponentPreview name="field-demo" />
+
+Use `Field` to give every form control a consistent label, description, and
+validation error layout without repeating spacing and alignment logic. It
+renders a `div[role="group"]` and wires the `data-invalid` attribute to
+destructive color theming.
+
+Compose with `FieldLabel`, `FieldDescription`, and `FieldError` for most
+cases. Use `FieldGroup` and `FieldSet` / `FieldLegend` to group related fields.
+Use `FieldContent` and `FieldTitle` for horizontal layouts with multi-line
+descriptions.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  Field,
+  FieldLabel,
+  FieldDescription,
+  FieldError,
+  FieldGroup,
+  FieldSet,
+  FieldLegend,
+  FieldContent,
+  FieldTitle,
+} from "@workspace/ui/components/field";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/field
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import { Field, FieldDescription, FieldLabel } from "@workspace/ui/components/field";
+import { Input } from "@workspace/ui/components/input";
+
+export function Example() {
+  return (
+    <Field>
+      <FieldLabel htmlFor="email">Email address</FieldLabel>
+      <Input id="email" type="email" placeholder="ada@example.com" />
+      <FieldDescription>We&apos;ll never share your email.</FieldDescription>
+    </Field>
+  );
+}
+```
+
+## Examples
+
+### With error
+
+Set `data-invalid="true"` on `Field` and render a `FieldError` with the
+message to show validation failure styling.
+
+<ComponentPreview name="field-with-error" />
+
+### Horizontal layout
+
+Pass `orientation="horizontal"` to place the label and control side by side.
+
+<ComponentPreview name="field-horizontal" />
+
+### Fieldset group
+
+Use `FieldSet`, `FieldLegend`, and `FieldGroup` to organize multiple related
+fields under an accessible caption.
+
+<ComponentPreview name="field-fieldset" />
+
+## API reference
+
+### Field
+
+<PropsTable component="Field" source="field" element="div" />
+
+### FieldLabel
+
+<PropsTable component="FieldLabel" source="field" element="label" />
+
+### FieldDescription
+
+<PropsTable component="FieldDescription" source="field" element="p" />
+
+### FieldError
+
+<PropsTable component="FieldError" source="field" element="div" />
+
+### FieldContent
+
+<PropsTable component="FieldContent" source="field" element="div" />
+
+### FieldTitle
+
+<PropsTable component="FieldTitle" source="field" element="div" />
+
+### FieldGroup
+
+<PropsTable component="FieldGroup" source="field" element="div" />
+
+### FieldSet
+
+<PropsTable component="FieldSet" source="field" element="div" />
+
+### FieldLegend
+
+<PropsTable component="FieldLegend" source="field" element="div" />
+
+### FieldSeparator
+
+<PropsTable component="FieldSeparator" source="field" element="div" />
+
+## Accessibility
+
+- `Field` renders `role="group"` so grouped fields are announced together by
+  screen readers.
+- Link `FieldLabel` to its control via `htmlFor` or by nesting the control
+  inside the label.
+- `FieldError` renders `role="alert"` so validation messages are announced
+  immediately when they appear.
+- `FieldSet` + `FieldLegend` use semantic `<fieldset>` and `<legend>` elements
+  that browsers and assistive technologies understand natively.

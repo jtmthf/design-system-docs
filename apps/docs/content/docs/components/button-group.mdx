@@ -1,0 +1,85 @@
+---
+title: Button Group
+description: A container that visually merges related interactive controls into a single unit.
+---
+
+<ComponentPreview name="button-group-demo" />
+
+Use a button group to fuse adjacent buttons or form controls — such as a split-button pattern or a search bar with a prefix icon — into a seamless visual block. Child elements lose their outer border-radius on adjacent edges automatically. `ButtonGroupText` provides a non-interactive label or icon segment, and `ButtonGroupSeparator` places a visual rule between sections. Use the `orientation` prop to switch between `"horizontal"` (default) and `"vertical"` layouts.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  ButtonGroup,
+  ButtonGroupText,
+  ButtonGroupSeparator,
+} from "@workspace/ui/components/button-group";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/button-group
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import { Button } from "@workspace/ui/components/button";
+import { ButtonGroup } from "@workspace/ui/components/button-group";
+
+export function Example() {
+  return (
+    <ButtonGroup>
+      <Button variant="outline">Left</Button>
+      <Button variant="outline">Center</Button>
+      <Button variant="outline">Right</Button>
+    </ButtonGroup>
+  );
+}
+```
+
+## Examples
+
+### With input
+
+Combine a `ButtonGroupText` prefix, an `Input`, and a trailing `Button` to build a search bar pattern.
+
+<ComponentPreview name="button-group-with-input" />
+
+### Vertical orientation
+
+Set `orientation="vertical"` for stacked toolbar or sidebar layouts.
+
+<ComponentPreview name="button-group-vertical" />
+
+## API reference
+
+### ButtonGroup
+
+<PropsTable component="ButtonGroup" source="button-group" element="div" />
+
+### ButtonGroupText
+
+<PropsTable component="ButtonGroupText" source="button-group" element="div" />
+
+### ButtonGroupSeparator
+
+<PropsTable component="ButtonGroupSeparator" source="button-group" element="div" />
+
+## Accessibility
+
+- `ButtonGroup` renders with `role="group"` so assistive technology can announce the grouping.
+- Each child button retains its own accessible label — the group role does not provide one automatically. Use `aria-label` on icon-only children.
+- Focus order follows DOM order; ensure the visual and keyboard order match.

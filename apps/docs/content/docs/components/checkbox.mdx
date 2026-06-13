@@ -1,0 +1,82 @@
+---
+title: Checkbox
+description: A binary toggle input that lets users select or deselect a single option.
+---
+
+<ComponentPreview name="checkbox-demo" />
+
+Use a checkbox for independent on/off choices — accepting terms, enabling a
+feature, or filtering a list. Always pair it with a `Label` so the option is
+announced by screen readers.
+
+Built on Base UI's `Checkbox.Root` primitive, which owns checked state,
+keyboard handling, and ARIA semantics. The check icon is animated in and out
+via an internal `Indicator` and CSS transitions.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import { Checkbox } from "@workspace/ui/components/checkbox";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/checkbox
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import { Checkbox } from "@workspace/ui/components/checkbox";
+import { Label } from "@workspace/ui/components/label";
+
+export function Example() {
+  return (
+    <Label className="flex items-center gap-2">
+      <Checkbox id="accept" />
+      Accept terms and conditions
+    </Label>
+  );
+}
+```
+
+## Examples
+
+### States
+
+Checkboxes support unchecked, checked, disabled, and invalid states.
+
+<ComponentPreview name="checkbox-states" />
+
+### Group
+
+Multiple checkboxes can be composed into a group to capture related preferences.
+
+<ComponentPreview name="checkbox-group" />
+
+## API reference
+
+### Checkbox
+
+<PropsTable component="Checkbox" source="checkbox" element="button" />
+
+## Accessibility
+
+- Renders a native `<button>` with `role="checkbox"` via the Base UI primitive,
+  so it is fully keyboard operable.
+- <kbd>Space</kbd> toggles the checked state.
+- Always associate a `<label>` via `htmlFor` or by wrapping the checkbox as a
+  child — unlabelled checkboxes are inaccessible to screen reader users.
+- Use `aria-invalid` to signal validation failures; pair it with a visible
+  error message.

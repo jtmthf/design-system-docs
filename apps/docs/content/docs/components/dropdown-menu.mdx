@@ -1,0 +1,156 @@
+---
+title: Dropdown Menu
+description: A floating menu anchored to a trigger button for secondary actions and navigation.
+---
+
+<ComponentPreview name="dropdown-menu-demo" />
+
+Use a dropdown menu for secondary or contextual actions attached to a specific
+trigger — user account menus, row actions, or option pickers. Prefer a button
+group or inline controls for the primary page action.
+
+Built on Base UI's `Menu.Root` primitive. Compose `DropdownMenu` with
+`DropdownMenuTrigger`, `DropdownMenuContent`, and any combination of
+`DropdownMenuItem`, `DropdownMenuCheckboxItem`, `DropdownMenuRadioGroup`,
+`DropdownMenuSub`, `DropdownMenuSeparator`, and `DropdownMenuLabel`.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+} from "@workspace/ui/components/dropdown-menu";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/dropdown-menu
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@workspace/ui/components/dropdown-menu";
+import { Button } from "@workspace/ui/components/button";
+
+export function Example() {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger render={<Button variant="outline" />}>
+        Actions
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuItem>Edit</DropdownMenuItem>
+        <DropdownMenuItem>Duplicate</DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
+```
+
+## Examples
+
+### With icons and shortcuts
+
+Add icons as children of `DropdownMenuItem` and use `DropdownMenuShortcut` to
+display keyboard hints at the trailing edge. Nest submenus with
+`DropdownMenuSub`.
+
+<ComponentPreview name="dropdown-menu-with-icons" />
+
+### Checkbox items
+
+`DropdownMenuCheckboxItem` lets users toggle options independently without
+closing the menu.
+
+<ComponentPreview name="dropdown-menu-checkbox" />
+
+### Radio items
+
+`DropdownMenuRadioGroup` and `DropdownMenuRadioItem` enforce a single selection
+within a group — useful for panel positions, sort orders, or display modes.
+
+<ComponentPreview name="dropdown-menu-radio" />
+
+## API reference
+
+### DropdownMenu
+
+<PropsTable component="DropdownMenu" source="dropdown-menu" element={null} />
+
+### DropdownMenuTrigger
+
+<PropsTable component="DropdownMenuTrigger" source="dropdown-menu" element="button" />
+
+### DropdownMenuContent
+
+<PropsTable component="DropdownMenuContent" source="dropdown-menu" element="div" />
+
+### DropdownMenuItem
+
+<PropsTable component="DropdownMenuItem" source="dropdown-menu" element="div" />
+
+### DropdownMenuCheckboxItem
+
+<PropsTable component="DropdownMenuCheckboxItem" source="dropdown-menu" element="div" />
+
+### DropdownMenuRadioGroup
+
+<PropsTable component="DropdownMenuRadioGroup" source="dropdown-menu" element={null} />
+
+### DropdownMenuRadioItem
+
+<PropsTable component="DropdownMenuRadioItem" source="dropdown-menu" element="div" />
+
+### DropdownMenuLabel
+
+<PropsTable component="DropdownMenuLabel" source="dropdown-menu" element="div" />
+
+### DropdownMenuSeparator
+
+<PropsTable component="DropdownMenuSeparator" source="dropdown-menu" element="div" />
+
+### DropdownMenuSub
+
+<PropsTable component="DropdownMenuSub" source="dropdown-menu" element={null} />
+
+### DropdownMenuSubTrigger
+
+<PropsTable component="DropdownMenuSubTrigger" source="dropdown-menu" element="div" />
+
+### DropdownMenuSubContent
+
+<PropsTable component="DropdownMenuSubContent" source="dropdown-menu" element="div" />
+
+## Accessibility
+
+- The popup has `role="menu"` and items have `role="menuitem"` (or
+  `menuitemcheckbox` / `menuitemradio`).
+- <kbd>ArrowDown</kbd> / <kbd>ArrowUp</kbd> navigate items; <kbd>Enter</kbd>
+  or <kbd>Space</kbd> activates the focused item; <kbd>Escape</kbd> closes the menu.
+- <kbd>ArrowRight</kbd> opens a `DropdownMenuSubTrigger`; <kbd>ArrowLeft</kbd>
+  returns to the parent menu.
+- The trigger button exposes `aria-haspopup="menu"` and `aria-expanded`.

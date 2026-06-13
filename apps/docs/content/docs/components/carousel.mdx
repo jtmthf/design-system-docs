@@ -1,0 +1,106 @@
+---
+title: Carousel
+description: A touch- and keyboard-accessible slideshow container powered by Embla Carousel.
+---
+
+<ComponentPreview name="carousel-demo" />
+
+Use a carousel to cycle through a series of content items — images, cards, or arbitrary content — within a constrained viewport. It is composed of `CarouselContent`, `CarouselItem`, `CarouselPrevious`, and `CarouselNext`. Use the `orientation` prop to switch between `"horizontal"` (default) and `"vertical"` scroll axes. Pass Embla options via `opts` and plugins via `plugins`. Use `setApi` to receive the Embla API instance for programmatic control.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "@workspace/ui/components/carousel";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/carousel
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "@workspace/ui/components/carousel";
+
+export function Example() {
+  return (
+    <Carousel opts={{ loop: true }}>
+      <CarouselContent>
+        <CarouselItem>Slide 1</CarouselItem>
+        <CarouselItem>Slide 2</CarouselItem>
+        <CarouselItem>Slide 3</CarouselItem>
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
+  );
+}
+```
+
+## Examples
+
+### Multiple slides
+
+Show partial slides using `basis-1/2` on `CarouselItem` combined with Embla's `slidesToScroll` option.
+
+<ComponentPreview name="carousel-multiple-slides" />
+
+### Looping
+
+Set `opts={{ loop: true }}` so the first slide follows the last; both navigation buttons remain enabled at all times.
+
+<ComponentPreview name="carousel-loop" />
+
+## API reference
+
+### Carousel
+
+<PropsTable component="Carousel" source="carousel" element="div" />
+
+### CarouselContent
+
+<PropsTable component="CarouselContent" source="carousel" element="div" />
+
+### CarouselItem
+
+<PropsTable component="CarouselItem" source="carousel" element="div" />
+
+### CarouselPrevious
+
+<PropsTable component="CarouselPrevious" source="carousel" element="button" />
+
+### CarouselNext
+
+<PropsTable component="CarouselNext" source="carousel" element="button" />
+
+## Accessibility
+
+- The root element carries `role="region"` and `aria-roledescription="carousel"`.
+- Each `CarouselItem` carries `role="group"` and `aria-roledescription="slide"`.
+- `CarouselPrevious` and `CarouselNext` include visually hidden "Previous slide" / "Next slide" labels for screen readers.
+- <kbd>ArrowLeft</kbd> and <kbd>ArrowRight</kbd> scroll the carousel when focus is inside it; <kbd>Tab</kbd> moves focus to the navigation buttons.
+- Navigation buttons are `disabled` automatically when there are no more slides to scroll to in that direction.

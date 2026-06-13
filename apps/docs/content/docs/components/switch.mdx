@@ -1,0 +1,97 @@
+---
+title: Switch
+description: A pill-shaped toggle control for binary on/off settings with instant effect.
+---
+
+<ComponentPreview name="switch-demo" />
+
+Use a switch for settings or preferences where the effect is immediate and does
+not require a submit button. Built on Base UI's Switch primitive, so native
+`role="switch"`, `aria-checked`, focus handling, and disabled state come from
+the platform. Supports `size` (`"default"` | `"sm"`) for matching different
+layout densities.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import { Switch } from "@workspace/ui/components/switch";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/switch
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import { Switch } from "@workspace/ui/components/switch";
+
+export function Example() {
+  return <Switch defaultChecked />;
+}
+```
+
+## Examples
+
+### With label
+
+Wrap the switch and a `Label` together so the full row is interactive.
+
+<ComponentPreview name="switch-with-label" />
+
+### Sizes
+
+The `sm` size is suited to dense settings panels.
+
+<ComponentPreview name="switch-sizes" />
+
+### Disabled
+
+Prevents interaction while conveying the current state visually.
+
+<ComponentPreview name="switch-disabled" />
+
+## Guidelines
+
+**Do**
+
+- Always pair with a visible label that describes what the switch controls.
+- Use switches only for instant actions — if the change requires a save or
+  submit, use a checkbox instead.
+- Use `defaultChecked` for uncontrolled usage and `checked` + `onCheckedChange`
+  for controlled usage.
+
+**Don't**
+
+- Use a switch for a destructive or irreversible action without a confirmation
+  step.
+- Use a switch in place of a checkbox inside a multi-step form submitted as a
+  whole.
+- Rely on color alone to indicate errors — pair `aria-invalid` with text.
+
+## API reference
+
+### Switch
+
+<PropsTable component="Switch" source="switch" element="button" />
+
+## Accessibility
+
+- Renders with `role="switch"` and `aria-checked` so screen readers announce
+  on/off state correctly.
+- Operable with <kbd>Space</kbd> to toggle.
+- Always pair with a visible label; an unlabeled switch is not accessible.
+- For validation errors, set `aria-invalid` and provide a linked error message
+  via `aria-describedby`.

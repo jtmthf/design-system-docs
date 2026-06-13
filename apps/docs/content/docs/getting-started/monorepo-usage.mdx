@@ -1,0 +1,94 @@
+---
+title: Monorepo Usage
+description: How the package is wired with Turborepo and pnpm workspaces.
+---
+
+The design system is structured as a Turborepo + pnpm monorepo. The library
+lives in `packages/ui` and is consumed by apps in `apps/*` as a workspace
+dependency.
+
+## Workspace setup
+
+`pnpm-workspace.yaml` declares where packages and apps live:
+
+```yaml
+packages:
+  - "apps/*"
+  - "packages/*"
+```
+
+## Adding the UI package
+
+Reference the package with the `workspace:*` protocol — pnpm symlinks it from the
+workspace, so there is no publish or install step:
+
+```json
+{
+  "dependencies": {
+    "@workspace/ui": "workspace:*"
+  }
+}
+```
+
+## Consuming source directly
+
+The package exposes its `.tsx` source through subpath exports rather than a
+compiled bundle — there is no build step between editing a component and seeing
+it in a consuming app:
+
+```jsonc
+// packages/ui/package.json
+{
+  "exports": {
+    "./globals.css": "./src/styles/globals.css",
+    "./components/*": "./src/components/*.tsx",
+    "./hooks/*": "./src/hooks/*.ts",
+    "./lib/*": "./src/lib/*.ts"
+  }
+}
+```
+
+Because apps import raw TypeScript, transpile the package in your app's bundler.
+With Next.js:
+
+```ts
+// next.config.ts
+const nextConfig = {
+  transpilePackages: ["@workspace/ui"],
+};
+```
+
+## Turborepo tasks
+
+The package's own `build` (a `tsc` declaration build) and `typecheck` run through
+Turbo with `^build` / `^typecheck` ordering, so dependencies build before
+dependents. Apps don't need that output to render components — it backs the
+[API report](/docs/api-reference/overview), which depends on `build`:
+
+```jsonc
+// turbo.json
+{
+  "tasks": {
+    "build": { "dependsOn": ["^build"] },
+    "api-report": { "dependsOn": ["build"] }
+  }
+}
+```
+
+Run tasks from the repo root so Turbo orchestrates the graph:
+
+```bash
+pnpm build
+pnpm api-report
+```
+
+## Tailwind CSS in monorepos
+
+`@workspace/ui/globals.css` includes `@source` directives so Tailwind scans the
+package's own sources. In a consuming app, add an `@source` pointing at that
+app's files so their classes are generated too:
+
+```css
+@import "@workspace/ui/globals.css";
+@source "../../../apps/your-app/**/*.{ts,tsx}";
+```

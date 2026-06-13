@@ -1,0 +1,145 @@
+---
+title: Sheet
+description: A sliding panel anchored to a screen edge, built on the Base UI Dialog primitive.
+---
+
+<ComponentPreview name="sheet-demo" />
+
+Use a sheet for navigation menus, settings drawers, and supplemental content that
+should remain in context alongside the main page. Choose `side` to control which
+edge the panel slides from.
+
+Built on Base UI's `Dialog` primitive, so it shares the same focus trapping,
+scroll locking, and ARIA semantics as `Dialog`. `SheetContent` renders the
+overlay and portal automatically.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@workspace/ui/components/sheet";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/sheet
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import { Button } from "@workspace/ui/components/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+  SheetTrigger,
+} from "@workspace/ui/components/sheet";
+
+export function Example() {
+  return (
+    <Sheet>
+      <SheetTrigger render={<Button variant="outline" />}>Open</SheetTrigger>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>Edit profile</SheetTitle>
+          <SheetDescription>Make changes to your profile.</SheetDescription>
+        </SheetHeader>
+      </SheetContent>
+    </Sheet>
+  );
+}
+```
+
+## Examples
+
+### Left side
+
+Set `side="left"` for navigation drawers that users expect to emerge from the
+leading edge.
+
+<ComponentPreview name="sheet-left" />
+
+### Bottom sheet
+
+`side="bottom"` produces a mobile-style action sheet anchored to the bottom of
+the viewport.
+
+<ComponentPreview name="sheet-bottom" />
+
+## Guidelines
+
+**Do**
+
+- Write a `SheetTitle` and `SheetDescription` — they wire up ARIA and are
+  announced by screen readers on open.
+- Use `SheetFooter` for primary actions so they stay consistently placed.
+
+**Don't**
+
+- Use a sheet for short confirmation prompts — a `Dialog` is more appropriate.
+- Nest a sheet inside another sheet.
+
+## API reference
+
+### Sheet
+
+<PropsTable component="Sheet" source="sheet" element={null} />
+
+### SheetTrigger
+
+<PropsTable component="SheetTrigger" source="sheet" element="button" />
+
+### SheetContent
+
+<PropsTable component="SheetContent" source="sheet" element="div" />
+
+### SheetHeader
+
+<PropsTable component="SheetHeader" source="sheet" element="div" />
+
+### SheetFooter
+
+<PropsTable component="SheetFooter" source="sheet" element="div" />
+
+### SheetTitle
+
+<PropsTable component="SheetTitle" source="sheet" element="h2" />
+
+### SheetDescription
+
+<PropsTable component="SheetDescription" source="sheet" element="p" />
+
+### SheetClose
+
+<PropsTable component="SheetClose" source="sheet" element="button" />
+
+## Accessibility
+
+- Renders `role="dialog"` with `aria-modal="true"`, trapping focus while open.
+- `SheetTitle` and `SheetDescription` are automatically linked via `aria-labelledby`
+  and `aria-describedby`.
+- <kbd>Escape</kbd> closes the sheet and returns focus to the trigger.
+- A built-in close button is included by default; pass `showCloseButton={false}` to
+  suppress it when you provide custom dismiss controls.

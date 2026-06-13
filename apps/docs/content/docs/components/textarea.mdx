@@ -1,0 +1,91 @@
+---
+title: Textarea
+description: A multi-line text field that auto-grows with content and matches the Input style.
+---
+
+<ComponentPreview name="textarea-demo" />
+
+Renders a native `<textarea>` with `field-sizing-content` so the element grows
+to fit its content automatically. Minimum height is `min-h-16`. Displays
+focus-ring, disabled, and `aria-invalid` validation states consistent with the
+`Input` component.
+
+## Installation
+
+<Tabs items={["Workspace", "CLI"]}>
+
+<Tab value="Workspace">
+
+```tsx
+import { Textarea } from "@workspace/ui/components/textarea";
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```bash
+pnpm dlx shadcn@latest add @workspace-ui/textarea
+```
+
+</Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx twoslash
+import { Textarea } from "@workspace/ui/components/textarea";
+
+export function Example() {
+  return <Textarea placeholder="Write your message..." />;
+}
+```
+
+## Examples
+
+### Disabled
+
+Non-editable state for pre-populated read-only values in a form.
+
+<ComponentPreview name="textarea-disabled" />
+
+### Invalid
+
+Apply `aria-invalid` alongside a visible error message to communicate
+validation failure to all users.
+
+<ComponentPreview name="textarea-invalid" />
+
+## Guidelines
+
+**Do**
+
+- Always provide a visible `Label` linked via `htmlFor`.
+- Use `placeholder` as a secondary hint, not as a replacement for a label.
+- Pair `aria-invalid` with a descriptive error message below the field.
+- Let the textarea grow naturally; avoid setting a fixed height unless required.
+
+**Don't**
+
+- Rely on color alone to indicate errors — `aria-invalid` styling must be
+  accompanied by text.
+- Use excessively long placeholders that overflow on small screens.
+- Set `rows` so small the user cannot read their own content.
+
+## API reference
+
+### Textarea
+
+<PropsTable component="Textarea" source="textarea" element="textarea" />
+
+## Accessibility
+
+- Renders a native `<textarea>`, so all standard HTML attributes and
+  assistive-technology behavior apply.
+- Always link a visible `<label>` via `htmlFor` or wrap the textarea in a
+  `Label` component.
+- Set `aria-invalid` to signal validation failure to screen readers; pair with
+  `aria-describedby` pointing to an error message element.
+- `disabled` prevents both pointer and keyboard interaction and is announced
+  by screen readers.

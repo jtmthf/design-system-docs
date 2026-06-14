@@ -86,11 +86,11 @@ The `AlertDialogMedia` slot places an icon alongside the title and description f
 
 <ComponentPreview name="alert-dialog-with-media" />
 
-### Open by default
+### Controlled
 
-Pass `defaultOpen` to open the dialog immediately on mount without requiring a trigger click.
+Drive the open state yourself with the `open` and `onOpenChange` props when you need to react to the dialog opening or closing — for example to run logic after the user confirms.
 
-<ComponentPreview name="alert-dialog-default-open" />
+<ComponentPreview name="alert-dialog-controlled" />
 
 ## Guidelines
 

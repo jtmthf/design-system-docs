@@ -51,6 +51,7 @@ export async function POST(req: Request) {
     mode: "standalone",
     customRules: [
       "OUTPUT ONLY valid JSONL lines (RFC 6902 JSON Patch). No markdown, no prose.",
+      "Every Button MUST have a non-empty `label` prop with its visible text (e.g. \"Sign in\"). Never emit a Button without a label, and do not use size \"icon\" unless the button shows only an icon.",
     ],
   })
 

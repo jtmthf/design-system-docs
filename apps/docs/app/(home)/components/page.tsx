@@ -8,7 +8,6 @@ import { ComponentPreview } from "@/components/component-preview";
 import { CopyCommand } from "@/components/copy-command";
 import { exampleRegistry } from "@/components/examples/registry";
 import { OpenInV0 } from "@/components/open-in-v0";
-import { installCommand } from "@/lib/registry-url";
 
 export const metadata: Metadata = {
   title: "Component Registry",
@@ -104,7 +103,7 @@ export default function ComponentsGalleryPage() {
                   </div>
 
                   <div className="mt-auto flex flex-col gap-2">
-                    <CopyCommand command={installCommand(item.name)} />
+                    <CopyCommand name={item.name} />
                     <OpenInV0 name={item.name} />
                   </div>
                 </div>

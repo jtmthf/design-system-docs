@@ -6,6 +6,7 @@ import { MessageCircleIcon, SendIcon, XIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { cn } from "@/lib/cn";
+import { AskAIMessage } from "./ask-ai-message";
 
 function messageText(parts: { type: string; text?: string }[]): string {
   return parts
@@ -40,7 +41,11 @@ export function AskAI() {
     e.preventDefault();
     const text = input.trim();
     if (!text || busy) return;
-    void sendMessage({ text });
+    // Ground the answer in whatever page the user is reading.
+    void sendMessage(
+      { text },
+      { body: { page: window.location.pathname } }
+    );
     setInput("");
   }
 
@@ -59,15 +64,16 @@ export function AskAI() {
       </button>
 
       {open && (
-        <div className="fixed inset-0 z-50 flex items-end justify-end p-4 sm:items-center">
+        <>
+          {/* Click-away catcher; no dimming so the docs stay readable. */}
           <div
-            className="absolute inset-0 bg-black/40"
+            className="fixed inset-0 z-40"
             onClick={() => setOpen(false)}
           />
           <div
             role="dialog"
             aria-label="Ask AI"
-            className="relative flex h-[32rem] w-full max-w-md flex-col overflow-hidden rounded-xl border bg-fd-popover text-fd-popover-foreground shadow-xl"
+            className="fixed bottom-4 right-4 z-50 flex h-[min(34rem,calc(100dvh-2rem))] w-[min(28rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-xl border bg-fd-popover text-fd-popover-foreground shadow-2xl"
           >
             <header className="flex items-center justify-between border-b px-4 py-3">
               <span className="text-sm font-semibold">Ask AI</span>
@@ -85,29 +91,26 @@ export function AskAI() {
               {messages.length === 0 && (
                 <p className="text-sm text-fd-muted-foreground">
                   Ask about any component, theming, or usage. Answers are grounded
-                  in this documentation.
+                  in this documentation and the page you’re on, and can include
+                  live, copyable examples.
                 </p>
               )}
-              {messages.map((message) => (
-                <div
-                  key={message.id}
-                  className={cn(
-                    "text-sm",
-                    message.role === "user" ? "text-right" : "text-left"
-                  )}
-                >
-                  <div
-                    className={cn(
-                      "inline-block max-w-[85%] whitespace-pre-wrap rounded-lg px-3 py-2 text-left",
-                      message.role === "user"
-                        ? "bg-fd-primary text-fd-primary-foreground"
-                        : "bg-fd-muted"
-                    )}
-                  >
-                    {messageText(message.parts)}
+              {messages.map((message) =>
+                message.role === "user" ? (
+                  <div key={message.id} className="text-right text-sm">
+                    <div className="inline-block max-w-[85%] whitespace-pre-wrap rounded-lg bg-fd-primary px-3 py-2 text-left text-fd-primary-foreground">
+                      {messageText(message.parts)}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ) : (
+                  <div
+                    key={message.id}
+                    className="rounded-lg bg-fd-muted px-3 py-2"
+                  >
+                    <AskAIMessage parts={message.parts} />
+                  </div>
+                )
+              )}
               {error && (
                 <p className="text-sm text-fd-muted-foreground">
                   Something went wrong reaching the assistant. Check that the AI
@@ -134,7 +137,7 @@ export function AskAI() {
               </button>
             </form>
           </div>
-        </div>
+        </>
       )}
     </>
   );

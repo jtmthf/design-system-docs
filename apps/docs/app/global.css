@@ -6,7 +6,40 @@
 
 @source "../../node_modules/fumadocs-ui/dist/**/*.js";
 @source "../../node_modules/@workspace/ui/src/**/*.tsx";
+@source "../../node_modules/streamdown/dist/index.js";
 
 :root {
   --fd-layout-width: 1400px;
+}
+
+/*
+ * Live component previews render inside fumadocs' prose body, whose typography
+ * styles bleed into the demos (list markers on breadcrumb/pagination, table-cell
+ * borders on the calendar, image margins that shove the avatar out of its ring).
+ * `.preview-surface` neutralises that bleed with low-specificity resets so the
+ * components render exactly as a consumer would see them outside the docs.
+ */
+.preview-surface :where(ol, ul) {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.preview-surface :where(li) {
+  margin: 0;
+}
+
+.preview-surface :where(table, thead, tbody, tr, th, td) {
+  margin: 0;
+  border: 0;
+  border-collapse: separate;
+  background: transparent;
+}
+
+.preview-surface :where(img) {
+  margin: 0;
+}
+
+.preview-surface :where(p) {
+  margin: 0;
 }

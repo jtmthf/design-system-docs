@@ -54,7 +54,7 @@ export const { registry } = defineRegistry(catalog, {
     // Actions
     Button: ({ props, children }) => (
       <Button variant={props.variant} size={props.size} disabled={props.disabled} className={props.className}>
-        {children ?? props.label}
+        {props.label ?? children}
       </Button>
     ),
     ButtonGroup: ({ props }) => (

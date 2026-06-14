@@ -41,8 +41,17 @@ const SHADCN_BIN = resolve(
 );
 
 const REGISTRY_NAME = "@workspace-ui";
+// Resolve the deploy origin automatically. Vercel exposes the canonical
+// production domain (without protocol) as VERCEL_PROJECT_PRODUCTION_URL, so the
+// emitted registryDependencies stay correct on the real deploy without
+// hardcoding a domain. An explicit NEXT_PUBLIC_REGISTRY_URL still wins for local
+// overrides; otherwise fall back to localhost for dev.
 const REGISTRY_URL = (
-  process.env.NEXT_PUBLIC_REGISTRY_URL ?? "http://localhost:3001"
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : undefined) ??
+  process.env.NEXT_PUBLIC_REGISTRY_URL ??
+  "http://localhost:3001"
 ).replace(/\/$/, "");
 
 /** npm packages that are peer-provided and should not be listed as deps. */

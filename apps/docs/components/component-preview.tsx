@@ -42,7 +42,7 @@ export function ComponentPreview({
   const preview = (
     <div
       className={cn(
-        "flex min-h-[320px] w-full items-center justify-center p-10",
+        "preview-surface not-prose flex min-h-[320px] w-full items-center justify-center p-10",
         className
       )}
     >

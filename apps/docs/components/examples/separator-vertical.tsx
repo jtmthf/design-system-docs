@@ -6,9 +6,9 @@ export default function SeparatorVertical() {
   return (
     <div className="flex h-8 items-center gap-2 text-sm">
       <span>Item A</span>
-      <Separator orientation="vertical" className="h-4" />
+      <Separator orientation="vertical" />
       <span>Item B</span>
-      <Separator orientation="vertical" className="h-4" />
+      <Separator orientation="vertical" />
       <span>Item C</span>
     </div>
   );

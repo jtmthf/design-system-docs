@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 import { Button } from "@workspace/ui/components/button";
 
 import { openInV0Url } from "@/lib/registry-url";
@@ -5,6 +9,9 @@ import { openInV0Url } from "@/lib/registry-url";
 /**
  * "Open in v0" button for a registry item. Opens v0.dev with the item's JSON
  * URL prefilled, so the component loads directly into a v0 chat.
+ *
+ * The URL is resolved from the live page origin after mount so it points at the
+ * deploy actually serving the registry — avoiding stale/incorrect base domains.
  */
 export function OpenInV0({
   name,
@@ -14,13 +21,19 @@ export function OpenInV0({
   name: string;
   size?: "sm" | "default";
 }) {
+  const [href, setHref] = useState(() => openInV0Url(name));
+
+  useEffect(() => {
+    setHref(openInV0Url(name, window.location.origin));
+  }, [name]);
+
   return (
     <Button
       variant="outline"
       size={size}
       nativeButton={false}
       render={
-        <a href={openInV0Url(name)} target="_blank" rel="noreferrer noopener" />
+        <a href={href} target="_blank" rel="noreferrer noopener" />
       }
     >
       Open in

@@ -6,7 +6,7 @@ import AccordionDemo from "./accordion-demo";
 import AccordionMultiple from "./accordion-multiple";
 import AlertDemo from "./alert-demo";
 import AlertDestructive from "./alert-destructive";
-import AlertDialogDefaultOpen from "./alert-dialog-default-open";
+import AlertDialogControlled from "./alert-dialog-controlled";
 import AlertDialogDemo from "./alert-dialog-demo";
 import AlertDialogWithMedia from "./alert-dialog-with-media";
 import AlertTitleOnly from "./alert-title-only";
@@ -177,7 +177,7 @@ export const exampleRegistry: Record<string, ComponentType> = {
   "accordion-multiple": AccordionMultiple,
   "alert-demo": AlertDemo,
   "alert-destructive": AlertDestructive,
-  "alert-dialog-default-open": AlertDialogDefaultOpen,
+  "alert-dialog-controlled": AlertDialogControlled,
   "alert-dialog-demo": AlertDialogDemo,
   "alert-dialog-with-media": AlertDialogWithMedia,
   "alert-title-only": AlertTitleOnly,

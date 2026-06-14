@@ -1,8 +1,11 @@
 "use client";
 
+import * as React from "react";
+
 import {
   AlertDialog,
   AlertDialogAction,
+  AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
@@ -12,11 +15,13 @@ import {
 } from "@workspace/ui/components/alert-dialog";
 import { Button } from "@workspace/ui/components/button";
 
-export default function AlertDialogDefaultOpen() {
+export default function AlertDialogControlled() {
+  const [open, setOpen] = React.useState(false);
+
   return (
-    <AlertDialog defaultOpen>
+    <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger render={<Button variant="outline" />}>
-        Open
+        Show session warning
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
@@ -26,7 +31,10 @@ export default function AlertDialogDefaultOpen() {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogAction>Sign in</AlertDialogAction>
+          <AlertDialogCancel>Dismiss</AlertDialogCancel>
+          <AlertDialogAction onClick={() => setOpen(false)}>
+            Sign in
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

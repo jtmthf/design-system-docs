@@ -79,18 +79,23 @@ export default function PlaygroundPage() {
       <ResizablePanelGroup orientation="horizontal" className="h-full">
         {/* Left Panel */}
         <ResizablePanel defaultSize={35} minSize={20} className="flex flex-col">
-          <div className="flex flex-col gap-3 p-4">
+          <div className="flex flex-col gap-4 p-5">
             {/* Quick chips */}
-            <div className="flex flex-wrap gap-2">
-              {chips.map((chip) => (
-                <button
-                  key={chip}
-                  onClick={() => handleSend(chip)}
-                  className="rounded-md border bg-muted px-2 py-1 text-xs text-muted-foreground hover:bg-accent hover:text-accent-foreground"
-                >
-                  {chip}
-                </button>
-              ))}
+            <div className="flex flex-col gap-2">
+              <span className="text-xs font-medium text-muted-foreground">
+                Start from a template
+              </span>
+              <div className="flex flex-wrap gap-2">
+                {chips.map((chip) => (
+                  <button
+                    key={chip}
+                    onClick={() => handleSend(chip)}
+                    className="rounded-md border bg-muted px-2.5 py-1 text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+                  >
+                    {chip}
+                  </button>
+                ))}
+              </div>
             </div>
 
             {/* History */}
@@ -171,9 +176,9 @@ export default function PlaygroundPage() {
 
         {/* Right Panel */}
         <ResizablePanel defaultSize={65} minSize={30}>
-          <div className="flex h-full flex-col">
+          <div className="flex h-full flex-col bg-fd-muted/20">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="flex h-full flex-col">
-              <TabsList className="mx-4 mt-2 w-fit">
+              <TabsList className="mx-5 mt-3 w-fit">
                 <TabsTrigger value="preview">Preview</TabsTrigger>
                 <TabsTrigger value="spec">Spec</TabsTrigger>
                 <TabsTrigger value="code">Code</TabsTrigger>

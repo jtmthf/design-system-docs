@@ -33,8 +33,10 @@ const navItems = [
 
 export default function SidebarDemo() {
   return (
-    <div className="h-[400px] w-full overflow-hidden rounded-lg border">
-      <SidebarProvider>
+    <div
+      className="h-[400px] w-full overflow-hidden rounded-lg border [transform:translateZ(0)]"
+    >
+      <SidebarProvider className="min-h-0 h-full">
         <Sidebar>
           <SidebarHeader>
             <div className="flex items-center gap-2 px-2 py-1">

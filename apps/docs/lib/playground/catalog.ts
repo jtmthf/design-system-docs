@@ -69,14 +69,13 @@ export const catalog = defineCatalog(schema, {
     // Actions
     Button: {
       props: z.object({
-        label: z.string().describe("Button text label"),
+        label: z.string().min(1).describe("Required, non-empty visible button text (e.g. 'Sign in'). Always provide this."),
         variant: z.enum(["default", "destructive", "outline", "secondary", "ghost", "link"]).optional().describe("Visual style variant. Default: 'default'"),
-        size: z.enum(["default", "sm", "lg", "icon"]).optional().describe("Size variant. Default: 'default'"),
+        size: z.enum(["default", "sm", "lg", "icon"]).optional().describe("Size variant. Use 'default' unless the button is icon-only. Default: 'default'"),
         disabled: z.boolean().optional().describe("Disable the button"),
         className: z.string().optional().describe("Additional Tailwind CSS utility classes"),
       }),
-      slots: ["default"],
-      description: "A clickable button with style variants and sizes",
+      description: "A clickable button. The visible text comes from the required `label` prop; buttons have no children.",
     },
     ButtonGroup: {
       props: z.object({

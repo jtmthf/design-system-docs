@@ -1,0 +1,15 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build", "registry:build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*", "!etc/**", "!temp/**"],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
+    "registry:build": {
+      "dependsOn": ["^build"],
+      "outputs": ["public/r/**", "registry/**", "registry.json"]
+    }
+  }
+}

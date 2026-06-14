@@ -6,6 +6,7 @@ export const baseOptions: BaseLayoutProps = {
   },
   links: [
     { text: "Components", url: "/docs/components" },
+    { text: "Registry", url: "/components" },
     { text: "API Reference", url: "/docs/api-reference" },
     { text: "Playground", url: "/playground" },
   ],

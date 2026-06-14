@@ -1,0 +1,76 @@
+---
+title: Registry & MCP
+description: Install components from the design system's shadcn registry via the CLI, a namespaced config, the MCP server, or v0.
+---
+
+Every component is published as a [shadcn registry](https://ui.shadcn.com/docs/registry).
+The docs site hosts the built registry as static JSON under `/r/*.json`, generated
+from the real `@workspace/ui` source by `pnpm registry:build` (`shadcn build` under the
+hood) and served at the docs domain.
+
+The base URL is configured with `NEXT_PUBLIC_REGISTRY_URL` (defaults to
+`http://localhost:3001` in development). The examples below use
+`https://your-docs-domain` as a stand-in.
+
+## Install with the shadcn CLI
+
+Add any item by its JSON URL:
+
+```bash
+npx shadcn@latest add https://your-docs-domain/r/button.json
+```
+
+Installing a component automatically pulls its `registryDependencies` (other
+components and the `use-mobile` hook) from the same registry.
+
+## Use a namespaced registry
+
+Register the design system once in your project's `components.json`, then install
+items by short name:
+
+```json title="components.json"
+{
+  "registries": {
+    "@workspace-ui": "https://your-docs-domain/r/{name}.json"
+  }
+}
+```
+
+```bash
+npx shadcn@latest add @workspace-ui/button
+```
+
+## Pull components through MCP
+
+The [shadcn MCP server](https://ui.shadcn.com/docs/mcp) reads the registry index at
+`/r/registry.json` — no special setup beyond hosting it. Point your MCP client at the
+shadcn server and it can browse and add components conversationally:
+
+```json title=".cursor/mcp.json"
+{
+  "mcpServers": {
+    "shadcn": {
+      "command": "npx",
+      "args": ["-y", "shadcn@latest", "mcp"]
+    }
+  }
+}
+```
+
+With the `@workspace-ui` registry configured in `components.json`, ask your assistant
+to "add the button from @workspace-ui" and it resolves through this registry.
+
+## Open in v0
+
+Every component doc page and the [registry gallery](/components) include an
+**Open in v0** button that loads the component's JSON URL directly into a
+[v0](https://v0.dev) chat.
+
+## Theme tokens
+
+The `theme` item ships the design system's color tokens and radius as CSS variables
+for light and dark mode, so adopters can re-theme everything from one source:
+
+```bash
+npx shadcn@latest add https://your-docs-domain/r/theme.json
+```

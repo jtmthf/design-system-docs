@@ -6,6 +6,7 @@ import type { ComponentType } from "react";
 
 import { ComponentPreview } from "./component-preview";
 import { ComponentSource } from "./component-source";
+import { OpenInV0 } from "./open-in-v0";
 import { generator } from "@/lib/typescript-generator";
 
 function AutoTypeTable(props: React.ComponentProps<typeof AutoTypeTableBase>) {
@@ -55,6 +56,7 @@ export const mdxComponents = {
   PropsTable,
   ComponentPreview,
   ComponentSource,
+  OpenInV0,
   Popup,
   PopupContent,
   PopupTrigger,

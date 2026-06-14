@@ -8,7 +8,8 @@
     "lint": "turbo lint",
     "format": "turbo format",
     "typecheck": "turbo typecheck",
-    "api-report": "turbo api-report"
+    "api-report": "turbo api-report",
+    "registry:build": "turbo registry:build"
   },
   "devDependencies": {
     "@workspace/eslint-config": "workspace:*",

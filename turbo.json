@@ -16,6 +16,10 @@
       ],
       "outputs": ["etc/**", "temp/**"]
     },
+    "registry:build": {
+      "dependsOn": ["^build"],
+      "outputs": ["public/r/**", "registry/**", "registry.json"]
+    },
     "lint": {
       "dependsOn": ["^lint"]
     },

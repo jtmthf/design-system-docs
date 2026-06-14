@@ -1,0 +1,4 @@
+# Generated shadcn registry artifacts (built by scripts/build-registry.mjs)
+/public/r/
+/registry/
+/registry.json

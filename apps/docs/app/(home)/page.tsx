@@ -57,7 +57,7 @@ export default function HomePage() {
           <Button
             variant="outline"
             nativeButton={false}
-            render={<Link href="/docs/components" />}
+            render={<Link href="/components" />}
           >
             Browse components
           </Button>

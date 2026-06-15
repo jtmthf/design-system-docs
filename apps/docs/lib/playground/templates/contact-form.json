@@ -1,0 +1,70 @@
+{
+  "root": "card",
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": { "className": "max-w-md mx-auto" },
+      "children": ["header", "content"]
+    },
+    "header": {
+      "type": "CardHeader",
+      "props": {},
+      "children": ["title", "description"]
+    },
+    "title": { "type": "CardTitle", "props": { "text": "Contact us" } },
+    "description": { "type": "CardDescription", "props": { "text": "We'll get back to you within one business day." } },
+    "content": {
+      "type": "CardContent",
+      "props": {},
+      "children": ["form"]
+    },
+    "form": {
+      "type": "Stack",
+      "props": { "direction": "column", "gap": 4 },
+      "children": ["name", "email", "subject", "message", "submit", "success"]
+    },
+    "name": {
+      "type": "Input",
+      "props": { "placeholder": "Your name", "value": { "$bindState": "/name" } }
+    },
+    "email": {
+      "type": "Input",
+      "props": { "type": "email", "placeholder": "Email address", "value": { "$bindState": "/email" } }
+    },
+    "subject": {
+      "type": "Select",
+      "props": {
+        "placeholder": "Select a subject",
+        "value": { "$bindState": "/subject" },
+        "options": [
+          { "value": "general", "label": "General inquiry" },
+          { "value": "support", "label": "Support" },
+          { "value": "sales", "label": "Sales" }
+        ]
+      }
+    },
+    "message": {
+      "type": "Textarea",
+      "props": { "placeholder": "Your message", "rows": 4, "value": { "$bindState": "/message" } }
+    },
+    "submit": {
+      "type": "Button",
+      "props": { "label": "Send message", "className": "w-full" },
+      "on": {
+        "press": {
+          "action": "setState",
+          "params": { "statePath": "/sent", "value": true }
+        }
+      }
+    },
+    "success": {
+      "type": "Alert",
+      "props": { "className": "mt-2" },
+      "visible": { "$state": "/sent" },
+      "children": ["success-title", "success-desc"]
+    },
+    "success-title": { "type": "AlertTitle", "props": { "text": "Message sent" } },
+    "success-desc": { "type": "AlertDescription", "props": { "text": "Thanks for reaching out — we'll be in touch soon." } }
+  },
+  "state": { "name": "", "email": "", "subject": "", "message": "", "sent": false }
+}

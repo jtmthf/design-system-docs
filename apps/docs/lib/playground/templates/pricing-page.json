@@ -1,0 +1,115 @@
+{
+  "root": "grid",
+  "elements": {
+    "grid": {
+      "type": "Grid",
+      "props": { "columns": 3, "gap": 6, "className": "max-w-4xl mx-auto" },
+      "children": ["starter", "pro", "enterprise"]
+    },
+    "starter": {
+      "type": "Card",
+      "props": {},
+      "children": ["starter-header", "starter-content", "starter-footer"]
+    },
+    "starter-header": {
+      "type": "CardHeader",
+      "props": {},
+      "children": ["starter-title", "starter-price"]
+    },
+    "starter-title": { "type": "CardTitle", "props": { "text": "Starter" } },
+    "starter-price": { "type": "CardDescription", "props": { "text": "$0 / month" } },
+    "starter-content": {
+      "type": "CardContent",
+      "props": {},
+      "children": ["starter-features"]
+    },
+    "starter-features": {
+      "type": "Stack",
+      "props": { "direction": "column", "gap": 2 },
+      "children": ["starter-f1", "starter-f2", "starter-f3"]
+    },
+    "starter-f1": { "type": "Text", "props": { "text": "1 project", "variant": "muted" } },
+    "starter-f2": { "type": "Text", "props": { "text": "Community support", "variant": "muted" } },
+    "starter-f3": { "type": "Text", "props": { "text": "1 GB storage", "variant": "muted" } },
+    "starter-footer": {
+      "type": "CardFooter",
+      "props": {},
+      "children": ["starter-cta"]
+    },
+    "starter-cta": {
+      "type": "Button",
+      "props": { "label": "Get started", "variant": "outline", "className": "w-full" }
+    },
+
+    "pro": {
+      "type": "Card",
+      "props": { "className": "border-primary" },
+      "children": ["pro-header", "pro-content", "pro-footer"]
+    },
+    "pro-header": {
+      "type": "CardHeader",
+      "props": {},
+      "children": ["pro-title", "pro-price"]
+    },
+    "pro-title": { "type": "CardTitle", "props": { "text": "Pro" } },
+    "pro-price": { "type": "CardDescription", "props": { "text": "$29 / month" } },
+    "pro-content": {
+      "type": "CardContent",
+      "props": {},
+      "children": ["pro-features"]
+    },
+    "pro-features": {
+      "type": "Stack",
+      "props": { "direction": "column", "gap": 2 },
+      "children": ["pro-f1", "pro-f2", "pro-f3"]
+    },
+    "pro-f1": { "type": "Text", "props": { "text": "Unlimited projects", "variant": "muted" } },
+    "pro-f2": { "type": "Text", "props": { "text": "Priority support", "variant": "muted" } },
+    "pro-f3": { "type": "Text", "props": { "text": "100 GB storage", "variant": "muted" } },
+    "pro-footer": {
+      "type": "CardFooter",
+      "props": {},
+      "children": ["pro-cta"]
+    },
+    "pro-cta": {
+      "type": "Button",
+      "props": { "label": "Choose Pro", "className": "w-full" }
+    },
+
+    "enterprise": {
+      "type": "Card",
+      "props": {},
+      "children": ["ent-header", "ent-content", "ent-footer"]
+    },
+    "ent-header": {
+      "type": "CardHeader",
+      "props": {},
+      "children": ["ent-title", "ent-price"]
+    },
+    "ent-title": { "type": "CardTitle", "props": { "text": "Enterprise" } },
+    "ent-price": { "type": "CardDescription", "props": { "text": "Custom pricing" } },
+    "ent-content": {
+      "type": "CardContent",
+      "props": {},
+      "children": ["ent-features"]
+    },
+    "ent-features": {
+      "type": "Stack",
+      "props": { "direction": "column", "gap": 2 },
+      "children": ["ent-f1", "ent-f2", "ent-f3"]
+    },
+    "ent-f1": { "type": "Text", "props": { "text": "Sso & audit logs", "variant": "muted" } },
+    "ent-f2": { "type": "Text", "props": { "text": "Dedicated support", "variant": "muted" } },
+    "ent-f3": { "type": "Text", "props": { "text": "Unlimited storage", "variant": "muted" } },
+    "ent-footer": {
+      "type": "CardFooter",
+      "props": {},
+      "children": ["ent-cta"]
+    },
+    "ent-cta": {
+      "type": "Button",
+      "props": { "label": "Contact sales", "variant": "outline", "className": "w-full" }
+    }
+  },
+  "state": {}
+}

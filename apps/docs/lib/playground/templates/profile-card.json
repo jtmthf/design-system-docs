@@ -1,0 +1,83 @@
+{
+  "root": "card",
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": { "className": "max-w-sm mx-auto" },
+      "children": ["header", "content", "footer"]
+    },
+    "header": {
+      "type": "CardHeader",
+      "props": {},
+      "children": ["identity"]
+    },
+    "identity": {
+      "type": "Stack",
+      "props": { "direction": "row", "gap": 4, "align": "center" },
+      "children": ["avatar", "names"]
+    },
+    "avatar": {
+      "type": "Avatar",
+      "props": { "size": "lg" },
+      "children": ["avatar-image", "avatar-fallback"]
+    },
+    "avatar-image": {
+      "type": "AvatarImage",
+      "props": { "src": "https://i.pravatar.cc/128?img=12", "alt": "Alex Johnson" }
+    },
+    "avatar-fallback": {
+      "type": "AvatarFallback",
+      "props": { "text": "AJ" }
+    },
+    "names": {
+      "type": "Stack",
+      "props": { "direction": "column", "gap": 1 },
+      "children": ["name", "role"]
+    },
+    "name": { "type": "Heading", "props": { "level": 3, "text": "Alex Johnson" } },
+    "role": { "type": "Text", "props": { "text": "Full-stack developer & designer", "variant": "muted" } },
+    "content": {
+      "type": "CardContent",
+      "props": {},
+      "children": ["bio", "stats"]
+    },
+    "bio": {
+      "type": "Text",
+      "props": { "text": "Building beautiful, accessible interfaces with modern web technologies.", "className": "mb-4" }
+    },
+    "stats": {
+      "type": "Grid",
+      "props": { "columns": 3, "gap": 2 },
+      "children": ["stat-projects", "stat-followers", "stat-contrib"]
+    },
+    "stat-projects": {
+      "type": "Stack",
+      "props": { "direction": "column", "gap": 0, "align": "center" },
+      "children": ["stat-projects-n", "stat-projects-l"]
+    },
+    "stat-projects-n": { "type": "Heading", "props": { "level": 4, "text": "42" } },
+    "stat-projects-l": { "type": "Text", "props": { "text": "Projects", "variant": "caption" } },
+    "stat-followers": {
+      "type": "Stack",
+      "props": { "direction": "column", "gap": 0, "align": "center" },
+      "children": ["stat-followers-n", "stat-followers-l"]
+    },
+    "stat-followers-n": { "type": "Heading", "props": { "level": 4, "text": "2.3k" } },
+    "stat-followers-l": { "type": "Text", "props": { "text": "Followers", "variant": "caption" } },
+    "stat-contrib": {
+      "type": "Stack",
+      "props": { "direction": "column", "gap": 0, "align": "center" },
+      "children": ["stat-contrib-n", "stat-contrib-l"]
+    },
+    "stat-contrib-n": { "type": "Heading", "props": { "level": 4, "text": "1.4k" } },
+    "stat-contrib-l": { "type": "Text", "props": { "text": "Contributions", "variant": "caption" } },
+    "footer": {
+      "type": "CardFooter",
+      "props": { "className": "gap-2" },
+      "children": ["edit", "share"]
+    },
+    "edit": { "type": "Button", "props": { "label": "Edit profile" } },
+    "share": { "type": "Button", "props": { "label": "Share", "variant": "outline" } }
+  },
+  "state": {}
+}

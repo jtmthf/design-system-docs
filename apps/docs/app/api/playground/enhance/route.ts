@@ -57,11 +57,25 @@ export async function POST(req: Request) {
     ? anthropicProvider
     : openaiProvider
 
-  const result = await generateText({
-    model: provider(model),
-    system: ENHANCER_SYSTEM,
-    prompt: `Enhance the following UI generation prompt:\n\n"${prompt}"`,
-  })
+  try {
+    const result = await generateText({
+      model: provider(model),
+      system: ENHANCER_SYSTEM,
+      prompt: `Enhance the following UI generation prompt:\n\n"${prompt}"`,
+      // The enhanced prompt is only 3–8 sentences; cap output and abort before
+      // the function limit so a slow model returns a clean JSON error the client
+      // can surface, rather than an opaque 504.
+      maxOutputTokens: 500,
+      abortSignal: AbortSignal.timeout(25_000),
+    })
 
-  return Response.json({ enhanced: result.text.trim() })
+    return Response.json({ enhanced: result.text.trim() })
+  } catch (error) {
+    console.error("playground enhance error:", error)
+    const timedOut = error instanceof Error && error.name === "TimeoutError"
+    return Response.json(
+      { error: timedOut ? "Enhancement timed out" : "Enhancement failed" },
+      { status: timedOut ? 504 : 500 }
+    )
+  }
 }

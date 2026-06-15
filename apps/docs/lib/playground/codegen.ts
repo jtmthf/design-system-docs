@@ -69,6 +69,22 @@ const importMap: Record<string, string> = {
 
 const childPropNames = ["text", "label"];
 
+/** Controlled props that become their uncontrolled `default*` form when bound. */
+const boundPropToDefault: Record<string, string> = {
+  value: "defaultValue",
+  checked: "defaultChecked",
+  pressed: "defaultPressed",
+};
+
+/** True when a raw prop value is a two-way binding expression. */
+function isBinding(value: unknown): boolean {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    ("$bindState" in value || "$bindItem" in value)
+  );
+}
+
 /** Read a JSON Pointer path (e.g. "/users") out of the seeded state object. */
 function getByPath(state: unknown, path: string): unknown {
   if (state == null) return undefined;
@@ -141,7 +157,14 @@ function elementToJSX(
   for (const [k, v] of Object.entries(resolved)) {
     if (childPropNames.includes(k)) continue;
     if (v === undefined || v === null) continue;
-    attrs[k] = v;
+    // A `$bindState`/`$bindItem` prop has no handler in the exported snippet, so
+    // emit the uncontrolled `default*` form (e.g. defaultValue) to keep the code
+    // self-contained and free of React's controlled-without-onChange warning.
+    const key =
+      isBinding(rawProps[k]) && boundPropToDefault[k]
+        ? boundPropToDefault[k]
+        : k;
+    attrs[key] = v;
   }
 
   const attrString = serializeProps(attrs);

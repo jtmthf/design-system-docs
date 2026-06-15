@@ -1,6 +1,7 @@
 "use client";
 
-import { defineRegistry } from "@json-render/react";
+import * as React from "react";
+import { defineRegistry, useBoundProp } from "@json-render/react";
 import { catalog } from "./catalog";
 import { cn } from "@/lib/cn";
 
@@ -33,6 +34,26 @@ import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@works
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@workspace/ui/components/table";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@workspace/ui/components/accordion";
 
+/**
+ * Two-way field value for the preview.
+ *
+ * When a prop is bound via `{ $bindState: "/path" }`, the renderer hands us a
+ * `bindings.<prop>` entry and `useBoundProp` writes back to that state path so
+ * `setState` actions and conditional visibility react live. When the prop is
+ * NOT bound (most demo/template specs), we fall back to local component state so
+ * the field is still editable in the preview instead of frozen/read-only.
+ */
+function useFieldValue<T>(
+  rawValue: T | undefined,
+  bindingPath: string | undefined,
+  initial: T
+): readonly [T, (value: T) => void] {
+  const [bound, setBound] = useBoundProp<T>(rawValue, bindingPath);
+  const [local, setLocal] = React.useState<T>(rawValue ?? initial);
+  if (bindingPath) return [bound ?? initial, setBound] as const;
+  return [local, setLocal] as const;
+}
+
 export const { registry } = defineRegistry(catalog, {
   components: {
     // Layout
@@ -52,8 +73,14 @@ export const { registry } = defineRegistry(catalog, {
     Text: ({ props }) => <Text text={props.text} variant={props.variant} className={props.className} />,
 
     // Actions
-    Button: ({ props, children }) => (
-      <Button variant={props.variant} size={props.size} disabled={props.disabled} className={props.className}>
+    Button: ({ props, children, emit }) => (
+      <Button
+        variant={props.variant}
+        size={props.size}
+        disabled={props.disabled}
+        className={props.className}
+        onClick={() => emit("press")}
+      >
         {props.label ?? children}
       </Button>
     ),
@@ -91,16 +118,37 @@ export const { registry } = defineRegistry(catalog, {
     AlertDescription: ({ props }) => <AlertDescription className={props.className}>{props.text}</AlertDescription>,
 
     // Input
-    Input: ({ props }) => (
-      <Input type={props.type} placeholder={props.placeholder} value={props.value} disabled={props.disabled} className={props.className} />
-    ),
-    Textarea: ({ props }) => (
-      <Textarea placeholder={props.placeholder} value={props.value} disabled={props.disabled} rows={props.rows} className={props.className} />
-    ),
-    Select: ({ props }) => {
-      const { options, placeholder, className, ...rest } = props;
+    Input: ({ props, bindings }) => {
+      const [value, setValue] = useFieldValue<string>(props.value, bindings?.value, "");
       return (
-        <Select {...rest}>
+        <Input
+          type={props.type}
+          placeholder={props.placeholder}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          disabled={props.disabled}
+          className={props.className}
+        />
+      );
+    },
+    Textarea: ({ props, bindings }) => {
+      const [value, setValue] = useFieldValue<string>(props.value, bindings?.value, "");
+      return (
+        <Textarea
+          placeholder={props.placeholder}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          disabled={props.disabled}
+          rows={props.rows}
+          className={props.className}
+        />
+      );
+    },
+    Select: ({ props, bindings }) => {
+      const { options, placeholder, className, ...rest } = props;
+      const [value, setValue] = useFieldValue<string>(props.value, bindings?.value, "");
+      return (
+        <Select {...rest} value={value} onValueChange={(v) => setValue(v as string)}>
           <SelectTrigger className={className}>
             <SelectValue placeholder={placeholder} />
           </SelectTrigger>
@@ -114,24 +162,45 @@ export const { registry } = defineRegistry(catalog, {
         </Select>
       );
     },
-    Checkbox: ({ props }) => (
-      <div className={cn("flex items-center gap-2", props.className)}>
-        <Checkbox checked={props.checked} disabled={props.disabled} />
-        {props.label && <Label>{props.label}</Label>}
-      </div>
-    ),
-    Switch: ({ props }) => (
-      <div className={cn("flex items-center gap-2", props.className)}>
-        <Switch checked={props.checked} disabled={props.disabled} />
-        {props.label && <Label>{props.label}</Label>}
-      </div>
-    ),
-    Slider: ({ props }) => (
-      <Slider value={props.value} min={props.min} max={props.max} step={props.step} className={props.className} />
-    ),
-    RadioGroup: ({ props, children }) => (
-      <RadioGroup value={props.value} disabled={props.disabled} className={props.className}>{children}</RadioGroup>
-    ),
+    Checkbox: ({ props, bindings }) => {
+      const [checked, setChecked] = useFieldValue<boolean>(props.checked, bindings?.checked, false);
+      return (
+        <div className={cn("flex items-center gap-2", props.className)}>
+          <Checkbox checked={checked} onCheckedChange={(c) => setChecked(Boolean(c))} disabled={props.disabled} />
+          {props.label && <Label>{props.label}</Label>}
+        </div>
+      );
+    },
+    Switch: ({ props, bindings }) => {
+      const [checked, setChecked] = useFieldValue<boolean>(props.checked, bindings?.checked, false);
+      return (
+        <div className={cn("flex items-center gap-2", props.className)}>
+          <Switch checked={checked} onCheckedChange={(c) => setChecked(Boolean(c))} disabled={props.disabled} />
+          {props.label && <Label>{props.label}</Label>}
+        </div>
+      );
+    },
+    Slider: ({ props, bindings }) => {
+      const [value, setValue] = useFieldValue<number>(props.value, bindings?.value, props.min ?? 0);
+      return (
+        <Slider
+          value={value}
+          onValueChange={(v) => setValue(Array.isArray(v) ? (v[0] ?? 0) : v)}
+          min={props.min}
+          max={props.max}
+          step={props.step}
+          className={props.className}
+        />
+      );
+    },
+    RadioGroup: ({ props, children, bindings }) => {
+      const [value, setValue] = useFieldValue<string>(props.value, bindings?.value, "");
+      return (
+        <RadioGroup value={value} onValueChange={(v) => setValue(v as string)} disabled={props.disabled} className={props.className}>
+          {children}
+        </RadioGroup>
+      );
+    },
     RadioGroupItem: ({ props }) => (
       <div className={cn("flex items-center gap-2", props.className)}>
         <RadioGroupItem value={props.value} disabled={props.disabled} />
@@ -141,9 +210,14 @@ export const { registry } = defineRegistry(catalog, {
     Label: ({ props }) => <Label htmlFor={props.htmlFor} className={props.className}>{props.text}</Label>,
 
     // Navigation
-    Tabs: ({ props, children }) => (
-      <Tabs value={props.value} defaultValue={props.defaultValue} className={props.className}>{children}</Tabs>
-    ),
+    Tabs: ({ props, children, bindings }) => {
+      const [value, setValue] = useBoundProp<string>(props.value, bindings?.value);
+      return bindings?.value ? (
+        <Tabs value={value} onValueChange={(v) => setValue(v as string)} className={props.className}>{children}</Tabs>
+      ) : (
+        <Tabs defaultValue={props.defaultValue ?? props.value} className={props.className}>{children}</Tabs>
+      );
+    },
     TabsList: ({ props, children }) => (
       <TabsList variant={props.variant} className={props.className}>{children}</TabsList>
     ),

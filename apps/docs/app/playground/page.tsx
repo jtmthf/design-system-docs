@@ -1,17 +1,34 @@
 "use client";
 
 import { useState } from "react";
+import type { Spec } from "@json-render/core";
 import { useUIStream } from "@json-render/react";
+import { toast } from "sonner";
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@workspace/ui/components/resizable";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@workspace/ui/components/tabs";
 import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
 import { Button } from "@workspace/ui/components/button";
+import { Alert, AlertTitle, AlertDescription } from "@workspace/ui/components/alert";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@workspace/ui/components/select";
-import { SendIcon, Loader2Icon, Sparkles } from "lucide-react";
+import { SendIcon, Loader2Icon, Sparkles, AlertTriangleIcon } from "lucide-react";
 import { generateJSX } from "@/lib/playground/codegen";
 import { SpecPreview } from "@/components/spec-preview";
+import { templates } from "@/lib/playground/templates";
 
-const chips = ["Login form", "Pricing page", "Profile card", "Contact form"];
+/** Turn raw stream/HTTP errors into actionable, human copy. */
+function friendlyError(message: string | undefined): string {
+  const m = message ?? "";
+  if (/504|timeout|timed out/i.test(m)) {
+    return "Generation timed out — try a simpler prompt or a faster model (e.g. DeepSeek V4 Flash).";
+  }
+  if (/429|rate/i.test(m)) {
+    return "Rate limited — wait a moment and try again.";
+  }
+  if (/network|fetch|failed to fetch/i.test(m)) {
+    return "Couldn't reach the generator. Check your connection and retry.";
+  }
+  return m || "Something went wrong while generating. Please try again.";
+}
 
 const models = [
   { id: "glm-5.1", label: "GLM-5.1" },
@@ -39,12 +56,26 @@ export default function PlaygroundPage() {
   const [activeTab, setActiveTab] = useState("preview");
   const [model, setModel] = useState("deepseek-v4-flash");
   const [isEnhancing, setIsEnhancing] = useState(false);
+  // A clicked template renders instantly from a committed spec (no API call).
+  // It takes precedence until the user generates something new.
+  const [templateSpec, setTemplateSpec] = useState<Spec | null>(null);
+
+  const displaySpec = templateSpec ?? spec;
+  const lastPrompt = history[history.length - 1];
 
   const handleSend = (text: string) => {
     if (!text.trim() || isStreaming) return;
+    setTemplateSpec(null);
     setHistory((prev) => [...prev, text]);
     send(text, { model });
     setPrompt("");
+  };
+
+  const handleTemplate = (template: (typeof templates)[number]) => {
+    if (isStreaming) return;
+    clear();
+    setTemplateSpec(template.spec);
+    setHistory((prev) => [...prev, template.label]);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -63,12 +94,18 @@ export default function PlaygroundPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt, context: { model } }),
       });
-      if (!res.ok) throw new Error("Enhancement failed");
-      const { enhanced } = await res.json();
-      if (enhanced) setPrompt(enhanced);
+      const data = await res.json().catch(() => null);
+      if (!res.ok) {
+        throw new Error(data?.error ?? `HTTP error: ${res.status}`);
+      }
+      if (data?.enhanced) setPrompt(data.enhanced);
     } catch (err) {
-      // silently fail to avoid disrupting the user
-      console.error("Enhance failed:", err);
+      // Enhance is a side action: keep the typed prompt intact and surface the
+      // failure as a non-blocking toast instead of swallowing it.
+      const message = err instanceof Error ? err.message : undefined;
+      toast.error("Couldn't enhance prompt", {
+        description: friendlyError(message),
+      });
     } finally {
       setIsEnhancing(false);
     }
@@ -86,13 +123,14 @@ export default function PlaygroundPage() {
                 Start from a template
               </span>
               <div className="flex flex-wrap gap-2">
-                {chips.map((chip) => (
+                {templates.map((template) => (
                   <button
-                    key={chip}
-                    onClick={() => handleSend(chip)}
-                    className="rounded-md border bg-muted px-2.5 py-1 text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+                    key={template.id}
+                    onClick={() => handleTemplate(template)}
+                    disabled={isStreaming}
+                    className="rounded-md border bg-muted px-2.5 py-1 text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground disabled:pointer-events-none disabled:opacity-50"
                   >
-                    {chip}
+                    {template.label}
                   </button>
                 ))}
               </div>
@@ -138,13 +176,10 @@ export default function PlaygroundPage() {
                       Generating...
                     </div>
                   )}
-                  {error && (
-                    <div className="text-xs text-destructive">{error.message}</div>
-                  )}
                 </div>
                 <div className="flex gap-2">
-                  {spec && (
-                    <Button variant="outline" size="sm" onClick={() => { clear(); setHistory([]); }}>
+                  {displaySpec && (
+                    <Button variant="outline" size="sm" onClick={() => { clear(); setTemplateSpec(null); setHistory([]); }}>
                       Clear
                     </Button>
                   )}
@@ -168,6 +203,26 @@ export default function PlaygroundPage() {
                   </Button>
                 </div>
               </div>
+
+              {error && !isStreaming && (
+                <Alert variant="destructive">
+                  <AlertTriangleIcon className="size-4" />
+                  <AlertTitle>Generation failed</AlertTitle>
+                  <AlertDescription>
+                    {friendlyError(error.message)}
+                    {lastPrompt && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="mt-2 w-fit"
+                        onClick={() => handleSend(lastPrompt)}
+                      >
+                        Retry
+                      </Button>
+                    )}
+                  </AlertDescription>
+                </Alert>
+              )}
             </div>
           </div>
         </ResizablePanel>
@@ -185,25 +240,25 @@ export default function PlaygroundPage() {
               </TabsList>
 
               <TabsContent value="preview" className="flex-1 overflow-auto p-4">
-                {!spec && !isStreaming && (
+                {!displaySpec && !isStreaming && (
                   <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
                     Enter a prompt to generate a UI
                   </div>
                 )}
-                <SpecPreview spec={spec} loading={isStreaming} />
+                <SpecPreview spec={displaySpec} loading={isStreaming} />
               </TabsContent>
 
               <TabsContent value="spec" className="flex-1 overflow-auto p-4">
                 <DynamicCodeBlock
                   lang="json"
-                  code={spec ? JSON.stringify(spec, null, 2) : "// No spec generated yet"}
+                  code={displaySpec ? JSON.stringify(displaySpec, null, 2) : "// No spec generated yet"}
                 />
               </TabsContent>
 
               <TabsContent value="code" className="flex-1 overflow-auto p-4">
                 <DynamicCodeBlock
                   lang="tsx"
-                  code={generateJSX(spec)}
+                  code={generateJSX(displaySpec)}
                 />
               </TabsContent>
             </Tabs>

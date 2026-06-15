@@ -2,7 +2,7 @@ import { streamText } from "ai"
 import { createOpenAICompatible } from "@ai-sdk/openai-compatible"
 import { createAnthropic } from "@ai-sdk/anthropic"
 import { buildUserPrompt, type Spec } from "@json-render/core"
-import { catalog } from "@/lib/playground/catalog"
+import { systemPrompt } from "@/lib/playground/system-prompt"
 
 export const maxDuration = 60
 
@@ -47,14 +47,6 @@ export async function POST(req: Request) {
     ? anthropicProvider
     : openaiProvider
 
-  const system = catalog.prompt({
-    mode: "standalone",
-    customRules: [
-      "OUTPUT ONLY valid JSONL lines (RFC 6902 JSON Patch). No markdown, no prose.",
-      "Every Button MUST have a non-empty `label` prop with its visible text (e.g. \"Sign in\"). Never emit a Button without a label, and do not use size \"icon\" unless the button shows only an icon.",
-    ],
-  })
-
   const userPrompt = buildUserPrompt({
     prompt,
     currentSpec: (currentTree ?? null) as Spec | null,
@@ -62,8 +54,16 @@ export async function POST(req: Request) {
 
   const result = streamText({
     model: provider(model),
-    system,
+    system: systemPrompt,
     prompt: userPrompt,
+    // Bound output size and fail fast on a stalled model so a slow generation
+    // surfaces as a clean error (and any partial spec already streamed) instead
+    // of hanging until the 60s function limit and returning an empty 504.
+    maxOutputTokens: 4000,
+    timeout: { chunkMs: 15_000 },
+    onError({ error }) {
+      console.error("playground generate stream error:", error)
+    },
   })
 
   return result.toTextStreamResponse()

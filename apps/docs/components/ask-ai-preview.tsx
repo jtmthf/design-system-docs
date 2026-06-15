@@ -3,16 +3,10 @@
 import { useState } from "react";
 
 import type { Spec } from "@json-render/core";
-import {
-  ActionProvider,
-  Renderer,
-  StateProvider,
-  VisibilityProvider,
-} from "@json-render/react";
 import { CheckIcon, CopyIcon } from "lucide-react";
 
 import { generateJSX } from "@/lib/playground/codegen";
-import { registry } from "@/lib/playground/registry";
+import { SpecPreview } from "./spec-preview";
 
 /**
  * Renders a json-render spec live inside an Ask AI answer, with a button to copy
@@ -55,13 +49,7 @@ export function AskAIPreview({ spec }: { spec: Spec }) {
         )}
       </div>
       <div className="preview-surface not-prose flex flex-wrap items-start gap-3 p-4">
-        <StateProvider>
-          <VisibilityProvider>
-            <ActionProvider handlers={{}}>
-              <Renderer spec={spec} registry={registry} />
-            </ActionProvider>
-          </VisibilityProvider>
-        </StateProvider>
+        <SpecPreview spec={spec} />
       </div>
     </div>
   );

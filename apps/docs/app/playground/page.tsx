@@ -1,15 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { useUIStream, StateProvider, VisibilityProvider, ActionProvider, Renderer } from "@json-render/react";
+import { useUIStream } from "@json-render/react";
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@workspace/ui/components/resizable";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@workspace/ui/components/tabs";
 import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
 import { Button } from "@workspace/ui/components/button";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@workspace/ui/components/select";
 import { SendIcon, Loader2Icon, Sparkles } from "lucide-react";
-import { registry } from "@/lib/playground/registry";
 import { generateJSX } from "@/lib/playground/codegen";
+import { SpecPreview } from "@/components/spec-preview";
 
 const chips = ["Login form", "Pricing page", "Profile card", "Contact form"];
 
@@ -190,13 +190,7 @@ export default function PlaygroundPage() {
                     Enter a prompt to generate a UI
                   </div>
                 )}
-                <StateProvider>
-                  <VisibilityProvider>
-                    <ActionProvider handlers={{}}>
-                      <Renderer spec={spec} registry={registry} loading={isStreaming} />
-                    </ActionProvider>
-                  </VisibilityProvider>
-                </StateProvider>
+                <SpecPreview spec={spec} loading={isStreaming} />
               </TabsContent>
 
               <TabsContent value="spec" className="flex-1 overflow-auto p-4">

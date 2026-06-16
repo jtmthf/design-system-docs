@@ -75,7 +75,7 @@ export default function ComponentsGalleryPage() {
                 className="flex flex-col overflow-hidden rounded-xl border bg-fd-card"
               >
                 {hasPreview ? (
-                  <div className="flex h-40 items-center justify-center border-b bg-fd-background p-4 [&_.my-6]:my-0 [&>div]:min-h-0">
+                  <div className="h-40 overflow-hidden border-b bg-fd-background">
                     <ComponentPreview name={exampleName} previewOnly />
                   </div>
                 ) : (

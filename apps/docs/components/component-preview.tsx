@@ -39,6 +39,22 @@ export function ComponentPreview({
     );
   }
 
+  if (previewOnly) {
+    // Gallery thumbnail: render the bare example fitted to its slot. No
+    // detail-page chrome (min-height, large padding, nested border/margin) and
+    // non-interactive so portaled popups can't escape the card.
+    return (
+      <div
+        className={cn(
+          "preview-surface not-prose pointer-events-none flex h-full w-full items-center justify-center overflow-hidden p-4",
+          className
+        )}
+      >
+        <Example />
+      </div>
+    );
+  }
+
   const preview = (
     <div
       className={cn(
@@ -49,14 +65,6 @@ export function ComponentPreview({
       <Example />
     </div>
   );
-
-  if (previewOnly) {
-    return (
-      <div className="my-6 overflow-hidden rounded-xl border bg-fd-background">
-        {preview}
-      </div>
-    );
-  }
 
   const code = readExampleSource(name);
 

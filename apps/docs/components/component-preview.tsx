@@ -75,7 +75,7 @@ export function ComponentPreview({
       </Tab>
       <Tab
         value="Code"
-        className="p-0 [&_figure]:my-0 [&_figure]:rounded-none [&_figure]:border-none"
+        className="p-0 [&_figure]:!m-0 [&_figure]:rounded-none [&_figure]:border-none"
       >
         <DynamicCodeBlock
           lang="tsx"

@@ -6,7 +6,8 @@ import {
   DocsTitle,
 } from "fumadocs-ui/page";
 import { mdxComponents } from "@/components/mdx";
-import { OpenInV0 } from "@/components/open-in-v0";
+import { PageActions } from "@/components/page-actions";
+import { githubSourceUrl } from "@/lib/page-actions";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -22,7 +23,7 @@ export default async function Page({
   const MDX = page.data.body;
 
   // Component doc pages map 1:1 to registry items (slug `components/<name>`),
-  // so surface an "Open in v0" button alongside the title.
+  // so surface "Open in v0" inside the page actions menu.
   const componentName =
     slug?.[0] === "components" && slug[1] ? slug[1] : undefined;
 
@@ -30,11 +31,13 @@ export default async function Page({
     <DocsPage toc={page.data.toc} full={page.data.full}>
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
-      {componentName ? (
-        <div className="mb-2 flex flex-wrap gap-2">
-          <OpenInV0 name={componentName} />
-        </div>
-      ) : null}
+      <div className="mb-2 flex flex-wrap items-center gap-2">
+        <PageActions
+          slug={slug}
+          githubUrl={githubSourceUrl(page.data.info.path)}
+          componentName={componentName}
+        />
+      </div>
       <DocsBody>
         <MDX components={mdxComponents} />
       </DocsBody>

@@ -2,28 +2,6 @@ import { defineCatalog } from "@json-render/core";
 import { schema } from "@json-render/react/schema";
 import { z } from "zod";
 
-const labelProp = z.string().optional().describe("Label or text content");
-
-const variantProp = (
-  values: string[],
-  defaultValue: string,
-  description: string
-) =>
-  z
-    .enum(values as [string, ...string[]])
-    .optional()
-    .describe(`${description}. Default: "${defaultValue}"`);
-
-const sizeProp = (
-  values: string[],
-  defaultValue: string,
-  description: string
-) =>
-  z
-    .enum(values as [string, ...string[]])
-    .optional()
-    .describe(`${description}. Default: "${defaultValue}"`);
-
 export const catalog = defineCatalog(schema, {
   components: {
     // Layout

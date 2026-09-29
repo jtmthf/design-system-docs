@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import {
   CheckIcon,
@@ -26,6 +26,7 @@ import {
   openInCursorUrl,
 } from "@/lib/page-actions";
 import { openInV0Url } from "@/lib/registry-url";
+import { useOrigin } from "@/lib/use-origin";
 
 /**
  * Page-level "AI actions" row for a docs page: a "Copy Markdown" button plus an
@@ -47,21 +48,9 @@ export function PageActions({
   /** Registry item name, when the page is a component doc — enables "Open in v0". */
   componentName?: string;
 }) {
-  const key = slug?.join("/") ?? "";
-  const [mdUrl, setMdUrl] = useState(() => markdownUrl(slug));
-  const [v0Url, setV0Url] = useState(() =>
-    componentName ? openInV0Url(componentName) : undefined
-  );
-
-  useEffect(() => {
-    setMdUrl(markdownUrl(key ? key.split("/") : undefined, window.location.origin));
-  }, [key]);
-
-  useEffect(() => {
-    setV0Url(
-      componentName ? openInV0Url(componentName, window.location.origin) : undefined
-    );
-  }, [componentName]);
+  const origin = useOrigin();
+  const mdUrl = markdownUrl(slug, origin);
+  const v0Url = componentName ? openInV0Url(componentName, origin) : undefined;
 
   return (
     <>
@@ -121,9 +110,9 @@ function ViewOptions({
         <ChevronDownIcon />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start" className="w-60">
-        {items.map((item, i) =>
+        {items.map((item) =>
           "separator" in item ? (
-            <DropdownMenuSeparator key={`sep-${i}`} />
+            <DropdownMenuSeparator key="separator" />
           ) : (
             <DropdownMenuItem
               key={item.title}

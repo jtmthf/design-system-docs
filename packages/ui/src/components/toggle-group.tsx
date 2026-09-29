@@ -67,11 +67,11 @@ function ToggleGroup({
       )}
       {...props}
     >
-      <ToggleGroupContext.Provider
+      <ToggleGroupContext
         value={{ variant, size, spacing, orientation }}
       >
         {children}
-      </ToggleGroupContext.Provider>
+      </ToggleGroupContext>
     </ToggleGroupPrimitive>
   )
 }
@@ -94,7 +94,7 @@ function ToggleGroupItem({
   size = "default",
   ...props
 }: TogglePrimitive.Props & VariantProps<typeof toggleVariants>) {
-  const context = React.useContext(ToggleGroupContext)
+  const context = React.use(ToggleGroupContext)
 
   return (
     <TogglePrimitive

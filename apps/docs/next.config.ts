@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
     "fumadocs-typescript",
     "fumadocs-openapi",
   ],
+  images: {
+    // Example photos in components/examples.
+    remotePatterns: [new URL("https://images.unsplash.com/**")],
+  },
   rewrites: async () => [
     {
       source: "/docs/:path*.mdx",

@@ -26,10 +26,10 @@ import { Slider } from "@workspace/ui/components/slider";
 import { RadioGroup, RadioGroupItem } from "@workspace/ui/components/radio-group";
 import { Label } from "@workspace/ui/components/label";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@workspace/ui/components/tabs";
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis } from "@workspace/ui/components/pagination";
+import { Pagination } from "@workspace/ui/components/pagination";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@workspace/ui/components/dialog";
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerFooter } from "@workspace/ui/components/drawer";
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator } from "@workspace/ui/components/dropdown-menu";
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent } from "@workspace/ui/components/dropdown-menu";
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@workspace/ui/components/tooltip";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@workspace/ui/components/table";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@workspace/ui/components/accordion";
@@ -86,8 +86,8 @@ export const { registry } = defineRegistry(catalog, {
     ),
     ButtonGroup: ({ props }) => (
       <ButtonGroup orientation={props.orientation} className={props.className}>
-        {props.items?.map((item, i) => (
-          <Button key={i} variant={item.variant} size={item.size} disabled={item.disabled}>
+        {props.items?.map((item) => (
+          <Button key={item.label} variant={item.variant} size={item.size} disabled={item.disabled}>
             {item.label}
           </Button>
         ))}

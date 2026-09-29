@@ -68,7 +68,7 @@
     "@vitest/coverage-v8": "^4.1.11",
     "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
-    "eslint": "^9.39.5",
+    "eslint": "^10.11.0",
     "eslint-plugin-storybook": "^10.6.0",
     "playwright": "^1.63.0",
     "storybook": "^10.6.0",

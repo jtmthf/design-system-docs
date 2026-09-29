@@ -2,7 +2,6 @@ import { AutoTypeTable as AutoTypeTableBase } from "fumadocs-typescript/ui";
 import defaultComponents from "fumadocs-ui/mdx";
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 import { Popup, PopupContent, PopupTrigger } from "fumadocs-twoslash/ui";
-import type { ComponentType } from "react";
 
 import { ComponentPreview } from "./component-preview";
 import { ComponentSource } from "./component-source";
@@ -60,4 +59,4 @@ export const mdxComponents = {
   Popup,
   PopupContent,
   PopupTrigger,
-} as any;
+};

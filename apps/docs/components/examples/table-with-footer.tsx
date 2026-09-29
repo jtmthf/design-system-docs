@@ -33,14 +33,14 @@ export default function TableWithFooter() {
           <TableRow key={inv.id}>
             <TableCell>{inv.id}</TableCell>
             <TableCell>{inv.status}</TableCell>
-            <TableCell className="text-right">${inv.amount}.00</TableCell>
+            <TableCell className="text-right">{`$${inv.amount}.00`}</TableCell>
           </TableRow>
         ))}
       </TableBody>
       <TableFooter>
         <TableRow>
           <TableCell colSpan={2}>Total</TableCell>
-          <TableCell className="text-right">${total}.00</TableCell>
+          <TableCell className="text-right">{`$${total}.00`}</TableCell>
         </TableRow>
       </TableFooter>
     </Table>

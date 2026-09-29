@@ -5,10 +5,12 @@
     "build": {
       "dependsOn": ["^build", "registry:build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*", "!etc/**", "!temp/**"],
-      "outputs": [".next/**", "!.next/cache/**", "!.next/dev/**"]
+      "outputs": [".next/**", "!.next/cache/**", "!.next/dev/**"],
+      "passThroughEnv": ["AI_API_KEY", "AI_BASE_URL", "AI_MODEL", "OPENCODE_API_KEY"]
     },
     "registry:build": {
       "dependsOn": ["^build"],
+      "env": ["VERCEL_PROJECT_PRODUCTION_URL"],
       "outputs": ["public/r/**", "registry/**", "registry.json"]
     }
   }

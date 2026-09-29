@@ -19,7 +19,7 @@ export function AskAI() {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
   const { messages, sendMessage, status, error } = useChat({
-    transport: new DefaultChatTransport({ api: "/api/chat" }) as any,
+    transport: new DefaultChatTransport({ api: "/api/chat" }),
   });
   const listRef = useRef<HTMLDivElement>(null);
 

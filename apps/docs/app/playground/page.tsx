@@ -52,7 +52,7 @@ export default function PlaygroundPage() {
     api: "/api/playground/generate",
   });
   const [prompt, setPrompt] = useState("");
-  const [history, setHistory] = useState<string[]>([]);
+  const [history, setHistory] = useState<{ id: string; text: string }[]>([]);
   const [activeTab, setActiveTab] = useState("preview");
   const [model, setModel] = useState("deepseek-v4-flash");
   const [isEnhancing, setIsEnhancing] = useState(false);
@@ -61,12 +61,12 @@ export default function PlaygroundPage() {
   const [templateSpec, setTemplateSpec] = useState<Spec | null>(null);
 
   const displaySpec = templateSpec ?? spec;
-  const lastPrompt = history[history.length - 1];
+  const lastPrompt = history.at(-1)?.text;
 
   const handleSend = (text: string) => {
     if (!text.trim() || isStreaming) return;
     setTemplateSpec(null);
-    setHistory((prev) => [...prev, text]);
+    setHistory((prev) => [...prev, { id: crypto.randomUUID(), text }]);
     send(text, { model });
     setPrompt("");
   };
@@ -75,7 +75,7 @@ export default function PlaygroundPage() {
     if (isStreaming) return;
     clear();
     setTemplateSpec(template.spec);
-    setHistory((prev) => [...prev, template.label]);
+    setHistory((prev) => [...prev, { id: crypto.randomUUID(), text: template.label }]);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -139,9 +139,9 @@ export default function PlaygroundPage() {
             {/* History */}
             {history.length > 0 && (
               <div className="flex max-h-40 flex-col gap-1 overflow-y-auto text-xs text-muted-foreground">
-                {history.map((h, i) => (
-                  <div key={i} className="rounded bg-muted px-2 py-1">
-                    {h}
+                {history.map((h) => (
+                  <div key={h.id} className="rounded bg-muted px-2 py-1">
+                    {h.text}
                   </div>
                 ))}
               </div>

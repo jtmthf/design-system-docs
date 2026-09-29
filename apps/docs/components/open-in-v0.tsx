@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
 import { Button } from "@workspace/ui/components/button";
 
 import { openInV0Url } from "@/lib/registry-url";
+import { useOrigin } from "@/lib/use-origin";
 
 /**
  * "Open in v0" button for a registry item. Opens v0.dev with the item's JSON
@@ -21,11 +20,7 @@ export function OpenInV0({
   name: string;
   size?: "sm" | "default";
 }) {
-  const [href, setHref] = useState(() => openInV0Url(name));
-
-  useEffect(() => {
-    setHref(openInV0Url(name, window.location.origin));
-  }, [name]);
+  const href = openInV0Url(name, useOrigin());
 
   return (
     <Button

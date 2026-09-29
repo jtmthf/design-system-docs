@@ -1,10 +1,11 @@
 "use client";
 
 import { CheckIcon, CopyIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { cn } from "@/lib/cn";
 import { installCommand } from "@/lib/registry-url";
+import { useOrigin } from "@/lib/use-origin";
 
 /**
  * A monospace install command with a click-to-copy button.
@@ -23,15 +24,9 @@ export function CopyCommand({
   className?: string;
 }) {
   const [copied, setCopied] = useState(false);
-  const [resolved, setResolved] = useState(
-    () => command ?? (name ? installCommand(name) : "")
-  );
+  const origin = useOrigin();
 
-  useEffect(() => {
-    if (name) setResolved(installCommand(name, window.location.origin));
-  }, [name]);
-
-  const text = command ?? resolved;
+  const text = command ?? (name ? installCommand(name, origin) : "");
 
   return (
     <div

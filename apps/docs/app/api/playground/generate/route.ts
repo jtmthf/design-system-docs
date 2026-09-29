@@ -1,4 +1,4 @@
-import { streamText } from "ai"
+import { createTextStreamResponse, streamText, toTextStream } from "ai"
 import { createOpenAICompatible } from "@ai-sdk/openai-compatible"
 import { createAnthropic } from "@ai-sdk/anthropic"
 import { buildUserPrompt, type Spec } from "@json-render/core"
@@ -54,7 +54,7 @@ export async function POST(req: Request) {
 
   const result = streamText({
     model: provider(model),
-    system: systemPrompt,
+    instructions: systemPrompt,
     prompt: userPrompt,
     // Bound output size and fail fast on a stalled model so a slow generation
     // surfaces as a clean error (and any partial spec already streamed) instead
@@ -66,5 +66,7 @@ export async function POST(req: Request) {
     },
   })
 
-  return result.toTextStreamResponse()
+  return createTextStreamResponse({
+    stream: toTextStream({ stream: result.stream }),
+  })
 }

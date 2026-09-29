@@ -1,5 +1,5 @@
 import { collectUsedComponents, serializeProps } from "@json-render/codegen";
-import { resolvePropValue } from "@json-render/core";
+import { resolvePropValue, resolveRepeatStatePath } from "@json-render/core";
 import type { PropResolutionContext, Spec } from "@json-render/core";
 
 const importMap: Record<string, string> = {
@@ -176,7 +176,10 @@ function elementToJSX(
   if (element.repeat) {
     // Render the children once per item, binding each iteration's scope so
     // `$item` / `$index` resolve to that row's literal data.
-    const { statePath } = element.repeat;
+    // `statePath` may be item-relative (`{ $item: "rows" }`) for nested repeats.
+    const statePath =
+      resolveRepeatStatePath(element.repeat.statePath, ctx.repeatBasePath) ??
+      "";
     const items = getByPath(ctx.stateModel, statePath);
     const list = Array.isArray(items) ? items : [];
     childLines = list

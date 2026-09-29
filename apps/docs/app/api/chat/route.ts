@@ -3,6 +3,7 @@ import {
   createUIMessageStream,
   createUIMessageStreamResponse,
   streamText,
+  toUIMessageStream,
   type UIMessage,
 } from "ai";
 import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
@@ -62,13 +63,15 @@ ${index}`,
 
   const result = streamText({
     model: provider(MODEL),
-    system,
+    instructions: system,
     messages: await convertToModelMessages(messages),
   });
 
   const stream = createUIMessageStream({
     execute: ({ writer }) => {
-      writer.merge(pipeJsonRender(result.toUIMessageStream()));
+      writer.merge(
+        pipeJsonRender(toUIMessageStream({ stream: result.stream }))
+      );
     },
   });
 

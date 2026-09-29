@@ -20,7 +20,7 @@ import { DayPicker } from 'react-day-picker';
 import { Dialog as Dialog_2 } from '@base-ui/react/dialog';
 import { DirectionProvider } from '@base-ui/react/direction-provider';
 import { Drawer as Drawer_2 } from 'vaul';
-import { JSX } from 'react/jsx-runtime';
+import { JSX } from 'react';
 import { JSXElementConstructor } from 'react';
 import { Locale } from 'react-day-picker';
 import { Menu } from '@base-ui/react/menu';
@@ -68,54 +68,54 @@ export function AccordionTrigger(input: Accordion_2.Trigger.Props): JSX.Element;
 // Warning: (ae-forgotten-export) The symbol "alertVariants" needs to be exported by the entry point index.d.ts
 //
 // @public
-export function Alert(input: React_2.ComponentProps<"div"> & VariantProps<typeof alertVariants>): JSX.Element;
+export function Alert(input: React_2.ComponentProps<"div"> & VariantProps<typeof alertVariants>): React_2.JSX.Element;
 
 // @public
-export function AlertAction(input: React_2.ComponentProps<"div">): JSX.Element;
+export function AlertAction(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function AlertDescription(input: React_2.ComponentProps<"div">): JSX.Element;
+export function AlertDescription(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function AlertDialog(input: AlertDialog_2.Root.Props): JSX.Element;
+export function AlertDialog(input: AlertDialog_2.Root.Props): React_2.JSX.Element;
 
 // @public
-export function AlertDialogAction(input: React_2.ComponentProps<typeof Button>): JSX.Element;
+export function AlertDialogAction(input: React_2.ComponentProps<typeof Button>): React_2.JSX.Element;
 
 // @public
-export function AlertDialogCancel(input: AlertDialog_2.Close.Props & Pick<React_2.ComponentProps<typeof Button>, "variant" | "size">): JSX.Element;
+export function AlertDialogCancel(input: AlertDialog_2.Close.Props & Pick<React_2.ComponentProps<typeof Button>, "variant" | "size">): React_2.JSX.Element;
 
 // @public
 export function AlertDialogContent(input: AlertDialog_2.Popup.Props & {
     size?: "default" | "sm";
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function AlertDialogDescription(input: React_2.ComponentProps<typeof AlertDialog_2.Description>): JSX.Element;
+export function AlertDialogDescription(input: React_2.ComponentProps<typeof AlertDialog_2.Description>): React_2.JSX.Element;
 
 // @public
-export function AlertDialogFooter(input: React_2.ComponentProps<"div">): JSX.Element;
+export function AlertDialogFooter(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function AlertDialogHeader(input: React_2.ComponentProps<"div">): JSX.Element;
+export function AlertDialogHeader(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function AlertDialogMedia(input: React_2.ComponentProps<"div">): JSX.Element;
+export function AlertDialogMedia(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function AlertDialogOverlay(input: AlertDialog_2.Backdrop.Props): JSX.Element;
+export function AlertDialogOverlay(input: AlertDialog_2.Backdrop.Props): React_2.JSX.Element;
 
 // @public
-export function AlertDialogPortal(input: AlertDialog_2.Portal.Props): JSX.Element;
+export function AlertDialogPortal(input: AlertDialog_2.Portal.Props): React_2.JSX.Element;
 
 // @public
-export function AlertDialogTitle(input: React_2.ComponentProps<typeof AlertDialog_2.Title>): JSX.Element;
+export function AlertDialogTitle(input: React_2.ComponentProps<typeof AlertDialog_2.Title>): React_2.JSX.Element;
 
 // @public
-export function AlertDialogTrigger(input: AlertDialog_2.Trigger.Props): JSX.Element;
+export function AlertDialogTrigger(input: AlertDialog_2.Trigger.Props): React_2.JSX.Element;
 
 // @public
-export function AlertTitle(input: React_2.ComponentProps<"div">): JSX.Element;
+export function AlertTitle(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
 export function AspectRatio(input: React.ComponentProps<"div"> & {
@@ -125,22 +125,22 @@ export function AspectRatio(input: React.ComponentProps<"div"> & {
 // @public
 export function Avatar(input: Avatar_2.Root.Props & {
     size?: "default" | "sm" | "lg";
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function AvatarBadge(input: React_2.ComponentProps<"span">): JSX.Element;
+export function AvatarBadge(input: React_2.ComponentProps<"span">): React_2.JSX.Element;
 
 // @public
-export function AvatarFallback(input: Avatar_2.Fallback.Props): JSX.Element;
+export function AvatarFallback(input: Avatar_2.Fallback.Props): React_2.JSX.Element;
 
 // @public
-export function AvatarGroup(input: React_2.ComponentProps<"div">): JSX.Element;
+export function AvatarGroup(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function AvatarGroupCount(input: React_2.ComponentProps<"div">): JSX.Element;
+export function AvatarGroupCount(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function AvatarImage(input: Avatar_2.Image.Props): JSX.Element;
+export function AvatarImage(input: Avatar_2.Image.Props): React_2.JSX.Element;
 
 // @public
 export function Badge(input: useRender.ComponentProps<"span"> & VariantProps<typeof badgeVariants>): ReactElement<unknown, string | JSXElementConstructor<any>>;
@@ -151,25 +151,25 @@ export const badgeVariants: (props?: ({
 } & ClassProp) | undefined) => string;
 
 // @public
-export function Breadcrumb(input: React_2.ComponentProps<"nav">): JSX.Element;
+export function Breadcrumb(input: React_2.ComponentProps<"nav">): React_2.JSX.Element;
 
 // @public
-export function BreadcrumbEllipsis(input: React_2.ComponentProps<"span">): JSX.Element;
+export function BreadcrumbEllipsis(input: React_2.ComponentProps<"span">): React_2.JSX.Element;
 
 // @public
-export function BreadcrumbItem(input: React_2.ComponentProps<"li">): JSX.Element;
+export function BreadcrumbItem(input: React_2.ComponentProps<"li">): React_2.JSX.Element;
 
 // @public
 export function BreadcrumbLink(input: useRender.ComponentProps<"a">): React_2.ReactElement<unknown, string | React_2.JSXElementConstructor<any>>;
 
 // @public
-export function BreadcrumbList(input: React_2.ComponentProps<"ol">): JSX.Element;
+export function BreadcrumbList(input: React_2.ComponentProps<"ol">): React_2.JSX.Element;
 
 // @public
-export function BreadcrumbPage(input: React_2.ComponentProps<"span">): JSX.Element;
+export function BreadcrumbPage(input: React_2.ComponentProps<"span">): React_2.JSX.Element;
 
 // @public
-export function BreadcrumbSeparator(input: React_2.ComponentProps<"li">): JSX.Element;
+export function BreadcrumbSeparator(input: React_2.ComponentProps<"li">): React_2.JSX.Element;
 
 // @public
 export function Button(input: Button_2.Props & VariantProps<typeof buttonVariants>): JSX.Element;
@@ -197,55 +197,55 @@ export const buttonVariants: (props?: ({
 // @public
 export function Calendar(input: React_2.ComponentProps<typeof DayPicker> & {
     buttonVariant?: React_2.ComponentProps<typeof Button>["variant"];
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
 export function CalendarDayButton(input: React_2.ComponentProps<typeof DayButton> & {
     locale?: Partial<Locale>;
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
 export function Card(input: React_2.ComponentProps<"div"> & {
     size?: "default" | "sm";
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function CardAction(input: React_2.ComponentProps<"div">): JSX.Element;
+export function CardAction(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function CardContent(input: React_2.ComponentProps<"div">): JSX.Element;
+export function CardContent(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function CardDescription(input: React_2.ComponentProps<"div">): JSX.Element;
+export function CardDescription(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function CardFooter(input: React_2.ComponentProps<"div">): JSX.Element;
+export function CardFooter(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function CardHeader(input: React_2.ComponentProps<"div">): JSX.Element;
+export function CardHeader(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function CardTitle(input: React_2.ComponentProps<"div">): JSX.Element;
+export function CardTitle(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // Warning: (ae-forgotten-export) The symbol "CarouselProps" needs to be exported by the entry point index.d.ts
 //
 // @public
-export function Carousel(input: React_2.ComponentProps<"div"> & CarouselProps): JSX.Element;
+export function Carousel(input: React_2.ComponentProps<"div"> & CarouselProps): React_2.JSX.Element;
 
 // @public
 export type CarouselApi = UseEmblaCarouselType[1];
 
 // @public
-export function CarouselContent(input: React_2.ComponentProps<"div">): JSX.Element;
+export function CarouselContent(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function CarouselItem(input: React_2.ComponentProps<"div">): JSX.Element;
+export function CarouselItem(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function CarouselNext(input: React_2.ComponentProps<typeof Button>): JSX.Element;
+export function CarouselNext(input: React_2.ComponentProps<typeof Button>): React_2.JSX.Element;
 
 // @public
-export function CarouselPrevious(input: React_2.ComponentProps<typeof Button>): JSX.Element;
+export function CarouselPrevious(input: React_2.ComponentProps<typeof Button>): React_2.JSX.Element;
 
 // @public
 export type ChartConfig = Record<string, {
@@ -267,7 +267,7 @@ export function ChartContainer(input: React_2.ComponentProps<"div"> & {
         width: number;
         height: number;
     };
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
 export const ChartLegend: React_2.MemoExoticComponent<(outsideProps: RechartsPrimitive.LegendProps) => React_2.ReactPortal | null>;
@@ -276,13 +276,13 @@ export const ChartLegend: React_2.MemoExoticComponent<(outsideProps: RechartsPri
 export function ChartLegendContent(input: React_2.ComponentProps<"div"> & {
     hideIcon?: boolean;
     nameKey?: string;
-} & RechartsPrimitive.DefaultLegendContentProps): JSX.Element | null;
+} & RechartsPrimitive.DefaultLegendContentProps): React_2.JSX.Element | null;
 
 // @public
 export const ChartStyle: (input: {
     id: string;
     config: ChartConfig;
-}) => JSX.Element | null;
+}) => React_2.JSX.Element | null;
 
 // @public
 export const ChartTooltip: typeof RechartsPrimitive.Tooltip;
@@ -296,7 +296,7 @@ export function ChartTooltipContent(input: React_2.ComponentProps<typeof Rechart
     indicator?: "line" | "dot" | "dashed";
     nameKey?: string;
     labelKey?: string;
-} & Omit<RechartsPrimitive.DefaultTooltipContentProps<TooltipValueType, TooltipNameType>, "accessibilityLayer">): JSX.Element | null;
+} & Omit<RechartsPrimitive.DefaultTooltipContentProps<TooltipValueType, TooltipNameType>, "accessibilityLayer">): React_2.JSX.Element | null;
 
 // @public
 export function Checkbox(input: Checkbox_2.Root.Props): JSX.Element;
@@ -319,52 +319,52 @@ export const Combobox: typeof Combobox_2.Root;
 // @public
 export function ComboboxChip(input: Combobox_2.Chip.Props & {
     showRemove?: boolean;
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function ComboboxChips(input: React_2.ComponentPropsWithRef<typeof Combobox_2.Chips> & Combobox_2.Chips.Props): JSX.Element;
+export function ComboboxChips(input: React_2.ComponentPropsWithRef<typeof Combobox_2.Chips> & Combobox_2.Chips.Props): React_2.JSX.Element;
 
 // @public
-export function ComboboxChipsInput(input: Combobox_2.Input.Props): JSX.Element;
+export function ComboboxChipsInput(input: Combobox_2.Input.Props): React_2.JSX.Element;
 
 // @public
-export function ComboboxCollection(input: Combobox_2.Collection.Props): JSX.Element;
+export function ComboboxCollection(input: Combobox_2.Collection.Props): React_2.JSX.Element;
 
 // @public
-export function ComboboxContent(input: Combobox_2.Popup.Props & Pick<Combobox_2.Positioner.Props, "side" | "align" | "sideOffset" | "alignOffset" | "anchor">): JSX.Element;
+export function ComboboxContent(input: Combobox_2.Popup.Props & Pick<Combobox_2.Positioner.Props, "side" | "align" | "sideOffset" | "alignOffset" | "anchor">): React_2.JSX.Element;
 
 // @public
-export function ComboboxEmpty(input: Combobox_2.Empty.Props): JSX.Element;
+export function ComboboxEmpty(input: Combobox_2.Empty.Props): React_2.JSX.Element;
 
 // @public
-export function ComboboxGroup(input: Combobox_2.Group.Props): JSX.Element;
+export function ComboboxGroup(input: Combobox_2.Group.Props): React_2.JSX.Element;
 
 // @public
 export function ComboboxInput(input: Combobox_2.Input.Props & {
     showTrigger?: boolean;
     showClear?: boolean;
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function ComboboxItem(input: Combobox_2.Item.Props): JSX.Element;
+export function ComboboxItem(input: Combobox_2.Item.Props): React_2.JSX.Element;
 
 // @public
-export function ComboboxLabel(input: Combobox_2.GroupLabel.Props): JSX.Element;
+export function ComboboxLabel(input: Combobox_2.GroupLabel.Props): React_2.JSX.Element;
 
 // @public
-export function ComboboxList(input: Combobox_2.List.Props): JSX.Element;
+export function ComboboxList(input: Combobox_2.List.Props): React_2.JSX.Element;
 
 // @public
-export function ComboboxSeparator(input: Combobox_2.Separator.Props): JSX.Element;
+export function ComboboxSeparator(input: Combobox_2.Separator.Props): React_2.JSX.Element;
 
 // @public
-export function ComboboxTrigger(input: Combobox_2.Trigger.Props): JSX.Element;
+export function ComboboxTrigger(input: Combobox_2.Trigger.Props): React_2.JSX.Element;
 
 // @public
-export function ComboboxValue(input: Combobox_2.Value.Props): JSX.Element;
+export function ComboboxValue(input: Combobox_2.Value.Props): React_2.JSX.Element;
 
 // @public
-export function Command(input: React_2.ComponentProps<typeof Command_2>): JSX.Element;
+export function Command(input: React_2.ComponentProps<typeof Command_2>): React_2.JSX.Element;
 
 // @public
 export function CommandDialog(input: Omit<React_2.ComponentProps<typeof Dialog>, "children"> & {
@@ -373,206 +373,206 @@ export function CommandDialog(input: Omit<React_2.ComponentProps<typeof Dialog>,
     className?: string;
     showCloseButton?: boolean;
     children: React_2.ReactNode;
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function CommandEmpty(input: React_2.ComponentProps<typeof Command_2.Empty>): JSX.Element;
+export function CommandEmpty(input: React_2.ComponentProps<typeof Command_2.Empty>): React_2.JSX.Element;
 
 // @public
-export function CommandGroup(input: React_2.ComponentProps<typeof Command_2.Group>): JSX.Element;
+export function CommandGroup(input: React_2.ComponentProps<typeof Command_2.Group>): React_2.JSX.Element;
 
 // @public
-export function CommandInput(input: React_2.ComponentProps<typeof Command_2.Input>): JSX.Element;
+export function CommandInput(input: React_2.ComponentProps<typeof Command_2.Input>): React_2.JSX.Element;
 
 // @public
-export function CommandItem(input: React_2.ComponentProps<typeof Command_2.Item>): JSX.Element;
+export function CommandItem(input: React_2.ComponentProps<typeof Command_2.Item>): React_2.JSX.Element;
 
 // @public
-export function CommandList(input: React_2.ComponentProps<typeof Command_2.List>): JSX.Element;
+export function CommandList(input: React_2.ComponentProps<typeof Command_2.List>): React_2.JSX.Element;
 
 // @public
-export function CommandSeparator(input: React_2.ComponentProps<typeof Command_2.Separator>): JSX.Element;
+export function CommandSeparator(input: React_2.ComponentProps<typeof Command_2.Separator>): React_2.JSX.Element;
 
 // @public
-export function CommandShortcut(input: React_2.ComponentProps<"span">): JSX.Element;
+export function CommandShortcut(input: React_2.ComponentProps<"span">): React_2.JSX.Element;
 
 // @public
-export function ContextMenu(input: ContextMenu_2.Root.Props): JSX.Element;
+export function ContextMenu(input: ContextMenu_2.Root.Props): React_2.JSX.Element;
 
 // @public
 export function ContextMenuCheckboxItem(input: ContextMenu_2.CheckboxItem.Props & {
     inset?: boolean;
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function ContextMenuContent(input: ContextMenu_2.Popup.Props & Pick<ContextMenu_2.Positioner.Props, "align" | "alignOffset" | "side" | "sideOffset">): JSX.Element;
+export function ContextMenuContent(input: ContextMenu_2.Popup.Props & Pick<ContextMenu_2.Positioner.Props, "align" | "alignOffset" | "side" | "sideOffset">): React_2.JSX.Element;
 
 // @public
-export function ContextMenuGroup(input: ContextMenu_2.Group.Props): JSX.Element;
+export function ContextMenuGroup(input: ContextMenu_2.Group.Props): React_2.JSX.Element;
 
 // @public
 export function ContextMenuItem(input: ContextMenu_2.Item.Props & {
     inset?: boolean;
     variant?: "default" | "destructive";
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
 export function ContextMenuLabel(input: ContextMenu_2.GroupLabel.Props & {
     inset?: boolean;
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function ContextMenuPortal(input: ContextMenu_2.Portal.Props): JSX.Element;
+export function ContextMenuPortal(input: ContextMenu_2.Portal.Props): React_2.JSX.Element;
 
 // @public
-export function ContextMenuRadioGroup(input: ContextMenu_2.RadioGroup.Props): JSX.Element;
+export function ContextMenuRadioGroup(input: ContextMenu_2.RadioGroup.Props): React_2.JSX.Element;
 
 // @public
 export function ContextMenuRadioItem(input: ContextMenu_2.RadioItem.Props & {
     inset?: boolean;
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function ContextMenuSeparator(input: ContextMenu_2.Separator.Props): JSX.Element;
+export function ContextMenuSeparator(input: ContextMenu_2.Separator.Props): React_2.JSX.Element;
 
 // @public
-export function ContextMenuShortcut(input: React_2.ComponentProps<"span">): JSX.Element;
+export function ContextMenuShortcut(input: React_2.ComponentProps<"span">): React_2.JSX.Element;
 
 // @public
-export function ContextMenuSub(input: ContextMenu_2.SubmenuRoot.Props): JSX.Element;
+export function ContextMenuSub(input: ContextMenu_2.SubmenuRoot.Props): React_2.JSX.Element;
 
 // @public
-export function ContextMenuSubContent(input: React_2.ComponentProps<typeof ContextMenuContent>): JSX.Element;
+export function ContextMenuSubContent(input: React_2.ComponentProps<typeof ContextMenuContent>): React_2.JSX.Element;
 
 // @public
 export function ContextMenuSubTrigger(input: ContextMenu_2.SubmenuTrigger.Props & {
     inset?: boolean;
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function ContextMenuTrigger(input: ContextMenu_2.Trigger.Props): JSX.Element;
+export function ContextMenuTrigger(input: ContextMenu_2.Trigger.Props): React_2.JSX.Element;
 
 // @public
-export function Dialog(input: Dialog_2.Root.Props): JSX.Element;
+export function Dialog(input: Dialog_2.Root.Props): React_2.JSX.Element;
 
 // @public
-export function DialogClose(input: Dialog_2.Close.Props): JSX.Element;
+export function DialogClose(input: Dialog_2.Close.Props): React_2.JSX.Element;
 
 // @public
 export function DialogContent(input: Dialog_2.Popup.Props & {
     showCloseButton?: boolean;
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function DialogDescription(input: Dialog_2.Description.Props): JSX.Element;
+export function DialogDescription(input: Dialog_2.Description.Props): React_2.JSX.Element;
 
 // @public
 export function DialogFooter(input: React_2.ComponentProps<"div"> & {
     showCloseButton?: boolean;
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function DialogHeader(input: React_2.ComponentProps<"div">): JSX.Element;
+export function DialogHeader(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function DialogOverlay(input: Dialog_2.Backdrop.Props): JSX.Element;
+export function DialogOverlay(input: Dialog_2.Backdrop.Props): React_2.JSX.Element;
 
 // @public
-export function DialogPortal(input: Dialog_2.Portal.Props): JSX.Element;
+export function DialogPortal(input: Dialog_2.Portal.Props): React_2.JSX.Element;
 
 // @public
-export function DialogTitle(input: Dialog_2.Title.Props): JSX.Element;
+export function DialogTitle(input: Dialog_2.Title.Props): React_2.JSX.Element;
 
 // @public
-export function DialogTrigger(input: Dialog_2.Trigger.Props): JSX.Element;
+export function DialogTrigger(input: Dialog_2.Trigger.Props): React_2.JSX.Element;
 
 export { DirectionProvider }
 
 // @public
-export function Drawer(input: React_2.ComponentProps<typeof Drawer_2.Root>): JSX.Element;
+export function Drawer(input: React_2.ComponentProps<typeof Drawer_2.Root>): React_2.JSX.Element;
 
 // @public
-export function DrawerClose(input: React_2.ComponentProps<typeof Drawer_2.Close>): JSX.Element;
+export function DrawerClose(input: React_2.ComponentProps<typeof Drawer_2.Close>): React_2.JSX.Element;
 
 // @public
-export function DrawerContent(input: React_2.ComponentProps<typeof Drawer_2.Content>): JSX.Element;
+export function DrawerContent(input: React_2.ComponentProps<typeof Drawer_2.Content>): React_2.JSX.Element;
 
 // @public
-export function DrawerDescription(input: React_2.ComponentProps<typeof Drawer_2.Description>): JSX.Element;
+export function DrawerDescription(input: React_2.ComponentProps<typeof Drawer_2.Description>): React_2.JSX.Element;
 
 // @public
-export function DrawerFooter(input: React_2.ComponentProps<"div">): JSX.Element;
+export function DrawerFooter(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function DrawerHeader(input: React_2.ComponentProps<"div">): JSX.Element;
+export function DrawerHeader(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function DrawerOverlay(input: React_2.ComponentProps<typeof Drawer_2.Overlay>): JSX.Element;
+export function DrawerOverlay(input: React_2.ComponentProps<typeof Drawer_2.Overlay>): React_2.JSX.Element;
 
 // @public
-export function DrawerPortal(input: React_2.ComponentProps<typeof Drawer_2.Portal>): JSX.Element;
+export function DrawerPortal(input: React_2.ComponentProps<typeof Drawer_2.Portal>): React_2.JSX.Element;
 
 // @public
-export function DrawerTitle(input: React_2.ComponentProps<typeof Drawer_2.Title>): JSX.Element;
+export function DrawerTitle(input: React_2.ComponentProps<typeof Drawer_2.Title>): React_2.JSX.Element;
 
 // @public
-export function DrawerTrigger(input: React_2.ComponentProps<typeof Drawer_2.Trigger>): JSX.Element;
+export function DrawerTrigger(input: React_2.ComponentProps<typeof Drawer_2.Trigger>): React_2.JSX.Element;
 
 // @public
-export function DropdownMenu(input: Menu.Root.Props): JSX.Element;
+export function DropdownMenu(input: Menu.Root.Props): React_2.JSX.Element;
 
 // @public
 export function DropdownMenuCheckboxItem(input: Menu.CheckboxItem.Props & {
     inset?: boolean;
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function DropdownMenuContent(input: Menu.Popup.Props & Pick<Menu.Positioner.Props, "align" | "alignOffset" | "side" | "sideOffset">): JSX.Element;
+export function DropdownMenuContent(input: Menu.Popup.Props & Pick<Menu.Positioner.Props, "align" | "alignOffset" | "side" | "sideOffset">): React_2.JSX.Element;
 
 // @public
-export function DropdownMenuGroup(input: Menu.Group.Props): JSX.Element;
+export function DropdownMenuGroup(input: Menu.Group.Props): React_2.JSX.Element;
 
 // @public
 export function DropdownMenuItem(input: Menu.Item.Props & {
     inset?: boolean;
     variant?: "default" | "destructive";
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
 export function DropdownMenuLabel(input: Menu.GroupLabel.Props & {
     inset?: boolean;
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function DropdownMenuPortal(input: Menu.Portal.Props): JSX.Element;
+export function DropdownMenuPortal(input: Menu.Portal.Props): React_2.JSX.Element;
 
 // @public
-export function DropdownMenuRadioGroup(input: Menu.RadioGroup.Props): JSX.Element;
+export function DropdownMenuRadioGroup(input: Menu.RadioGroup.Props): React_2.JSX.Element;
 
 // @public
 export function DropdownMenuRadioItem(input: Menu.RadioItem.Props & {
     inset?: boolean;
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function DropdownMenuSeparator(input: Menu.Separator.Props): JSX.Element;
+export function DropdownMenuSeparator(input: Menu.Separator.Props): React_2.JSX.Element;
 
 // @public
-export function DropdownMenuShortcut(input: React_2.ComponentProps<"span">): JSX.Element;
+export function DropdownMenuShortcut(input: React_2.ComponentProps<"span">): React_2.JSX.Element;
 
 // @public
-export function DropdownMenuSub(input: Menu.SubmenuRoot.Props): JSX.Element;
+export function DropdownMenuSub(input: Menu.SubmenuRoot.Props): React_2.JSX.Element;
 
 // @public
-export function DropdownMenuSubContent(input: React_2.ComponentProps<typeof DropdownMenuContent>): JSX.Element;
+export function DropdownMenuSubContent(input: React_2.ComponentProps<typeof DropdownMenuContent>): React_2.JSX.Element;
 
 // @public
 export function DropdownMenuSubTrigger(input: Menu.SubmenuTrigger.Props & {
     inset?: boolean;
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function DropdownMenuTrigger(input: Menu.Trigger.Props): JSX.Element;
+export function DropdownMenuTrigger(input: Menu.Trigger.Props): React_2.JSX.Element;
 
 // @public
 export function Empty(input: React.ComponentProps<"div">): JSX.Element;
@@ -644,47 +644,47 @@ export function HoverCardContent(input: PreviewCard.Popup.Props & Pick<PreviewCa
 export function HoverCardTrigger(input: PreviewCard.Trigger.Props): JSX.Element;
 
 // @public
-export function Input(input: React_2.ComponentProps<"input">): JSX.Element;
+export function Input(input: React_2.ComponentProps<"input">): React_2.JSX.Element;
 
 // @public
-export function InputGroup(input: React_2.ComponentProps<"div">): JSX.Element;
+export function InputGroup(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // Warning: (ae-forgotten-export) The symbol "inputGroupAddonVariants" needs to be exported by the entry point index.d.ts
 //
 // @public
-export function InputGroupAddon(input: React_2.ComponentProps<"div"> & VariantProps<typeof inputGroupAddonVariants>): JSX.Element;
+export function InputGroupAddon(input: React_2.ComponentProps<"div"> & VariantProps<typeof inputGroupAddonVariants>): React_2.JSX.Element;
 
 // Warning: (ae-forgotten-export) The symbol "inputGroupButtonVariants" needs to be exported by the entry point index.d.ts
 //
 // @public
 export function InputGroupButton(input: Omit<React_2.ComponentProps<typeof Button>, "size" | "type"> & VariantProps<typeof inputGroupButtonVariants> & {
     type?: "button" | "submit" | "reset";
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function InputGroupInput(input: React_2.ComponentProps<"input">): JSX.Element;
+export function InputGroupInput(input: React_2.ComponentProps<"input">): React_2.JSX.Element;
 
 // @public
-export function InputGroupText(input: React_2.ComponentProps<"span">): JSX.Element;
+export function InputGroupText(input: React_2.ComponentProps<"span">): React_2.JSX.Element;
 
 // @public
-export function InputGroupTextarea(input: React_2.ComponentProps<"textarea">): JSX.Element;
+export function InputGroupTextarea(input: React_2.ComponentProps<"textarea">): React_2.JSX.Element;
 
 // @public
 export function InputOTP(input: React_2.ComponentProps<typeof OTPInput> & {
     containerClassName?: string;
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function InputOTPGroup(input: React_2.ComponentProps<"div">): JSX.Element;
+export function InputOTPGroup(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function InputOTPSeparator(input: React_2.ComponentProps<"div">): JSX.Element;
+export function InputOTPSeparator(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
 export function InputOTPSlot(input: React_2.ComponentProps<"div"> & {
     index: number;
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // Warning: (ae-forgotten-export) The symbol "itemVariants" needs to be exported by the entry point index.d.ts
 //
@@ -692,33 +692,33 @@ export function InputOTPSlot(input: React_2.ComponentProps<"div"> & {
 export function Item(input: useRender.ComponentProps<"div"> & VariantProps<typeof itemVariants>): React_2.ReactElement<unknown, string | React_2.JSXElementConstructor<any>>;
 
 // @public
-export function ItemActions(input: React_2.ComponentProps<"div">): JSX.Element;
+export function ItemActions(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function ItemContent(input: React_2.ComponentProps<"div">): JSX.Element;
+export function ItemContent(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function ItemDescription(input: React_2.ComponentProps<"p">): JSX.Element;
+export function ItemDescription(input: React_2.ComponentProps<"p">): React_2.JSX.Element;
 
 // @public
-export function ItemFooter(input: React_2.ComponentProps<"div">): JSX.Element;
+export function ItemFooter(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function ItemGroup(input: React_2.ComponentProps<"div">): JSX.Element;
+export function ItemGroup(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function ItemHeader(input: React_2.ComponentProps<"div">): JSX.Element;
+export function ItemHeader(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // Warning: (ae-forgotten-export) The symbol "itemMediaVariants" needs to be exported by the entry point index.d.ts
 //
 // @public
-export function ItemMedia(input: React_2.ComponentProps<"div"> & VariantProps<typeof itemMediaVariants>): JSX.Element;
+export function ItemMedia(input: React_2.ComponentProps<"div"> & VariantProps<typeof itemMediaVariants>): React_2.JSX.Element;
 
 // @public
-export function ItemSeparator(input: React_2.ComponentProps<typeof Separator>): JSX.Element;
+export function ItemSeparator(input: React_2.ComponentProps<typeof Separator>): React_2.JSX.Element;
 
 // @public
-export function ItemTitle(input: React_2.ComponentProps<"div">): JSX.Element;
+export function ItemTitle(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
 export function Kbd(input: React.ComponentProps<"kbd">): JSX.Element;
@@ -727,74 +727,74 @@ export function Kbd(input: React.ComponentProps<"kbd">): JSX.Element;
 export function KbdGroup(input: React.ComponentProps<"div">): JSX.Element;
 
 // @public
-export function Label(input: React_2.ComponentProps<"label">): JSX.Element;
+export function Label(input: React_2.ComponentProps<"label">): React_2.JSX.Element;
 
 // @public
-export function Menubar(input: Menubar_2.Props): JSX.Element;
+export function Menubar(input: Menubar_2.Props): React_2.JSX.Element;
 
 // @public
 export function MenubarCheckboxItem(input: Menu.CheckboxItem.Props & {
     inset?: boolean;
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function MenubarContent(input: React_2.ComponentProps<typeof DropdownMenuContent>): JSX.Element;
+export function MenubarContent(input: React_2.ComponentProps<typeof DropdownMenuContent>): React_2.JSX.Element;
 
 // @public
-export function MenubarGroup(input: React_2.ComponentProps<typeof DropdownMenuGroup>): JSX.Element;
+export function MenubarGroup(input: React_2.ComponentProps<typeof DropdownMenuGroup>): React_2.JSX.Element;
 
 // @public
-export function MenubarItem(input: React_2.ComponentProps<typeof DropdownMenuItem>): JSX.Element;
+export function MenubarItem(input: React_2.ComponentProps<typeof DropdownMenuItem>): React_2.JSX.Element;
 
 // @public
 export function MenubarLabel(input: React_2.ComponentProps<typeof DropdownMenuLabel> & {
     inset?: boolean;
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function MenubarMenu(input: React_2.ComponentProps<typeof DropdownMenu>): JSX.Element;
+export function MenubarMenu(input: React_2.ComponentProps<typeof DropdownMenu>): React_2.JSX.Element;
 
 // @public
-export function MenubarPortal(input: React_2.ComponentProps<typeof DropdownMenuPortal>): JSX.Element;
+export function MenubarPortal(input: React_2.ComponentProps<typeof DropdownMenuPortal>): React_2.JSX.Element;
 
 // @public
-export function MenubarRadioGroup(input: React_2.ComponentProps<typeof DropdownMenuRadioGroup>): JSX.Element;
+export function MenubarRadioGroup(input: React_2.ComponentProps<typeof DropdownMenuRadioGroup>): React_2.JSX.Element;
 
 // @public
 export function MenubarRadioItem(input: Menu.RadioItem.Props & {
     inset?: boolean;
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function MenubarSeparator(input: React_2.ComponentProps<typeof DropdownMenuSeparator>): JSX.Element;
+export function MenubarSeparator(input: React_2.ComponentProps<typeof DropdownMenuSeparator>): React_2.JSX.Element;
 
 // @public
-export function MenubarShortcut(input: React_2.ComponentProps<typeof DropdownMenuShortcut>): JSX.Element;
+export function MenubarShortcut(input: React_2.ComponentProps<typeof DropdownMenuShortcut>): React_2.JSX.Element;
 
 // @public
-export function MenubarSub(input: React_2.ComponentProps<typeof DropdownMenuSub>): JSX.Element;
+export function MenubarSub(input: React_2.ComponentProps<typeof DropdownMenuSub>): React_2.JSX.Element;
 
 // @public
-export function MenubarSubContent(input: React_2.ComponentProps<typeof DropdownMenuSubContent>): JSX.Element;
+export function MenubarSubContent(input: React_2.ComponentProps<typeof DropdownMenuSubContent>): React_2.JSX.Element;
 
 // @public
 export function MenubarSubTrigger(input: React_2.ComponentProps<typeof DropdownMenuSubTrigger> & {
     inset?: boolean;
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function MenubarTrigger(input: React_2.ComponentProps<typeof DropdownMenuTrigger>): JSX.Element;
+export function MenubarTrigger(input: React_2.ComponentProps<typeof DropdownMenuTrigger>): React_2.JSX.Element;
 
 // Warning: (ae-forgotten-export) The symbol "NativeSelectProps" needs to be exported by the entry point index.d.ts
 //
 // @public
-export function NativeSelect(input: NativeSelectProps): JSX.Element;
+export function NativeSelect(input: NativeSelectProps): React_2.JSX.Element;
 
 // @public
-export function NativeSelectOptGroup(input: React_2.ComponentProps<"optgroup">): JSX.Element;
+export function NativeSelectOptGroup(input: React_2.ComponentProps<"optgroup">): React_2.JSX.Element;
 
 // @public
-export function NativeSelectOption(input: React_2.ComponentProps<"option">): JSX.Element;
+export function NativeSelectOption(input: React_2.ComponentProps<"option">): React_2.JSX.Element;
 
 // @public
 export function NavigationMenu(input: NavigationMenu_2.Root.Props & Pick<NavigationMenu_2.Positioner.Props, "align">): JSX.Element;
@@ -824,49 +824,49 @@ export function NavigationMenuTrigger(input: NavigationMenu_2.Trigger.Props): JS
 export const navigationMenuTriggerStyle: (props?: ClassProp | undefined) => string;
 
 // @public
-export function Pagination(input: React_2.ComponentProps<"nav">): JSX.Element;
+export function Pagination(input: React_2.ComponentProps<"nav">): React_2.JSX.Element;
 
 // @public
-export function PaginationContent(input: React_2.ComponentProps<"ul">): JSX.Element;
+export function PaginationContent(input: React_2.ComponentProps<"ul">): React_2.JSX.Element;
 
 // @public
-export function PaginationEllipsis(input: React_2.ComponentProps<"span">): JSX.Element;
+export function PaginationEllipsis(input: React_2.ComponentProps<"span">): React_2.JSX.Element;
 
 // @public
-export function PaginationItem(input: React_2.ComponentProps<"li">): JSX.Element;
+export function PaginationItem(input: React_2.ComponentProps<"li">): React_2.JSX.Element;
 
 // Warning: (ae-forgotten-export) The symbol "PaginationLinkProps" needs to be exported by the entry point index.d.ts
 //
 // @public
-export function PaginationLink(input: PaginationLinkProps): JSX.Element;
+export function PaginationLink(input: PaginationLinkProps): React_2.JSX.Element;
 
 // @public
 export function PaginationNext(input: React_2.ComponentProps<typeof PaginationLink> & {
     text?: string;
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
 export function PaginationPrevious(input: React_2.ComponentProps<typeof PaginationLink> & {
     text?: string;
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function Popover(input: Popover_2.Root.Props): JSX.Element;
+export function Popover(input: Popover_2.Root.Props): React_2.JSX.Element;
 
 // @public
-export function PopoverContent(input: Popover_2.Popup.Props & Pick<Popover_2.Positioner.Props, "align" | "alignOffset" | "side" | "sideOffset">): JSX.Element;
+export function PopoverContent(input: Popover_2.Popup.Props & Pick<Popover_2.Positioner.Props, "align" | "alignOffset" | "side" | "sideOffset">): React_2.JSX.Element;
 
 // @public
-export function PopoverDescription(input: Popover_2.Description.Props): JSX.Element;
+export function PopoverDescription(input: Popover_2.Description.Props): React_2.JSX.Element;
 
 // @public
-export function PopoverHeader(input: React_2.ComponentProps<"div">): JSX.Element;
+export function PopoverHeader(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function PopoverTitle(input: Popover_2.Title.Props): JSX.Element;
+export function PopoverTitle(input: Popover_2.Title.Props): React_2.JSX.Element;
 
 // @public
-export function PopoverTrigger(input: Popover_2.Trigger.Props): JSX.Element;
+export function PopoverTrigger(input: Popover_2.Trigger.Props): React_2.JSX.Element;
 
 // @public
 export function Progress(input: Progress_2.Root.Props): JSX.Element;
@@ -901,109 +901,109 @@ export function ResizablePanel(input: ResizablePrimitive.PanelProps): JSX.Elemen
 export function ResizablePanelGroup(input: ResizablePrimitive.GroupProps): JSX.Element;
 
 // @public
-export function ScrollArea(input: ScrollArea_2.Root.Props): JSX.Element;
+export function ScrollArea(input: ScrollArea_2.Root.Props): React_2.JSX.Element;
 
 // @public
-export function ScrollBar(input: ScrollArea_2.Scrollbar.Props): JSX.Element;
+export function ScrollBar(input: ScrollArea_2.Scrollbar.Props): React_2.JSX.Element;
 
 // @public
 export const Select: typeof Select_2.Root;
 
 // @public
-export function SelectContent(input: Select_2.Popup.Props & Pick<Select_2.Positioner.Props, "align" | "alignOffset" | "side" | "sideOffset" | "alignItemWithTrigger">): JSX.Element;
+export function SelectContent(input: Select_2.Popup.Props & Pick<Select_2.Positioner.Props, "align" | "alignOffset" | "side" | "sideOffset" | "alignItemWithTrigger">): React_2.JSX.Element;
 
 // @public
-export function SelectGroup(input: Select_2.Group.Props): JSX.Element;
+export function SelectGroup(input: Select_2.Group.Props): React_2.JSX.Element;
 
 // @public
-export function SelectItem(input: Select_2.Item.Props): JSX.Element;
+export function SelectItem(input: Select_2.Item.Props): React_2.JSX.Element;
 
 // @public
-export function SelectLabel(input: Select_2.GroupLabel.Props): JSX.Element;
+export function SelectLabel(input: Select_2.GroupLabel.Props): React_2.JSX.Element;
 
 // @public
-export function SelectScrollDownButton(input: React_2.ComponentProps<typeof Select_2.ScrollDownArrow>): JSX.Element;
+export function SelectScrollDownButton(input: React_2.ComponentProps<typeof Select_2.ScrollDownArrow>): React_2.JSX.Element;
 
 // @public
-export function SelectScrollUpButton(input: React_2.ComponentProps<typeof Select_2.ScrollUpArrow>): JSX.Element;
+export function SelectScrollUpButton(input: React_2.ComponentProps<typeof Select_2.ScrollUpArrow>): React_2.JSX.Element;
 
 // @public
-export function SelectSeparator(input: Select_2.Separator.Props): JSX.Element;
+export function SelectSeparator(input: Select_2.Separator.Props): React_2.JSX.Element;
 
 // @public
 export function SelectTrigger(input: Select_2.Trigger.Props & {
     size?: "sm" | "default";
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function SelectValue(input: Select_2.Value.Props): JSX.Element;
+export function SelectValue(input: Select_2.Value.Props): React_2.JSX.Element;
 
 // @public
 export function Separator(input: Separator_2.Props): JSX.Element;
 
 // @public
-export function Sheet(input: Dialog_2.Root.Props): JSX.Element;
+export function Sheet(input: Dialog_2.Root.Props): React_2.JSX.Element;
 
 // @public
-export function SheetClose(input: Dialog_2.Close.Props): JSX.Element;
+export function SheetClose(input: Dialog_2.Close.Props): React_2.JSX.Element;
 
 // @public
 export function SheetContent(input: Dialog_2.Popup.Props & {
     side?: "top" | "right" | "bottom" | "left";
     showCloseButton?: boolean;
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function SheetDescription(input: Dialog_2.Description.Props): JSX.Element;
+export function SheetDescription(input: Dialog_2.Description.Props): React_2.JSX.Element;
 
 // @public
-export function SheetFooter(input: React_2.ComponentProps<"div">): JSX.Element;
+export function SheetFooter(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function SheetHeader(input: React_2.ComponentProps<"div">): JSX.Element;
+export function SheetHeader(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function SheetTitle(input: Dialog_2.Title.Props): JSX.Element;
+export function SheetTitle(input: Dialog_2.Title.Props): React_2.JSX.Element;
 
 // @public
-export function SheetTrigger(input: Dialog_2.Trigger.Props): JSX.Element;
+export function SheetTrigger(input: Dialog_2.Trigger.Props): React_2.JSX.Element;
 
 // @public
 export function Sidebar(input: React_2.ComponentProps<"div"> & {
     side?: "left" | "right";
     variant?: "sidebar" | "floating" | "inset";
     collapsible?: "offcanvas" | "icon" | "none";
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function SidebarContent(input: React_2.ComponentProps<"div">): JSX.Element;
+export function SidebarContent(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function SidebarFooter(input: React_2.ComponentProps<"div">): JSX.Element;
+export function SidebarFooter(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function SidebarGroup(input: React_2.ComponentProps<"div">): JSX.Element;
+export function SidebarGroup(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
 export function SidebarGroupAction(input: useRender.ComponentProps<"button"> & React_2.ComponentProps<"button">): React_2.ReactElement<unknown, string | React_2.JSXElementConstructor<any>>;
 
 // @public
-export function SidebarGroupContent(input: React_2.ComponentProps<"div">): JSX.Element;
+export function SidebarGroupContent(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
 export function SidebarGroupLabel(input: useRender.ComponentProps<"div"> & React_2.ComponentProps<"div">): React_2.ReactElement<unknown, string | React_2.JSXElementConstructor<any>>;
 
 // @public
-export function SidebarHeader(input: React_2.ComponentProps<"div">): JSX.Element;
+export function SidebarHeader(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // @public
-export function SidebarInput(input: React_2.ComponentProps<typeof Input>): JSX.Element;
+export function SidebarInput(input: React_2.ComponentProps<typeof Input>): React_2.JSX.Element;
 
 // @public
-export function SidebarInset(input: React_2.ComponentProps<"main">): JSX.Element;
+export function SidebarInset(input: React_2.ComponentProps<"main">): React_2.JSX.Element;
 
 // @public
-export function SidebarMenu(input: React_2.ComponentProps<"ul">): JSX.Element;
+export function SidebarMenu(input: React_2.ComponentProps<"ul">): React_2.JSX.Element;
 
 // @public
 export function SidebarMenuAction(input: useRender.ComponentProps<"button"> & React_2.ComponentProps<"button"> & {
@@ -1011,7 +1011,7 @@ export function SidebarMenuAction(input: useRender.ComponentProps<"button"> & Re
 }): React_2.ReactElement<unknown, string | React_2.JSXElementConstructor<any>>;
 
 // @public
-export function SidebarMenuBadge(input: React_2.ComponentProps<"div">): JSX.Element;
+export function SidebarMenuBadge(input: React_2.ComponentProps<"div">): React_2.JSX.Element;
 
 // Warning: (ae-forgotten-export) The symbol "sidebarMenuButtonVariants" needs to be exported by the entry point index.d.ts
 //
@@ -1019,18 +1019,18 @@ export function SidebarMenuBadge(input: React_2.ComponentProps<"div">): JSX.Elem
 export function SidebarMenuButton(input: useRender.ComponentProps<"button"> & React_2.ComponentProps<"button"> & {
     isActive?: boolean;
     tooltip?: string | React_2.ComponentProps<typeof TooltipContent>;
-} & VariantProps<typeof sidebarMenuButtonVariants>): JSX.Element;
+} & VariantProps<typeof sidebarMenuButtonVariants>): React_2.JSX.Element;
 
 // @public
-export function SidebarMenuItem(input: React_2.ComponentProps<"li">): JSX.Element;
+export function SidebarMenuItem(input: React_2.ComponentProps<"li">): React_2.JSX.Element;
 
 // @public
 export function SidebarMenuSkeleton(input: React_2.ComponentProps<"div"> & {
     showIcon?: boolean;
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function SidebarMenuSub(input: React_2.ComponentProps<"ul">): JSX.Element;
+export function SidebarMenuSub(input: React_2.ComponentProps<"ul">): React_2.JSX.Element;
 
 // @public
 export function SidebarMenuSubButton(input: useRender.ComponentProps<"a"> & React_2.ComponentProps<"a"> & {
@@ -1039,23 +1039,23 @@ export function SidebarMenuSubButton(input: useRender.ComponentProps<"a"> & Reac
 }): React_2.ReactElement<unknown, string | React_2.JSXElementConstructor<any>>;
 
 // @public
-export function SidebarMenuSubItem(input: React_2.ComponentProps<"li">): JSX.Element;
+export function SidebarMenuSubItem(input: React_2.ComponentProps<"li">): React_2.JSX.Element;
 
 // @public
 export function SidebarProvider(input: React_2.ComponentProps<"div"> & {
     defaultOpen?: boolean;
     open?: boolean;
     onOpenChange?: (open: boolean) => void;
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function SidebarRail(input: React_2.ComponentProps<"button">): JSX.Element;
+export function SidebarRail(input: React_2.ComponentProps<"button">): React_2.JSX.Element;
 
 // @public
-export function SidebarSeparator(input: React_2.ComponentProps<typeof Separator>): JSX.Element;
+export function SidebarSeparator(input: React_2.ComponentProps<typeof Separator>): React_2.JSX.Element;
 
 // @public
-export function SidebarTrigger(input: React_2.ComponentProps<typeof Button>): JSX.Element;
+export function SidebarTrigger(input: React_2.ComponentProps<typeof Button>): React_2.JSX.Element;
 
 // @public
 export function Skeleton(input: React.ComponentProps<"div">): JSX.Element;
@@ -1072,28 +1072,28 @@ export function Switch(input: Switch_2.Root.Props & {
 }): JSX.Element;
 
 // @public
-export function Table(input: React_2.ComponentProps<"table">): JSX.Element;
+export function Table(input: React_2.ComponentProps<"table">): React_2.JSX.Element;
 
 // @public
-export function TableBody(input: React_2.ComponentProps<"tbody">): JSX.Element;
+export function TableBody(input: React_2.ComponentProps<"tbody">): React_2.JSX.Element;
 
 // @public
-export function TableCaption(input: React_2.ComponentProps<"caption">): JSX.Element;
+export function TableCaption(input: React_2.ComponentProps<"caption">): React_2.JSX.Element;
 
 // @public
-export function TableCell(input: React_2.ComponentProps<"td">): JSX.Element;
+export function TableCell(input: React_2.ComponentProps<"td">): React_2.JSX.Element;
 
 // @public
-export function TableFooter(input: React_2.ComponentProps<"tfoot">): JSX.Element;
+export function TableFooter(input: React_2.ComponentProps<"tfoot">): React_2.JSX.Element;
 
 // @public
-export function TableHead(input: React_2.ComponentProps<"th">): JSX.Element;
+export function TableHead(input: React_2.ComponentProps<"th">): React_2.JSX.Element;
 
 // @public
-export function TableHeader(input: React_2.ComponentProps<"thead">): JSX.Element;
+export function TableHeader(input: React_2.ComponentProps<"thead">): React_2.JSX.Element;
 
 // @public
-export function TableRow(input: React_2.ComponentProps<"tr">): JSX.Element;
+export function TableRow(input: React_2.ComponentProps<"tr">): React_2.JSX.Element;
 
 // @public
 export function Tabs(input: Tabs_2.Root.Props): JSX.Element;
@@ -1113,7 +1113,7 @@ export const tabsListVariants: (props?: ({
 export function TabsTrigger(input: Tabs_2.Tab.Props): JSX.Element;
 
 // @public
-export function Textarea(input: React_2.ComponentProps<"textarea">): JSX.Element;
+export function Textarea(input: React_2.ComponentProps<"textarea">): React_2.JSX.Element;
 
 // @public
 export const Toaster: (input: ToasterProps) => JSX.Element;
@@ -1125,10 +1125,10 @@ export function Toggle(input: Toggle_2.Props & VariantProps<typeof toggleVariant
 export function ToggleGroup(input: ToggleGroup_2.Props & VariantProps<typeof toggleVariants> & {
     spacing?: number;
     orientation?: "horizontal" | "vertical";
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
-export function ToggleGroupItem(input: Toggle_2.Props & VariantProps<typeof toggleVariants>): JSX.Element;
+export function ToggleGroupItem(input: Toggle_2.Props & VariantProps<typeof toggleVariants>): React_2.JSX.Element;
 
 // @public
 export const toggleVariants: (props?: ({

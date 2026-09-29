@@ -60,7 +60,7 @@ export async function POST(req: Request) {
   try {
     const result = await generateText({
       model: provider(model),
-      system: ENHANCER_SYSTEM,
+      instructions: ENHANCER_SYSTEM,
       prompt: `Enhance the following UI generation prompt:\n\n"${prompt}"`,
       // The enhanced prompt is only 3–8 sentences; cap output and abort before
       // the function limit so a slow model returns a clean JSON error the client

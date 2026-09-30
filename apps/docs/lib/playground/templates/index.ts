@@ -4,6 +4,7 @@ import contactForm from "./contact-form.json";
 import loginForm from "./login-form.json";
 import pricingPage from "./pricing-page.json";
 import profileCard from "./profile-card.json";
+import taskList from "./task-list.json";
 
 /**
  * Pre-generated, verified specs for the playground's "Start from a template"
@@ -16,4 +17,5 @@ export const templates: { id: string; label: string; spec: Spec }[] = [
   { id: "pricing-page", label: "Pricing page", spec: pricingPage as Spec },
   { id: "profile-card", label: "Profile card", spec: profileCard as Spec },
   { id: "contact-form", label: "Contact form", spec: contactForm as Spec },
-]
+  { id: "task-list", label: "Task list", spec: taskList as Spec },
+];

@@ -1,0 +1,81 @@
+{
+  "root": "card",
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": { "className": "max-w-md mx-auto" },
+      "children": ["header", "content"]
+    },
+    "header": {
+      "type": "CardHeader",
+      "props": {},
+      "children": ["title", "description"]
+    },
+    "title": { "type": "CardTitle", "props": { "text": "Release checklist" } },
+    "description": {
+      "type": "CardDescription",
+      "props": { "text": "Nested repeat demo — every task can carry subtasks." }
+    },
+    "content": {
+      "type": "CardContent",
+      "props": {},
+      "children": ["tasks"]
+    },
+    "tasks": {
+      "type": "Stack",
+      "props": { "gap": 4 },
+      "repeat": { "statePath": "/tasks", "key": "id" },
+      "children": ["task"]
+    },
+    "task": {
+      "type": "Stack",
+      "props": { "gap": 1 },
+      "children": ["task-row", "subtasks"]
+    },
+    "task-row": {
+      "type": "Stack",
+      "props": { "direction": "row", "gap": 2, "align": "center" },
+      "children": ["task-done", "task-title"]
+    },
+    "task-done": {
+      "type": "Checkbox",
+      "props": { "checked": { "$item": "done" } }
+    },
+    "task-title": {
+      "type": "Text",
+      "props": { "variant": "lead", "text": { "$item": "title" } }
+    },
+    "subtasks": {
+      "type": "Stack",
+      "props": { "gap": 1 },
+      "repeat": { "statePath": { "$item": "subtasks" } },
+      "children": ["subtask"]
+    },
+    "subtask": {
+      "type": "Text",
+      "props": { "variant": "muted", "text": { "$item": "title" } }
+    }
+  },
+  "state": {
+    "tasks": [
+      {
+        "id": "1",
+        "title": "Design tokens",
+        "done": true,
+        "subtasks": [{ "title": "Color scale" }, { "title": "Radius scale" }]
+      },
+      {
+        "id": "2",
+        "title": "Components",
+        "done": false,
+        "subtasks": [{ "title": "Button" }, { "title": "Dialog" }]
+      },
+      {
+        "id": "3",
+        "title": "Docs",
+        "done": false,
+        "subtasks": []
+      }
+    ]
+  }
+}

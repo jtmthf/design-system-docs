@@ -1,6 +1,6 @@
 "use client";
 
-import { startTransition, useState } from "react";
+import { startTransition, useMemo, useState } from "react";
 import type { Spec } from "@json-render/core";
 import { useUIStream } from "@json-render/react";
 import { toast } from "sonner";
@@ -12,6 +12,7 @@ import { Alert, AlertTitle, AlertDescription } from "@workspace/ui/components/al
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@workspace/ui/components/select";
 import { SendIcon, Loader2Icon, Sparkles, AlertTriangleIcon } from "lucide-react";
 import { generateJSX } from "@/lib/playground/codegen";
+import { findSpecProblems } from "@/lib/playground/validation";
 import { SpecPreview } from "@/components/spec-preview";
 import { templates } from "@/lib/playground/templates";
 
@@ -62,6 +63,13 @@ export default function PlaygroundPage() {
 
   const displaySpec = templateSpec ?? spec;
   const lastPrompt = history.at(-1)?.text;
+
+  // Validate only finished specs: mid-stream specs are expected to be partial,
+  // so flashing errors while they fill in would be noise.
+  const problems = useMemo(
+    () => (isStreaming ? [] : findSpecProblems(displaySpec)),
+    [displaySpec, isStreaming]
+  );
 
   const handleSend = (text: string) => {
     if (!text.trim() || isStreaming) return;
@@ -247,6 +255,26 @@ export default function PlaygroundPage() {
               </TabsList>
 
               <TabsContent value="preview" className="flex-1 overflow-auto p-4">
+                {problems.length > 0 && (
+                  <Alert variant="destructive" className="mb-3">
+                    <AlertTriangleIcon className="size-4" />
+                    <AlertTitle>Some elements didn&apos;t validate</AlertTitle>
+                    <AlertDescription>
+                      <ul className="list-disc space-y-1 pl-4">
+                        {problems.map((problem, index) => (
+                          <li
+                            key={`${problem.code}-${problem.elementKey ?? index}`}
+                          >
+                            {problem.summary}{" "}
+                            <span className="text-xs opacity-80">
+                              {problem.detail}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </AlertDescription>
+                  </Alert>
+                )}
                 {!displaySpec && !isStreaming && (
                   <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
                     Enter a prompt to generate a UI

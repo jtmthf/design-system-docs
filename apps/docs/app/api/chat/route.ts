@@ -73,10 +73,26 @@ ${index}`,
   });
 
   const stream = createUIMessageStream({
-    execute: ({ writer }) => {
+    execute: async ({ writer }) => {
       writer.merge(
         pipeJsonRender(toUIMessageStream({ stream: result.stream }))
       );
+
+      // `totalUsage` sums every step and resolves once the model stream ends.
+      // Forward it as a custom data part so the client can display token counts.
+      const usage = await Promise.resolve(result.totalUsage).catch(
+        () => undefined
+      );
+      if (usage) {
+        writer.write({
+          type: "data-usage",
+          data: {
+            inputTokens: usage.inputTokens ?? 0,
+            outputTokens: usage.outputTokens ?? 0,
+            totalTokens: usage.totalTokens ?? 0,
+          },
+        });
+      }
     },
   });
 

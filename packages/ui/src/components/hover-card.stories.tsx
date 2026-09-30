@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
-import { expect, screen } from "storybook/test"
+import { expect, screen, waitFor } from "storybook/test"
 
 import {
   HoverCard,
@@ -78,7 +78,7 @@ export const Default: Story = {
   ),
   play: async ({ canvas, userEvent }) => {
     await userEvent.hover(canvas.getByRole("link", { name: /@jackmoore/i }))
-    await expect(await screen.findByText(/building design systems/i)).toBeVisible()
+    await waitFor(() => expect(screen.getByText(/building design systems/i)).toBeVisible())
   },
 }
 

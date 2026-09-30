@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
-import { expect, screen, waitFor, within } from "storybook/test"
+import { expect, screen, waitFor } from "storybook/test"
 
 import {
   Combobox,
@@ -11,6 +11,8 @@ import {
   ComboboxLabel,
   ComboboxEmpty,
   ComboboxSeparator,
+  ComboboxValue,
+  ComboboxChip,
   ComboboxChips,
   ComboboxChipsInput,
   useComboboxAnchor,
@@ -81,7 +83,7 @@ const frameworks = [
  */
 export const Default: Story = {
   render: (args) => (
-    <Combobox {...args}>
+    <Combobox items={frameworks} {...args}>
       <ComboboxInput
         placeholder="Select framework..."
         showTrigger
@@ -91,7 +93,7 @@ export const Default: Story = {
         <ComboboxList>
           <ComboboxEmpty>No framework found.</ComboboxEmpty>
           {frameworks.map((fw) => (
-            <ComboboxItem key={fw.value} value={fw.value}>
+            <ComboboxItem key={fw.value} value={fw}>
               {fw.label}
             </ComboboxItem>
           ))}
@@ -99,12 +101,10 @@ export const Default: Story = {
       </ComboboxContent>
     </Combobox>
   ),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-
+  play: async ({ canvas, userEvent }) => {
     // Open the dropdown by clicking the input
     const input = canvas.getByRole("combobox")
-    input.click()
+    await userEvent.click(input)
 
     // Wait for the listbox to appear
     await waitFor(
@@ -114,7 +114,7 @@ export const Default: Story = {
 
     // Select "Astro"
     const astroOption = screen.getByRole("option", { name: /astro/i })
-    astroOption.click()
+    await userEvent.click(astroOption)
 
     // The input should now reflect the selection
     await waitFor(() =>
@@ -129,10 +129,10 @@ export const Default: Story = {
  */
 export const WithClear: Story = {
   args: {
-    defaultValue: "next",
+    defaultValue: frameworks[0],
   },
   render: (args) => (
-    <Combobox {...args}>
+    <Combobox items={frameworks} {...args}>
       <ComboboxInput
         placeholder="Select framework..."
         showTrigger
@@ -143,7 +143,7 @@ export const WithClear: Story = {
         <ComboboxList>
           <ComboboxEmpty>No framework found.</ComboboxEmpty>
           {frameworks.map((fw) => (
-            <ComboboxItem key={fw.value} value={fw.value}>
+            <ComboboxItem key={fw.value} value={fw}>
               {fw.label}
             </ComboboxItem>
           ))}
@@ -194,15 +194,26 @@ export const Grouped: Story = {
 const MultiSelectExample = () => {
   const anchorRef = useComboboxAnchor()
   return (
-    <Combobox multiple defaultValue={[]}>
+    <Combobox multiple items={frameworks}>
       <ComboboxChips ref={anchorRef} className="w-72">
-        <ComboboxChipsInput placeholder="Add framework..." />
+        <ComboboxValue>
+          {(values: typeof frameworks) => (
+            <>
+              {values.map((framework) => (
+                <ComboboxChip key={framework.value} aria-label={framework.label}>
+                  {framework.label}
+                </ComboboxChip>
+              ))}
+              <ComboboxChipsInput placeholder="Add framework..." />
+            </>
+          )}
+        </ComboboxValue>
       </ComboboxChips>
       <ComboboxContent anchor={anchorRef}>
         <ComboboxList>
           <ComboboxEmpty>No framework found.</ComboboxEmpty>
           {frameworks.map((fw) => (
-            <ComboboxItem key={fw.value} value={fw.value}>
+            <ComboboxItem key={fw.value} value={fw}>
               {fw.label}
             </ComboboxItem>
           ))}
@@ -214,10 +225,9 @@ const MultiSelectExample = () => {
 
 export const MultiSelect: Story = {
   render: () => <MultiSelectExample />,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
+  play: async ({ canvas, userEvent }) => {
     const input = canvas.getByRole("combobox")
-    input.click()
+    await userEvent.click(input)
 
     await waitFor(
       () => expect(screen.getByRole("listbox")).toBeVisible(),
@@ -225,13 +235,13 @@ export const MultiSelect: Story = {
     )
 
     // Select two options
-    screen.getByRole("option", { name: /next\.js/i }).click()
-    screen.getByRole("option", { name: /remix/i }).click()
+    await userEvent.click(screen.getByRole("option", { name: /next\.js/i }))
+    await userEvent.click(screen.getByRole("option", { name: /remix/i }))
 
     // Two chip elements should now be present in the chips container
     await waitFor(() => {
-      const chips = canvasElement.querySelectorAll("[data-slot='combobox-chip']")
-      expect(chips.length).toBeGreaterThanOrEqual(2)
+      expect(canvas.getByLabelText("Next.js")).toBeVisible()
+      expect(canvas.getByLabelText("Remix")).toBeVisible()
     })
   },
 }

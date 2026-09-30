@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
-import { expect, screen } from "storybook/test"
+import { expect, screen, waitFor } from "storybook/test"
 import { toast } from "sonner"
 
 import { Toaster } from "#components/sonner"
@@ -87,7 +87,7 @@ export const Default: Story = {
   play: async ({ canvas, userEvent }) => {
     await userEvent.click(canvas.getByRole("button", { name: /show toast/i }))
     const toastEl = await screen.findByText("File saved successfully.")
-    await expect(toastEl).toBeVisible()
+    await waitFor(() => expect(toastEl).toBeVisible())
   },
 }
 
@@ -107,7 +107,7 @@ export const Success: Story = {
   play: async ({ canvas, userEvent }) => {
     await userEvent.click(canvas.getByRole("button", { name: /show success/i }))
     const toastEl = await screen.findByText("Changes saved successfully.")
-    await expect(toastEl).toBeVisible()
+    await waitFor(() => expect(toastEl).toBeVisible())
   },
 }
 
@@ -127,7 +127,7 @@ export const Error: Story = {
   play: async ({ canvas, userEvent }) => {
     await userEvent.click(canvas.getByRole("button", { name: /show error/i }))
     const toastEl = await screen.findByText("Something went wrong. Please try again.")
-    await expect(toastEl).toBeVisible()
+    await waitFor(() => expect(toastEl).toBeVisible())
   },
 }
 
@@ -155,6 +155,6 @@ export const WithAction: Story = {
   play: async ({ canvas, userEvent }) => {
     await userEvent.click(canvas.getByRole("button", { name: /send email/i }))
     const toastEl = await screen.findByText("Email sent")
-    await expect(toastEl).toBeVisible()
+    await waitFor(() => expect(toastEl).toBeVisible())
   },
 }

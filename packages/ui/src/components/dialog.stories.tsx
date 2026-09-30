@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
-import { expect, screen } from "storybook/test"
+import { expect, screen, waitFor } from "storybook/test"
 
 import {
   Dialog,
@@ -73,7 +73,7 @@ export const Default: Story = {
   ),
   play: async ({ canvas, userEvent }) => {
     await userEvent.click(canvas.getByRole("button", { name: /open dialog/i }))
-    await expect(await screen.findByRole("dialog")).toBeVisible()
+    await waitFor(() => expect(screen.getByRole("dialog")).toBeVisible())
   },
 }
 

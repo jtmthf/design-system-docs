@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
-import { expect, screen } from "storybook/test"
+import { expect, screen, waitFor } from "storybook/test"
 
 import {
   Select,
@@ -78,7 +78,7 @@ export const Default: Story = {
   render: (args) => <Example {...args} />,
   play: async ({ canvas, userEvent }) => {
     await userEvent.click(canvas.getByRole("combobox"))
-    await expect(await screen.findByRole("listbox")).toBeVisible()
+    await waitFor(() => expect(screen.getByRole("listbox")).toBeVisible())
   },
 }
 

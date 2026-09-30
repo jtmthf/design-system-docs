@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
-import { expect, screen } from "storybook/test"
+import { expect, screen, waitFor } from "storybook/test"
 import { PlusIcon } from "lucide-react"
 
 import {
@@ -87,9 +87,10 @@ export const Default: Story = {
   ),
   play: async ({ canvas, userEvent }) => {
     await userEvent.hover(canvas.getByRole("button", { name: /hover me/i }))
-    await expect(
-      await screen.findByText(/add to library/i, {}, { timeout: 3000 })
-    ).toBeVisible()
+    await waitFor(
+      () => expect(screen.getByText(/add to library/i)).toBeVisible(),
+      { timeout: 3000 }
+    )
   },
 }
 

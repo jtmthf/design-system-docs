@@ -90,8 +90,8 @@ export const Default: Story = {
   play: async ({ canvas, userEvent }) => {
     const trigger = canvas.getByRole("button", { name: /toggle/i })
     const content = canvas.queryByText(/collection of reusable/i)
-    // Content should be hidden initially
-    await expect(content).not.toBeVisible()
+    // Closed content is unmounted.
+    await expect(content).not.toBeInTheDocument()
     // Open
     await userEvent.click(trigger)
     await expect(

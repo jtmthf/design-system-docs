@@ -1,6 +1,6 @@
 import * as React from "react"
 import type { Meta, StoryObj } from "@storybook/react-vite"
-import { expect, screen } from "storybook/test"
+import { expect, screen, waitFor } from "storybook/test"
 import { CalendarIcon, FileIcon, SettingsIcon, UserIcon } from "lucide-react"
 
 import {
@@ -200,7 +200,9 @@ export const WithTrigger: Story = {
     await userEvent.click(
       canvas.getByRole("button", { name: /search commands/i })
     )
-    await expect(await screen.findByRole("dialog")).toBeVisible()
-    await expect(screen.getByPlaceholderText(/search commands/i)).toBeVisible()
+    await waitFor(() => expect(screen.getByRole("dialog")).toBeVisible())
+    await waitFor(() =>
+      expect(screen.getByPlaceholderText(/search commands/i)).toBeVisible()
+    )
   },
 }

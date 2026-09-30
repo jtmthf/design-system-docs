@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
-import { expect, screen } from "storybook/test"
+import { expect, screen, waitFor } from "storybook/test"
 
 import {
   Sheet,
@@ -81,7 +81,7 @@ export const Default: Story = {
   ),
   play: async ({ canvas, userEvent }) => {
     await userEvent.click(canvas.getByRole("button", { name: /open sheet/i }))
-    await expect(await screen.findByText(/edit profile/i)).toBeVisible()
+    await waitFor(() => expect(screen.getByText(/edit profile/i)).toBeVisible())
   },
 }
 

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
-import { expect, screen } from "storybook/test"
+import { expect, screen, waitFor } from "storybook/test"
 
 import {
   AlertDialog,
@@ -79,7 +79,7 @@ export const Default: Story = {
     await userEvent.click(
       canvas.getByRole("button", { name: /delete account/i })
     )
-    await expect(await screen.findByRole("alertdialog")).toBeVisible()
+    await waitFor(() => expect(screen.getByRole("alertdialog")).toBeVisible())
     await expect(
       screen.getByText(/this action cannot be undone/i)
     ).toBeVisible()

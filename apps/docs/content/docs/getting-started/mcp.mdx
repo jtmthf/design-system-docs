@@ -1,0 +1,42 @@
+---
+title: MCP server
+description: Query these docs from an AI agent over the Model Context Protocol.
+---
+
+These docs are served over the
+[Model Context Protocol](https://modelcontextprotocol.io) (MCP) at `/api/mcp`,
+using the Streamable HTTP transport. Any MCP-compatible client can list pages,
+read a single page as Markdown, and search the whole site — the same content
+that backs [`/llms.txt`](/llms.txt) and [`/api/search`](/api/search).
+
+## Tools
+
+| Tool         | Description                                                                    |
+| ------------ | ------------------------------------------------------------------------------ |
+| `list_pages` | Lists every documentation page with its URL.                                   |
+| `get_page`   | Returns one page's Markdown by URL, e.g. `/docs/components/button`.            |
+| `search`     | Full-text search across every page.                                            |
+
+## Configure a client
+
+Point an MCP client at the deployed docs host:
+
+```json
+{
+  "mcpServers": {
+    "design-system-docs": {
+      "url": "https://<your-docs-host>/api/mcp"
+    }
+  }
+}
+```
+
+For local development, use `http://localhost:3001/api/mcp` while `pnpm dev` is
+running.
+
+## Notes
+
+- The endpoint is dynamic by design: it is never prerendered, cached, or
+  prefetched, so every tool call is answered from the current source.
+- Markdown is served through the same renderer as the rest of the LLM-facing
+  routes, so pages match [`/llms-full.txt`](/llms-full.txt).

@@ -19,6 +19,7 @@
     "@json-render/codegen": "^0.21.0",
     "@json-render/core": "^0.21.0",
     "@json-render/react": "^0.21.0",
+    "@modelcontextprotocol/server": "^2.2.0",
     "@workspace/ui": "workspace:*",
     "ai": "^7.0.122",
     "clsx": "^2.1.1",

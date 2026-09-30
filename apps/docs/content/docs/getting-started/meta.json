@@ -1,4 +1,4 @@
 {
   "title": "Getting Started",
-  "pages": ["installation", "theming", "monorepo-usage", "registry"]
+  "pages": ["installation", "theming", "monorepo-usage", "registry", "mcp"]
 }

@@ -171,6 +171,21 @@ function elementToJSX(
   const opening = attrString ? `${type} ${attrString}` : type;
 
   const children = element.children ?? [];
+
+  // Named slots render relative to the default children: `header` above,
+  // `footer` below, and any other named slot after the default children. The
+  // preview primitives lay the slots out in exactly this order, so flattening
+  // here keeps the copied JSX faithful without a slot-specific API.
+  const slots = element.slots ?? {};
+  const slotChildKeys = [
+    ...(slots.header ?? []),
+    ...children,
+    ...Object.entries(slots)
+      .filter(([name]) => name !== "header" && name !== "footer")
+      .flatMap(([, keys]) => keys),
+    ...(slots.footer ?? []),
+  ];
+
   let childLines: string;
 
   if (element.repeat) {
@@ -184,7 +199,7 @@ function elementToJSX(
     const list = Array.isArray(items) ? items : [];
     childLines = list
       .flatMap((item, index) =>
-        children.map((childKey) =>
+        slotChildKeys.map((childKey) =>
           elementToJSX(spec, childKey, depth + 1, {
             ...ctx,
             repeatItem: item,
@@ -196,7 +211,7 @@ function elementToJSX(
       .filter(Boolean)
       .join("\n");
   } else {
-    childLines = children
+    childLines = slotChildKeys
       .map((childKey) => elementToJSX(spec, childKey, depth + 1, ctx))
       .filter(Boolean)
       .join("\n");

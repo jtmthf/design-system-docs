@@ -57,13 +57,13 @@ function useFieldValue<T>(
 export const { registry } = defineRegistry(catalog, {
   components: {
     // Layout
-    Stack: ({ props, children }) => (
-      <Stack direction={props.direction} gap={props.gap} align={props.align} justify={props.justify} className={props.className}>
+    Stack: ({ props, children, slots }) => (
+      <Stack direction={props.direction} gap={props.gap} align={props.align} justify={props.justify} className={props.className} header={slots?.header} footer={slots?.footer}>
         {children}
       </Stack>
     ),
-    Grid: ({ props, children }) => (
-      <Grid columns={props.columns} gap={props.gap} className={props.className}>
+    Grid: ({ props, children, slots }) => (
+      <Grid columns={props.columns} gap={props.gap} className={props.className} header={slots?.header} footer={slots?.footer}>
         {children}
       </Grid>
     ),
@@ -101,7 +101,13 @@ export const { registry } = defineRegistry(catalog, {
     Progress: ({ props }) => <Progress value={props.value} max={props.max} className={props.className} />,
 
     // Display
-    Card: ({ props, children }) => <Card size={props.size} className={props.className}>{children}</Card>,
+    Card: ({ props, children, slots }) => (
+      <Card size={props.size} className={props.className}>
+        {slots?.header}
+        {children}
+        {slots?.footer}
+      </Card>
+    ),
     CardHeader: ({ props, children }) => <CardHeader className={props.className}>{children}</CardHeader>,
     CardTitle: ({ props }) => <CardTitle className={props.className}>{props.text}</CardTitle>,
     CardDescription: ({ props }) => <CardDescription className={props.className}>{props.text}</CardDescription>,

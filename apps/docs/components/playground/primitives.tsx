@@ -8,6 +8,10 @@ interface StackProps {
   align?: "start" | "center" | "end" | "stretch" | "baseline";
   justify?: "start" | "center" | "end" | "between" | "around" | "evenly";
   className?: string;
+  /** Named slot rendered above the default children. */
+  header?: React.ReactNode;
+  /** Named slot rendered below the default children. */
+  footer?: React.ReactNode;
   children?: React.ReactNode;
 }
 
@@ -17,6 +21,8 @@ export function Stack({
   align,
   justify,
   className,
+  header,
+  footer,
   children,
 }: StackProps) {
   return (
@@ -30,7 +36,9 @@ export function Stack({
         className
       )}
     >
+      {header}
       {children}
+      {footer}
     </div>
   );
 }
@@ -39,6 +47,10 @@ interface GridProps {
   columns?: number;
   gap?: number;
   className?: string;
+  /** Named slot rendered above the default children. */
+  header?: React.ReactNode;
+  /** Named slot rendered below the default children. */
+  footer?: React.ReactNode;
   children?: React.ReactNode;
 }
 
@@ -46,6 +58,8 @@ export function Grid({
   columns = 2,
   gap = 2,
   className,
+  header,
+  footer,
   children,
 }: GridProps) {
   return (
@@ -57,7 +71,9 @@ export function Grid({
         className
       )}
     >
+      {header}
       {children}
+      {footer}
     </div>
   );
 }

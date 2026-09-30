@@ -13,8 +13,8 @@ export const catalog = defineCatalog(schema, {
         justify: z.enum(["start", "center", "end", "between", "around", "evenly"]).optional().describe("justify-content"),
         className: z.string().optional().describe("Additional Tailwind CSS utility classes"),
       }),
-      slots: ["default"],
-      description: "Flex container for vertical or horizontal layouts",
+      slots: ["default", "header", "footer"],
+      description: "Flex container for vertical or horizontal layouts. `header` renders above and `footer` below the default children",
     },
     Grid: {
       props: z.object({
@@ -22,8 +22,8 @@ export const catalog = defineCatalog(schema, {
         gap: z.number().min(0).max(12).optional().describe("Tailwind gap scale (0-12). Default: 2"),
         className: z.string().optional().describe("Additional Tailwind CSS utility classes"),
       }),
-      slots: ["default"],
-      description: "CSS grid container",
+      slots: ["default", "header", "footer"],
+      description: "CSS grid container. `header` renders above and `footer` below the default children",
     },
 
     // Content
@@ -106,8 +106,8 @@ export const catalog = defineCatalog(schema, {
         size: z.enum(["default", "sm"]).optional().describe("Card size. Default: 'default'"),
         className: z.string().optional().describe("Additional Tailwind CSS utility classes"),
       }),
-      slots: ["default"],
-      description: "A surface container for grouping related content",
+      slots: ["default", "header", "footer"],
+      description: "A surface container for grouping related content. `header` renders above and `footer` below the default children",
     },
     CardHeader: {
       props: z.object({

@@ -32,9 +32,6 @@ importers:
       '@ai-sdk/anthropic':
         specifier: ^4.0.68
         version: 4.0.68(zod@4.6.5)
-      '@ai-sdk/openai':
-        specifier: ^4.0.80
-        version: 4.0.80(zod@4.6.5)
       '@ai-sdk/openai-compatible':
         specifier: ^3.0.59
         version: 3.0.59(zod@4.6.5)
@@ -65,9 +62,6 @@ importers:
       fumadocs-mdx:
         specifier: 15.4.5
         version: 15.4.5(@types/mdast@4.0.4)(@types/mdx@2.0.14)(@types/react@19.3.0)(fumadocs-core@16.15.15(@mdx-js/mdx@3.1.1)(@types/estree-jsx@1.0.5)(@types/hast@3.0.5)(@types/mdast@4.0.4)(@types/react@19.3.0)(lucide-react@1.48.0(react@19.3.0))(next@16.3.6(@opentelemetry/api@1.9.1)(@types/node@24.19.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(zod@4.6.5))(next@16.3.6(@opentelemetry/api@1.9.1)(@types/node@24.19.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0)(rolldown@1.0.3)(vite@8.0.16(@types/node@24.19.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
-      fumadocs-openapi:
-        specifier: 12.0.4
-        version: 12.0.4(154cac5d2ba8716baa55f4156a5df71d)
       fumadocs-twoslash:
         specifier: 4.0.1
         version: 4.0.1(f5f6e974532dca36a1d5973d15f3aa92)
@@ -390,12 +384,6 @@ packages:
 
   '@ai-sdk/openai-compatible@3.0.59':
     resolution: {integrity: sha512-ZRWWHhLTyVT0NSy+CnGuRAushwRRxXxpX0XMPgUjz+LTR3IP3nE155NkPhrD06yCT8fTKX+xlzF2nEg0P/LjGQ==}
-    engines: {node: '>=22'}
-    peerDependencies:
-      zod: ^3.25.76 || ^4.1.8
-
-  '@ai-sdk/openai@4.0.80':
-    resolution: {integrity: sha512-rd3IiSqiniCSB+3E6FryRb3VfNgBErRqklp50zUqA90EovtumFglzHZfRRjBnUfw49aArKvpWwMe5/1RGZDaKg==}
     engines: {node: '>=22'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -1100,17 +1088,6 @@ packages:
       '@types/react':
         optional: true
 
-  '@fumadocs/json-schema@0.2.0':
-    resolution: {integrity: sha512-I3sB2wwJr1Up5JSmaAThmQ2CSP4j2pM01igpbsuKDG3kHYuoHDXiKGEoFWmYK3a81VjQ98AOYx60SEs6xEXr7A==}
-    peerDependencies:
-      json-schema-typed: '*'
-      react: ^19.2.0
-    peerDependenciesMeta:
-      json-schema-typed:
-        optional: true
-      react:
-        optional: true
-
   '@fumadocs/tailwind@0.1.2':
     resolution: {integrity: sha512-VppeXgIRXjZMgpf2qijj1hcfxyeYl1s0ok8k6N3jyjiX64M7sDwnt2zGPd6dbfDybgbBvDw6C6J1e42gB5NzsA==}
     peerDependencies:
@@ -1121,24 +1098,6 @@ packages:
 
   '@fumari/image-size@0.1.1':
     resolution: {integrity: sha512-iaiV2wyzJ4mW358NX4CX3yGit+WjKYzpaQ+rldK9BjL/5jFpeV6ruWnZVq7MEyMn3Gd0DLi8g/79NZAAQaGscw==}
-
-  '@fumari/json-schema-ts@1.0.2':
-    resolution: {integrity: sha512-1NHGl8Oqg50mhpWMvbhqnwFRLBugkGCRubLSH/TrAzTAS99x4z0xFgOVcbJne+yfaZv94ZNdmRWobDvUiZswPg==}
-    peerDependencies:
-      json-schema-typed: '*'
-    peerDependenciesMeta:
-      json-schema-typed:
-        optional: true
-
-  '@fumari/stf@1.1.1':
-    resolution: {integrity: sha512-W0ISkQFwwX438CYlBxAe3OdCdPRSlHWVNizB1q4ICzrQKR9AYhGZuvKYo+HukSpgaMCUt++cM7VEa4VtSA8rhg==}
-    peerDependencies:
-      '@types/react': '*'
-      react: ^19.2.0
-      react-dom: ^19.2.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
 
   '@hono/node-server@1.19.14':
     resolution: {integrity: sha512-GwtvgtXxnWsucXvbQXkRgqksiH2Qed37H9xHZocE5sA3N8O8O8/8FA3uclQXxXVzc9XBZuEOMK7+r02FmSpHtw==}
@@ -2615,22 +2574,6 @@ packages:
   '@rushstack/ts-command-line@5.3.16':
     resolution: {integrity: sha512-k1L7MQQEuQ1v0rsQ8pRzoZ3NRsrvSifBguWlLnl2a5iWGTTW9E0/G/B39291eAf3zF45wheybuJ2onwB/PPsfA==}
     engines: {node: '>=20.9.0'}
-
-  '@scalar/helpers@0.12.0':
-    resolution: {integrity: sha512-rcX0rFLiWWc0VBr/E+HkatubL0I0ZzxASQkd3032NWEMAEfNd2TiJ9kH46HwbSAOOl696ghxymWegjpjjvxwzA==}
-    engines: {node: '>=22'}
-
-  '@scalar/json-magic@0.13.5':
-    resolution: {integrity: sha512-w5eENfKAkc4CYiLva3nGUhTaJfyi3szmZ3E7+EHlzahOUnbDmB9rAWyzt8GFCXbwxeTuR+1m7lO1PyV/QAid4A==}
-    engines: {node: '>=22'}
-
-  '@scalar/openapi-types@0.9.6':
-    resolution: {integrity: sha512-hge0dhllV70dwqgUiucmDY5yZLq91BOV/78lWSqQMTY67x+LHcQplJUZDomfFi5oepROpWDs5iaKMr7ubqDBOA==}
-    engines: {node: '>=22'}
-
-  '@scalar/openapi-upgrader@0.2.17':
-    resolution: {integrity: sha512-HoSgjb57UNH2OACVmbo4yLPnvP3BPnvtSMJVqRhjOspJhz945XEZYnfwgk2C3hET0bFvkc7aLSabm/K1nbjp8Q==}
-    engines: {node: '>=22'}
 
   '@sec-ant/readable-stream@0.4.1':
     resolution: {integrity: sha512-831qok9r2t8AlxLko40y2ebgSDhenenCatLVeW/uBtnHPyhHOvG0C7TvfgecV+wHzIm5KUICgzmVpWS+IMEAeg==}
@@ -4405,24 +4348,6 @@ packages:
       satteri:
         optional: true
       vite:
-        optional: true
-
-  fumadocs-openapi@12.0.4:
-    resolution: {integrity: sha512-rmu+AhUwkRk4aO9a3DEdUorO18NKBZwFeunEbVgpWlVaSf1vvgTONhiytGtUjZ4zDEFDvAKrGMJjO0f0ti6Eiw==}
-    peerDependencies:
-      '@scalar/api-client-react': ^2.0.20
-      '@types/react': '*'
-      fumadocs-core: ^16.15.0
-      fumadocs-ui: ^16.15.0
-      json-schema-typed: '*'
-      react: ^19.2.0
-      react-dom: ^19.2.0
-    peerDependenciesMeta:
-      '@scalar/api-client-react':
-        optional: true
-      '@types/react':
-        optional: true
-      json-schema-typed:
         optional: true
 
   fumadocs-twoslash@4.0.1:
@@ -6229,10 +6154,6 @@ packages:
   undici-types@7.24.6:
     resolution: {integrity: sha512-WRNW+sJgj5OBN4/0JpHFqtqzhpbnV0GuB+OozA9gCL7a993SmU+1JBZCzLNxYsbMfIeDL+lTsphD5jN5N+n0zg==}
 
-  undici@7.24.4:
-    resolution: {integrity: sha512-BM/JzwwaRXxrLdElV2Uo6cTLEjhSb3WXboncJamZ15NgUURmvlXvxa6xkwIOILIjPNo9i8ku136ZvWV0Uly8+w==}
-    engines: {node: '>=20.18.1'}
-
   undici@7.30.0:
     resolution: {integrity: sha512-dkrQXeHSaoamnItlYbmzG0wFYrM0ZwDxCIg0A7aKjTyyhh9svRzCNFEzV+Vm05/yehjCzjDZ31KXfGEjYSztDQ==}
     engines: {node: '>=20.18.1'}
@@ -6598,12 +6519,6 @@ snapshots:
       zod: 4.6.5
 
   '@ai-sdk/openai-compatible@3.0.59(zod@4.6.5)':
-    dependencies:
-      '@ai-sdk/provider': 4.0.19
-      '@ai-sdk/provider-utils': 5.0.51(zod@4.6.5)
-      zod: 4.6.5
-
-  '@ai-sdk/openai@4.0.80(zod@4.6.5)':
     dependencies:
       '@ai-sdk/provider': 4.0.19
       '@ai-sdk/provider-utils': 5.0.51(zod@4.6.5)
@@ -7270,33 +7185,11 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.3.0
 
-  '@fumadocs/json-schema@0.2.0(@types/react@19.3.0)(json-schema-typed@8.0.2)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
-    dependencies:
-      '@fuma-translate/react': 1.0.2(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      '@scalar/json-magic': 0.13.5
-    optionalDependencies:
-      json-schema-typed: 8.0.2
-      react: 19.3.0
-    transitivePeerDependencies:
-      - '@types/react'
-      - react-dom
-
   '@fumadocs/tailwind@0.1.2(tailwindcss@4.3.3)':
     optionalDependencies:
       tailwindcss: 4.3.3
 
   '@fumari/image-size@0.1.1': {}
-
-  '@fumari/json-schema-ts@1.0.2(json-schema-typed@8.0.2)':
-    optionalDependencies:
-      json-schema-typed: 8.0.2
-
-  '@fumari/stf@1.1.1(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
-    dependencies:
-      react: 19.3.0
-      react-dom: 19.3.0(react@19.3.0)
-    optionalDependencies:
-      '@types/react': 19.3.0
 
   '@hono/node-server@1.19.14(hono@4.12.23)':
     dependencies:
@@ -8564,22 +8457,6 @@ snapshots:
       string-argv: 0.3.2
     transitivePeerDependencies:
       - '@types/node'
-
-  '@scalar/helpers@0.12.0': {}
-
-  '@scalar/json-magic@0.13.5':
-    dependencies:
-      '@scalar/helpers': 0.12.0
-      pathe: 2.0.3
-      undici: 7.24.4
-      yaml: 2.9.1
-
-  '@scalar/openapi-types@0.9.6': {}
-
-  '@scalar/openapi-upgrader@0.2.17':
-    dependencies:
-      '@scalar/helpers': 0.12.0
-      '@scalar/openapi-types': 0.9.6
 
   '@sec-ant/readable-stream@0.4.1': {}
 
@@ -10397,37 +10274,6 @@ snapshots:
       rolldown: 1.0.3
       vite: 8.0.16(@types/node@24.19.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)
     transitivePeerDependencies:
-      - supports-color
-
-  fumadocs-openapi@12.0.4(154cac5d2ba8716baa55f4156a5df71d):
-    dependencies:
-      '@base-ui/react': 1.8.0(@date-fns/tz@1.5.0)(@types/react@19.3.0)(date-fns@4.4.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      '@fuma-translate/react': 1.0.2(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      '@fumadocs/json-schema': 0.2.0(@types/react@19.3.0)(json-schema-typed@8.0.2)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      '@fumari/json-schema-ts': 1.0.2(json-schema-typed@8.0.2)
-      '@fumari/stf': 1.1.1(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      '@scalar/json-magic': 0.13.5
-      '@scalar/openapi-upgrader': 0.2.17
-      chokidar: 5.0.0
-      class-variance-authority: 0.7.1
-      cn: 0.3.3
-      fumadocs-core: 16.15.15(@mdx-js/mdx@3.1.1)(@types/estree-jsx@1.0.5)(@types/hast@3.0.5)(@types/mdast@4.0.4)(@types/react@19.3.0)(lucide-react@1.48.0(react@19.3.0))(next@16.3.6(@opentelemetry/api@1.9.1)(@types/node@24.19.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(zod@4.6.5)
-      fumadocs-ui: 16.15.15(@types/mdx@2.0.14)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(fumadocs-core@16.15.15(@mdx-js/mdx@3.1.1)(@types/estree-jsx@1.0.5)(@types/hast@3.0.5)(@types/mdast@4.0.4)(@types/react@19.3.0)(lucide-react@1.48.0(react@19.3.0))(next@16.3.6(@opentelemetry/api@1.9.1)(@types/node@24.19.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(zod@4.6.5))(next@16.3.6(@opentelemetry/api@1.9.1)(@types/node@24.19.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(tailwindcss@4.3.3)
-      github-slugger: 2.0.0
-      hast-util-to-jsx-runtime: 2.3.6
-      lucide-react: 1.48.0(react@19.3.0)
-      react: 19.3.0
-      react-dom: 19.3.0(react@19.3.0)
-      remark: 15.0.1
-      remark-rehype: 11.1.2
-      shiki: 4.4.3
-      yaml: 2.9.1
-    optionalDependencies:
-      '@types/react': 19.3.0
-      json-schema-typed: 8.0.2
-    transitivePeerDependencies:
-      - '@date-fns/tz'
-      - date-fns
       - supports-color
 
   fumadocs-twoslash@4.0.1(f5f6e974532dca36a1d5973d15f3aa92):
@@ -12632,8 +12478,6 @@ snapshots:
       '@typescript/typescript-win32-x64': 7.0.2
 
   undici-types@7.24.6: {}
-
-  undici@7.24.4: {}
 
   undici@7.30.0: {}
 

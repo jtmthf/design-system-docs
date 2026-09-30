@@ -9,7 +9,6 @@ const nextConfig: NextConfig = {
     "fumadocs-ui",
     "fumadocs-twoslash",
     "fumadocs-typescript",
-    "fumadocs-openapi",
   ],
   images: {
     // Example photos in components/examples.

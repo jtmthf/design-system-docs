@@ -6,6 +6,7 @@ import type { Spec } from "@json-render/core";
 import { CheckIcon, CopyIcon } from "lucide-react";
 
 import { generateJSX } from "@/lib/playground/codegen";
+import { PreviewErrorBoundary } from "./preview-error";
 import { SpecPreview } from "./spec-preview";
 
 /**
@@ -49,7 +50,11 @@ export function AskAIPreview({ spec }: { spec: Spec }) {
         )}
       </div>
       <div className="preview-surface not-prose flex flex-wrap items-start gap-3 p-4">
-        <SpecPreview spec={spec} />
+        {/* A spec the assistant streamed may be malformed mid-stream — keep the
+            failure inside the answer bubble instead of the whole panel. */}
+        <PreviewErrorBoundary label="Live preview" compact className="w-full">
+          <SpecPreview spec={spec} />
+        </PreviewErrorBoundary>
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 
 import { cn } from "@/lib/cn";
 import { exampleRegistry } from "./examples/registry";
+import { PreviewErrorBoundary } from "./preview-error";
 
 interface ComponentPreviewProps {
   /** Example file name, e.g. `button-variants` (without extension). */
@@ -50,7 +51,9 @@ export function ComponentPreview({
           className
         )}
       >
-        <Example />
+        <PreviewErrorBoundary label={`Example "${name}"`}>
+          <Example />
+        </PreviewErrorBoundary>
       </div>
     );
   }
@@ -62,7 +65,9 @@ export function ComponentPreview({
         className
       )}
     >
-      <Example />
+      <PreviewErrorBoundary label={`Example "${name}"`}>
+        <Example />
+      </PreviewErrorBoundary>
     </div>
   );
 

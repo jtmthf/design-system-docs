@@ -9,6 +9,7 @@ import {
 } from "@json-render/react";
 
 import { registry } from "@/lib/playground/registry";
+import { PreviewErrorBoundary } from "@/components/preview-error";
 
 /**
  * Renders a json-render spec with the standard provider stack used across the
@@ -28,12 +29,16 @@ export function SpecPreview({
   loading?: boolean;
 }) {
   return (
-    <StateProvider initialState={spec?.state}>
-      <VisibilityProvider>
-        <ActionProvider handlers={{}}>
-          <Renderer spec={spec} registry={registry} loading={loading} />
-        </ActionProvider>
-      </VisibilityProvider>
-    </StateProvider>
+    // A malformed generated spec throws during render; contain it here so the
+    // playground panel and the Ask AI answer keep their surroundings.
+    <PreviewErrorBoundary label="Live preview" className="w-full">
+      <StateProvider initialState={spec?.state}>
+        <VisibilityProvider>
+          <ActionProvider handlers={{}}>
+            <Renderer spec={spec} registry={registry} loading={loading} />
+          </ActionProvider>
+        </VisibilityProvider>
+      </StateProvider>
+    </PreviewErrorBoundary>
   );
 }

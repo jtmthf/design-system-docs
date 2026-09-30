@@ -31,10 +31,15 @@ export async function POST(req: Request) {
     .map((p) => `- ${p.data.title} (${p.url}): ${p.data.description ?? ""}`)
     .join("\n");
 
-  // Ground answers in the page the user is currently reading.
+  // Ground answers in the page the user is currently reading. The client sends
+  // window.location.pathname; page URLs are built from the "/docs" baseUrl with
+  // no trailing slash (Next's `trailingSlash` is off), so they match directly.
   let current = "";
   if (typeof page === "string" && page) {
-    const match = pages.find((p) => p.url === page);
+    // Normalize a stray trailing slash, then fall back to the raw path.
+    const normalized = page.length > 1 ? page.replace(/\/+$/, "") : page;
+    const match =
+      source.getPageByUrl(normalized) ?? source.getPageByUrl(page);
     current = match
       ? `The user is currently on "${match.data.title}" (${match.url}). ${match.data.description ?? ""} Prefer this page's component(s) when relevant and resolve "this component"/"it" to it.`
       : `The user is currently on ${page}.`;

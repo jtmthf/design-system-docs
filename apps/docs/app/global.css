@@ -13,6 +13,55 @@
 }
 
 /*
+ * View transitions (React's <ViewTransition>).
+ *
+ * Every animated surface opts into the shared `crossfade` view-transition-class,
+ * so one keyframe pair drives route-content crossfades and same-route preview
+ * swaps instead of one rule per element. The fumadocs sidebar, nav, and theme
+ * controls are deliberately kept outside every <ViewTransition>, so they are
+ * never captured as transition participants and cannot double-animate.
+ */
+::view-transition-group(.crossfade) {
+  animation-duration: 200ms;
+  animation-timing-function: ease;
+}
+
+::view-transition-old(.crossfade) {
+  animation: 200ms ease both view-transition-crossfade-out;
+}
+
+::view-transition-new(.crossfade) {
+  animation: 200ms ease both view-transition-crossfade-in;
+}
+
+@keyframes view-transition-crossfade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes view-transition-crossfade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* The transition overlay captures pointer events while it runs; let clicks
+ * reach the live page so navigation stays responsive. */
+::view-transition {
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
+
+/*
  * Live component previews render inside fumadocs' prose body, whose typography
  * styles bleed into the demos (list markers on breadcrumb/pagination, table-cell
  * borders on the calendar, image margins that shove the avatar out of its ring).

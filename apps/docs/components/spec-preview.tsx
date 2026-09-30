@@ -7,6 +7,7 @@ import {
   StateProvider,
   VisibilityProvider,
 } from "@json-render/react";
+import { ViewTransition } from "react";
 
 import { registry } from "@/lib/playground/registry";
 import { PreviewErrorBoundary } from "@/components/preview-error";
@@ -32,13 +33,17 @@ export function SpecPreview({
     // A malformed generated spec throws during render; contain it here so the
     // playground panel and the Ask AI answer keep their surroundings.
     <PreviewErrorBoundary label="Live preview" className="w-full">
-      <StateProvider initialState={spec?.state}>
-        <VisibilityProvider>
-          <ActionProvider handlers={{}}>
-            <Renderer spec={spec} registry={registry} loading={loading} />
-          </ActionProvider>
-        </VisibilityProvider>
-      </StateProvider>
+      {/* Same-route content swap: a newly generated spec replaces the previous
+          one in place, so crossfade the subtree instead of the whole page. */}
+      <ViewTransition update="crossfade" default="none">
+        <StateProvider initialState={spec?.state}>
+          <VisibilityProvider>
+            <ActionProvider handlers={{}}>
+              <Renderer spec={spec} registry={registry} loading={loading} />
+            </ActionProvider>
+          </VisibilityProvider>
+        </StateProvider>
+      </ViewTransition>
     </PreviewErrorBoundary>
   );
 }

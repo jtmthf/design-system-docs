@@ -7,6 +7,7 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 import { cn } from "@/lib/cn";
 import { exampleRegistry } from "./examples/registry";
 import { PreviewErrorBoundary } from "./preview-error";
+import { ViewTransition } from "react";
 
 interface ComponentPreviewProps {
   /** Example file name, e.g. `button-variants` (without extension). */
@@ -59,16 +60,21 @@ export function ComponentPreview({
   }
 
   const preview = (
-    <div
-      className={cn(
-        "preview-surface not-prose flex min-h-[320px] w-full items-center justify-center p-10",
-        className
-      )}
-    >
-      <PreviewErrorBoundary label={`Example "${name}"`}>
-        <Example />
-      </PreviewErrorBoundary>
-    </div>
+    // In-place swap only: the route-level `docs-content` transition already
+    // crossfades the page, so the preview animates on content changes (tabs,
+    // regenerated examples) rather than re-animating on every navigation.
+    <ViewTransition update="crossfade" default="none">
+      <div
+        className={cn(
+          "preview-surface not-prose flex min-h-[320px] w-full items-center justify-center p-10",
+          className
+        )}
+      >
+        <PreviewErrorBoundary label={`Example "${name}"`}>
+          <Example />
+        </PreviewErrorBoundary>
+      </div>
+    </ViewTransition>
   );
 
   const code = readExampleSource(name);

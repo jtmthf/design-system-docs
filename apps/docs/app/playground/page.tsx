@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { startTransition, useState } from "react";
 import type { Spec } from "@json-render/core";
 import { useUIStream } from "@json-render/react";
 import { toast } from "sonner";
@@ -74,8 +74,15 @@ export default function PlaygroundPage() {
   const handleTemplate = (template: (typeof templates)[number]) => {
     if (isStreaming) return;
     clear();
-    setTemplateSpec(template.spec);
-    setHistory((prev) => [...prev, { id: crypto.randomUUID(), text: template.label }]);
+    // A transition lets <ViewTransition> in SpecPreview crossfade the outgoing
+    // spec into the template's spec instead of swapping instantly.
+    startTransition(() => {
+      setTemplateSpec(template.spec);
+      setHistory((prev) => [
+        ...prev,
+        { id: crypto.randomUUID(), text: template.label },
+      ]);
+    });
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {

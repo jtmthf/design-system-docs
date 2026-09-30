@@ -10,6 +10,7 @@ import { PageActions } from "@/components/page-actions";
 import { githubSourceUrl } from "@/lib/page-actions";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { ViewTransition } from "react";
 
 export default async function Page({
   params,
@@ -39,7 +40,16 @@ export default async function Page({
         />
       </div>
       <DocsBody>
-        <MDX components={mdxComponents} />
+        {/*
+         * Route content crossfade. The inner div gives the named transition a
+         * single DOM node to capture, and everything outside it — the fumadocs
+         * sidebar, nav, and theme controls — stays out of the transition.
+         */}
+        <ViewTransition name="docs-content" share="crossfade" default="none">
+          <div>
+            <MDX components={mdxComponents} />
+          </div>
+        </ViewTransition>
       </DocsBody>
     </DocsPage>
   );
